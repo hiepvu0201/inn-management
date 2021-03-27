@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "tblRooms")
+@Table
 public class Rooms {
 
     @Id
@@ -21,17 +21,6 @@ public class Rooms {
 
     @OneToMany(mappedBy = "room")
     private Set<Facilities> facilities;
-
-    public Rooms() {
-    }
-
-    public Rooms(Long id, String roomNo, String position, Set<Users> users, Set<Facilities> facilities) {
-        this.id = id;
-        this.roomNo = roomNo;
-        this.position = position;
-        this.users = users;
-        this.facilities = facilities;
-    }
 
     public Long getId() {
         return id;

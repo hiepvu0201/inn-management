@@ -53,28 +53,6 @@ public class Users {
     @OneToMany(mappedBy = "user")
     private Set<ReportedIssues> reportedIssues;
 
-    public Users() {
-    }
-
-    public Users(Long id, String username, String passwordHash, String email, String fullName, String idNo, String sex, String job, String address, String phoneNo, Date checkinDate, Date checkoutDate, Double downPayment, Set<Roles> roles, Rooms room, Set<ReportedIssues> reportedIssues) {
-        this.id = id;
-        this.username = username;
-        this.passwordHash = passwordHash;
-        this.email = email;
-        this.fullName = fullName;
-        this.idNo = idNo;
-        this.sex = sex;
-        this.job = job;
-        this.address = address;
-        this.phoneNo = phoneNo;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
-        this.downPayment = downPayment;
-        this.roles = roles;
-        this.room = room;
-        this.reportedIssues = reportedIssues;
-    }
-
     public Long getId() {
         return id;
     }

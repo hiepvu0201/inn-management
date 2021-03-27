@@ -3,7 +3,7 @@ package com.thesis.innmanagement.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblFacilities")
+@Table
 public class Facilities {
 
     @Id
@@ -19,17 +19,6 @@ public class Facilities {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id", nullable = false)
     private Rooms room;
-
-    public Facilities() {
-    }
-
-    public Facilities(Long id, String name, String quality, int quantity, Rooms room) {
-        this.id = id;
-        this.name = name;
-        this.quality = quality;
-        this.quantity = quantity;
-        this.room = room;
-    }
 
     public Long getId() {
         return id;

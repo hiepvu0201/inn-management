@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "tblContracts")
+@Table
 public class Contracts {
 
     @Id
@@ -16,15 +16,6 @@ public class Contracts {
 
     @Column(name = "sign_date")
     private Date signDate;
-
-    public Contracts() {
-    }
-
-    public Contracts(Long id, String details, Date signDate) {
-        this.id = id;
-        this.details = details;
-        this.signDate = signDate;
-    }
 
     public Long getId() {
         return id;

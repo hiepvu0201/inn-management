@@ -3,7 +3,7 @@ package com.thesis.innmanagement.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblMonthlyPayments")
+@Table
 public class MonthlyPayments {
 
     @Id
@@ -15,15 +15,6 @@ public class MonthlyPayments {
 
     @Column(precision = 16, scale = 4)
     private Double cost;
-
-    public MonthlyPayments() {
-    }
-
-    public MonthlyPayments(Long id, String itemName, Double cost) {
-        this.id = id;
-        this.itemName = itemName;
-        this.cost = cost;
-    }
 
     public Long getId() {
         return id;

@@ -3,7 +3,7 @@ package com.thesis.innmanagement.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tblRoles")
+@Table
 public class Roles {
 
     @Id
@@ -15,15 +15,6 @@ public class Roles {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = true)
     private Users user;
-
-    public Roles() {
-    }
-
-    public Roles(Long id, String name, Users user) {
-        this.id = id;
-        this.name = name;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;

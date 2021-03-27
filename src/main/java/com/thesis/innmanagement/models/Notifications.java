@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "tblNotification")
+@Table
 public class Notifications {
 
     @Id
@@ -21,16 +21,6 @@ public class Notifications {
     @CreationTimestamp
     @Column(name = "created_date")
     private Timestamp createdDate;
-
-    public Notifications() {
-    }
-
-    public Notifications(Long id, String name, String description, Timestamp createdDate) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.createdDate = createdDate;
-    }
 
     public Long getId() {
         return id;

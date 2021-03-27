@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "tblReportedIssues")
+@Table
 public class ReportedIssues {
 
     @Id
@@ -34,20 +34,6 @@ public class ReportedIssues {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
-
-    public ReportedIssues() {
-    }
-
-    public ReportedIssues(Long id, String reporter, String title, String description, String status, Timestamp reportedDate, Timestamp solvedDate, Users user) {
-        this.id = id;
-        this.reporter = reporter;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.reportedDate = reportedDate;
-        this.solvedDate = solvedDate;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;

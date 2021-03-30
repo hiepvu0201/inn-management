@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './login/index'
+import Login from './feature/login/index'
 function App() {
   return (
     <div className="App">

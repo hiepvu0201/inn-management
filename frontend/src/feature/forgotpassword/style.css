@@ -18,17 +18,17 @@
     background-color: white    ;
 }
 .sign-up{
-    width: 100%;
+    width: 80%;
     height: auto;
-    font-size: 20px;
-    color: white;
-    background-color:#007c7e;
+    font-size: 30px;
+    color: black;
+    /* background-color:#007c7e; */
     border-radius: 5px;
     /* border-top: 40px; */
     font-family: 'Open Sans', sans-serif;
 }
 .username{
-    width:100%;
+    width:80%;
     height: auto;
     font-size: 15px;
     color: black;

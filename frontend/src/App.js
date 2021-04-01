@@ -4,13 +4,15 @@ import "./App.css";
 // import Register  from './feature/register'
 // import Forgotpassword from "./feature/forgotpassword";
 import Home from './feature/homepage'
+// import Component_NgangXanh from './components/component_ngangxanh'
 function App() {
   return (
     <div className="App">
       {/* <Login/> */}
       {/* <Register/> */}
-      <Forgotpassword/>
+      {/* <Forgotpassword/> */}
       <Home/>
+      {/* <Component_NgangXanh/> */}
     </div>
   );
 }

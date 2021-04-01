@@ -1,0 +1,36 @@
+.box{
+    width:80%;
+    height: 210px;
+    background-color: #007c7e;
+    display:"flex";
+    justify-content: center;
+}
+.icon-hover{
+    border-radius: 50%;
+    background-color: white;
+    width:4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-hover:hover{
+    background-color:#009c7e ;
+    /* color: white; */
+}
+.topic-com{
+    width:80%;
+    height: auto;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    color:white;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.content-com{
+    width: 80%;
+    height: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color:white;
+}

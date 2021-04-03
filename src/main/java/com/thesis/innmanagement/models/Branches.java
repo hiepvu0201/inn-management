@@ -13,6 +13,8 @@ public class Branches {
 
     private String location;
 
+    private String description;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<Users> tenant;
 
@@ -27,6 +29,14 @@ public class Branches {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<MonthlyPayments> monthlyPayment;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

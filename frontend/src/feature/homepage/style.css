@@ -1,47 +1,58 @@
-.button-free{
-    width:75%;
-    height: 80%;
-    border-radius: 15px;
-    font-family: 'Open Sans', sans-serif;
-    color:white;
-    background-color: #007c7e;
-    font-size: 28px;
-    font-weight: bold;
+.button-free {
+  width: 75%;
+  height: 80%;
+  border-radius: 15px;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  background-color: #007c7e;
+  font-size: 28px;
+  font-weight: bold;
 }
-.button-free:hover{
-    background-color:#eb2f5b
+.button-free:hover {
+  background-color: #eb2f5b;
 }
-.content{
-    width:100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
+.content {
+  width: 100%;
+  height: auto;
+  /* display: flex;
+    justify-content: center; */
+  align-items: center;
+  padding-top: 10px;
 }
-.container{
-    width: 80%;
-    height: auto;
+.container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
-.topic{
-    font-size: 30px;
-    padding-top: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    /* style={{
-        fontFamily: "Merriweather Sans, sans-serif",
-        fontSize: "30px",
-        paddingTop:"10px"
-      }} */
-      display: flex;
-      justify-content: center;
+.topic {
+  font-size: 30px;
+  padding-top: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
-.circle-topic{
-    width:3rem;
-    height:3rem;
-    background-color: #007c7e;
-    left: 25px;
-    bottom:15px;
-    position: relative;
-    border-radius: 50%;
+.circle-topic {
+  width: 3rem;
+  height: 3rem;
+  background-color: #007c7e;
+  left: 25px;
+  bottom: 15px;
+  position: relative;
+  border-radius: 50%;
+}
+.btn-signup-2 {
+  width: 20%;
+  height: 40px;
+  font-size: 14px;
+  font-family: "PT Sans", sans-serif;
+  background-color: #007c7e;
+  border-radius: 10px;
+  color: white;
+}
+.btn-signup-2:hover {
+  background-color: #eb2f5b;
 }

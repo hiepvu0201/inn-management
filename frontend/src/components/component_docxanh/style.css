@@ -1,11 +1,11 @@
-.box{
+.box-1{
     width:80%;
-    height: 210px;
-    background-color: #007c7e;
-    display:"flex";
+    height:280px;
+    background-color: #f9f9f9;
+    display: flex;
     justify-content: center;
 }
-.icon-hover{
+.icon-hover-1{
     border-radius: 50%;
     background-color: white;
     width:4rem;
@@ -14,25 +14,19 @@
     justify-content: center;
     align-items: center;
 }
-.icon-hover:hover{
-    background-color:#009c7e ;
-    /* color: white; */
-}
-.topic-com{
+.topic-com-1{
     width:80%;
     height: auto;
     font-size: 24px;
-    color:white;
+    font-family: 'PT Sans', sans-serif;
+    color:#007c7e;
     font-weight: bold;
     padding-top: 10px;
-    font-family: 'PT Sans', sans-serif;
-
 }
-.content-com{
+.content-com-1{
     width: 80%;
     height: auto;
-    font-size: 15px;
-    color:white;
     font-family: 'PT Sans', sans-serif;
-
+    font-size: 15px;
+    color:black;
 }

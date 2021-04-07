@@ -13,5 +13,6 @@ export const Images={
     BAR_CHART:IMAGE_URL+"/img/002-bar-chart.png",
     PIGGY:IMAGE_URL+"/img/004-piggy-bank.png",
     ANALYSIS:IMAGE_URL+"/img/001-analysis.png",
-    BUSINESS_PLAN:IMAGE_URL+"/img/006-business-plan.png"
+    BUSINESS_PLAN:IMAGE_URL+"/img/006-business-plan.png",
+    FACE_1:IMAGE_URL+"/img/icon-face-1jpg.jpg",
 };

@@ -10,7 +10,8 @@ import {
   faPuzzlePiece,
   faUserAlt,
   faUserTimes,
-  faUsers
+  faUsers,
+  faRecycle,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoneyBillAlt,
@@ -21,7 +22,10 @@ import Component1 from "./../../components/component_ngangxanh";
 import Component2 from "./../../components/component_docxanh";
 import Component3 from "./../../components/component_nganghong";
 import Component4 from "./../../components/component_ngang";
-import Component5 from './../../components/component_ngangtranghong'
+import Component5 from "./../../components/component_ngangtranghong";
+import Component6 from "./../../components/component_block";
+import Component7 from "./../../components/component_rectangle";
+import Component8 from './../../components/component_block_last'
 function Home() {
   return (
     <div>
@@ -558,61 +562,564 @@ function Home() {
                   mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
                 </div>
               </div>
-              <Row style={{paddingTop:"10px"}}>
+              <Row style={{ paddingTop: "10px" }}>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
               </Row>
-              <Row style={{paddingTop:"10px"}}>
+              <Row style={{ paddingTop: "10px" }}>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
                 <Col lg={8} md={24}>
-                    <Component5
-                      icon={<FontAwesomeIcon icon={faUsers} size="2x" color="#eb2f5b" />}
-                      topic1="Quản lý khách thuê"
-                      content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
-                    />
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faUsers}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý khách thuê"
+                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                  />
                 </Col>
               </Row>
             </div>
           </div>
         </div>
       </div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-      <div>9</div>
-      <div>10</div>
+      <div>
+        <div
+          style={{
+            width: "100%",
+            height: "560px",
+            backgroundColor: "#efefef",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "80%",
+              height: "auto",
+            }}
+          >
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
+                <div className="topic">
+                  <div className="circle-topic"></div>
+                  <div style={{ position: "relative", bottom: "10px" }}>
+                    Với nhiều tính năng ưu việt chỉ có tại KHUTRO{" "}
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div
+                  style={{
+                    fontFamily: " PT Sans, sans-serif",
+                    fontSize: "15px",
+                    width: "80%",
+                  }}
+                >
+                  Cùng với các chuyên gia IT dày kinh nghiệm, chúng tôi nghiên
+                  cứu thiết kế phần mềm quản lý nhà trọ tối ưu phù hợp với nhiều
+                  mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
+                </div>
+              </div>
+              <Row style={{ paddingTop: "5px" }}>
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faRecycle}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Dùng thử miễn phí"
+                    content1="Dùng thử miễn phí, hướng dẫn như thật cùng chuyên viên tận tâm. Bảo hành trọn đời, hỗ trợ liên tục 24/7."
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faRecycle}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Dùng thử miễn phí"
+                    content1="Dùng thử miễn phí, hướng dẫn như thật cùng chuyên viên tận tâm. Bảo hành trọn đời, hỗ trợ liên tục 24/7."
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faRecycle}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Dùng thử miễn phí"
+                    content1="Dùng thử miễn phí, hướng dẫn như thật cùng chuyên viên tận tâm. Bảo hành trọn đời, hỗ trợ liên tục 24/7."
+                  />
+                </Col>
+              </Row>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="content-contact">
+                  Hãy để chúng tôi đồng hành cùng bạn
+                </div>
+              </div>
+              <div className="content-atlast">
+                <div style={{ fontSize: "15px", paddingRight: "10px" }}>
+                  Tại
+                </div>
+                <strong style={{ fontSize: "15px" }}>KHUTRO</strong>
+                <div style={{ paddingLeft: "10px", fontSize: "15px" }}>
+                  , chúng tôi luôn cố gắng tạo ra môi trường làm việc chuyên
+                  nghiệp, sáng tạo và kỷ luật cao. Cùng với đội ngũ kỹ sư trẻ
+                  giàu nhiệt huyết và các nhân viên tư vấn khách hàng luôn sẵn
+                  sàng hỗ trợ bạn 24/7.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          style={{
+            width: "100%",
+            height: "450px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "80%",
+              height: "auto",
+            }}
+          >
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
+                <div className="topic">
+                  <div className="circle-topic"></div>
+                  <div style={{ position: "relative", bottom: "10px" }}>
+                    Quy trình mua Phần mềm KHUTRO
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ fontSize: "15px" }}>
+                  Dưới đây là các bước để tiến hành mua{" "}
+                </div>
+                <strong
+                  style={{
+                    fontSize: "15px",
+                    paddingRight: "10px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  KHUTRO – Phần mềm Quản lý Nhà trọ, Căn hộ{" "}
+                </strong>
+                <div style={{ fontSize: "15px" }}>của chúng tôi.</div>
+              </div>
+              <Component6 />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div
+            style={{
+              width: "100%",
+              height: "560px",
+              display: "flex",
+              justifyContent: "center",
+              backgroundColor: "#efefef",
+            }}
+          >
+            <div
+              style={{
+                width: "90%",
+                height: "auto",
+              }}
+            >
+              <div style={{ display: "block" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: "15px",
+                  }}
+                >
+                  <div className="topic">
+                    <div className="circle-topic"></div>
+                    <div style={{ position: "relative", bottom: "10px" }}>
+                      Vì sao chọn KHUTRO?
+                    </div>
+                  </div>
+                </div>
+                <div style={{ justifyContent: "center", display: "flex" }}>
+                  <div style={{ fontSize: "15px" }}>
+                    Kinh doanh hiệu quả phải quản lý tốt nhưng không phải chủ
+                    trọ, căn hộ nào cũng biết cách làm, cũng như có đủ thời gian
+                    để làm. Với
+                  </div>
+                  <strong
+                    style={{
+                      fontSize: "15px",
+                      paddingRight: "5px",
+                      paddingLeft: "5px",
+                    }}
+                  >
+                    KHUTRO
+                  </strong>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <strong
+                    style={{
+                      fontSize: "15px",
+                      paddingRight: "10px",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    Phần mềm Quản lý Nhà trọ, Căn hộ
+                  </strong>
+                  <div style={{ fontSize: "15px" }}>,bạn có thể</div>
+                </div>
+                <Component7 />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          style={{
+            width: "100%",
+            height: "380px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "90%",
+              height: "auto",
+            }}
+          >
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
+                <div className="topic">
+                  <div className="circle-topic"></div>
+                  <div style={{ position: "relative", bottom: "10px" }}>
+                    3 khác biệt từ KHUTRO
+                  </div>
+                </div>
+              </div>
+              <div style={{ justifyContent: "center", display: "flex" }}>
+                <div
+                  style={{
+                    fontSize: "15px",
+                    width: "80%",
+                    height: "auto",
+                    fontFamily: "PT Sans, sans-serif",
+                    paddingTop: "5px",
+                  }}
+                >
+                  KHUTRO luôn tâm niệm khác biệt tạo nên thành công. Chính vì
+                  thế, chúng tôi luôn nỗ lực để tạo nên những giá trị khác biệt
+                  giúp khách hàng đi đến thành công. Tuy còn ít kinh nghiệm
+                  nhưng KHUTRO đã dần chứng minh được vị thế của mình trong lòng
+                  khách hàng.
+                </div>
+              </div>
+              <Row style={{ paddingLeft: "80px", paddingTop: "50px" }}>
+                <Col lg={8} md={24}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <div className="num-topic">01</div>
+                      <div
+                        style={{
+                          display: "block",
+                          paddingLeft: "10px",
+                          paddingTop: "10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="topic-black">
+                            Thành công của khách hàng là thước đo
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="content-gray">
+                            KHUTRO coi trọng khách hàng và luôn lấy khách hàng
+                            làm trung tâm, đặt lợi ích và mong muốn của khách
+                            hàng lên hàng đầu.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={8} md={24}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <div className="num-topic">02</div>
+                      <div
+                        style={{
+                          display: "block",
+                          paddingLeft: "10px",
+                          paddingTop: "10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="topic-black">
+                            Làm tốt ngay từ đầu và luôn tập trung
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="content-gray">
+                            KHUTRO luôn coi quy trình là tài sản. Với tư duy
+                            “Làm tốt ngay từ đầu” kèm với bộ quy trình khoa học
+                            và đầy đủ chúng tôi tự tin khách hàng sẽ vô cùng hài
+                            lòng về sản phẩm dịch vụ.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={8} md={24}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <div className="num-topic">03</div>
+                      <div
+                        style={{
+                          display: "block",
+                          paddingLeft: "10px",
+                          paddingTop: "10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="topic-black">
+                            Đội ngũ tận tâm, đầy nhiệt huyết
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="content-gray">
+                            KHUTRO có sự khác biệt lớn đó là đội ngũ. Với đội
+                            ngũ giàu kinh nghiệm, tận tâm và đầy nhiệt huyết,
+                            khách hàng sẽ luôn cảm thấy thực sự thoải mái khi
+                            làm việc cùng KHUTRO.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          style={{
+            width: "100%",
+            height: "550px",
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#efefef",
+          }}
+        >
+          <div
+            style={{
+              width: "80%",
+              height: "auto",
+            }}
+          >
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
+                <div className="topic">
+                  <div className="circle-topic"></div>
+                  <div style={{ position: "relative", bottom: "10px" }}>
+                    Khách hàng nói về KHUTRO
+                  </div>
+                </div>
+              </div>
+              <div style={{ justifyContent: "center", display: "flex" }}>
+                <div
+                  style={{
+                    fontSize: "15px",
+                    width: "80%",
+                    height: "auto",
+                    fontFamily: "PT Sans, sans-serif",
+                    paddingTop: "5px",
+                  }}
+                >
+                  Sự hài lòng của khách hàng là động lực để chúng tôi hoàn thiện
+                  phần mềm, đồng thời mở ra cơ hội có thêm nhiều khách hàng mới
+                  trong tương lai. Bởi thế, chúng tôi vô cùng coi trọng những
+                  phản hồi từ phía khách hàng và nỗ lực làm tốt nhất từ những
+                  phản hồi đó.
+                </div>
+              </div>
+              <Row style={{paddingLeft:"50px"}}>
+                <Col lg={8} md={24}>
+                  <Component8
+                    img={Images.FACE_1}
+                    content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
+                    name="Bác Phạm Thị Cúc"
+                    func="Chủ trọ"
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component8
+                    img={Images.FACE_1}
+                    content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
+                    name="Bác Phạm Thị Cúc"
+                    func="Chủ trọ"
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component8
+                    img={Images.FACE_1}
+                    content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
+                    name="Bác Phạm Thị Cúc"
+                    func="Chủ trọ"
+                  />
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>11</div>
       <div>12</div>
       <div>footer</div>

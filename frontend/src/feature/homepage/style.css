@@ -14,8 +14,6 @@
 .content {
   width: 100%;
   height: auto;
-  /* display: flex;
-    justify-content: center; */
   align-items: center;
   padding-top: 10px;
 }
@@ -55,4 +53,74 @@
 }
 .btn-signup-2:hover {
   background-color: #eb2f5b;
+}
+.content-contact{
+  width:80%;
+  height:auto;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
+  font-size:15px;
+  padding-bottom: 10px;
+}
+.content-atlast{
+  width:100%;
+  height:auto;
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5px;
+}
+.box-block{
+  max-width: 250px;
+  height: 250px;
+  background-color: #007c7e;
+  border-radius: 80% 60% 25% 76%;
+  display:flex;
+  justify-content: center;
+  /* padding-top: 5px  !important; */
+  /* padding-top: 70px  !important; */
+}
+.number-topinleft{
+  width:40px;
+  height:40px;
+  line-height: 40px;
+  border-radius:50%;
+  background-color: #009c7e;
+  text-align: center;
+  color:#ffff;
+  position: absolute;
+  left:270px;
+  top: 30px;
+}
+.ti-content-compo{
+  width:100%;
+  height:auto;
+  font-size: 24px;
+  font-family: 700;
+  color: white;
+  font-family: "PT Sans", sans-serif;
+}
+.num-topic{
+  color:#007c7e;
+  font-size: 42px;
+  line-height: 2;
+  font-weight: 700;
+}
+.topic-black{
+  color:black;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "PT Sans", sans-serif;
+  text-align: left;
+  width:100%;
+
+}
+.content-gray{
+  color:black;
+  font-size:15px;
+  font-family: "PT Sans", sans-serif;
+  opacity: 0.5;
+  width:100%;
+  height: auto;
+  text-align: left;
 }

@@ -54,73 +54,106 @@
 .btn-signup-2:hover {
   background-color: #eb2f5b;
 }
-.content-contact{
-  width:80%;
-  height:auto;
+.content-contact {
+  width: 80%;
+  height: auto;
   font-family: "PT Sans", sans-serif;
   font-weight: bold;
-  font-size:15px;
+  font-size: 15px;
   padding-bottom: 10px;
 }
-.content-atlast{
-  width:100%;
-  height:auto;
-  display:flex;
+.content-atlast {
+  width: 100%;
+  height: auto;
+  display: flex;
   justify-content: center;
   text-align: center;
   padding-top: 5px;
 }
-.box-block{
+.box-block {
   max-width: 250px;
   height: 250px;
   background-color: #007c7e;
   border-radius: 80% 60% 25% 76%;
-  display:flex;
+  display: flex;
   justify-content: center;
   /* padding-top: 5px  !important; */
   /* padding-top: 70px  !important; */
 }
-.number-topinleft{
-  width:40px;
-  height:40px;
+.number-topinleft {
+  width: 40px;
+  height: 40px;
   line-height: 40px;
-  border-radius:50%;
+  border-radius: 50%;
   background-color: #009c7e;
   text-align: center;
-  color:#ffff;
+  color: #ffff;
   position: absolute;
-  left:270px;
+  left: 270px;
   top: 30px;
 }
-.ti-content-compo{
-  width:100%;
-  height:auto;
+.ti-content-compo {
+  width: 100%;
+  height: auto;
   font-size: 24px;
   font-family: 700;
   color: white;
   font-family: "PT Sans", sans-serif;
 }
-.num-topic{
-  color:#007c7e;
+.num-topic {
+  color: #007c7e;
   font-size: 42px;
   line-height: 2;
   font-weight: 700;
 }
-.topic-black{
-  color:black;
+.topic-black {
+  color: black;
   font-weight: bold;
   font-size: 20px;
   font-family: "PT Sans", sans-serif;
   text-align: left;
-  width:100%;
-
+  width: 100%;
 }
-.content-gray{
-  color:black;
-  font-size:15px;
+.content-gray {
+  color: black;
+  font-size: 15px;
   font-family: "PT Sans", sans-serif;
   opacity: 0.5;
-  width:100%;
+  width: 100%;
   height: auto;
   text-align: left;
+}
+.box-last {
+  width: 80%;
+  height: 210px;
+  background-color: #007c7e;
+  display: "flex";
+  justify-content: center;
+}
+.icon-hover-2 {
+  border-radius: 50%;
+  background-color: white;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-hover-2:hover {
+  background-color: #009c7e;
+}
+.topic-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-family: "PT Sans", sans-serif;
+}
+.content-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 15px;
+  color: white;
+  font-family: "PT Sans", sans-serif;
 }

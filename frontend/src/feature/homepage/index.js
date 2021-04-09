@@ -4,6 +4,10 @@ import { Row, Col, Button } from "antd";
 import { Images } from "./../../config/image";
 import Menu from "../../components/menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./demo-files/demo.css";
+import "./ie7/ie7.css";
+import Footer from './../../components/footer'
+import "./themify-icons.css";
 import {
   faChevronRight,
   faHourglassEnd,
@@ -25,7 +29,7 @@ import Component4 from "./../../components/component_ngang";
 import Component5 from "./../../components/component_ngangtranghong";
 import Component6 from "./../../components/component_block";
 import Component7 from "./../../components/component_rectangle";
-import Component8 from './../../components/component_block_last'
+import Component8 from "./../../components/component_block_last";
 function Home() {
   return (
     <div>
@@ -1090,7 +1094,7 @@ function Home() {
                   phản hồi đó.
                 </div>
               </div>
-              <Row style={{paddingLeft:"50px"}}>
+              <Row style={{ paddingLeft: "50px" }}>
                 <Col lg={8} md={24}>
                   <Component8
                     img={Images.FACE_1}
@@ -1120,9 +1124,116 @@ function Home() {
           </div>
         </div>
       </div>
-      <div>11</div>
-      <div>12</div>
-      <div>footer</div>
+      <div>
+        <div
+          style={{
+            width: "100%",
+            height: "400px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "80%",
+              height: "auto",
+            }}
+          >
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
+                <div className="topic">
+                  <div className="circle-topic"></div>
+                  <div style={{ position: "relative", bottom: "10px" }}>
+                    Đồng hành 24/7 cùng công việc quản lý nhà trọ, căn hộ của
+                    bạn
+                  </div>
+                </div>
+              </div>
+              <div style={{ justifyContent: "center", display: "flex" }}>
+                <div
+                  style={{
+                    fontSize: "15px",
+                    width: "80%",
+                    height: "auto",
+                    fontFamily: "PT Sans, sans-serif",
+                    paddingTop: "5px",
+                  }}
+                >
+                  Chúng tôi luôn cố gắng tạo ra môi trường làm việc chuyên
+                  nghiệp, sáng tạo và kỷ luật cao. Đội ngũ kỹ sư trẻ giàu nhiệt
+                  huyết và các nhân viên tư vấn khách hàng luôn sẵn sàng hỗ trợ
+                  bạn suốt 24/7, phần mềm quản lý nhà trọ luôn được phát triển
+                  hàng ngày.
+                </div>
+              </div>
+              <Row style={{paddingTop:"20px"}}>
+                <Col lg={8} md={24}>
+                  <div className="box-last">
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                      <div className="icon-hover-2">
+                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                      <div className="topic-com-4">Hỗ trợ</div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                      <div className="content-com-4">
+                        Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
+                        sẵn sàng phục vụ khách hàng 24/7.
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={8} md={24}>
+                  <div className="box-last">
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                      <div className="icon-hover-2">
+                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                      <div className="topic-com-4">Hỗ trợ</div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                      <div className="content-com-4">
+                        Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
+                        sẵn sàng phục vụ khách hàng 24/7.
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={8} md={24}>
+                  <div className="box-last">
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                      <div className="icon-hover-2">
+                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                      <div className="topic-com-4">Hỗ trợ</div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                      <div className="content-com-4">
+                        Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
+                        sẵn sàng phục vụ khách hàng 24/7.
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+      {/* <div>footer</div> */}
     </div>
   );
 }

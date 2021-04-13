@@ -15,4 +15,5 @@ export const Images={
     ANALYSIS:IMAGE_URL+"/img/001-analysis.png",
     BUSINESS_PLAN:IMAGE_URL+"/img/006-business-plan.png",
     FACE_1:IMAGE_URL+"/img/icon-face-1jpg.jpg",
+    ICON_RIGHT:IMAGE_URL+"/img/avatar.png"
 };

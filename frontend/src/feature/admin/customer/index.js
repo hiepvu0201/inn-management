@@ -44,13 +44,17 @@ function Customer() {
   //Modal-Buttom Thêm Mới
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+  const [isModalVisible_2, setIsModalVisible_2] = useState(false);
+
   const showModal = () => {
     setIsModalVisible(true);
   };
   const showModal_1 = () => {
     setIsModalVisible_1(true);
   };
-
+  const showModal_2 = () => {
+    setIsModalVisible_2(true);
+  };
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -64,6 +68,13 @@ function Customer() {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  };
+  const handleOk_2 = () => {
+    setIsModalVisible_2(false);
+  };
+
+  const handleCancel_2 = () => {
+    setIsModalVisible_2(false);
   };
   //DateFormat
   function onChange(date, dateString) {
@@ -144,7 +155,7 @@ function Customer() {
           </Popconfirm>
           <div
             style={{ paddingLeft: "10px", lineHeight: "1px" }}
-            onClick={showModal}
+            onClick={showModal_2}
           >
             <FontAwesomeIcon icon={faEdit} />
           </div>
@@ -165,9 +176,9 @@ function Customer() {
                 </div>
               </div>
             }
-            onOk={handleOk}
-            onCancel={handleCancel}
-            visible={isModalVisible}
+            onOk={handleOk_2}
+            onCancel={handleCancel_2}
+            visible={isModalVisible_2}
             okText="LƯU LẠI"
             cancelText="HỦY BỎ"
           >

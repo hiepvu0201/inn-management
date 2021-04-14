@@ -76,6 +76,12 @@ function Customer() {
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
+  const [value_1, setValue_1] = React.useState(1);
+
+  const onChange_radio_1 = (e) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+  };
   //image
   //rangepicker
   const { RangePicker } = DatePicker;
@@ -271,7 +277,6 @@ function Customer() {
       date_leave: "2021/12/12",
     },
   ];
- 
 
   return (
     <div>
@@ -313,154 +318,174 @@ function Customer() {
                 </div>
               </div>
             </div>
-            <div
-              style={{ float: "right", display: "flex", paddingTop: "10px",paddingBottom:"20px" }}
-            >
-              <button className="btn-top-right" onClick={showModal}>
-                THÊM MỚI
-              </button>
-              <Modal
-                title="Thêm mới"
-                visible={isModalVisible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                okText="Thêm mới"
-                cancelText="Hủy bỏ"
-              >
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ float: "left",paddingTop:"10px",paddingLeft:"10px" }}>
                 <Form>
-                  <Form.Item label="Chi Nhánh" name="Brand">
-                    <Select
-                      defaultValue="Chi Nhánh"
-                      style={{ width: "220px", marginRight: "20px" }}
-                    >
-                      <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
-                      <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
-                      <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
-                      <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
-                    </Select>
-                  </Form.Item>
-                  <Form.Item label="Họ và tên" name="Name">
-                    <Input />
-                  </Form.Item>
-                  <div style={{ display: "flex", width: "100%" }}>
-                    <div>
-                      <Form.Item label="Ngày sinh" name="Date">
-                        <DatePicker onChange={onChange} />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "20px" }}>
-                      <Form.Item label="Email" name="Email">
-                        <Input />{" "}
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", width: "100%" }}>
-                    <div>
-                      <Form.Item label="Số ĐT" name="Phone">
-                        <Input />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "20px" }}>
-                      <Form.Item label="Giới Tính" name="Sex">
-                        <Radio.Group onChange={onChange} value={value}>
-                          <Radio value={1}>Nam</Radio>
-                          <Radio value={2}>Nữ</Radio>
-                        </Radio.Group>
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", width: "100%" }}>
-                    <div>
-                      <Form.Item label="CMND" name="IdentityCard">
-                        <Input />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "20px" }}>
-                      <Form.Item label="Công Việc" name="Job">
-                        <Input />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <Form.Item label="Ghi Chú" name="Notification">
-                    <Input />
-                  </Form.Item>
-                  <Form.Item label="Ảnh đại diện" name="img">
-                    <Upload
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                      listType="picture"
-                    >
-                      <Button icon={<UploadOutlined />}>Upload</Button>
-                    </Upload>
+                  <Form.Item label={<div className="formable">Hình thức</div>} name="formable">
+                    <Radio.Group onChange={onChange_radio_1} value={value_1}>
+                      <Radio value={1}>Theo ngày</Radio>
+                      <Radio value={2}>Theo tuần</Radio>
+                      <Radio value={3}>Theo tháng</Radio>
+                    </Radio.Group>
                   </Form.Item>
                 </Form>
-              </Modal>
-              <Popconfirm
-                title="Bạn có chắc muốn xóa dữ liệu này không?"
-                onConfirm={confirm}
-                onCancel={cancel}
-                okText="Có"
-                cancelText="Không"
-              >
-                {" "}
-                <button className="btn-top-right">XÓA NHIỀU</button>
-              </Popconfirm>
-              <button className="btn-top-right" onClick={showModal_1}>
-                TÌM KIẾM
-              </button>
-              <Modal
-                title="Tìm kiếm"
-                visible={isModalVisible_1}
-                onOk={handleOk_1}
-                onCancel={handleCancel_1}
-                okText="Tìm kiếm"
-                cancelText="Hủy bỏ"
-              >
-                <Form>
-                  <Form.Item label="Chi Nhánh" name="Brand">
-                    <Select
-                      defaultValue="Chi Nhánh"
-                      style={{ width: "220px", marginRight: "20px" }}
-                    >
-                      <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
-                      <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
-                      <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
-                      <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
-                    </Select>
-                  </Form.Item>
-                  <div style={{ display: "flex", width: "100%" }}>
-                    <div>
-                      <Form.Item label="Phòng" name="Room">
+              </div>
+              <div style={{ float: "right" }}>
+                <div
+                  style={{
+                    float: "right",
+                    display: "flex",
+                    paddingTop: "10px",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <button className="btn-top-right" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title="Thêm mới"
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    okText="Thêm mới"
+                    cancelText="Hủy bỏ"
+                  >
+                    <Form>
+                      <Form.Item label="Chi Nhánh" name="Brand">
                         <Select
-                          defaultValue="Chọn Phòng"
-                          style={{ width: "150px" }}
+                          defaultValue="Chi Nhánh"
+                          style={{ width: "220px", marginRight: "20px" }}
                         >
-                          <Option value="Phòng 1">Phòng 1</Option>
-                          <Option value="Phòng 2">Phòng 2</Option>
-                          <Option value="Phòng 3">Phòng 3</Option>
-                          <Option value="Phòng 4">Phòng 4</Option>
-                        </Select>{" "}
+                          <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
+                          <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
+                          <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
+                          <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
+                        </Select>
                       </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "20px" }}>
-                      <Form.Item label="Hình thức" name="Formable">
+                      <Form.Item label="Họ và tên" name="Name">
+                        <Input />
+                      </Form.Item>
+                      <div style={{ display: "flex", width: "100%" }}>
+                        <div>
+                          <Form.Item label="Ngày sinh" name="Date">
+                            <DatePicker onChange={onChange} />
+                          </Form.Item>
+                        </div>
+                        <div style={{ paddingLeft: "20px" }}>
+                          <Form.Item label="Email" name="Email">
+                            <Input />{" "}
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", width: "100%" }}>
+                        <div>
+                          <Form.Item label="Số ĐT" name="Phone">
+                            <Input />
+                          </Form.Item>
+                        </div>
+                        <div style={{ paddingLeft: "20px" }}>
+                          <Form.Item label="Giới Tính" name="Sex">
+                            <Radio.Group onChange={onChange_radio} value={value}>
+                              <Radio value={1}>Nam</Radio>
+                              <Radio value={2}>Nữ</Radio>
+                            </Radio.Group>
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", width: "100%" }}>
+                        <div>
+                          <Form.Item label="CMND" name="IdentityCard">
+                            <Input />
+                          </Form.Item>
+                        </div>
+                        <div style={{ paddingLeft: "20px" }}>
+                          <Form.Item label="Công Việc" name="Job">
+                            <Input />
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <Form.Item label="Ghi Chú" name="Notification">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Ảnh đại diện" name="img">
+                        <Upload
+                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                          listType="picture"
+                        >
+                          <Button icon={<UploadOutlined />}>Upload</Button>
+                        </Upload>
+                      </Form.Item>
+                    </Form>
+                  </Modal>
+                  <Popconfirm
+                    title="Bạn có chắc muốn xóa dữ liệu này không?"
+                    onConfirm={confirm}
+                    onCancel={cancel}
+                    okText="Có"
+                    cancelText="Không"
+                  >
+                    {" "}
+                    <button className="btn-top-right">XÓA NHIỀU</button>
+                  </Popconfirm>
+                  <button className="btn-top-right" onClick={showModal_1}>
+                    TÌM KIẾM
+                  </button>
+                  <Modal
+                    title="Tìm kiếm"
+                    visible={isModalVisible_1}
+                    onOk={handleOk_1}
+                    onCancel={handleCancel_1}
+                    okText="Tìm kiếm"
+                    cancelText="Hủy bỏ"
+                  >
+                    <Form>
+                      <Form.Item label="Chi Nhánh" name="Brand">
                         <Select
-                          defaultValue="Chọn Hình Thức Thuê"
-                          style={{ width: "150px", marginRight: "20px" }}
+                          defaultValue="Chi Nhánh"
+                          style={{ width: "220px", marginRight: "20px" }}
                         >
-                          <Option value="day">Thuê theo ngày</Option>
-                          <Option value="week">Thuê theo tuần</Option>
-                          <Option value="month">Thuê theo tháng</Option>
-                        </Select>{" "}
+                          <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
+                          <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
+                          <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
+                          <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
+                        </Select>
                       </Form.Item>
-                    </div>
-                  </div>
-                  <Form.Item label="Ngày Đến - Ngày Đi" name="Days">
-                    <RangePicker style={{ width: "250px" }} />
-                  </Form.Item>
-                </Form>
-              </Modal>
+                      <div style={{ display: "flex", width: "100%" }}>
+                        <div>
+                          <Form.Item label="Phòng" name="Room">
+                            <Select
+                              defaultValue="Chọn Phòng"
+                              style={{ width: "150px" }}
+                            >
+                              <Option value="Phòng 1">Phòng 1</Option>
+                              <Option value="Phòng 2">Phòng 2</Option>
+                              <Option value="Phòng 3">Phòng 3</Option>
+                              <Option value="Phòng 4">Phòng 4</Option>
+                            </Select>{" "}
+                          </Form.Item>
+                        </div>
+                        <div style={{ paddingLeft: "20px" }}>
+                          <Form.Item label="Hình thức" name="Formable">
+                            <Select
+                              defaultValue="Chọn Hình Thức Thuê"
+                              style={{ width: "150px", marginRight: "20px" }}
+                            >
+                              <Option value="day">Thuê theo ngày</Option>
+                              <Option value="week">Thuê theo tuần</Option>
+                              <Option value="month">Thuê theo tháng</Option>
+                            </Select>{" "}
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <Form.Item label="Ngày Đến - Ngày Đi" name="Days">
+                        <RangePicker style={{ width: "250px" }} />
+                      </Form.Item>
+                    </Form>
+                  </Modal>
+                </div>
+              </div>
             </div>
-            <div style={{paddingBottom:"10px"}}>
+            <div style={{ paddingBottom: "10px" }}>
               <Table dataSource={data} columns={columns} bordered />
             </div>
           </div>

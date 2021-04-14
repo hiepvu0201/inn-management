@@ -5,7 +5,8 @@ import "./App.css";
 // import Forgotpassword from "./feature/forgotpassword";
 // import Home from './feature/homepage'
 // import Brand from './../src/feature/admin/brand'
-import Customer from './feature/admin/customer'
+// import Customer from './feature/admin/customer'
+import Revenue from './feature/admin/revenue'
 import Component_Block_Last from './components/component_block_last'
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
       {/* <Brand/> */}
-      <Customer/>
+      {/* <Customer/>
+       */}
+       <Revenue/>
     </div>
   );
 }

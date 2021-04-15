@@ -4,8 +4,8 @@ import "./App.css";
 // import Register  from './feature/register'
 // import Forgotpassword from "./feature/forgotpassword";
 // import Home from './feature/homepage'
-import Brand from './../src/feature/admin/brand'
-
+// import Brand from './../src/feature/admin/brand'
+import Expenditure from './feature/admin/expenditure'
 import Component_Block_Last from './components/component_block_last'
 function App() {
   return (
@@ -14,7 +14,8 @@ function App() {
       {/* <Register/> */}
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
-      <Brand/>
+      {/* <Brand/> */}
+      <Expenditure/>
     </div>
   );
 }

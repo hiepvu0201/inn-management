@@ -10,7 +10,9 @@ function Expenditure() {
                     </div>
                     <div className="content-cover">
                         <div style={{display:"block"}}>
-                            <div></div>
+                            <div className="box-cover">
+                                
+                            </div>
                         </div>
                     </div>
             </div>

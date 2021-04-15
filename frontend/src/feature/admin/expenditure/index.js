@@ -8,6 +8,11 @@ function Expenditure() {
                     <div style={{height:"100px"}}>
                         <Menu_AdminPage/>
                     </div>
+                    <div className="content-cover">
+                        <div style={{display:"block"}}>
+                            <div></div>
+                        </div>
+                    </div>
             </div>
         </div>
     )

@@ -5,8 +5,8 @@ import "./App.css";
 // import Forgotpassword from "./feature/forgotpassword";
 // import Home from './feature/homepage'
 // import Brand from './../src/feature/admin/brand'
-import Expenditure from './feature/admin/expenditure'
-import Component_Block_Last from './components/component_block_last'
+// import Expenditure from './feature/admin/expenditure'
+import Room from './feature/admin/room'
 function App() {
   return (
     <div className="App">
@@ -15,7 +15,8 @@ function App() {
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
       {/* <Brand/> */}
-      <Expenditure/>
+      {/* <Expenditure/> */}
+      <Room/>
     </div>
   );
 }

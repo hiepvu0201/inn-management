@@ -1,0 +1,78 @@
+.box-electric-water {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+.box-cover-electric-water {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border-bottom: solid 1px #eef1f5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.content-left-electric-water{
+    float: left;
+    display: flex;
+    padding-left: 10px;
+}
+.content-detailed-left-electric-water{
+    font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+    padding-left: 20px;
+}
+.content-right-electric-water{
+    float:right;
+    display: flex;
+}
+.box-radio-left-electric-water{
+    display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border-bottom: solid 1px #eef1f5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* .radio-left-electric-water{
+    display: flex;
+    width:100%;height: auto;
+    border-bottom: solid 1px #eef1f5;
+    padding-bottom: 10px;
+} */
+.topic-electric-water{
+    font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+    padding-left: 10px;
+}
+
+.btn-right{
+    float:right;
+}
+.btn-search{
+    font-size: 15px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+    width:100px;
+    background-color: white;
+    border-color: #007c7e;
+    border-style: solid;
+    height:auto;
+    margin-right:20px;
+    border-radius:20px;
+}
+.box-status-data{
+    float:left;
+}
+.box-status{
+    width:100%;
+    height:auto;
+    display: flex;
+    padding-top:10px;
+    padding-left:10px
+}

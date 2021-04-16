@@ -6,6 +6,7 @@ import "./App.css";
 // import Home from './feature/homepage'
 // import Brand from './../src/feature/admin/brand'
 // import Expenditure from './feature/admin/expenditure'
+import Electricity_Water from './../src/feature/admin/eletricity-water'
 import Room from './feature/admin/room'
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       {/* <Home/> */}
       {/* <Brand/> */}
       {/* <Expenditure/> */}
-      <Room/>
+      {/* <Room/> */}
+      <Electricity_Water/>
     </div>
   );
 }

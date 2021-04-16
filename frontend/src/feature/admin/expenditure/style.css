@@ -32,8 +32,7 @@
 .box-cover-btn-expenditure{
     float:right;
     display:flex;
-    padding-top:10px;
-    padding-bottom:10px
+    
 }
 .btn-top-right-expenditure{
     font-size: 15px;

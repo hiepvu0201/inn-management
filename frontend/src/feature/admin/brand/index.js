@@ -167,7 +167,7 @@ function Brand(props) {
     <div>
       <div
         style={{
-          width: "100vmax",
+          width: "100%",
           height: "100vmax",
           backgroundColor: "#efefef",
         }}
@@ -251,7 +251,7 @@ function Brand(props) {
               </div>
             </div>
 
-            <div style={{ paddingTop: "30px", width: "100%", height: "auto" }}>
+            <div style={{ paddingTop: "30px",paddingLeft:"15px",paddingRight:"15px" }}>
               <Table columns={columns} bordered dataSource={data} />
             </div>
           </div>

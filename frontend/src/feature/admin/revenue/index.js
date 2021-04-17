@@ -405,7 +405,7 @@ function Revenue() {
                 <button className="btn-top-right-revenue">Xóa nhiều</button>
               </Popconfirm>
             </div>
-            <div>
+            <div style={{paddingLeft:"15px",paddingRight:"15px"}}>
               <Table dataSource={data} columns={columns} bordered />
             </div>
           </div>

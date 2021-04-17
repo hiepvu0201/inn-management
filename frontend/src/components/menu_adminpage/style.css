@@ -10,9 +10,10 @@
 }
 
 .logo {
-  width: 170px;
+  width: 120px;
   float: left;
-  
+  line-height: 1px;
+  padding-top: 10px;
 }
 
 .logo a {
@@ -25,7 +26,7 @@
 .menuCon {
   /* width: calc(100% - 150px); */
   float: left;
-  width: 86%;
+  width: 88%;
   margin-top: 10px;
   margin-right: 20px;
 }

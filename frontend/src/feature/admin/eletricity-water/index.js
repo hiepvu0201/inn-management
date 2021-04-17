@@ -290,7 +290,7 @@ function Electricity_Water() {
   return (
     <div>
       <div
-        style={{ width: "100%", height: "100vmax", backgroundColor: "#efefef" }}
+        style={{ width: "100%", height: "100vmax", backgroundColor: "#efefef"}}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
@@ -417,7 +417,7 @@ function Electricity_Water() {
                 </Radio.Group>
               </div>
             </div>
-            <div style={{ float: "left", paddingTop: "10px" }}>
+            <div style={{ float: "left", paddingTop: "10px",paddingLeft:"20px",paddingRight:"20px" }}>
               <Table dataSource={data} columns={columns} bordered />
             </div>
           </div>

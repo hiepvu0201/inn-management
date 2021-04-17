@@ -496,7 +496,7 @@ function Customer() {
                 </div>
               </div>
             </div>
-            <div style={{ paddingBottom: "10px" }}>
+            <div style={{ paddingBottom: "10px",paddingLeft:"10px",paddingRight:"10px" }}>
               <Table dataSource={data} columns={columns} bordered />
             </div>
           </div>

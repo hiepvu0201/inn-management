@@ -20,6 +20,17 @@ public class Facilities {
     @JoinColumn(name = "room_id", nullable = false)
     private Rooms room;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    public Branches getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
+
     public Long getId() {
         return id;
     }

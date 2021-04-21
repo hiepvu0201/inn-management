@@ -16,6 +16,17 @@ public class MonthlyIncomes {
     @Column(precision = 16, scale = 4)
     private Double earn;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    public Branches getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
+
     public Long getId() {
         return id;
     }

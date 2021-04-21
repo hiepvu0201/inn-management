@@ -1,6 +1,7 @@
 package com.thesis.innmanagement.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,16 +12,15 @@ public class Rooms {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "room_no")
     private String roomNo;
 
     private String position;
 
     @OneToMany(mappedBy = "room")
-    private Set<Users> users;
+    private List<Users> users;
 
     @OneToMany(mappedBy = "room")
-    private Set<Facilities> facilities;
+    private List<Facilities> facilities;
 
     public Long getId() {
         return id;
@@ -46,19 +46,19 @@ public class Rooms {
         this.position = position;
     }
 
-    public Set<Users> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
-    public Set<Facilities> getFacilities() {
+    public List<Facilities> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(Set<Facilities> facilities) {
+    public void setFacilities(List<Facilities> facilities) {
         this.facilities = facilities;
     }
 }

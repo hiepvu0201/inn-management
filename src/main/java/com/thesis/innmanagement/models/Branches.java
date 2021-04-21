@@ -15,6 +15,10 @@ public class Branches {
 
     private String description;
 
+    private int numberOfStages;
+
+    private int numberOfRooms;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<Users> tenant;
 
@@ -92,5 +96,21 @@ public class Branches {
 
     public void setMonthlyPayment(List<MonthlyPayments> monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
+    }
+
+    public int getNumberOfStages() {
+        return numberOfStages;
+    }
+
+    public void setNumberOfStages(int numberOfStages) {
+        this.numberOfStages = numberOfStages;
+    }
+
+    public int getNumberOfRooms() {
+        return numberOfRooms;
+    }
+
+    public void setNumberOfRooms(int numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
     }
 }

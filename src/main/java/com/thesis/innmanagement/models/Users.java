@@ -2,10 +2,10 @@ package com.thesis.innmanagement.models;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "tblUsers")
+@Table
 public class Users {
 
     @Id
@@ -14,15 +14,12 @@ public class Users {
 
     private String username;
 
-    @Column(name = "password_hash")
     private String passwordHash;
 
     private String email;
 
-    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "id_no")
     private String idNo;
 
     private String sex;
@@ -31,27 +28,62 @@ public class Users {
 
     private String address;
 
-    @Column(name = "phone_no")
     private String phoneNo;
 
-    @Column(name = "checkin_date")
     private Date checkinDate;
 
-    @Column(name = "checkout_date")
     private Date checkoutDate;
 
-    @Column(name = "down_payment", precision = 16, scale = 4)
+    @Column(precision = 16, scale = 4)
     private Double downPayment;
 
     @OneToMany(mappedBy = "user")
-    private Set<Roles> roles;
+    private List<Roles> roles;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id", nullable = false)
     private Rooms room;
 
     @OneToMany(mappedBy = "user")
-    private Set<ReportedIssues> reportedIssues;
+    private List<ReportedIssues> reportedIssues;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Contracts> contract;
+
+    public List<Contracts> getContract() {
+        return contract;
+    }
+
+    public void setContract(List<Contracts> contract) {
+        this.contract = contract;
+    }
+
+    public List<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
+    }
+
+    public List<ReportedIssues> getReportedIssues() {
+        return reportedIssues;
+    }
+
+    public void setReportedIssues(List<ReportedIssues> reportedIssues) {
+        this.reportedIssues = reportedIssues;
+    }
+
+    public Branches getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
 
     public Long getId() {
         return id;
@@ -157,14 +189,6 @@ public class Users {
         this.downPayment = downPayment;
     }
 
-    public Set<Roles> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Roles> roles) {
-        this.roles = roles;
-    }
-
     public Rooms getRoom() {
         return room;
     }
@@ -173,11 +197,4 @@ public class Users {
         this.room = room;
     }
 
-    public Set<ReportedIssues> getReportedIssues() {
-        return reportedIssues;
-    }
-
-    public void setReportedIssues(Set<ReportedIssues> reportedIssues) {
-        this.reportedIssues = reportedIssues;
-    }
 }

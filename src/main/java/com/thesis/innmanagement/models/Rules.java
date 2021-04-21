@@ -3,7 +3,7 @@ package com.thesis.innmanagement.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblRules")
+@Table
 public class Rules {
 
     @Id

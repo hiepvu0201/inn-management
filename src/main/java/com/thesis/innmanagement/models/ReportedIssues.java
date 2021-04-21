@@ -24,11 +24,9 @@ public class ReportedIssues {
     private String status;
 
     @CreationTimestamp
-    @Column(name = "reported_date")
-    private Timestamp reportedDate;
+    private Timestamp createdDate;
 
     @UpdateTimestamp
-    @Column(name = "solved_date")
     private Timestamp solvedDate;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -75,14 +73,6 @@ public class ReportedIssues {
         this.status = status;
     }
 
-    public Timestamp getReportedDate() {
-        return reportedDate;
-    }
-
-    public void setReportedDate(Timestamp reportedDate) {
-        this.reportedDate = reportedDate;
-    }
-
     public Timestamp getSolvedDate() {
         return solvedDate;
     }
@@ -93,6 +83,14 @@ public class ReportedIssues {
 
     public Users getUser() {
         return user;
+    }
+
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 
     public void setUser(Users user) {

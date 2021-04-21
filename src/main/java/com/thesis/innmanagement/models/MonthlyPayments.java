@@ -10,11 +10,21 @@ public class MonthlyPayments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "item_name")
     private String itemName;
 
     @Column(precision = 16, scale = 4)
     private Double cost;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    public Branches getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
 
     public Long getId() {
         return id;

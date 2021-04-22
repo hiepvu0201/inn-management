@@ -1,14 +1,11 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
 @Entity
-@Table
-public class MonthlyPayments {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class MonthlyPayments extends BasicEntity {
 
     private String itemName;
 
@@ -24,14 +21,6 @@ public class MonthlyPayments {
 
     public void setBranch(Branches branch) {
         this.branch = branch;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getItemName() {

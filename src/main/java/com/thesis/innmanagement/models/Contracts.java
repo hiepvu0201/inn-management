@@ -1,16 +1,13 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table
-public class Contracts {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Contracts extends BasicEntity {
 
     @Lob
     private String details;
@@ -67,14 +64,6 @@ public class Contracts {
 
     public void setVoucher(int voucher) {
         this.voucher = voucher;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDetails() {

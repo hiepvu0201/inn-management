@@ -1,14 +1,11 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
-@Table
 @Entity
-public class ElectricityWater {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class ElectricityWater extends BasicEntity {
 
     private String roomNo;
 
@@ -27,14 +24,6 @@ public class ElectricityWater {
     private boolean isChecked;
 
     private int month;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getRoomNo() {
         return roomNo;

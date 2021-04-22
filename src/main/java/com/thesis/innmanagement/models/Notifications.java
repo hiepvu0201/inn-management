@@ -1,17 +1,13 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table
-public class Notifications {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Notifications extends BasicEntity {
 
     private String name;
 
@@ -19,16 +15,7 @@ public class Notifications {
     private String description;
 
     @CreationTimestamp
-    @Column(name = "created_date")
     private Timestamp createdDate;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

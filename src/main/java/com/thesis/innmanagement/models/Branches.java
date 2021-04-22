@@ -1,15 +1,12 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
-public class Branches {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Branches extends BasicEntity {
 
     private String location;
 
@@ -40,14 +37,6 @@ public class Branches {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLocation() {

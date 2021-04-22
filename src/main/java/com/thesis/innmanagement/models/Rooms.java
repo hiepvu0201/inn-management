@@ -1,16 +1,13 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table
-public class Rooms {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Rooms extends BasicEntity {
 
     private String roomNo;
 
@@ -21,14 +18,6 @@ public class Rooms {
 
     @OneToMany(mappedBy = "room")
     private List<Facilities> facilities;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getRoomNo() {
         return roomNo;

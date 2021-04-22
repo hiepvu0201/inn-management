@@ -7,6 +7,7 @@ import "./App.css";
 // import Brand from './../src/feature/admin/brand'
 // import Expenditure from './feature/admin/expenditure'
 // import Electricity_Water from './../src/feature/admin/eletricity-water'
+import Bill_Daily from './../src/feature/admin/bill_daily'
 import Contract from './../src/feature/admin/contract'
 import Room from './feature/admin/room'
 function App() {
@@ -20,7 +21,8 @@ function App() {
       {/* <Expenditure/> */}
       {/* <Room/> */}
       {/* <Electricity_Water/> */}
-      <Contract/>
+      {/* <Contract/> */}
+      <Bill_Daily/>
     </div>
   );
 }

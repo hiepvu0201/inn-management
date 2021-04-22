@@ -1,37 +1,69 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "tblContracts")
-public class Contracts {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Contracts extends BasicEntity {
 
     @Lob
     private String details;
 
-    @Column(name = "sign_date")
     private Date signDate;
 
-    public Contracts() {
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contract")
+    private List<Users> tenant;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contract")
+    private List<Users> owner;
+
+    private int numberOfRooms;
+
+    private int numberOfStage;
+
+    private int voucher;
+
+    public List<Users> getTenant() {
+        return tenant;
     }
 
-    public Contracts(Long id, String details, Date signDate) {
-        this.id = id;
-        this.details = details;
-        this.signDate = signDate;
+    public void setTenant(List<Users> tenant) {
+        this.tenant = tenant;
     }
 
-    public Long getId() {
-        return id;
+    public List<Users> getOwner() {
+        return owner;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOwner(List<Users> owner) {
+        this.owner = owner;
+    }
+
+    public int getNumberOfRooms() {
+        return numberOfRooms;
+    }
+
+    public void setNumberOfRooms(int numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public int getNumberOfStage() {
+        return numberOfStage;
+    }
+
+    public void setNumberOfStage(int numberOfStage) {
+        this.numberOfStage = numberOfStage;
+    }
+
+    public int getVoucher() {
+        return voucher;
+    }
+
+    public void setVoucher(int voucher) {
+        this.voucher = voucher;
     }
 
     public String getDetails() {

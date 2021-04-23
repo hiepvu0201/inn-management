@@ -1,14 +1,11 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblFacilities")
-public class Facilities {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Facilities extends BasicEntity {
 
     private String name;
 
@@ -20,23 +17,15 @@ public class Facilities {
     @JoinColumn(name = "room_id", nullable = false)
     private Rooms room;
 
-    public Facilities() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    public Branches getBranch() {
+        return branch;
     }
 
-    public Facilities(Long id, String name, String quality, int quantity, Rooms room) {
-        this.id = id;
-        this.name = name;
-        this.quality = quality;
-        this.quantity = quantity;
-        this.room = room;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setBranch(Branches branch) {
+        this.branch = branch;
     }
 
     public String getName() {

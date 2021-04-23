@@ -1,45 +1,23 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "tblRooms")
-public class Rooms {
+public class Rooms extends BasicEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "room_no")
     private String roomNo;
 
     private String position;
 
     @OneToMany(mappedBy = "room")
-    private Set<Users> users;
+    private List<Users> users;
 
     @OneToMany(mappedBy = "room")
-    private Set<Facilities> facilities;
-
-    public Rooms() {
-    }
-
-    public Rooms(Long id, String roomNo, String position, Set<Users> users, Set<Facilities> facilities) {
-        this.id = id;
-        this.roomNo = roomNo;
-        this.position = position;
-        this.users = users;
-        this.facilities = facilities;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private List<Facilities> facilities;
 
     public String getRoomNo() {
         return roomNo;
@@ -57,19 +35,19 @@ public class Rooms {
         this.position = position;
     }
 
-    public Set<Users> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
-    public Set<Facilities> getFacilities() {
+    public List<Facilities> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(Set<Facilities> facilities) {
+    public void setFacilities(List<Facilities> facilities) {
         this.facilities = facilities;
     }
 }

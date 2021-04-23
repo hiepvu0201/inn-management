@@ -1,36 +1,16 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblRules")
-public class Rules {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Rules extends BasicEntity {
 
     private String name;
 
     @Lob
     private String description;
-
-    public Rules() {
-    }
-
-    public Rules(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

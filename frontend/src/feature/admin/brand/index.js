@@ -91,7 +91,7 @@ function Brand(props) {
           >
             <FontAwesomeIcon icon={faTrash} color="red" />
           </Popconfirm>
-          <div style={{ paddingLeft: "10px", lineHeight: "1px" }} onClick={showModal}>
+          <div style={{ paddingLeft: "10px", lineHeight: "1px" }} onClick={showModal_1}>
             <FontAwesomeIcon icon={faEdit} />
           </div>
           <Modal
@@ -111,9 +111,9 @@ function Brand(props) {
                 </div>
               </div>
             }
-            onOk={handleOk}
-            onCancel={handleCancel}
-            visible={isModalVisible}
+            onOk={handleOk_1}
+            onCancel={handleCancel_1}
+            visible={isModalVisible_1}
             okText="LƯU LẠI"
             cancelText="HỦY BỎ"
           >
@@ -151,11 +151,23 @@ function Brand(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+
+  const showModal_1 = () => {
+    setIsModalVisible_1(true);
+  };
+  const handleOk_1 = () => {
+    setIsModalVisible_1(false);
+  };
+
+  const handleCancel_1 = () => {
+    setIsModalVisible_1(false);
+  };
   return (
     <div>
       <div
         style={{
-          width: "100vmax",
+          width: "100%",
           height: "100vmax",
           backgroundColor: "#efefef",
         }}
@@ -239,7 +251,7 @@ function Brand(props) {
               </div>
             </div>
 
-            <div style={{ paddingTop: "30px", width: "100%", height: "auto" }}>
+            <div style={{ paddingTop: "30px",paddingLeft:"15px",paddingRight:"15px" }}>
               <Table columns={columns} bordered dataSource={data} />
             </div>
           </div>

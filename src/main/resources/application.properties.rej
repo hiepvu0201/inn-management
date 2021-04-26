@@ -1,0 +1,8 @@
+diff a/src/main/resources/application.properties b/src/main/resources/application.properties	(rejected hunks)
+@@ -5,4 +5,5 @@
+ spring.datasource.platform=postgres
+ spring.datasource.url=jdbc:postgresql://localhost:5432/inn_management
+ spring.datasource.username=postgres
++spring.datasource.password=Duy0909830311
+ spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+\ No newline at end of file

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrash,faEdit} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faSave, faMoneyBillAlt } from "@fortawesome/free-regular-svg-icons";
+import monthlyincomesApi from "../../../api/monthlyincomesApi";
 import {
   Select,
   Popconfirm,
@@ -31,35 +32,16 @@ function Revenue() {
   //table
   const columns = [
     {
-      title: "Phòng",
-      dataIndex: "room",
-      key: "room",
-    },
-    {
       title: "Tên khoản thu",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Ngày thu",
-      dataIndex: "date",
-      key: "date",
-    },
-    {
-      title: "Loại khoản thu",
-      dataIndex: "type",
-      key: "type",
+      dataIndex: "itemName",
+      key: "itemName",
     },
     {
       title: "Số tiền thu",
-      dataIndex: "money",
-      key: "money",
+      dataIndex: "earn",
+      key: "earn",
     },
-    {
-      title: "Mô tả",
-      dataIndex: "description",
-      key: "description",
-    },
+
     {
       title: "",
       dataIndex: "",
@@ -104,106 +86,77 @@ function Revenue() {
             okText="LƯU LẠI"
             cancelText="HỦY BỎ"
           >
-           <Form>
-                  <Form.Item label="Chi Nhánh" name="brand">
+            <Form>
+              <Form.Item label="Chi Nhánh" name="brand">
+                <Select
+                  defaultValue="Chi Nhánh"
+                  style={{ width: "220px", marginRight: "40px" }}
+                >
+                  <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
+                  <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
+                  <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
+                  <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
+                </Select>
+              </Form.Item>
+              <div style={{ display: "flex" }}>
+                <div>
+                  <Form.Item label="Phòng" name="room">
                     <Select
-                      defaultValue="Chi Nhánh"
-                      style={{ width: "220px", marginRight: "40px" }}
+                      defaultValue="Chọn Phòng"
+                      style={{ width: "120px" }}
                     >
-                      <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
-                      <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
-                      <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
-                      <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
+                      <Option value="Phòng 1">Phòng 1</Option>
+                      <Option value="Phòng 2">Phòng 2</Option>
+                      <Option value="Phòng 3">Phòng 3</Option>
+                      <Option value="Phong 4">Phòng 4</Option>
                     </Select>
                   </Form.Item>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Phòng" name="room">
-                        <Select
-                          defaultValue="Chọn Phòng"
-                          style={{ width: "120px" }}
-                        >
-                          <Option value="Phòng 1">Phòng 1</Option>
-                          <Option value="Phòng 2">Phòng 2</Option>
-                          <Option value="Phòng 3">Phòng 3</Option>
-                          <Option value="Phong 4">Phòng 4</Option>
-                        </Select>
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Tên khoản thu" name="name">
-                        <Input placeholder="Nhập tên khoản thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Ngày thu" name="date">
-                        <DatePicker
-                          onChange={onChange}
-                          placeholder="Nhập Ngày Thu"
-                        />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Loại khoản thu" name="type">
-                        <Input placeholder="Nhập loại khoản thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Số lượng" name="number">
-                        <InputNumber
-                          min={0}
-                          max={10}
-                          defaultValue={0}
-                          onChange={onChange_inputnum}
-                        />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Số tiền thu" name="type">
-                        <Input placeholder="Nhập số tiền thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <Form.Item label="Mô tả" name="description">
-                    <Input placeholder="Nhập mô tả" />
+                </div>
+                <div style={{ paddingLeft: "10px" }}>
+                  <Form.Item label="Tên khoản thu" name="name">
+                    <Input placeholder="Nhập tên khoản thu" />
                   </Form.Item>
-                </Form>
+                </div>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div>
+                  <Form.Item label="Ngày thu" name="date">
+                    <DatePicker
+                      onChange={onChange}
+                      placeholder="Nhập Ngày Thu"
+                    />
+                  </Form.Item>
+                </div>
+                <div style={{ paddingLeft: "10px" }}>
+                  <Form.Item label="Loại khoản thu" name="type">
+                    <Input placeholder="Nhập loại khoản thu" />
+                  </Form.Item>
+                </div>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div>
+                  <Form.Item label="Số lượng" name="number">
+                    <InputNumber
+                      min={0}
+                      max={10}
+                      defaultValue={0}
+                      onChange={onChange_inputnum}
+                    />
+                  </Form.Item>
+                </div>
+                <div style={{ paddingLeft: "10px" }}>
+                  <Form.Item label="Số tiền thu" name="type">
+                    <Input placeholder="Nhập số tiền thu" />
+                  </Form.Item>
+                </div>
+              </div>
+              <Form.Item label="Mô tả" name="description">
+                <Input placeholder="Nhập mô tả" />
+              </Form.Item>
+            </Form>
           </Modal>
         </div>
       ),
-    }
-  ];
-  const data = [
-    {
-      key: "1",
-      room: "001",
-      name: "Tiền điện",
-      date: "2021/4/16",
-      type: "Chi phí hằng tháng",
-      money: "3.000.000",
-      description: "Đã xong",
-    },
-    {
-      key: "2",
-      room: "001",
-      name: "Tiền điện",
-      date: "2021/4/16",
-      type: "Chi phí hằng tháng",
-      money: "3.000.000",
-      description: "Đã xong",
-    },
-    {
-      key: "3",
-      room: "001",
-      name: "Tiền điện",
-      date: "2021/4/16",
-      type: "Chi phí hằng tháng",
-      money: "3.000.000",
-      description: "Đã xong",
     },
   ];
   //modal
@@ -245,13 +198,45 @@ function Revenue() {
   //Popconfirm
   function confirm(e) {
     console.log(e);
-    message.success('Click on Yes');
+    message.success("Click on Yes");
   }
-  
+
   function cancel(e) {
     console.log(e);
-    message.error('Click on No');
+    message.error("Click on No");
   }
+  const [moneyincomes, setMoneyincomes] = useState([]);
+  useEffect(() => {
+    const fetchMoneyincomesList = async () => {
+      try {
+        const response = await monthlyincomesApi.getAll();
+        console.log("Fetch moneyincomes succesfully: ", response.data);
+        setMoneyincomes(response.data);
+      } catch (error) {
+        console.log("failed to fetch product list: ", error);
+      }
+    };
+    fetchMoneyincomesList();
+  }, []);
+  const onFinish = (values) => {
+    const fetchCreatemoneyincomes = async () => {
+      try {
+        const response = await monthlyincomesApi.createMonthlyincomes(values);
+        console.log("Fetch create monthlyincomes successfully: ", response);
+        console.log("value ", values);
+        setMoneyincomes([...moneyincomes,values])
+        setIsModalVisible(false);
+
+      } catch (error) {
+        console.log("failed to create monthlyincomes: ", error);
+      }
+    };
+    fetchCreatemoneyincomes();
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <div>
       <div
@@ -304,8 +289,13 @@ function Revenue() {
                 onCancel={handleCancel}
                 okText="Thêm mới"
                 cancelText="Hủy bỏ"
+                footer={null}
               >
-                <Form>
+                <Form
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
+                  initialValues={{ remember: true }}
+                >
                   <Form.Item label="Chi Nhánh" name="brand">
                     <Select
                       defaultValue="Chi Nhánh"
@@ -317,61 +307,25 @@ function Revenue() {
                       <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
                     </Select>
                   </Form.Item>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Phòng" name="room">
-                        <Select
-                          defaultValue="Chọn Phòng"
-                          style={{ width: "120px" }}
-                        >
-                          <Option value="Phòng 1">Phòng 1</Option>
-                          <Option value="Phòng 2">Phòng 2</Option>
-                          <Option value="Phòng 3">Phòng 3</Option>
-                          <Option value="Phong 4">Phòng 4</Option>
-                        </Select>
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Tên khoản thu" name="name">
-                        <Input placeholder="Nhập tên khoản thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Ngày thu" name="date">
-                        <DatePicker
-                          onChange={onChange}
-                          placeholder="Nhập Ngày Thu"
-                        />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Loại khoản thu" name="type">
-                        <Input placeholder="Nhập loại khoản thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex" }}>
-                    <div>
-                      <Form.Item label="Số lượng" name="number">
-                        <InputNumber
-                          min={0}
-                          max={10}
-                          defaultValue={0}
-                          onChange={onChange_inputnum}
-                        />
-                      </Form.Item>
-                    </div>
-                    <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Số tiền thu" name="type">
-                        <Input placeholder="Nhập số tiền thu" />
-                      </Form.Item>
-                    </div>
-                  </div>
-                  <Form.Item label="Mô tả" name="description">
-                    <Input placeholder="Nhập mô tả" />
+
+                  <Form.Item label="Tên khoản thu" name="itemName">
+                    <Input placeholder="Nhập tên khoản thu" />
                   </Form.Item>
+                  <Form.Item label="Số tiền thu" name="earn">
+                    <Input placeholder="Nhập số tiền" />
+                  </Form.Item>
+                  <div style={{ display: "flex" }}>
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit">
+                        Thêm mới
+                      </Button>
+                    </Form.Item>
+                    <Form.Item style={{ paddingLeft: "15px" }}>
+                      <Button type="default" onClick={handleCancel}>
+                        Hủy bỏ
+                      </Button>
+                    </Form.Item>
+                  </div>
                 </Form>
               </Modal>
               <button className="btn-top-right-revenue" onClick={showModal_1}>
@@ -405,8 +359,13 @@ function Revenue() {
                 <button className="btn-top-right-revenue">Xóa nhiều</button>
               </Popconfirm>
             </div>
-            <div style={{paddingLeft:"15px",paddingRight:"15px"}}>
-              <Table dataSource={data} columns={columns} bordered />
+            <div style={{ paddingLeft: "15px", paddingRight: "15px" }}>
+              <Table
+                dataSource={moneyincomes}
+                columns={columns}
+                bordered
+                rowKey="id"
+              />
             </div>
           </div>
         </div>

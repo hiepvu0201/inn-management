@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import {faTrash,faEdit} from "@fortawesome/free-solid-svg-icons";
 import { faSave, faMoneyBillAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   Select,
@@ -19,60 +19,14 @@ import {
   Table,
   InputNumber,
 } from "antd";
-function Expenditure() {
+function Revenue() {
   //DatePicker
   function onChange(date, dateString) {
     console.log(date, dateString);
   }
-  //modal
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
-  const showModal_1 = () => {
-    setIsModalVisible_1(true);
-  };
-  const handleOk_1 = () => {
-    setIsModalVisible_1(false);
-  };
-
-  const handleCancel_1 = () => {
-    setIsModalVisible_1(false);
-  };
-  const [isModalVisible_2, setIsModalVisible_2] = useState(false);
-  const showModal_2 = () => {
-    setIsModalVisible_2(true);
-  };
-  const handleOk_2 = () => {
-    setIsModalVisible_2(false);
-  };
-
-  const handleCancel_2 = () => {
-    setIsModalVisible_2(false);
-  };
-  //Rangepicker
-  const { RangePicker } = DatePicker;
   //inpurtnumber
   function onChange_inputnum(value) {
     console.log("changed", value);
-  }
-  //Popconfirm
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
-  function cancel(e) {
-    console.log(e);
-    message.error("Click on No");
   }
   //table
   const columns = [
@@ -82,22 +36,22 @@ function Expenditure() {
       key: "room",
     },
     {
-      title: "Tên khoản chi",
+      title: "Tên khoản thu",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Ngày chi",
+      title: "Ngày thu",
       dataIndex: "date",
       key: "date",
     },
     {
-      title: "Loại khoản chi",
+      title: "Loại khoản thu",
       dataIndex: "type",
       key: "type",
     },
     {
-      title: "Số tiền chi",
+      title: "Số tiền thu",
       dataIndex: "money",
       key: "money",
     },
@@ -150,78 +104,78 @@ function Expenditure() {
             okText="LƯU LẠI"
             cancelText="HỦY BỎ"
           >
-            <Form>
-              <Form.Item label="Chi Nhánh" name="brand">
-                <Select
-                  defaultValue="Chi Nhánh"
-                  style={{ width: "220px", marginRight: "40px" }}
-                >
-                  <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
-                  <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
-                  <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
-                  <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
-                </Select>
-              </Form.Item>
-              <div style={{ display: "flex" }}>
-                <div>
-                  <Form.Item label="Phòng" name="room">
+           <Form>
+                  <Form.Item label="Chi Nhánh" name="brand">
                     <Select
-                      defaultValue="Chọn Phòng"
-                      style={{ width: "120px" }}
+                      defaultValue="Chi Nhánh"
+                      style={{ width: "220px", marginRight: "40px" }}
                     >
-                      <Option value="Phòng 1">Phòng 1</Option>
-                      <Option value="Phòng 2">Phòng 2</Option>
-                      <Option value="Phòng 3">Phòng 3</Option>
-                      <Option value="Phong 4">Phòng 4</Option>
+                      <Option value="Chi Nhánh 1">Chi Nhánh 1</Option>
+                      <Option value="Chi Nhánh 2">Chi Nhánh 2</Option>
+                      <Option value="Chi Nhánh 3">Chi Nhánh 3</Option>
+                      <Option value="Chi Nhánh 4">Chi Nhánh 4</Option>
                     </Select>
                   </Form.Item>
-                </div>
-                <div style={{ paddingLeft: "10px" }}>
-                  <Form.Item label="Tên khoản chi" name="name">
-                    <Input placeholder="Nhập tên khoản chi" />
+                  <div style={{ display: "flex" }}>
+                    <div>
+                      <Form.Item label="Phòng" name="room">
+                        <Select
+                          defaultValue="Chọn Phòng"
+                          style={{ width: "120px" }}
+                        >
+                          <Option value="Phòng 1">Phòng 1</Option>
+                          <Option value="Phòng 2">Phòng 2</Option>
+                          <Option value="Phòng 3">Phòng 3</Option>
+                          <Option value="Phong 4">Phòng 4</Option>
+                        </Select>
+                      </Form.Item>
+                    </div>
+                    <div style={{ paddingLeft: "10px" }}>
+                      <Form.Item label="Tên khoản thu" name="name">
+                        <Input placeholder="Nhập tên khoản thu" />
+                      </Form.Item>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    <div>
+                      <Form.Item label="Ngày thu" name="date">
+                        <DatePicker
+                          onChange={onChange}
+                          placeholder="Nhập Ngày Thu"
+                        />
+                      </Form.Item>
+                    </div>
+                    <div style={{ paddingLeft: "10px" }}>
+                      <Form.Item label="Loại khoản thu" name="type">
+                        <Input placeholder="Nhập loại khoản thu" />
+                      </Form.Item>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    <div>
+                      <Form.Item label="Số lượng" name="number">
+                        <InputNumber
+                          min={0}
+                          max={10}
+                          defaultValue={0}
+                          onChange={onChange_inputnum}
+                        />
+                      </Form.Item>
+                    </div>
+                    <div style={{ paddingLeft: "10px" }}>
+                      <Form.Item label="Số tiền thu" name="type">
+                        <Input placeholder="Nhập số tiền thu" />
+                      </Form.Item>
+                    </div>
+                  </div>
+                  <Form.Item label="Mô tả" name="description">
+                    <Input placeholder="Nhập mô tả" />
                   </Form.Item>
-                </div>
-              </div>
-              <div style={{ display: "flex" }}>
-                <div>
-                  <Form.Item label="Ngày chi" name="date">
-                    <DatePicker
-                      onChange={onChange}
-                      placeholder="Nhập Ngày Chi"
-                    />
-                  </Form.Item>
-                </div>
-                <div style={{ paddingLeft: "10px" }}>
-                  <Form.Item label="Loại khoản chi" name="type">
-                    <Input placeholder="Nhập loại khoản chi" />
-                  </Form.Item>
-                </div>
-              </div>
-              <div style={{ display: "flex" }}>
-                <div>
-                  <Form.Item label="Số lượng" name="number">
-                    <InputNumber
-                      min={0}
-                      max={10}
-                      defaultValue={0}
-                      onChange={onChange_inputnum}
-                    />
-                  </Form.Item>
-                </div>
-                <div style={{ paddingLeft: "10px" }}>
-                  <Form.Item label="Số tiền chi" name="type">
-                    <Input placeholder="Nhập số tiền chi" />
-                  </Form.Item>
-                </div>
-              </div>
-              <Form.Item label="Mô tả" name="description">
-                <Input placeholder="Nhập mô tả" />
-              </Form.Item>
-            </Form>
+                </Form>
           </Modal>
         </div>
       ),
-    },
+    }
   ];
   const data = [
     {
@@ -252,28 +206,72 @@ function Expenditure() {
       description: "Đã xong",
     },
   ];
+  //modal
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+  const showModal_1 = () => {
+    setIsModalVisible_1(true);
+  };
+  const handleOk_1 = () => {
+    setIsModalVisible_1(false);
+  };
+
+  const handleCancel_1 = () => {
+    setIsModalVisible_1(false);
+  };
+  const [isModalVisible_2, setIsModalVisible_2] = useState(false);
+  const showModal_2 = () => {
+    setIsModalVisible_2(true);
+  };
+  const handleOk_2 = () => {
+    setIsModalVisible_2(false);
+  };
+
+  const handleCancel_2 = () => {
+    setIsModalVisible_2(false);
+  };
+  //Rangepicker
+  const { RangePicker } = DatePicker;
+  //Popconfirm
+  function confirm(e) {
+    console.log(e);
+    message.success('Click on Yes');
+  }
+  
+  function cancel(e) {
+    console.log(e);
+    message.error('Click on No');
+  }
   return (
     <div>
       <div
-        style={{ height: "100vmax", width: "100%", backgroundColor: "#efefef" }}
+        style={{ backgroundColor: "#efefef", width: "100%", height: "100vmax" }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="content-cover">
-          <div style={{ display: "block", width: "100%", height: "auto" }}>
-            <div className="box-cover">
-              <div className="content-left">
+        <div className="box-inner-cover">
+          <div style={{ display: "block", width: "100%" }}>
+            <div className="content-part1">
+              <div className="detailed-left">
                 <FontAwesomeIcon
                   icon={faMoneyBillAlt}
                   size="2x"
                   color="#007c7e"
                 />
-                <div className="content-detailed-left-expenditure">
-                  QUẢN LÝ NGUỒN CHI
-                </div>
+                <div className="content-detailed-left">QUẢN LÝ NGUỒN THU</div>
               </div>
-              <div className="content-right-expenditure">
+              <div className="content-right-revenue">
                 <div>
                   <Select
                     defaultValue="Chi Nhánh"
@@ -295,8 +293,8 @@ function Expenditure() {
                 </div>
               </div>
             </div>
-            <div className="box-cover-btn-expenditure">
-              <button className="btn-top-right-expenditure" onClick={showModal}>
+            <div className="content-right">
+              <button className="btn-top-right-revenue" onClick={showModal}>
                 Thêm mới
               </button>
               <Modal
@@ -334,23 +332,23 @@ function Expenditure() {
                       </Form.Item>
                     </div>
                     <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Tên khoản chi" name="name">
-                        <Input placeholder="Nhập tên khoản chi" />
+                      <Form.Item label="Tên khoản thu" name="name">
+                        <Input placeholder="Nhập tên khoản thu" />
                       </Form.Item>
                     </div>
                   </div>
                   <div style={{ display: "flex" }}>
                     <div>
-                      <Form.Item label="Ngày chi" name="date">
+                      <Form.Item label="Ngày thu" name="date">
                         <DatePicker
                           onChange={onChange}
-                          placeholder="Nhập Ngày Chi"
+                          placeholder="Nhập Ngày Thu"
                         />
                       </Form.Item>
                     </div>
                     <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Loại khoản chi" name="type">
-                        <Input placeholder="Nhập loại khoản chi" />
+                      <Form.Item label="Loại khoản thu" name="type">
+                        <Input placeholder="Nhập loại khoản thu" />
                       </Form.Item>
                     </div>
                   </div>
@@ -366,8 +364,8 @@ function Expenditure() {
                       </Form.Item>
                     </div>
                     <div style={{ paddingLeft: "10px" }}>
-                      <Form.Item label="Số tiền chi" name="type">
-                        <Input placeholder="Nhập số tiền chi" />
+                      <Form.Item label="Số tiền thu" name="type">
+                        <Input placeholder="Nhập số tiền thu" />
                       </Form.Item>
                     </div>
                   </div>
@@ -376,7 +374,9 @@ function Expenditure() {
                   </Form.Item>
                 </Form>
               </Modal>
-              <button className="btn-top-right-expenditure" onClick={showModal_1}>Tìm kiếm</button>
+              <button className="btn-top-right-revenue" onClick={showModal_1}>
+                Tìm kiếm
+              </button>
               <Modal
                 title="Tìm kiếm"
                 visible={isModalVisible_1}
@@ -388,11 +388,11 @@ function Expenditure() {
                 <Form.Item label="Ngày đến - Ngày đi" name="date">
                   <RangePicker />
                 </Form.Item>
-                <Form.Item label="Tên khoản chi" name="name">
-                  <Input placeholder="Nhập tên khoản chi" />
+                <Form.Item label="Tên khoản thu" name="name">
+                  <Input placeholder="Nhập tên khoản thu" />
                 </Form.Item>
-                <Form.Item label="Loại khoản chi" name="type">
-                  <Input placeholder="Nhập loại khoản chi" />
+                <Form.Item label="Loại khoản thu" name="type">
+                  <Input placeholder="Nhập loại khoản thu" />
                 </Form.Item>
               </Modal>
               <Popconfirm
@@ -402,7 +402,7 @@ function Expenditure() {
                 okText="Có"
                 cancelText="Không"
               >
-              <button className="btn-top-right-expenditure">Xóa nhiều</button>
+                <button className="btn-top-right-revenue">Xóa nhiều</button>
               </Popconfirm>
             </div>
             <div style={{paddingLeft:"15px",paddingRight:"15px"}}>
@@ -414,4 +414,5 @@ function Expenditure() {
     </div>
   );
 }
-export default Expenditure;
+
+export default Revenue;

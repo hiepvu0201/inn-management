@@ -339,10 +339,7 @@ function Room() {
                 />
               </Form.Item>
               <Form.Item label="Thành viên 01" name="phone_mem_1">
-                <Input
-                  placeholder="0901632176"
-                  style={{ width: "350px" }}
-                />
+                <Input placeholder="0901632176" style={{ width: "350px" }} />
               </Form.Item>
               <Form.Item label="Thành viên 02" name="name_mem_2">
                 <Input
@@ -351,10 +348,7 @@ function Room() {
                 />
               </Form.Item>
               <Form.Item label="Thành viên 02" name="phone_mem_2">
-                <Input
-                  placeholder="0901632176"
-                  style={{ width: "350px" }}
-                />
+                <Input placeholder="0901632176" style={{ width: "350px" }} />
               </Form.Item>
               <Form.Item label="Thành viên 03" name="name_mem_3">
                 <Input
@@ -363,10 +357,7 @@ function Room() {
                 />
               </Form.Item>
               <Form.Item label="Thành viên 03" name="phone_mem_3">
-                <Input
-                  placeholder="0901632176"
-                  style={{ width: "350px" }}
-                />
+                <Input placeholder="0901632176" style={{ width: "350px" }} />
               </Form.Item>
               <Form.Item label="Thành viên 04" name="name_mem_4">
                 <Input
@@ -375,10 +366,7 @@ function Room() {
                 />
               </Form.Item>
               <Form.Item label="Thành viên 04" name="phone_mem_4">
-                <Input
-                  placeholder="0901632176"
-                  style={{ width: "350px" }}
-                />
+                <Input placeholder="0901632176" style={{ width: "350px" }} />
               </Form.Item>
             </Form>
           </Modal>
@@ -793,7 +781,9 @@ function Room() {
                 </Popconfirm>
               </div>
             </div>
-            <Table columns={columns} dataSource={data} bordered />
+            <div style={{ paddingTop:"10px",paddingLeft: "15px", paddingRight: "15px" }}>
+              <Table columns={columns} dataSource={data} bordered />
+            </div>
           </div>
         </div>
       </div>

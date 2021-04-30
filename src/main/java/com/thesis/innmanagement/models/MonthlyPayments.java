@@ -1,36 +1,26 @@
 package com.thesis.innmanagement.models;
 
+import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tblMonthlyPayments")
-public class MonthlyPayments {
+public class MonthlyPayments extends BasicEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "item_name")
     private String itemName;
 
     @Column(precision = 16, scale = 4)
     private Double cost;
 
-    public MonthlyPayments() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Branches branch;
+
+    public Branches getBranch() {
+        return branch;
     }
 
-    public MonthlyPayments(Long id, String itemName, Double cost) {
-        this.id = id;
-        this.itemName = itemName;
-        this.cost = cost;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setBranch(Branches branch) {
+        this.branch = branch;
     }
 
     public String getItemName() {

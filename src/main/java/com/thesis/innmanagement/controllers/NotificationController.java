@@ -1,14 +1,13 @@
 package com.thesis.innmanagement.controllers;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
-import com.thesis.innmanagement.models.Contracts;
-import com.thesis.innmanagement.models.Notifications;
-import com.thesis.innmanagement.repositories.NotificationRepository;
+import com.thesis.innmanagement.entities.Notifications;
+import com.thesis.innmanagement.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -18,42 +17,32 @@ import java.util.Map;
 public class NotificationController {
 
     @Autowired
-    private NotificationRepository notificationRepository;
+    private NotificationService notificationService;
 
     @GetMapping("/")
     public List<Notifications> GetAll(){
-        return notificationRepository.findAll();
+        return notificationService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Notifications> GetNotificationById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
-        Notifications notification = notificationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Notification not found on id: "+id));
-        return ResponseEntity.ok().body(notification);
+        return ResponseEntity.ok().body(notificationService.findById(id));
     }
 
     @PostMapping("/")
     public Notifications Create(@Validated @RequestBody Notifications notification) throws Exception{
-        return notificationRepository.save(notification);
+        return notificationService.createOrUpdate(null, notification);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Notifications> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Notifications notificationDetail) throws Exception{
-
-        Notifications notification = notificationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Notification not found on id: "+ id));
-
-        final Notifications notificationInfo = notificationRepository.save(notification);
-
-        return ResponseEntity.ok().body(notificationInfo);
+        Notifications notification = notificationService.createOrUpdate(id, notificationDetail);
+        return ResponseEntity.ok().body(notification);
     }
 
     @DeleteMapping("/{id}/delete")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id) throws
             Exception {
-        Notifications notification = notificationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Notification not found on: " + id));
-        notificationRepository.delete(notification);
-
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return notificationService.delete(id);
     }
 }

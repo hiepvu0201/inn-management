@@ -1,13 +1,12 @@
 package com.thesis.innmanagement.controllers;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
-import com.thesis.innmanagement.models.Contracts;
-import com.thesis.innmanagement.repositories.ContractRepository;
+import com.thesis.innmanagement.entities.Contracts;
+import com.thesis.innmanagement.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,42 +16,32 @@ import java.util.Map;
 public class ContractController {
 
     @Autowired
-    private ContractRepository contractRepository;
+    private ContractService contractService;
 
     @GetMapping("/")
     public List<Contracts> GetAll(){
-        return contractRepository.findAll();
+        return contractService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Contracts> GetContractById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-        Contracts contract = contractRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Contract not found on: " + id));
-        return ResponseEntity.ok().body(contract);
+        return ResponseEntity.ok().body(contractService.findById(id));
     }
 
     @PostMapping("/")
     public Contracts Create(@Validated @RequestBody Contracts contract) throws Exception{
-        return contractRepository.save(contract);
+        return contractService.createOrUpdate(null, contract);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Contracts> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Contracts contractDetail) throws Exception{
-
-        Contracts contract = contractRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Contract not found on id: "+ id));
-
-        final Contracts contractInfo = contractRepository.save(contract);
-
-        return ResponseEntity.ok().body(contractInfo);
+        Contracts contract = contractService.createOrUpdate(id, contractDetail);
+        return ResponseEntity.ok().body(contract);
     }
 
     @DeleteMapping("/{id}/delete")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id) throws
             Exception {
-        Contracts contract = contractRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Contract not found on: " + id));
-        contractRepository.delete(contract);
-
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return contractService.delete(id);
     }
 }

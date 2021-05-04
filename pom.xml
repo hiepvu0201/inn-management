@@ -78,7 +78,7 @@
     <build>
         <testResources>
             <testResource>
-                <directory>src/test/java</directory>
+                <directory>src/test/java/com/thesis/innmanagement</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>

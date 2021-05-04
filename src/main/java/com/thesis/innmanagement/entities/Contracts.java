@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
@@ -14,17 +14,41 @@ public class Contracts extends BasicEntity {
 
     private Date signDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contract")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
     private List<Users> tenant;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contract")
+    @ElementCollection
+    @Column(updatable = false, insertable = false)
+    private List<Long> tenantIds;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
     private List<Users> owner;
+
+    @ElementCollection
+    @Column(updatable = false, insertable = false)
+    private List<Long> ownerIds;
 
     private int numberOfRooms;
 
     private int numberOfStage;
 
     private int voucher;
+
+    public List<Long> getTenantIds() {
+        return tenantIds;
+    }
+
+    public void setTenantIds(List<Long> tenantIds) {
+        this.tenantIds = tenantIds;
+    }
+
+    public List<Long> getOwnerIds() {
+        return ownerIds;
+    }
+
+    public void setOwnerIds(List<Long> ownerIds) {
+        this.ownerIds = ownerIds;
+    }
 
     public List<Users> getTenant() {
         return tenant;

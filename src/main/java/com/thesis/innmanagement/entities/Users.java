@@ -1,10 +1,10 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.List;;
 
 @Entity
 public class Users extends BasicEntity {
@@ -34,36 +34,61 @@ public class Users extends BasicEntity {
     @Column(precision = 16, scale = 4)
     private Double downPayment;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Roles> roles;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id", nullable = false)
-    private Rooms room;
+    @ElementCollection
+    @Column(insertable = false, updatable = false)
+    private List<Long> roleIds;
 
-    @OneToMany(mappedBy = "user")
-    private List<ReportedIssues> reportedIssues;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_id")
     private Branches branch;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Contracts> contract;
+    @JoinColumns({
+        @JoinColumn(name = "owner_id"),
+        @JoinColumn(name = "tenant_id")
+    })
+    private List<Contracts> contracts;
 
-    public List<Contracts> getContract() {
-        return contract;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reporter")
+    private List<ReportedIssues> reportedIssues;
+
+    @ElementCollection
+    @Column(insertable = false, updatable = false)
+    private List<Long> reportedIssueIds;
+
+    public List<Long> getRoleIds() {
+        return roleIds;
     }
 
-    public void setContract(List<Contracts> contract) {
-        this.contract = contract;
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 
-    public List<Roles> getRoles() {
-        return roles;
+    public List<Long> getReportedIssueIds() {
+        return reportedIssueIds;
     }
 
-    public void setRoles(List<Roles> roles) {
-        this.roles = roles;
+    public void setReportedIssueIds(List<Long> reportedIssueIds) {
+        this.reportedIssueIds = reportedIssueIds;
+    }
+
+    public Branches getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
+
+    public List<Contracts> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contracts> contracts) {
+        this.contracts = contracts;
     }
 
     public List<ReportedIssues> getReportedIssues() {
@@ -74,12 +99,12 @@ public class Users extends BasicEntity {
         this.reportedIssues = reportedIssues;
     }
 
-    public Branches getBranch() {
-        return branch;
+    public List<Roles> getRoles() {
+        return roles;
     }
 
-    public void setBranch(Branches branch) {
-        this.branch = branch;
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -177,13 +202,4 @@ public class Users extends BasicEntity {
     public void setDownPayment(Double downPayment) {
         this.downPayment = downPayment;
     }
-
-    public Rooms getRoom() {
-        return room;
-    }
-
-    public void setRoom(Rooms room) {
-        this.room = room;
-    }
-
 }

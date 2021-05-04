@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,8 +9,6 @@ import java.sql.Timestamp;
 
 @Entity
 public class ReportedIssues extends BasicEntity {
-
-    private String reporter;
 
     private String title;
 
@@ -25,17 +23,8 @@ public class ReportedIssues extends BasicEntity {
     @UpdateTimestamp
     private Timestamp solvedDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users user;
-
-    public String getReporter() {
-        return reporter;
-    }
-
-    public void setReporter(String reporter) {
-        this.reporter = reporter;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Users reporter;
 
     public String getTitle() {
         return title;
@@ -69,10 +58,6 @@ public class ReportedIssues extends BasicEntity {
         this.solvedDate = solvedDate;
     }
 
-    public Users getUser() {
-        return user;
-    }
-
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -81,7 +66,11 @@ public class ReportedIssues extends BasicEntity {
         this.createdDate = createdDate;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public Users getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(Users reporter) {
+        this.reporter = reporter;
     }
 }

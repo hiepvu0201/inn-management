@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 

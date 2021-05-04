@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
@@ -9,17 +9,8 @@ public class Roles extends BasicEntity {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Users user;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Users getUser() {
         return user;
@@ -27,5 +18,13 @@ public class Roles extends BasicEntity {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

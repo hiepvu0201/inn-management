@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.models;
+package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 public class ElectricityWater extends BasicEntity {
 
-    private String roomNo;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "electricityWater")
+    private Rooms room;
 
     private long numElectricOld;
 
@@ -25,12 +26,23 @@ public class ElectricityWater extends BasicEntity {
 
     private int month;
 
-    public String getRoomNo() {
-        return roomNo;
+    @Column(insertable = false, updatable = false)
+    private Long roomId;
+
+    public Rooms getRoom() {
+        return room;
     }
 
-    public void setRoomNo(String roomNo) {
-        this.roomNo = roomNo;
+    public void setRoom(Rooms room) {
+        this.room = room;
+    }
+
+    public Long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 
     public long getNumElectricOld() {

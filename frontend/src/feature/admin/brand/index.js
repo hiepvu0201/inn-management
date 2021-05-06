@@ -50,7 +50,7 @@ function Brand(props) {
       try {
         const response = await branchesApi.createbranch(values);
         console.log("Fetch branch succesfully: ", response);
-        settabledata([...branchList, response]);
+        settabledata([...branchList, values]);
         console.log("tabledata: ", branchList);
       } catch (error) {
         console.log("failed to fetch branch list: ", error);

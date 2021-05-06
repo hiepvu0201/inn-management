@@ -8,6 +8,7 @@ import Brand from './../src/feature/admin/brand'
 // import Customer from './feature/admin/customer'
 import Revenue from './feature/admin/revenue'
 import Component_Block_Last from './components/component_block_last'
+import Role from './../src/feature/admin/role'
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,9 @@ function App() {
       {/* <Register/> */}
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
-      <Brand/>
+      {/* <Brand/>
+       */}
+       <Role/>
       {/* <Customer/>
        */}
        {/* <Revenue/> */}

@@ -22,37 +22,67 @@ import {
   Input,
   Select,
   InputNumber,
+  Spin,
 } from "antd";
 import arr_data_brand from "./../../../mock/data_brand";
 import roleApi from "./../../../api/roleApi";
 const { Option } = Select;
 
 function Role(props) {
+  // loading state
+  const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //api
   //getAll
   const [roleList, setRoleList] = useState([]);
+  const [rowEdit, setRowedit] = useState({});
+  const fetchRoleList = async () => {
+    try {
+      const response = await roleApi.getAll();
+      console.log("Fetch role successfully: ", response.data);
+      setRoleList(response.data);
+      setIsloadingUpdate(false);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch role list: ", error);
+    }
+  };
   useEffect(() => {
-    const fetchRoleList = async () => {
-      try {
-        const response = await roleApi.getAll();
-        console.log("Fetch role successfully: ", response.data);
-        setRoleList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch role list: ", error);
-      }
-    };
     fetchRoleList();
   }, []);
+  //delete
+    const fetchDeleteRole = async (record) => {
+      try {
+        const response = await roleApi.deleteRole(record.id);
+        console.log("Delete role successfully", response);
+        setRoleList(roleList.filter((item) => item.id !== record.id));
+      } catch (error) {
+        console.log("Failed to delete role list", error);
+      }
+    };
+ 
   //form
-  const [tabledata, settabledata] = useState([]);
+  const fetchUpdateRole = async (editv) => {
+    setIsloadingUpdate(true);
+    try {
+      const response = await roleApi.updateRole(editv);
+      console.log("Fetch update role successfully", response);
+      console.log("editv", editv);
+      fetchRoleList();
+    } catch (error) {
+      console.log("failed to update role", error);
+      setIsloadingUpdate(false);
+    }
+  };
   const onFinish = (values) => {
     console.log(values);
     const fetchCreateRole = async () => {
       try {
         const response = await roleApi.createRole(values);
         console.log("Fetch create role successfully: ", response);
-        settabledata([...roleList, values]);
+        setRoleList([...roleList, values]);
         console.log(roleList);
+              setIsModalVisible_1(false);
+
       } catch (error) {
         console.log("failed to fetch create role list: ", error);
       }
@@ -62,6 +92,12 @@ function Role(props) {
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+  };
+  //form edit
+  const onFinish_edit = (values) => {
+    console.log("Success", values);
+    const dataupdate = { id: rowEdit.id, data: values };
+    fetchUpdateRole(dataupdate);
   };
 
   //select
@@ -91,12 +127,11 @@ function Role(props) {
       title: "",
       dataIndex: "",
       key: "x",
-      render: () => (
+      render: (text, record) => (
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={confirm}
-            onCancel={cancel}
+            onConfirm={() => fetchDeleteRole(record)}
             okText="Có"
             cancelText="Không"
           >
@@ -104,51 +139,10 @@ function Role(props) {
           </Popconfirm>
           <div
             style={{ paddingLeft: "10px", lineHeight: "1px" }}
-            onClick={showModal_1}
+            onClick={() => showModal_1(record)}
           >
             <FontAwesomeIcon icon={faEdit} />
           </div>
-          <Modal
-            title={
-              <div style={{ display: "flex" }}>
-                <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
-                <div
-                  style={{
-                    fontFamily: "PT Sans, sans-serif",
-                    fontSize: "20px",
-                    color: "#007c7e",
-                    paddingLeft: "10px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Chỉnh sửa
-                </div>
-              </div>
-            }
-            onOk={handleOk_1}
-            onCancel={handleCancel_1}
-            visible={isModalVisible_1}
-            okText="LƯU LẠI"
-            cancelText="HỦY BỎ"
-          >
-            <Form>
-              <Form.Item label="Tên Tòa Nhà" name="Name">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Lầu" name="Floor">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Phòng" name="Room">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Địa Chỉ" name="Address">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Ghi Chú" name="Notification">
-                <Input />
-              </Form.Item>
-            </Form>
-          </Modal>
         </div>
       ),
     },
@@ -167,11 +161,14 @@ function Role(props) {
   };
   const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
-  const showModal_1 = () => {
+  const showModal_1 = (values) => {
     setIsModalVisible_1(true);
+    console.log("value edit", values);
+    setRowedit(values);
   };
   const handleOk_1 = () => {
     setIsModalVisible_1(false);
+    // fetchUpdateRole();
   };
 
   const handleCancel_1 = () => {
@@ -179,6 +176,41 @@ function Role(props) {
   };
   return (
     <div>
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Chỉnh sửa
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalVisible_1}
+        okText="LƯU LẠI"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Spin spinning={isloadingUpdate} size="large">
+          <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
+            <Form.Item label="Tên phân quyền người dùng" name="name">
+              <Input placeholder={rowEdit.name} />
+            </Form.Item>
+            <Button type="primary" htmlType="submit">
+              LƯU LẠI
+            </Button>
+          </Form>
+        </Spin>
+      </Modal>
       <div
         style={{
           width: "100%",
@@ -251,7 +283,9 @@ function Role(props) {
                         THÊM MỚI
                       </Button>
                       <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                        <Button type="default" onClick={handleCancel}>
+                          HỦY BỎ
+                        </Button>
                       </div>
                     </div>
                   </Form>
@@ -275,7 +309,12 @@ function Role(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={roleList} rowKey="id" />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={roleList}
+                rowKey="id"
+              />
             </div>
           </div>
         </div>

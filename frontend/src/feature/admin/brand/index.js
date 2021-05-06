@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,17 +8,68 @@ import {
   faPlu,
   faPlus,
   faTrash,
-  faEdit
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
-import { Table, Popconfirm, message, Modal, Form, Input } from "antd";
+import {
+  Table,
+  Popconfirm,
+  message,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Select,
+  InputNumber,
+} from "antd";
 import arr_data_brand from "./../../../mock/data_brand";
-import branchesApi from './../../../api/branchesApi'
+import branchesApi from "./../../../api/branchesApi";
+const { Option } = Select;
+
 function Brand(props) {
   //api
   //getAll
-  
+  const [branchList, setBranchList] = useState([]);
+  useEffect(() => {
+    const fetchBranchList = async () => {
+      try {
+        const response = await branchesApi.getAll();
+        console.log("Fetch branch successfully: ", response.data);
+        setBranchList(response.data);
+      } catch (error) {
+        console.log("Failed to fetch product list: ", error);
+      }
+    };
+    fetchBranchList();
+  }, []);
+  //form
+  const [table, setTable] = useState([]);
+  const onFinish = (values) => {
+    const fetchCreateBranch = async () => {
+      try {
+        const response = await branchesApi.createbranch(values);
+        console.log("Fetch branch succesfully: ", response);
+        settabledata([...branchList, response]);
+        console.log("tabledata: ", branchList);
+      } catch (error) {
+        console.log("failed to fetch branch list: ", error);
+      }
+    };
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  //select
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
+  //input_num
+  function onChange_inputnum(value) {
+    console.log("changed", value);
+  }
   function confirm(e) {
     console.log(e);
     message.success("Click on Yes");
@@ -28,57 +79,36 @@ function Brand(props) {
     console.log(e);
     message.error("Click on No");
   }
-  const data = [
-    {
-      key: "1",
-      name: "Chi Nhánh 1",
-      floor: "2",
-      address: "2 Võ Văn Ngân",
-      name_host: "Vũ Văn Thái",
-      description: "Sạch sẽ",
-    },
-    {
-      key: "2",
-      name: "Chi Nhánh 2",
-      floor: "3",
-      address: "5 Võ Văn Ngân",
-      name_host: "Vũ Văn Thái",
-      description: "Sạch sẽ",
-    },
-    {
-      key: "3",
-      name: "Chi Nhánh 3",
-      floor: "2",
-      address: "2 Võ Văn Ngân",
-      name_host: "Vũ Văn Thái",
-      description: "Sạch sẽ",
-    },
-  ];
   const columns = [
     {
-      title: "Tên Chi Nhánh",
-      dataIndex: "name",
-      key: "name",
+      title: "Vị trí",
+      dataIndex: "location",
+      key: "location",
     },
     {
-      title: "Số Lầu",
-      dataIndex: "floor",
-      key: "Floor",
-    },
-    {
-      title: "Địa Chỉ",
-      dataIndex: "address",
-      key: "address",
-    },
-    {
-      title: "Tên Chủ Nhà",
-      dataIndex: "name_host",
-      key: "name_host",
-    },
-    {
-      title: "Mô Tả",
+      title: "Tên chi nhánh",
       dataIndex: "description",
       key: "description",
+    },
+    {
+      title: "Số lầu",
+      dataIndex: "numberOfStages",
+      key: "numberOfStages",
+    },
+    {
+      title: "Số phòng",
+      dataIndex: "numberOfRooms",
+      key: "numberOfRooms",
+    },
+    {
+      title: "Chủ trọ",
+      dataIndex: "ownerId",
+      key: "ownerId",
+    },
+    {
+      title: "Cơ sở vật chất",
+      dataIndex: "facilityIds",
+      key: "facilityIds",
     },
     {
       title: "",
@@ -95,7 +125,10 @@ function Brand(props) {
           >
             <FontAwesomeIcon icon={faTrash} color="red" />
           </Popconfirm>
-          <div style={{ paddingLeft: "10px", lineHeight: "1px" }} onClick={showModal_1}>
+          <div
+            style={{ paddingLeft: "10px", lineHeight: "1px" }}
+            onClick={showModal_1}
+          >
             <FontAwesomeIcon icon={faEdit} />
           </div>
           <Modal
@@ -222,25 +255,47 @@ function Brand(props) {
                   onOk={handleOk}
                   onCancel={handleCancel}
                   visible={isModalVisible}
-                  okText="LƯU LẠI"
+                  okText="THÊM MỚI"
                   cancelText="HỦY BỎ"
+                  footer={null}
                 >
-                  <Form>
-                    <Form.Item label="Tên Tòa Nhà" name="Name">
+                  <Form
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                  >
+                    <Form.Item label="Vị trí" name="location">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Số Lầu" name="Floor">
+                    <Form.Item label="Tên chi nhánh" name="description">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Số Phòng" name="Room">
-                      <Input />
+                    <Form.Item label="Số lầu" name="numberOfStages">
+                      <InputNumber
+                        min={1}
+                        max={10}
+                        onChange={onChange_inputnum}
+                      />
                     </Form.Item>
-                    <Form.Item label="Địa Chỉ" name="Address">
-                      <Input />
+                    <Form.Item label="Số phòng" name="numberOfRooms">
+                      <InputNumber
+                        min={1}
+                        max={10}
+                        onChange={onChange_inputnum}
+                      />
                     </Form.Item>
-                    <Form.Item label="Ghi Chú" name="Notification">
-                      <Input />
+                    <Form.Item label="Chủ trọ" name="ownerId">
+                      {/* <Select value={branchList.ownerId.fullName} /> */}
                     </Form.Item>
+                    {/* <Form.Item></Form.Item> */}
+                    <div style={{ display: "flex" }}>
+                      <Button type="primary" htmlType="submit">
+                        THÊM MỚI
+                      </Button>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <Button type="default">HỦY BỎ</Button>
+                      </div>
+                    </div>
                   </Form>
                 </Modal>
                 {/* <Popconfirm
@@ -255,8 +310,14 @@ function Brand(props) {
               </div>
             </div>
 
-            <div style={{ paddingTop: "30px",paddingLeft:"15px",paddingRight:"15px" }}>
-              <Table columns={columns} bordered dataSource={data} />
+            <div
+              style={{
+                paddingTop: "30px",
+                paddingLeft: "15px",
+                paddingRight: "15px",
+              }}
+            >
+              <Table columns={columns} bordered dataSource={branchList} />
             </div>
           </div>
         </div>

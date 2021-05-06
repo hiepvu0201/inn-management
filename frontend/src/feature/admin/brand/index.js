@@ -239,7 +239,7 @@ function Brand(props) {
                     </Form.Item>
                   </Form>
                 </Modal>
-                <Popconfirm
+                {/* <Popconfirm
                   title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
                   onConfirm={confirm}
                   onCancel={cancel}
@@ -247,7 +247,7 @@ function Brand(props) {
                   cancelText="Không"
                 >
                   <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm>
+                </Popconfirm> */}
               </div>
             </div>
 

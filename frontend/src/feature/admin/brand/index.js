@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "./style.css";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +14,11 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import { Table, Popconfirm, message, Modal, Form, Input } from "antd";
 import arr_data_brand from "./../../../mock/data_brand";
+import branchesApi from './../../../api/branchesApi'
 function Brand(props) {
+  //api
+  //getAll
+  
   function confirm(e) {
     console.log(e);
     message.success("Click on Yes");

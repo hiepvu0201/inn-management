@@ -12,6 +12,7 @@ import Role from './../src/feature/admin/role'
 import Rules from './../src/feature/admin/rules'
 import Reportedissues from './../src/feature/admin/reported-issues'
 import Notification from './../src/feature/admin/notification'
+import Monthlyincome from './../src/feature/admin/monthlyincome'
 function App() {
   return (
     <div className="App">
@@ -25,10 +26,11 @@ function App() {
        {/* <Rules/> */}
        
         {/* <Reportedissues/> */}
-        <Notification/>
+        {/* <Notification/>/ */}
       {/* <Customer/>
        */}
        {/* <Revenue/> */}
+       <Monthlyincome/>
     </div>
   );
 }

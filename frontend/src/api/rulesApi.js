@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosClient from "./axiosClient";
-const rulesApi = {
+const monthlyincomeApi = {
   getAll() {
     const url = "/api/v1/rules/";
     return axiosClient.get(url);
@@ -18,4 +18,4 @@ const rulesApi = {
     return axiosClient.delete(url);
   },
 };
-export default rulesApi;
+export default monthlyincomeApi;

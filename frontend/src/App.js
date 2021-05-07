@@ -11,6 +11,7 @@ import Component_Block_Last from './components/component_block_last'
 import Role from './../src/feature/admin/role'
 import Rules from './../src/feature/admin/rules'
 import Reportedissues from './../src/feature/admin/reported-issues'
+import Notification from './../src/feature/admin/notification'
 function App() {
   return (
     <div className="App">
@@ -23,7 +24,8 @@ function App() {
        {/* <Role/> */}
        {/* <Rules/> */}
        
-        <Reportedissues/>
+        {/* <Reportedissues/> */}
+        <Notification/>
       {/* <Customer/>
        */}
        {/* <Revenue/> */}

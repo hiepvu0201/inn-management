@@ -7,7 +7,7 @@ const rulesApi = {
   },
   createrules(rules) {
     const url = "/api/v1/rules/";
-    return axiosClient.get(url,rules);
+    return axiosClient.post(url,rules);
   },
   updateRole(rules) {
     const url = `/api/v1/rules/${rules.id}`;

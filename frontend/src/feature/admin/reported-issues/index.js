@@ -25,81 +25,81 @@ import {
   Spin,
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
-import rulesApi from "../../../api/rulesApi";
+import ReportedissuesApi from "../../../api/reportedissuesApi";
 const { Option } = Select;
 
-function Rules(props) {
-  //loading update
+function Reportedissues(props) {
+  //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
-  //api
+
+  //
   const [rowEdit, setRowEdit] = useState({});
-  const [rulesList, setRulesList] = useState([]);
-  const fetchRulesList = async () => {
+  //api
+  //getAll
+  const [reportedList, setIsreportedList] = useState([]);
+  const fetchReportedissuesList = async () => {
     try {
-      const response = await rulesApi.getAll();
-      console.log("Fetch rules successfully: ", response.data);
-      setRulesList(response.data);
+      const response = await ReportedissuesApi.getAll();
+      console.log("Fetch getAll reported-issues successfully: ", response.data);
+      setIsreportedList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
-      console.log("Failed to fetch rules list: ", error);
+      console.log("Failed to fetch getAll reported-issues list: ", error);
     }
   };
   useEffect(() => {
-    fetchRulesList();
+    fetchReportedissuesList();
   }, []);
-  //api - update
-  const fetchUpdateRule = async (values) => {
+  //form
+  const [table, setTable] = useState([]);
+  //create
+  const onFinish = (values) => {
+    const fetchCreateReportedissues = async () => {
+      try {
+        const response = await ReportedissuesApi.createReportedissues(values);
+        console.log("Fetch create reported-issues succesfully: ", response);
+        setIsreportedList([...reportedList, response.data]);
+        setIsModalVisible(false);
+        // console.log("tabledata: ", branchList);
+      } catch (error) {
+        console.log("failed to fetch branch list: ", error);
+      }
+    };
+    fetchCreateReportedissues();
+  };
+  //update
+  const fetchUpdateReportedissues = async (values) => {
     setIsloadingUpdate(true);
     try {
-      const response = await rulesApi.updateRole(values);
-      console.log("Fetch update successfully", response);
+      const response = await ReportedissuesApi.updateReportedissues(values);
+      console.log("Fetch update reported-issues successfully", response);
       console.log("edit data", values);
-      fetchRulesList();
+      fetchReportedissuesList();
     } catch (error) {
       console.log("Failed to update rules", error);
       setIsloadingUpdate(false);
     }
   };
   //delete
-   const fetchDeleteRule = async (record) => {
+   const fetchDeleteReportedissues = async (record) => {
      try {
-       const response = await rulesApi.deleteRole(record.id);
-       console.log("Delete rule successfully", response);
-       setRulesList(rulesList.filter((item) => item.id !== record.id));
-       fetchRulesList();
+       const response = await ReportedissuesApi.deleteReportedissues(record.id);
+       console.log("Delete reported-issues successfully", response);
+       setIsreportedList(reportedList.filter((item) => item.id !== record.id));
+       fetchReportedissuesList();
      } catch (error) {
-       console.log("Failed to delete rule list", error);
+       console.log("Failed to delete reported-issues list", error);
      }
    };
-  //form
-  const onFinish = (values) => {
-
-    const fetchCreateRules = async () => {
-      try {
-        // values["id"]=values.id;
-        const response = await rulesApi.createrules(values);
-        console.log("Fetch create rules succesSfully: ", response);
-        setRulesList([...rulesList, response.data]);
-        console.log("In response",response);
-        setIsModalVisible(false);
-        console.log("tabledata: ", rulesList);
-
-      } catch (error) {
-        console.log("failed to fetch rules list: ", error);
-      }
-    };
-    fetchCreateRules();
-  };
-
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  //form-edit
+  //form_edit
   const onFinish_edit = (values) => {
     console.log("Success", values);
     const data_update = { id: rowEdit.id, data: values };
-    fetchUpdateRule(data_update);
+    fetchUpdateReportedissues(data_update);
   };
   //select
   function handleChange(value) {
@@ -120,15 +120,21 @@ function Rules(props) {
   }
   const columns = [
     {
-      title: "Tên",
-      dataIndex: "name",
-      key: "name",
+      title: "Tiêu đề",
+      dataIndex: "title",
+      key: "title",
     },
     {
       title: "Mô tả",
       dataIndex: "description",
       key: "description",
     },
+    {
+      title: "Tình trạng",
+      dataIndex: "status",
+      key: "status",
+    },
+
     {
       title: "",
       dataIndex: "",
@@ -137,7 +143,7 @@ function Rules(props) {
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={()=>fetchDeleteRule(record)}
+            onConfirm={() => fetchDeleteReportedissues(record)}
             onCancel={cancel}
             okText="Có"
             cancelText="Không"
@@ -172,7 +178,7 @@ function Rules(props) {
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
-    console.log("value edit:", values);
+    console.log("values edit:", values);
     setRowEdit(values);
   };
   const handleOk_1 = () => {
@@ -210,19 +216,21 @@ function Rules(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên" name="name">
-              <Input placeholder={rowEdit.name} />
+            <Form.Item label="Tiêu đề" name="title">
+              <Input placeholder={rowEdit.title} />
             </Form.Item>
             <Form.Item label="Mô tả" name="description">
               <Input placeholder={rowEdit.description} />
             </Form.Item>
-
+            <Form.Item label="Tình trạng" name="status">
+              <Input placeholder={rowEdit.status} />
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
               </Button>
               <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
+                <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
@@ -253,7 +261,7 @@ function Rules(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ QUY TẮC NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ CÁC VẤN ĐỀ CỦA NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -292,21 +300,23 @@ function Rules(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tên" name="name">
+                    <Form.Item label="Tiêu đê" name="title">
                       <Input />
                     </Form.Item>
                     <Form.Item label="Mô tả" name="description">
                       <Input />
                     </Form.Item>
+                    <Form.Item label="Tình trạng" name="status">
+                      <Input />
+                    </Form.Item>
 
+                    {/* <Form.Item></Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI
                       </Button>
                       <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default" onClick={handleCancel}>
-                          HỦY BỎ
-                        </Button>
+                        <Button type="default">HỦY BỎ</Button>
                       </div>
                     </div>
                   </Form>
@@ -330,12 +340,7 @@ function Rules(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table
-                columns={columns}
-                bordered
-                dataSource={rulesList}
-                rowKey="id"
-              />
+              <Table columns={columns} bordered dataSource={reportedList} />
             </div>
           </div>
         </div>
@@ -343,4 +348,4 @@ function Rules(props) {
     </div>
   );
 }
-export default Rules;
+export default Reportedissues;

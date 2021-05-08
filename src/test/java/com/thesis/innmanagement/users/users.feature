@@ -25,7 +25,8 @@ Feature: users test
       "checkoutDate": "",
       "downPayment": "",
       "roleIds": [1],
-      "reportedIssueIds": [1]
+      "reportedIssueIds": [],
+      "branchId": [1]
     }
     """
     Given path 'api/v1/users/'

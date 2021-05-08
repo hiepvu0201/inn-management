@@ -14,6 +14,7 @@ import Reportedissues from './../src/feature/admin/reported-issues'
 import Notification from './../src/feature/admin/notification'
 import Monthlyincome from './../src/feature/admin/monthlyincome'
 import Monthlypayment from './../src/feature/admin/monthlypayment'
+import Users from './../src/feature/admin/users'
 function App() {
   return (
     <div className="App">
@@ -32,7 +33,8 @@ function App() {
        */}
        {/* <Revenue/> */}
        {/* <Monthlyincome/> */}
-       <Monthlypayment/>
+       {/* <Monthlypayment/> */}
+       <Users/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -34,17 +35,18 @@ public class Users extends BasicEntity {
     @Column(precision = 16, scale = 4)
     private Double downPayment;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Roles> roles;
 
     @ElementCollection
-    @Column(insertable = false, updatable = false)
     private List<Long> roleIds;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_id")
     private Branches branch;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumns({
         @JoinColumn(name = "owner_id"),
@@ -52,11 +54,11 @@ public class Users extends BasicEntity {
     })
     private List<Contracts> contracts;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reporter")
     private List<ReportedIssues> reportedIssues;
 
     @ElementCollection
-    @Column(insertable = false, updatable = false)
     private List<Long> reportedIssueIds;
 
     public List<Long> getRoleIds() {

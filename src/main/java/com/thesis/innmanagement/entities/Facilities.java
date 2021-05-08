@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Facilities extends BasicEntity {
 
     private int quantity;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "facility_branch",
             joinColumns = @JoinColumn(name = "facility_ids", referencedColumnName = "id", insertable = false, updatable = false),
@@ -22,7 +24,6 @@ public class Facilities extends BasicEntity {
     private List<Branches> branches;
 
     @ElementCollection
-    @Column(insertable = false, updatable = false)
     private List<Long> branchIds;
 
     public List<Long> getBranchIds() {

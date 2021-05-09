@@ -5,9 +5,9 @@ const branchesApi = {
     const url = "/api/v1/branches/";
     return axiosClient.get(url);
   },
-  createbranch() {
+  createbranch(branch) {
     const url = "/api/v1/branches/";
-    return axiosClient.get(url);
+    return axiosClient.post(url,branch);
   },
   deletebranch(branch) {
       const url="/api/v1/branches/${branch.id}/delete/";

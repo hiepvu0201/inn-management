@@ -4,7 +4,7 @@ import "./App.css";
 // import Register  from './feature/register'
 // import Forgotpassword from "./feature/forgotpassword";
 // import Home from './feature/homepage'
-import Brand from './../src/feature/admin/brand'
+import Branches from './../src/feature/admin/branches'
 // import Customer from './feature/admin/customer'
 import Revenue from './feature/admin/revenue'
 import Component_Block_Last from './components/component_block_last'
@@ -22,8 +22,7 @@ function App() {
       {/* <Register/> */}
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
-      {/* <Brand/>
-       */}
+      <Branches/>
        {/* <Role/> */}
        {/* <Rules/> */}
        

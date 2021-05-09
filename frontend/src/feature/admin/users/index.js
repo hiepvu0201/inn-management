@@ -29,7 +29,7 @@ import {
 import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
-import reportedissueApi from '../../../api/reportedissuesApi';
+import reportedissueApi from "../../../api/reportedissuesApi";
 const { Option } = Select;
 
 function Users(props) {
@@ -38,9 +38,7 @@ function Users(props) {
   //   const roleObj=role
   // }
   //select
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
+
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //
@@ -48,16 +46,16 @@ function Users(props) {
   //api
   //getAll
   const [usersList, setIsusersList] = useState([]);
-  const [roleList, setRoleList] = useState([])
+  const [roleList, setRoleList] = useState([]);
   const [reportList, setreportList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
   const [idReport, setidReport] = useState([]);
+  const [idSelected_1, setidSelected_1] = useState([]);
+  const [idReport_1, setidReport_1] = useState([]);
   const fetchUsersList = async () => {
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
-      var y=response.data
-      console.log("roleid",usersList.map(x=>x.roleIds));
       setIsusersList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
@@ -65,32 +63,31 @@ function Users(props) {
       console.log("Failed to fetch getAll users list: ", error);
     }
   };
-  
-  const fetchRoleList = async()=>{
-      try {
-        const response = await roleApi.getAll();
-        console.log("Fetch getAll roles successfully: ", response.data);
-     
-        setRoleList(response.data);
-        setIsloadingUpdate(false);
-        setIsModalVisible_1(false);
-      } catch (error) {
-        console.log("Failed to fetch getAll roles list: ", error);
-      }
-  }
- const fetchReportedList = async()=>{
-      try {
-        const response = await reportedissueApi.getAll();
-        console.log("Fetch getAll reportedissues successfully: ", response.data);
-       
-        setreportList(response.data);
-        setIsloadingUpdate(false);
-        setIsModalVisible_1(false);
-      } catch (error) {
-        console.log("Failed to fetch getAll reportedissues list: ", error);
-      }
-  }
 
+  const fetchRoleList = async () => {
+    try {
+      const response = await roleApi.getAll();
+      console.log("Fetch getAll roles successfully: ", response.data);
+
+      setRoleList(response.data);
+      setIsloadingUpdate(false);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch getAll roles list: ", error);
+    }
+  };
+  const fetchReportedList = async () => {
+    try {
+      const response = await reportedissueApi.getAll();
+      console.log("Fetch getAll reportedissues successfully: ", response.data);
+
+      setreportList(response.data);
+      setIsloadingUpdate(false);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch getAll reportedissues list: ", error);
+    }
+  };
 
   useEffect(() => {
     fetchUsersList();
@@ -101,15 +98,19 @@ function Users(props) {
   const [table, setTable] = useState([]);
   //create
   const onFinish = (values) => {
-    console.log("Value", values);
-    const dataCreate = { ...values, roleIds: idSelected, reportedIssueIds :idSelected};
+    // console.log("Value", values);
+    const dataCreate = {
+      ...values,
+      roleIds: idSelected,
+      reportedIssueIds: idReport,
+    };
     console.log("dataCreate", dataCreate);
     const fetchCreateUsers = async () => {
       try {
         const response = await usersApi.createusers(dataCreate);
         console.log("Fetch create users succesfully: ", response);
-        setIsusersList([...usersList,response.data])
-        console.log("abc",response);
+        setIsusersList([...usersList, response.data]);
+        console.log("abc", response);
         setIsModalVisible(false);
         // console.log("tabledata: ", branchList);
       } catch (error) {
@@ -119,27 +120,16 @@ function Users(props) {
     fetchCreateUsers();
   };
   //update
-  const fetchUpdateReportedissues = async (values) => {
-    setIsloadingUpdate(true);
-    try {
-      const response = await ReportedissuesApi.updateReportedissues(values);
-      console.log("Fetch update reported-issues successfully", response);
-      console.log("edit data", values);
-      fetchReportedissuesList();
-    } catch (error) {
-      console.log("Failed to update rules", error);
-      setIsloadingUpdate(false);
-    }
-  };
+
   //delete
   const fetchDeleteReportedissues = async (record) => {
     try {
-      const response = await ReportedissuesApi.deleteReportedissues(record.id);
-      console.log("Delete reported-issues successfully", response);
-      setIsreportedList(reportedList.filter((item) => item.id !== record.id));
-      fetchReportedissuesList();
+      const response = await usersApi.deleteusers(record.id);
+      console.log("Delete users successfully", response);
+      setIsusersList(usersList.filter((item) => item.id !== record.id));
+      fetchUsersList();
     } catch (error) {
-      console.log("Failed to delete reported-issues list", error);
+      console.log("Failed to delete users list", error);
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -147,16 +137,51 @@ function Users(props) {
   };
   //form_edit
   const onFinish_edit = (values) => {
-    console.log("Success", values);
-    const data_update = { id: rowEdit.id, data: values };
-    fetchUpdateReportedissues(data_update);
+    // console.log("Success", values);
+    // fetchUpdateUsers(data_update);
+    const dataUpdate = {
+      ...values,
+      roleIds: idSelected,
+      reportedIssueIds: idReport
+    };
+    const fetchUpdateUsers = async () => {
+      
+       const data_update = { id: rowEdit.id, data: dataUpdate };
+      console.log("dataupdate", dataUpdate);
+      setIsloadingUpdate(true);
+      try {
+        const response = await usersApi.updateusers(data_update);
+        console.log("Fetch update users successfully", response);
+        console.log("edit data", data_update);
+        fetchUsersList();
+      } catch (error) {
+        console.log("Failed to update users", error);
+        setIsloadingUpdate(false);
+      }
+    };
+    fetchUpdateUsers();
   };
- 
+
   //select
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    console.log(`selected role ${value}`);
     const rolevalue = [value];
-    setidSelected(rolevalue)
+    setidSelected(rolevalue);
+  }
+  function handleChange_1(value) {
+    console.log(`selected report ${value}`);
+    const reportvalue = [value];
+    setidReport(reportvalue);
+  }
+  function handleChange_2(value) {
+    console.log(`selected role1 ${value}`);
+    const rolevalue_1 = [value];
+    setidSelected_1(rolevalue_1);
+  }
+  function handleChange_3(value) {
+    console.log(`selected report1 ${value}`);
+    const reportvalue_1 = [value];
+    setidReport_1(reportvalue_1);
   }
   //input_num
   function onChange_inputnum(value) {
@@ -208,9 +233,14 @@ function Users(props) {
       key: "job",
     },
     {
-      title:"Phân quyền người dùng",
-      dataIndex:"roleIds",
-      key:"roleIds",
+      title: "Phân quyền người dùng",
+      dataIndex: "roleIds",
+      key: "roleIds",
+    },
+    {
+      title: "",
+      dataIndex: "reportedIssueIds",
+      key: "reportedIssueIds",
     },
     // {
     //   title: "Ngày vào",
@@ -281,7 +311,7 @@ function Users(props) {
     setIsModalVisible_1(false);
   };
 
-    return (
+  return (
     <div>
       <Modal
         title={
@@ -309,15 +339,52 @@ function Users(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tiêu đề" name="title">
-              <Input placeholder={rowEdit.title} />
+            <Form.Item label="Tài khoản" name="username">
+              <Input placeholder={rowEdit.username} />
             </Form.Item>
-            <Form.Item label="Mô tả" name="description">
-              <Input placeholder={rowEdit.description} />
+            <Form.Item label="Mật khẩu" name="passwordHash">
+              <Input.Password placeholder={rowEdit.passwordHash} />
             </Form.Item>
-            <Form.Item label="Tình trạng" name="status">
-              <Input placeholder={rowEdit.status} />
+            <Form.Item label="email" name="email">
+              <Input placeholder={rowEdit.email} />
             </Form.Item>
+            <Form.Item label="Họ và tên" name="fullName">
+              <Input placeholder={rowEdit.fullName} />
+            </Form.Item>
+            <Form.Item label="Giới tính" name="sex">
+              <Radio.Group>
+                <Radio value="female">Female</Radio>
+                <Radio value="male">Male</Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="Công việc" name="job">
+              <Input placeholder={rowEdit.job} />
+            </Form.Item>
+            <Form.Item label="Địa chỉ" name="address">
+              <Input placeholder={rowEdit.address} />
+            </Form.Item>
+            <Form.Item label="Số điện thoại" name="phoneNo">
+              <Input placeholder={rowEdit.phoneNo} />
+            </Form.Item>
+            <Form.Item label="Quyền">
+              <Select onChange={handleChange}>
+                {roleList.map((roleid) => (
+                  <Select.Option key={roleid.id} value={roleid.id}>
+                    {roleid.id}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="Báo cáo">
+              <Select onChange={handleChange_1}>
+                {reportList.map((reportid) => (
+                  <Select.Option key={reportid.id} value={reportid.id}>
+                    {reportid.id}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -422,7 +489,6 @@ function Users(props) {
                     </Form.Item>
                     <Form.Item label="Quyền">
                       <Select onChange={handleChange}>
-                    
                         {roleList.map((roleid) => (
                           <Select.Option key={roleid.id} value={roleid.id}>
                             {roleid.id}
@@ -430,12 +496,9 @@ function Users(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Báo cáo" name="reportedIssueIds">
-                      <Select>
-                    
-                        {
-                          
-                          reportList.map((reportid) => (
+                    <Form.Item label="Báo cáo">
+                      <Select onChange={handleChange_1} >
+                        {reportList.map((reportid) => (
                           <Select.Option key={reportid.id} value={reportid.id}>
                             {reportid.id}
                           </Select.Option>

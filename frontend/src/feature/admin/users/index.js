@@ -29,6 +29,7 @@ import {
 import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
+import reportedissueApi from '../../../api/reportedissuesApi';
 const { Option } = Select;
 
 function Users(props) {
@@ -36,6 +37,10 @@ function Users(props) {
   // const getRolenamebyid=(roleid)={
   //   const roleObj=role
   // }
+  //select
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //
@@ -43,12 +48,16 @@ function Users(props) {
   //api
   //getAll
   const [usersList, setIsusersList] = useState([]);
-  const [role, setRole] = useState([])
-  
+  const [roleList, setRoleList] = useState([])
+  const [reportList, setreportList] = useState([]);
+  const [idSelected, setidSelected] = useState([]);
+  const [idReport, setidReport] = useState([]);
   const fetchUsersList = async () => {
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
+      var y=response.data
+      console.log("roleid",usersList.map(x=>x.roleIds));
       setIsusersList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
@@ -56,21 +65,51 @@ function Users(props) {
       console.log("Failed to fetch getAll users list: ", error);
     }
   };
+  
+  const fetchRoleList = async()=>{
+      try {
+        const response = await roleApi.getAll();
+        console.log("Fetch getAll roles successfully: ", response.data);
+     
+        setRoleList(response.data);
+        setIsloadingUpdate(false);
+        setIsModalVisible_1(false);
+      } catch (error) {
+        console.log("Failed to fetch getAll roles list: ", error);
+      }
+  }
+ const fetchReportedList = async()=>{
+      try {
+        const response = await reportedissueApi.getAll();
+        console.log("Fetch getAll reportedissues successfully: ", response.data);
+       
+        setreportList(response.data);
+        setIsloadingUpdate(false);
+        setIsModalVisible_1(false);
+      } catch (error) {
+        console.log("Failed to fetch getAll reportedissues list: ", error);
+      }
+  }
 
 
   useEffect(() => {
     fetchUsersList();
+    fetchRoleList();
+    fetchReportedList();
   }, []);
   //form
   const [table, setTable] = useState([]);
   //create
   const onFinish = (values) => {
     console.log("Value", values);
+    const dataCreate = { ...values, roleIds: idSelected, reportedIssueIds :idSelected};
+    console.log("dataCreate", dataCreate);
     const fetchCreateUsers = async () => {
       try {
-        const response = await usersApi.createusers(values);
+        const response = await usersApi.createusers(dataCreate);
         console.log("Fetch create users succesfully: ", response);
-        setIsusersList([...usersList, response.data]);
+        setIsusersList([...usersList,response.data])
+        console.log("abc",response);
         setIsModalVisible(false);
         // console.log("tabledata: ", branchList);
       } catch (error) {
@@ -116,6 +155,8 @@ function Users(props) {
   //select
   function handleChange(value) {
     console.log(`selected ${value}`);
+    const rolevalue = [value];
+    setidSelected(rolevalue)
   }
   //input_num
   function onChange_inputnum(value) {
@@ -165,6 +206,11 @@ function Users(props) {
       title: "Công việc",
       dataIndex: "job",
       key: "job",
+    },
+    {
+      title:"Phân quyền người dùng",
+      dataIndex:"roleIds",
+      key:"roleIds",
     },
     // {
     //   title: "Ngày vào",
@@ -234,7 +280,8 @@ function Users(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-  return (
+
+    return (
     <div>
       <Modal
         title={
@@ -373,16 +420,28 @@ function Users(props) {
                     <Form.Item label="Số điện thoại" name="phoneNo">
                       <Input />
                     </Form.Item>
-                    {/* <Form.Item label="Ngày vào" name="checkinDate">
-                      <DatePicker />
+                    <Form.Item label="Quyền">
+                      <Select onChange={handleChange}>
+                    
+                        {roleList.map((roleid) => (
+                          <Select.Option key={roleid.id} value={roleid.id}>
+                            {roleid.id}
+                          </Select.Option>
+                        ))}
+                      </Select>
                     </Form.Item>
-                    <Form.Item label="Ngày ra" name="checkoutDate">
-                      <DatePicker />
+                    <Form.Item label="Báo cáo" name="reportedIssueIds">
+                      <Select>
+                    
+                        {
+                          
+                          reportList.map((reportid) => (
+                          <Select.Option key={reportid.id} value={reportid.id}>
+                            {reportid.id}
+                          </Select.Option>
+                        ))}
+                      </Select>
                     </Form.Item>
-                    <Form.Item label="downPayment" name="downPayment">
-                      <Input />
-                    </Form.Item> */}
-                    {/* <Form.Item></Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

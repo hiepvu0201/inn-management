@@ -34,3 +34,9 @@ Feature: users test
     When method POST
     Then status 200
     And match response.username == "default user"
+
+  Scenario: get users by roleid
+    Given path 'api/v1/users/search-by-rolename/'
+    And param rolename = "client"
+    When method GET
+    Then status 200

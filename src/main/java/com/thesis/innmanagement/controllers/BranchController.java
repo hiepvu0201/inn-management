@@ -20,22 +20,22 @@ public class BranchController {
     private BranchService branchService;
 
     @GetMapping("/")
-    public List<Branches> GetAll(){
+    public List<Branches> getAll(){
         return branchService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Branches> GetBranchesById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Branches> getBranchesById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(branchService.findById(id));
     }
 
     @PostMapping("/")
-    public Branches Create(@Validated @RequestBody Branches branch) throws Exception{
+    public Branches create(@Validated @RequestBody Branches branch) throws Exception{
         return branchService.createOrUpdate(null, branch);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Branches> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Branches branchDetails) throws Exception{
+    public ResponseEntity<Branches> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Branches branchDetails) throws Exception{
         Branches branch = branchService.createOrUpdate(id, branchDetails);
         return ResponseEntity.ok().body(branch);
     }

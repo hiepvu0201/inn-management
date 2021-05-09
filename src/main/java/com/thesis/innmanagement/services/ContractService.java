@@ -28,6 +28,14 @@ public class ContractService {
         return contractRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Contract not found on id: "+id));
     }
 
+    public List<Contracts> findAllByOwnerName(String ownerName) {
+        return contractRepository.findAllByOwnerName(ownerName);
+    }
+
+    public List<Contracts> findAllByTenantName(String tenantName) {
+        return contractRepository.findAllByTenantName(tenantName);
+    }
+
     public Contracts createOrUpdate(Long id, Contracts contracts) throws ResourceNotFoundException {
         contracts.setTenant(userRepository.findAllById(contracts.getTenantIds()));
         contracts.setOwner(userRepository.findAllById(contracts.getOwnerIds()));

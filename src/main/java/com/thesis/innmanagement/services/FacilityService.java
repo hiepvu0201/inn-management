@@ -5,13 +5,13 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class FacilityService {
 
     @Autowired

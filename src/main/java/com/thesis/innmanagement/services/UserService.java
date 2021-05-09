@@ -6,11 +6,11 @@ import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Component
+@Service
 public class UserService {
 
     @Autowired

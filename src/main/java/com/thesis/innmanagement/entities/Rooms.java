@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -12,26 +13,23 @@ public class Rooms extends BasicEntity {
 
     private String position;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY)
     private List<Users> users;
 
     @ElementCollection
-    @Column(insertable = false, updatable = false)
     private List<Long> userIds;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY)
     private List<Facilities> facilities;
 
     @ElementCollection
-    @Column(insertable = false, updatable = false)
     private List<Long> facilityIds;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
     private ElectricityWater electricityWater;
-
-    @Column(updatable = false, insertable = false)
-    private Long electricityWaterId;
 
     public List<Long> getUserIds() {
         return userIds;
@@ -55,14 +53,6 @@ public class Rooms extends BasicEntity {
 
     public void setElectricityWater(ElectricityWater electricityWater) {
         this.electricityWater = electricityWater;
-    }
-
-    public Long getElectricityWaterId() {
-        return electricityWaterId;
-    }
-
-    public void setElectricityWaterId(Long electricityWaterId) {
-        this.electricityWaterId = electricityWaterId;
     }
 
     public String getRoomNo() {

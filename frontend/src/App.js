@@ -16,6 +16,7 @@ import Monthlyincome from './../src/feature/admin/monthlyincome'
 import Monthlypayment from './../src/feature/admin/monthlypayment'
 import Users from './../src/feature/admin/users'
 import Facilities from './../src/feature/admin/facilities'
+import Room from './../src/feature/admin/room'
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,7 @@ function App() {
       {/* <Branches/> */}
        {/* <Role/> */}
        {/* <Rules/> */}
-       <Facilities/>
+       {/* <Facilities/> */}
         {/* <Reportedissues/> */}
         {/* <Notification/>/ */}
       {/* <Customer/>
@@ -35,6 +36,7 @@ function App() {
        {/* <Monthlyincome/> */}
        {/* <Monthlypayment/> */}
        {/* <Users/> */}
+       <Room/>
     </div>
   );
 }

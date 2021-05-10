@@ -74,7 +74,6 @@ function ElectricityWaters(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      roomId: idSelected,
       
     };
     console.log("dataCreate", dataCreate);
@@ -92,64 +91,47 @@ function ElectricityWaters(props) {
     };
     fetchCreateElectricityWater();
   };
-  const fetchUpdateRooms = async (edittv) => {
+  const fetchUpdateElectricityWater = async (edittv) => {
     //  const data_update = { id: rowEdit.id, data: dataUpdate };
     //  console.log("dataupdate", dataUpdate);
     setIsloadingUpdate(true);
     try {
-      const response = await roomApi.updaterooms(edittv);
-      console.log("Fetch update rooms successfully", response);
+      const response = await electricityWaterApi.updateelectricitywater(edittv);
+      console.log("Fetch update electricity-water successfully", response);
       console.log("edit data", edittv);
-      fetchRoomList();
+      fetchElectricitywaterList();
       setIsModalVisible_1(false);
     } catch (error) {
-      console.log("Failed to update rooms", error);
+      console.log("Failed to update electricity-water", error);
       setIsloadingUpdate(false);
     }
   };
   const onFinish_edit = (values) => {
     // console.log("Success", values);
     // fetchUpdateUsers(data_update);
-    const dataUpdate = {
-      ...values,
-      userIds: idSelected,
-      facilityIds: selected_1,
-      electricityWaterIds: selected_2,
-    };
-    console.log("dataupdate", dataUpdate);
-    const data_update = { id: rowEdit.id, data: dataUpdate };
-    fetchUpdateRooms(data_update);
+    
+    console.log("dataupdate", values);
+    const data_update = { id: rowEdit.id, data: values };
+    fetchUpdateElectricityWater(data_update);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  const fetchDeleteRooms = async (record) => {
+  const fetchDeleteElectricityWater = async (record) => {
     try {
-      const response = await roomApi.deleterooms(record.id);
-      console.log("Delete rooms successfully", response);
-      setRoomList(roomList.filter((item) => item.id !== record.id));
+      const response = await electricityWaterApi.deleteelectricitywater(record.id);
+      console.log("Delete electricity-water successfully", response);
+      setElectricitywaterList(electricitywatersList.filter((item) => item.id !== record.id));
     } catch (error) {
-      console.log("Failed to delete facilities list", error);
+      console.log("Failed to delete electricity-water list", error);
     }
   };
 
   //select
   function handleChange(value) {
     console.log(`selected users ${value}`);
-    const usersvalue = [value];
-    setidSelected(usersvalue);
-  }
-  const [selected_1, setIdselected_1] = useState([]);
-  function handleChange_1(value) {
-    console.log(`selected facilities id ${value}`);
-    const facilitiesvalue = [value];
-    setIdselected_1(facilitiesvalue);
-  }
-  const [selected_2, setIdselected_2] = useState([]);
-  function handleChange_2(value) {
-    console.log(`selected electricity id ${value}`);
-    const electricitiesvalue = [value];
-    setIdselected_2(electricitiesvalue);
+    // const usersvalue = value
+    // setidSelected(usersvalue);
   }
   //input_num
   function onChange_inputnum(value) {
@@ -222,7 +204,7 @@ function ElectricityWaters(props) {
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={() => fetchDeleteRooms(record)}
+            onConfirm={() => fetchDeleteElectricityWater(record)}
             onCancel={cancel}
             okText="Có"
             cancelText="Không"
@@ -295,11 +277,41 @@ function ElectricityWaters(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Số phòng" name="roomNo">
-              <Input placeholder={rowEdit.roomNo} />
+            <Form.Item label="Số điện cũ" name="numElectricOld">
+              <Input placeholder={rowEdit.numElectricOld} />
             </Form.Item>
-            <Form.Item label="Vị trí" name="position">
-              <Input placeholder={rowEdit.position} />
+            <Form.Item label="Số điện mới" name="numElectricNew">
+              <Input placeholder={rowEdit.numElectricNew} />
+            </Form.Item>
+            <Form.Item label="Số điện tiêu thụ" name="numElectricConsump">
+              <Input placeholder={rowEdit.numElectricConsump} />
+            </Form.Item>
+            <Form.Item label="Số nước cũ" name="numWaterOld">
+              <Input placeholder={rowEdit.numWaterOld} />
+            </Form.Item>
+            <Form.Item label="Số nước mới" name="numWaterNew">
+              <Input placeholder={rowEdit.numWaterNew} />
+            </Form.Item>
+            <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
+              <Input placeholder={rowEdit.numWaterConsump} />
+            </Form.Item>
+            <Form.Item label="Tháng" name="month">
+              <InputNumber placeholder={rowEdit.month} />
+            </Form.Item>
+            <Form.Item label="Kiểm tra" name="checked">
+              <Radio.Group placeholder={rowEdit.checked}>
+                <Radio value="true">True</Radio>
+                <Radio value="false">False</Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="Phòng" name="roomId">
+              <Select onChange={handleChange}>
+                {roomList.map((roomsid) => (
+                  <Select.Option key={roomsid.id} value={roomsid.id}>
+                    {roomsid.id}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
 
             {/* <Form.Item label="Người dùng">
@@ -417,7 +429,10 @@ function ElectricityWaters(props) {
                     <Form.Item label="Số điện mới" name="numElectricNew">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Số điện tiêu thụ" name="numElectricConsump">
+                    <Form.Item
+                      label="Số điện tiêu thụ"
+                      name="numElectricConsump"
+                    >
                       <Input />
                     </Form.Item>
                     <Form.Item label="Số nước cũ" name="numWaterOld">
@@ -429,16 +444,16 @@ function ElectricityWaters(props) {
                     <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
                       <Input />
                     </Form.Item>
-                    {/* <Form.Item label="Tháng" name="month">
-                      <DatePicker picker="month"/>
-                    </Form.Item> */}
+                    <Form.Item label="Tháng" name="month">
+                      <InputNumber />
+                    </Form.Item>
                     <Form.Item label="Kiểm tra" name="checked">
                       <Radio.Group>
                         <Radio value="true">True</Radio>
                         <Radio value="false">False</Radio>
                       </Radio.Group>
                     </Form.Item>
-                   <Form.Item label="Phòng">
+                    <Form.Item label="Phòng" name="roomId">
                       <Select onChange={handleChange}>
                         {roomList.map((roomsid) => (
                           <Select.Option key={roomsid.id} value={roomsid.id}>
@@ -446,8 +461,8 @@ function ElectricityWaters(props) {
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item> 
-                    
+                    </Form.Item>
+
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

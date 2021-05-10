@@ -6,16 +6,16 @@ const facilitiesApi = {
     return axiosClient.get(url);
   },
   createfacilities(facility) {
-    const url = "/api/v1/facility/";
+    const url = "/api/v1/facilities/";
     return axiosClient.post(url, facility);
   },
   deletefacilities(facility) {
-    const url = "/api/v1/facilities/${facility.id}/delete/";
-    return axiosClient.delete(url,facility.data);
+    const url = `/api/v1/facilities/${facility}/delete/`;
+    return axiosClient.delete(url);
   },
   updatefacilities(facility) {
-    const url = "/api/v1/facilities/${facility.id}/";
-    return axiosClient.put(url);
+    const url = `/api/v1/facilities/${facility.id}/`;
+    return axiosClient.put(url, facility.data);
   },
 };
 export default facilitiesApi;

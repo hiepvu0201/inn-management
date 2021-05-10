@@ -23,6 +23,7 @@ import {
   Form,
   Input,
   Select,
+  Spin,
   InputNumber,
 } from "antd";
 import arr_data_brand from "./../../../mock/data_brand";
@@ -35,6 +36,8 @@ function Facilities(props) {
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [branchesList, setBranchesList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
+  const [isloadingUpdate, setIsloadingUpdate] = useState(false);
+  const [rowEdit, setRowEdit] = useState({});
 
   const fetchfacilitiesList = async () => {
     try {
@@ -72,17 +75,54 @@ function Facilities(props) {
         console.log("Fetch facilities succesfully: ", response);
         setFacilitiesList([...facilitiesList, response.data]);
         console.log("DATA: ", response);
+        setIsModalVisible(false);
       } catch (error) {
-        console.log("failed to fetch facilities list: ", error);
+        console.log("failed to create facilities list: ", error);
       }
     };
     fetchCreateFacilities();
   };
+  const fetchUpdateFacilities = async (edittv) => {
+    //  const data_update = { id: rowEdit.id, data: dataUpdate };
+    //  console.log("dataupdate", dataUpdate);
+    // setIsloadingUpdate(true);
+    try {
+      const response = await facilitiesApi.updatefacilities(edittv);
+      console.log("Fetch update facilities successfully", response);
+       console.log("edit data", edittv);
+      fetchfacilitiesList();
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to update facilities", error);
+      // setIsloadingUpdate(false);
+    }
+  };
+  const onFinish_edit = (values) => {
+    // console.log("Success", values);
+    // fetchUpdateUsers(data_update);
+    const dataUpdate = {
+      ...values,
+      branchIds: idSelected,
+    };
+    console.log("dataupdate", dataUpdate);
 
+    const data_update = { id: rowEdit.id, data: dataUpdate };
+    fetchUpdateFacilities(data_update);
+    
+  };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
+ const fetchDeleteFacilities = async (record) => {
+   try {
+     const response = await facilitiesApi.deletefacilities(record.id);
+     console.log("Delete facilities successfully", response);
+     setFacilitiesList(facilitiesList.filter((item) => item.id !== record.id));
+   } catch (error) {
+     console.log("Failed to delete facilities list", error);
+   }
+ };
+ 
   //select
   function handleChange(value) {
     console.log(`selected branches id ${value}`);
@@ -123,11 +163,12 @@ function Facilities(props) {
       title: "",
       dataIndex: "",
       key: "x",
-      render: () => (
+      render: (text, record) => (
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={confirm}
+                       onConfirm={() => fetchDeleteFacilities(record)}
+
             onCancel={cancel}
             okText="Có"
             cancelText="Không"
@@ -136,51 +177,12 @@ function Facilities(props) {
           </Popconfirm>
           <div
             style={{ paddingLeft: "10px", lineHeight: "1px" }}
-            onClick={showModal_1}
+            onClick={() => {
+              showModal_1(record);
+            }}
           >
             <FontAwesomeIcon icon={faEdit} />
           </div>
-          <Modal
-            title={
-              <div style={{ display: "flex" }}>
-                <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
-                <div
-                  style={{
-                    fontFamily: "PT Sans, sans-serif",
-                    fontSize: "20px",
-                    color: "#007c7e",
-                    paddingLeft: "10px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Chỉnh sửa
-                </div>
-              </div>
-            }
-            onOk={handleOk_1}
-            onCancel={handleCancel_1}
-            visible={isModalVisible_1}
-            okText="LƯU LẠI"
-            cancelText="HỦY BỎ"
-          >
-            <Form>
-              <Form.Item label="Tên Tòa Nhà" name="Name">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Lầu" name="Floor">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Phòng" name="Room">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Địa Chỉ" name="Address">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Ghi Chú" name="Notification">
-                <Input />
-              </Form.Item>
-            </Form>
-          </Modal>
         </div>
       ),
     },
@@ -199,8 +201,10 @@ function Facilities(props) {
   };
   const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
-  const showModal_1 = () => {
+  const showModal_1 = (values) => {
     setIsModalVisible_1(true);
+    console.log("values edit:", values);
+    setRowEdit(values);
   };
   const handleOk_1 = () => {
     setIsModalVisible_1(false);
@@ -211,6 +215,65 @@ function Facilities(props) {
   };
   return (
     <div>
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Chỉnh sửa
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalVisible_1}
+        okText="LƯU LẠI"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Spin spinning={isloadingUpdate} size="large">
+          <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
+            <Form.Item label="Tên vật dụng" name="name">
+              <Input placeholder={rowEdit.name} />
+            </Form.Item>
+            <Form.Item label="Chất lượng" name="quality">
+              <Input placeholder={rowEdit.quality} />
+            </Form.Item>
+            <Form.Item label="Số lượng" name="quantity">
+              <Input placeholder={rowEdit.quantity} />
+            </Form.Item>
+
+            <Form.Item label="Chi nhánh">
+              <Select onChange={handleChange}>
+                {branchesList.map((branchesid) => (
+                  <Select.Option key={branchesid.id} value={branchesid.id}>
+                    {branchesid.id}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA{" "}
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_1}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+          </Form>
+        </Spin>
+      </Modal>
       <div
         style={{
           width: "100%",
@@ -282,7 +345,7 @@ function Facilities(props) {
                     <Form.Item label="Số lượng" name="quantity">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Chủ trọ">
+                    <Form.Item label="Chi nhánh">
                       <Select onChange={handleChange}>
                         {branchesList.map((branchesid) => (
                           <Select.Option

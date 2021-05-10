@@ -13,7 +13,6 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
-import usersApi from "../../../api/branchesApi";
 import {
   Table,
   Popconfirm,
@@ -24,20 +23,20 @@ import {
   Input,
   Select,
   Spin,
+  Tag,
   InputNumber,
+  DatePicker,
+  Radio,
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
-import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
 
-function Rooms(props) {
+function ElectricityWaters(props) {
   //api
   //getAll
   const [roomList, setRoomList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
-  const [facilitiesList, setFacilitiesList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
 
   const [idSelected, setidSelected] = useState([]);
@@ -56,24 +55,6 @@ function Rooms(props) {
       console.log("Failed to fetch rooms list: ", error);
     }
   };
-  const fetchUsersList = async () => {
-    try {
-      const response = await usersApi.getAll();
-      console.log("Fetch users successfully: ", response.data);
-      setUsersList(response.data);
-    } catch (error) {
-      console.log("Failed to fetch users list: ", error);
-    }
-  };
-  const fetchFacilitiesList = async () => {
-    try {
-      const response = await facilitiesApi.getAll();
-      console.log("Fetch facilities successfully: ", response.data);
-      setFacilitiesList(response.data);
-    } catch (error) {
-      console.log("Failed to fetch facilities list: ", error);
-    }
-  };
   const fetchElectricitywaterList = async () => {
     try {
       const response = await electricityWaterApi.getAll();
@@ -85,8 +66,6 @@ function Rooms(props) {
   };
   useEffect(() => {
     fetchElectricitywaterList();
-    fetchFacilitiesList();
-    fetchUsersList();
     fetchRoomList();
     // fetchBranchesList();
     // fetchfacilitiesList();
@@ -95,24 +74,23 @@ function Rooms(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      userIds: idSelected,
-      facilityIds: selected_1,
-      electricityWaterIds: selected_2,
+      roomId: idSelected,
+      
     };
     console.log("dataCreate", dataCreate);
 
-    const fetchCreateRooms = async () => {
+    const fetchCreateElectricityWater = async () => {
       try {
-        const response = await roomsApi.createrooms(dataCreate);
-        console.log("Fetch create rooms succesfully: ", response);
-        setRoomList([...roomList, response.data]);
+        const response = await electricityWaterApi.createelectricitywater(dataCreate);
+        console.log("Fetch create electricity-water succesfully: ", response);
+        setElectricitywaterList([...electricitywatersList, response.data]);
         console.log("DATA: ", response);
         setIsModalVisible(false);
       } catch (error) {
-        console.log("failed to create rooms list: ", error);
+        console.log("failed to create electricity-water list: ", error);
       }
     };
-    fetchCreateRooms();
+    fetchCreateElectricityWater();
   };
   const fetchUpdateRooms = async (edittv) => {
     //  const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -188,14 +166,53 @@ function Rooms(props) {
   }
   const columns = [
     {
-      title: "Số phòng",
-      dataIndex: "roomNo",
-      key: "roomNo",
+      title: "Số điện cũ",
+      dataIndex: "numElectricOld",
+      key: "numElectricOld",
     },
     {
-      title: "Vị trí",
-      dataIndex: "position",
-      key: "position",
+      title: "Số điện mới",
+      dataIndex: "numElectricNew",
+      key: "numElectricNew",
+    },
+    {
+      title: "Số điện tiêu thụ",
+      dataIndex: "numElectricConsump",
+      key: "numElectricConsump",
+    },
+    {
+      title: "Số nước cũ",
+      dataIndex: "numWaterOld",
+      key: "numWaterOld",
+    },
+    {
+      title: "Số nước mới",
+      dataIndex: "numWaterNew",
+      key: "numWaterNew",
+    },
+    {
+      title: "Số nước tiêu thụ",
+      dataIndex: "numElectricConsump",
+      key: "numElectricConsump",
+    },
+    {
+      title: "Tháng",
+      dataIndex: "month",
+      key: "month",
+    },
+    {
+      title: "Kiểm tra",
+      dataIndex: "checked",
+      key: "checked",
+      render: (text) => (
+        <>
+          {text === false ? (
+            <Tag color="#87d068">CHƯA THANH TOÁN</Tag>
+          ) : (
+            <Tag color="#f50">ĐÃ THANH TOÁN</Tag>
+          )}
+        </>
+      ),
     },
     {
       title: "",
@@ -285,7 +302,7 @@ function Rooms(props) {
               <Input placeholder={rowEdit.position} />
             </Form.Item>
 
-            <Form.Item label="Người dùng">
+            {/* <Form.Item label="Người dùng">
               <Select onChange={handleChange}>
                 {usersList.map((usersid) => (
                   <Select.Option key={usersid.id} value={usersid.id}>
@@ -317,7 +334,7 @@ function Rooms(props) {
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -355,7 +372,7 @@ function Rooms(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ PHÒNG NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -394,46 +411,43 @@ function Rooms(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Số phòng" name="roomNo">
+                    <Form.Item label="Số điện cũ" name="numElectricOld">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Vị trí" name="position">
+                    <Form.Item label="Số điện mới" name="numElectricNew">
                       <Input />
                     </Form.Item>
-
-                    <Form.Item label="Người dùng">
+                    <Form.Item label="Số điện tiêu thụ" name="numElectricConsump">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Số nước cũ" name="numWaterOld">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Số nước mới" name="numWaterNew">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
+                      <Input />
+                    </Form.Item>
+                    {/* <Form.Item label="Tháng" name="month">
+                      <DatePicker picker="month"/>
+                    </Form.Item> */}
+                    <Form.Item label="Kiểm tra" name="checked">
+                      <Radio.Group>
+                        <Radio value="true">True</Radio>
+                        <Radio value="false">False</Radio>
+                      </Radio.Group>
+                    </Form.Item>
+                   <Form.Item label="Phòng">
                       <Select onChange={handleChange}>
-                        {usersList.map((usersid) => (
-                          <Select.Option key={usersid.id} value={usersid.id}>
-                            {usersid.id}
+                        {roomList.map((roomsid) => (
+                          <Select.Option key={roomsid.id} value={roomsid.id}>
+                            {roomsid.id}
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item>
-                    <Form.Item label="Vật liệu">
-                      <Select onChange={handleChange_1}>
-                        {facilitiesList.map((facilitiesid) => (
-                          <Select.Option
-                            key={facilitiesid.id}
-                            value={facilitiesid.id}
-                          >
-                            {facilitiesid.id}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item label="Điện nước">
-                      <Select onChange={handleChange_2}>
-                        {electricitywatersList.map((electricitywatersid) => (
-                          <Select.Option
-                            key={electricitywatersid.id}
-                            value={electricitywatersid.id}
-                          >
-                            {electricitywatersid.id}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
+                    </Form.Item> 
+                    
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI
@@ -463,7 +477,11 @@ function Rooms(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={roomList} />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={electricitywatersList}
+              />
             </div>
           </div>
         </div>
@@ -471,4 +489,4 @@ function Rooms(props) {
     </div>
   );
 }
-export default Rooms;
+export default ElectricityWaters;

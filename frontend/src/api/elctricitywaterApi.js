@@ -6,7 +6,7 @@ const electricityWaterApi = {
   },
   createelectricitywater(electricitywater) {
     const url = "/api/v1/electricity-water/";
-    return axiosClient.post(url, relectricitywater);
+    return axiosClient.post(url, electricitywater);
   },
   deleteelectricitywater(electricitywater) {
     const url = `/api/v1/electricity-water/${electricitywater}/delete/`;

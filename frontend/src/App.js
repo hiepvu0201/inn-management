@@ -33,7 +33,7 @@ function App() {
        {/* <Revenue/> */}
        {/* <Monthlyincome/> */}
        {/* <Monthlypayment/> */}
-       <Users/>
+       {/* <Users/> */}
     </div>
   );
 }

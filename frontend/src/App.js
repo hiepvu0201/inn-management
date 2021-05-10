@@ -18,6 +18,7 @@ import Users from './../src/feature/admin/users'
 import Facilities from './../src/feature/admin/facilities'
 import Room from './../src/feature/admin/room'
 import ElectricityWaters from './../src/feature/admin/electricity-water'
+import Contract from './../src/feature/admin/contract'
 function App() {
   return (
     <div className="App">
@@ -38,7 +39,8 @@ function App() {
        {/* <Monthlypayment/> */}
        {/* <Users/> */}
        {/* <Room/> */}
-       <ElectricityWaters/>
+       {/* <ElectricityWaters/> */}
+       <Contract/>
     </div>
   );
 }

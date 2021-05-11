@@ -20,22 +20,22 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping("/")
-    public List<Roles> GetAll(){
+    public List<Roles> getAll(){
         return roleService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Roles> GetRoleById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<Roles> getRoleById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
         return ResponseEntity.ok().body(roleService.findById(id));
     }
 
     @PostMapping("/")
-    public Roles Create(@Validated @RequestBody Roles role) throws Exception{
+    public Roles create(@Validated @RequestBody Roles role) throws Exception{
         return roleService.createOrUpdate(null, role);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Roles> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Roles roleDetail) throws Exception{
+    public ResponseEntity<Roles> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Roles roleDetail) throws Exception{
         Roles role = roleService.createOrUpdate(id, roleDetail);
         return ResponseEntity.ok().body(role);
     }

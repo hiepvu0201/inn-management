@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -14,18 +15,18 @@ public class Contracts extends BasicEntity {
 
     private Date signDate;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
     private List<Users> tenant;
 
     @ElementCollection
-    @Column(updatable = false, insertable = false)
     private List<Long> tenantIds;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
     private List<Users> owner;
 
     @ElementCollection
-    @Column(updatable = false, insertable = false)
     private List<Long> ownerIds;
 
     private int numberOfRooms;

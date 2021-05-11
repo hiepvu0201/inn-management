@@ -5,13 +5,13 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.repositories.ContractRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class ContractService {
 
     @Autowired
@@ -26,6 +26,14 @@ public class ContractService {
 
     public Contracts findById(Long id) throws ResourceNotFoundException {
         return contractRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Contract not found on id: "+id));
+    }
+
+    public List<Contracts> findAllByOwnerName(String ownerName) {
+        return contractRepository.findAllByOwnerName(ownerName);
+    }
+
+    public List<Contracts> findAllByTenantName(String tenantName) {
+        return contractRepository.findAllByTenantName(tenantName);
     }
 
     public Contracts createOrUpdate(Long id, Contracts contracts) throws ResourceNotFoundException {

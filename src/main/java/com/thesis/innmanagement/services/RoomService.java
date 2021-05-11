@@ -6,13 +6,13 @@ import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class RoomService {
 
     @Autowired
@@ -57,5 +57,9 @@ public class RoomService {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    public List<Rooms> findAllByUserName(String userName) {
+        return roomRepository.findAllByUserName(userName);
     }
 }

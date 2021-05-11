@@ -6,13 +6,13 @@ import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.repositories.RoleRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class RoleService {
 
     @Autowired

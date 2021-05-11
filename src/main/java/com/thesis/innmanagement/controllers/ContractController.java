@@ -4,6 +4,7 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Contracts;
 import com.thesis.innmanagement.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,22 +20,32 @@ public class ContractController {
     private ContractService contractService;
 
     @GetMapping("/")
-    public List<Contracts> GetAll(){
+    public List<Contracts> getAll(){
         return contractService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contracts> GetContractById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Contracts> getContractById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(contractService.findById(id));
     }
 
+    @GetMapping("/search-by-owner-name")
+    public ResponseEntity<List<Contracts>> getContractByOwnerName(@Param(value = "ownername") String ownerName) {
+        return ResponseEntity.ok().body(contractService.findAllByOwnerName(ownerName));
+    }
+
+    @GetMapping("/search-by-tenant-name")
+    public ResponseEntity<List<Contracts>> getContractByTenantName(@Param(value = "tenantname") String tenantName) {
+        return ResponseEntity.ok().body(contractService.findAllByTenantName(tenantName));
+    }
+
     @PostMapping("/")
-    public Contracts Create(@Validated @RequestBody Contracts contract) throws Exception{
+    public Contracts create(@Validated @RequestBody Contracts contract) throws Exception{
         return contractService.createOrUpdate(null, contract);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contracts> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Contracts contractDetail) throws Exception{
+    public ResponseEntity<Contracts> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Contracts contractDetail) throws Exception{
         Contracts contract = contractService.createOrUpdate(id, contractDetail);
         return ResponseEntity.ok().body(contract);
     }

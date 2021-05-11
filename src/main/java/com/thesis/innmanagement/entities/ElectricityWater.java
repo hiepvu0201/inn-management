@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class ElectricityWater extends BasicEntity {
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "electricityWater")
     private Rooms room;
 
@@ -26,7 +28,6 @@ public class ElectricityWater extends BasicEntity {
 
     private int month;
 
-    @Column(insertable = false, updatable = false)
     private Long roomId;
 
     public Rooms getRoom() {

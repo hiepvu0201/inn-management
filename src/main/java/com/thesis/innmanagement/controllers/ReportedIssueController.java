@@ -20,23 +20,22 @@ public class ReportedIssueController {
     private ReportedIssueService reportedIssueService;
 
     @GetMapping("/")
-    public List<ReportedIssues> GetAll(){
+    public List<ReportedIssues> getAll(){
         return reportedIssueService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ReportedIssues> GetReportedIssueById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<ReportedIssues> getReportedIssueById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
         return ResponseEntity.ok().body(reportedIssueService.findById(id));
     }
 
     @PostMapping("/")
-    public ReportedIssues Create(@Validated @RequestBody ReportedIssues reportedIssue) throws Exception{
+    public ReportedIssues create(@Validated @RequestBody ReportedIssues reportedIssue) throws Exception{
         return reportedIssueService.createOrUpdate(null, reportedIssue);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ReportedIssues> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody ReportedIssues reportedIssueDetail) throws Exception{
-
+    public ResponseEntity<ReportedIssues> update(@PathVariable(value = "id") Long id, @Validated @RequestBody ReportedIssues reportedIssueDetail) throws Exception{
         ReportedIssues reportedIssue = reportedIssueService.createOrUpdate(id, reportedIssueDetail);
         return ResponseEntity.ok().body(reportedIssue);
     }

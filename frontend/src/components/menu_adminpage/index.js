@@ -24,12 +24,14 @@ class Navbar extends Component {
 		return (
 			<nav className="menuBar">
 				<div className="logo">
-					<img src={Images.LOGIN} style={{width:"100%",paddingTop:"10px"}}/>
+			
+					<img src={Images.LOGIN} style={{width:"100%",paddingTop:"10px"}} 
+
+					/>
 				</div>
 				<div className="menuCon">
 					<div className="leftMenu">
 						<LeftMenu />
-
 					</div>
 					<div className="rightMenu">
 						<img src={Images.ICON_RIGHT}/>

@@ -13,16 +13,26 @@ import {
   faBuilding,
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
+import Branches from "./../../feature/admin/branches";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
+import { Link, Router } from "react-router-dom";
 const LeftMenu = () => {
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
       <Menu.Item
-        key="admin"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        key="home"
+        style={{
+          backgroundColor: "#007c7e",
+          paddingLeft: "10px",
+        }}
       >
-        <FontAwesomeIcon icon={faTachometerAlt} color="white" size="1x" />
+        <FontAwesomeIcon
+          icon={faMoneyBillAlt}
+          color="#efefef"
+          size="1x"
+          style={{ marginRight: "10px" }}
+        />
         <a
           href=""
           style={{
@@ -31,43 +41,95 @@ const LeftMenu = () => {
             fontFamily: "PT Sans, sans-serif",
           }}
         >
-          Bảng Quản Trị
+          {" "}<Link to="/">Trang chủ</Link>
         </a>
       </Menu.Item>
-      <Menu.Item
-        key="customer"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
-      >
-        <FontAwesomeIcon icon={faUsers} color="white" size="1x" />
-        <a
-          href=""
-          style={{
-            color: "white",
-            fontSize: "15px",
-            fontFamily: "PT Sans, sans-serif",
-          }}
-        >
-          Khách Thuê
-        </a>{" "}
-      </Menu.Item>
-      <Menu.Item
-        key="furniture"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
-      >
-        <FontAwesomeIcon icon={faPlug} color="white" size="1x" />
-        <a
-          href=""
-          style={{
-            color: "white",
-            fontSize: "15px",
-            fontFamily: "PT Sans, sans-serif",
-          }}
-        >
-          Cơ Sở Vật Chất
-        </a>{" "}
-      </Menu.Item>
       <SubMenu
-        key="money"
+        key="menu-2"
+        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        title={
+          <div>
+            <FontAwesomeIcon icon={faMoneyBillAlt} color="white" size="1x" />
+            <a
+              href=""
+              style={{
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "PT Sans, sans-serif",
+              }}
+            >
+              Nhà trọ
+            </a>{" "}
+          </div>
+        }
+      >
+        <Menu.Item
+          key="brand"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMoneyBillAlt}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          {/* <Router> */} <Link to="/branches">Chi nhánh</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="room"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMoneyBillAlt}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          <Link to="/rooms"> Phòng</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="facility"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMoneyBillAlt}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          <Link to="/facilities">Thiết bị</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="electricity-water"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMoneyBillAlt}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          <Link to="/electricity-water"> Điện - Nước </Link>
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu
+        key="menu-1"
         style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
         title={
           <div>
@@ -86,7 +148,7 @@ const LeftMenu = () => {
         }
       >
         <Menu.Item
-          key="setting:1"
+          key="monthlyincome"
           style={{
             color: "#007c7e",
             fontSize: "15px",
@@ -99,10 +161,10 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          Phiếu Thu
+          <Link to="/monthlyincome"> Nguồn thu</Link>
         </Menu.Item>
         <Menu.Item
-          key="setting:2"
+          key="monthlypayment"
           style={{
             color: "#007c7e",
             fontSize: "15px",
@@ -115,43 +177,80 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          Phiếu Chi
+          <Link to="/monthlypayment"> Nguồn chi</Link>
         </Menu.Item>
       </SubMenu>
-      <Menu.Item
-        key="building"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
-      >
-        <FontAwesomeIcon icon={faBuilding} color="white" size="1x" />
-        <a
-          href=""
-          style={{
-            color: "white",
-            fontSize: "15px",
-            fontFamily: "PT Sans, sans-serif",
-          }}
-        >
-          Chi Nhánh
-        </a>{" "}
-      </Menu.Item>
-      <Menu.Item
-        key="contract"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
-      >
-        <FontAwesomeIcon icon={faBuilding} color="white" size="1x" />
-        <a
-          href=""
-          style={{
-            color: "white",
-            fontSize: "15px",
-            fontFamily: "PT Sans, sans-serif",
-          }}
-        >
-          Hợp Đồng
-        </a>{" "}
-      </Menu.Item>
       <SubMenu
-        key="rules"
+        key="menu:3"
+        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        title={
+          <div>
+            <FontAwesomeIcon icon={faBell} color="white" size="1x" />
+            <a
+              href=""
+              style={{
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "PT Sans, sans-serif",
+              }}
+            >
+              HỢP ĐỒNG{" "}
+            </a>{" "}
+          </div>
+        }
+      >
+        <Menu.Item
+          key="contract"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+            className: "padding",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />{" "}
+          <Link to="/contract">Hợp đồng</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="users"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />{" "}
+          <Link to="/user"> Khách thuê</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="role"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />{" "}
+          <Link to="/role"> Phân quyền</Link>
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu
+        key="menu-last"
         style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
         title={
           <div>
@@ -169,13 +268,13 @@ const LeftMenu = () => {
           </div>
         }
       >
-          <Menu.Item
-          key="setting:3"
+        <Menu.Item
+          key="rules"
           style={{
             color: "#007c7e",
             fontSize: "15px",
             fontFamily: "PT Sans, sans-serif",
-            className:"padding"
+            className: "padding",
           }}
         >
           <FontAwesomeIcon
@@ -183,12 +282,11 @@ const LeftMenu = () => {
             color="grey"
             size="1x"
             style={{ marginRight: "10px" }}
-
           />
-          Nội Quy
+         <Link to="/rule"> Nội Quy</Link>
         </Menu.Item>
         <Menu.Item
-          key="setting:4"
+          key="notification"
           style={{
             color: "#007c7e",
             fontSize: "15px",
@@ -201,7 +299,23 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          Thông Báo
+        <Link to="/notification">  Thông Báo</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="report"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          <Link to="/reported-issue">Báo cáo</Link>
         </Menu.Item>
       </SubMenu>
     </Menu>

@@ -252,7 +252,7 @@ function Monthlypayment(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NGUỒN THU NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ NGUỒN CHI NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>

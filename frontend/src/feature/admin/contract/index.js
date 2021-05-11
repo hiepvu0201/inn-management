@@ -338,7 +338,7 @@ function Contract(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
+                <div className="content">QUẢN LÝ HỢP ĐỒNG</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>

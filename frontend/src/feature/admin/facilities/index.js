@@ -297,7 +297,7 @@ function Facilities(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ DANH SÁCH NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ THIẾT BỊ NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>

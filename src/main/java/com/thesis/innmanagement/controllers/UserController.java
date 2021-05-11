@@ -4,6 +4,7 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +21,27 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public List<Users> GetAll(){
+    public List<Users> getAll(){
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Users> GetUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Users> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(userService.findById(id));
     }
 
     @PostMapping("/")
-    public Users Create(@Validated @RequestBody Users user) throws Exception{
+    public Users create(@Validated @RequestBody Users user) throws Exception{
         return userService.createOrUpdate(null, user);
     }
 
+    @GetMapping("/search-by-rolename")
+    public ResponseEntity<List<Users>> findByRoleId(@Param("rolename") String roleName) {
+        return ResponseEntity.ok().body(userService.findAllByRoleName(roleName));
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Users> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Users userDetail) throws ResourceNotFoundException {
+    public ResponseEntity<Users> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Users userDetail) throws ResourceNotFoundException {
         Users userInfo = userService.createOrUpdate(id, userDetail);
         return ResponseEntity.ok().body(userInfo);
     }

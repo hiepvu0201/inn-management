@@ -21,51 +21,115 @@ import {
   Form,
   Input,
   Select,
+  Spin,
   InputNumber,
 } from "antd";
 import arr_data_brand from "./../../../mock/data_brand";
 import branchesApi from "./../../../api/branchesApi";
+import facilitiesApi from "./../../../api/facilitiesApi";
 const { Option } = Select;
 
 function Branches(props) {
   //api
+  const [rowEdit, setRowEdit] = useState({});
+
+  const [idSelected, setidSelected] = useState([]);
+
+  //spin
+  const [isloadingUpdate, setIsloadingUpdate] = useState(false);
+
   //getAll
   const [branchList, setBranchList] = useState([]);
+  const [facilitiesList, setFacilitiesList] = useState([]);
+
+  const fetchBranchList = async () => {
+    try {
+      const response = await branchesApi.getAll();
+      console.log("Fetch branch successfully: ", response.data);
+      setBranchList(response.data);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch branch list: ", error);
+    }
+  };
+  const fetchFacilityList = async () => {
+    try {
+      const response = await facilitiesApi.getAll();
+      console.log("Fetch Facility successfully: ", response.data);
+      setFacilitiesList(response.data);
+    } catch (error) {
+      console.log("Failed to fetch Facility list: ", error);
+    }
+  };
   useEffect(() => {
-    const fetchBranchList = async () => {
-      try {
-        const response = await branchesApi.getAll();
-        console.log("Fetch branch successfully: ", response.data);
-        setBranchList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch product list: ", error);
-      }
-    };
+    fetchFacilityList();
     fetchBranchList();
   }, []);
   //form
   const [table, setTable] = useState([]);
   const onFinish = (values) => {
     const fetchCreateBranch = async () => {
+      const dataCreate = {
+        ...values,
+        facilityIds: idSelected,
+      };
+      console.log("dataCreate", dataCreate);
       try {
-        const response = await branchesApi.createbranch(values);
+        const response = await branchesApi.createbranch(dataCreate);
         console.log("Fetch branch succesfully: ", response);
-        settabledata([...branchList, values]);
-        console.log("tabledata: ", branchList);
+        setBranchList([...branchList, response.data]);
+        console.log("tabledata: ", response);
+        setIsModalVisible(false);
       } catch (error) {
         console.log("failed to fetch branch list: ", error);
       }
     };
+    fetchCreateBranch();
   };
+  const fetchDeleteBranches = async (record) => {
+    try {
+      const response = await branchesApi.deletebranch(record.id);
+      console.log("Delete branches successfully", response);
+      setBranchList(branchList.filter((item) => item.id !== record.id));
+      fetchBranchList();
+    } catch (error) {
+      console.log("Failed to delete branches list", error);
+    }
+  };
+  const fetchUpdateBranches = async (values) => {
+    // setIsloadingUpdate(true);
 
+    try {
+      const response = await branchesApi.updatebranch(values);
+      console.log("Fetch update branches successfully", response);
+      console.log("edit data", values);
+      fetchBranchList();
+    } catch (error) {
+      console.log("Failed to update branches", error);
+      // setIsloadingUpdate(false);
+    }
+  };
+  const onFinish_edit = (values) => {
+    // console.log("Success", values);
+    const dataUpdate = {
+      ...values,
+      facilityIds: idSelected,
+    };
+    console.log("dataupdate", dataUpdate);
+    const data_update = { id: rowEdit.id, data: dataUpdate };
+    fetchUpdateBranches(data_update);
+  };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   //select
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    console.log(`selected facilitiesid ${value}`);
+    const rolevalue = [value];
+    setidSelected(rolevalue);
   }
+
   //input_num
   function onChange_inputnum(value) {
     console.log("changed", value);
@@ -101,24 +165,14 @@ function Branches(props) {
       key: "numberOfRooms",
     },
     {
-      title: "Chủ trọ",
-      dataIndex: "ownerId",
-      key: "ownerId",
-    },
-    {
-      title: "Cơ sở vật chất",
-      dataIndex: "facilityIds",
-      key: "facilityIds",
-    },
-    {
       title: "",
       dataIndex: "",
       key: "x",
-      render: () => (
+      render: (text, record) => (
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={confirm}
+            onConfirm={() => fetchDeleteBranches(record)}
             onCancel={cancel}
             okText="Có"
             cancelText="Không"
@@ -127,51 +181,12 @@ function Branches(props) {
           </Popconfirm>
           <div
             style={{ paddingLeft: "10px", lineHeight: "1px" }}
-            onClick={showModal_1}
+            onClick={() => {
+              showModal_1(record);
+            }}
           >
             <FontAwesomeIcon icon={faEdit} />
           </div>
-          <Modal
-            title={
-              <div style={{ display: "flex" }}>
-                <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
-                <div
-                  style={{
-                    fontFamily: "PT Sans, sans-serif",
-                    fontSize: "20px",
-                    color: "#007c7e",
-                    paddingLeft: "10px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Chỉnh sửa
-                </div>
-              </div>
-            }
-            onOk={handleOk_1}
-            onCancel={handleCancel_1}
-            visible={isModalVisible_1}
-            okText="LƯU LẠI"
-            cancelText="HỦY BỎ"
-          >
-            <Form>
-              <Form.Item label="Tên Tòa Nhà" name="Name">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Lầu" name="Floor">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Số Phòng" name="Room">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Địa Chỉ" name="Address">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Ghi Chú" name="Notification">
-                <Input />
-              </Form.Item>
-            </Form>
-          </Modal>
         </div>
       ),
     },
@@ -190,8 +205,10 @@ function Branches(props) {
   };
   const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
-  const showModal_1 = () => {
+  const showModal_1 = (values) => {
     setIsModalVisible_1(true);
+    console.log("values edit:", values);
+    setRowEdit(values);
   };
   const handleOk_1 = () => {
     setIsModalVisible_1(false);
@@ -202,6 +219,68 @@ function Branches(props) {
   };
   return (
     <div>
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Chỉnh sửa
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalVisible_1}
+        okText="LƯU LẠI"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Spin spinning={isloadingUpdate} size="large">
+          <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
+            <Form.Item label="Vị trí" name="location">
+              <Input placeholder={rowEdit.location} />
+            </Form.Item>
+            <Form.Item label="Miêu tả" name="description">
+              <Input placeholder={rowEdit.description} />
+            </Form.Item>
+            <Form.Item label="Số lầu" name="numberOfStages">
+              <Input placeholder={rowEdit.numberOfStages} />
+            </Form.Item>
+            <Form.Item label="Số phòng" name="numberOfRooms">
+              <Input placeholder={rowEdit.numberOfRooms} />
+            </Form.Item>
+
+            <Form.Item label="Vật liệu">
+              <Select onChange={handleChange}>
+                {facilitiesList.map((facilitiesid) => (
+                  <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
+                    {facilitiesid.id}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA{" "}
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_1}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+          </Form>
+        </Spin>
+      </Modal>
       <div
         style={{
           width: "100%",
@@ -271,21 +350,22 @@ function Branches(props) {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Số lầu" name="numberOfStages">
-                      <InputNumber
-                        min={1}
-                        max={10}
-                        onChange={onChange_inputnum}
-                      />
+                      <Input />
                     </Form.Item>
                     <Form.Item label="Số phòng" name="numberOfRooms">
-                      <InputNumber
-                        min={1}
-                        max={10}
-                        onChange={onChange_inputnum}
-                      />
+                      <Input />
                     </Form.Item>
-                    <Form.Item label="Chủ trọ" name="ownerId">
-                      {/* <Select value={branchList.ownerId.fullName} /> */}
+                    <Form.Item label="Quyền">
+                      <Select onChange={handleChange}>
+                        {facilitiesList.map((facilitiesid) => (
+                          <Select.Option
+                            key={facilitiesid.id}
+                            value={facilitiesid.id}
+                          >
+                            {facilitiesid.id}
+                          </Select.Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                     {/* <Form.Item></Form.Item> */}
                     <div style={{ display: "flex" }}>

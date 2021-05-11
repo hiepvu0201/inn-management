@@ -27,6 +27,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <Switch>
         <Route path="/branches">
           <Branches />
@@ -69,6 +70,24 @@ function App() {
         </Route>
       </Switch>
 
+=======
+      {/* <Login/> */}
+      {/* <Register/> */}
+      {/* <Forgotpassword/> */}
+      {/* <Home/> */}
+      <Branches/>
+       {/* <Role/> */}
+       {/* <Rules/> */}
+       
+        {/* <Reportedissues/> */}
+        {/* <Notification/>/ */}
+      {/* <Customer/>
+       */}
+       {/* <Revenue/> */}
+       {/* <Monthlyincome/> */}
+       {/* <Monthlypayment/> */}
+       {/* <Users/> */}
+>>>>>>> IM-18
     </div>
   );
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios";
 import axiosClient from "./axiosClient";
 const facilitiesApi = {
@@ -19,3 +20,13 @@ const facilitiesApi = {
   },
 };
 export default facilitiesApi;
+=======
+import axiosClient from './axiosClient'
+const facilitiesApi={
+    getAll(){
+        const url = "/api/v1/facilities/";
+        return axiosClient.get(url);
+    }
+}
+export default facilitiesApi;
+>>>>>>> IM-18

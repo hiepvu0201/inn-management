@@ -20,6 +20,7 @@ import Room from './../src/feature/admin/room'
 import ElectricityWaters from './../src/feature/admin/electricity-water'
 import Contract from './../src/feature/admin/contract'
 import Info from './../src/feature/client/information'
+import Notification_tag from './../src/components/notification_tag'
 function App() {
   return (
     <div className="App">
@@ -42,7 +43,7 @@ function App() {
        {/* <Room/> */}
        {/* <ElectricityWaters/> */}
        {/* <Contract/> */}
-       <Info/>
+       {/* <Info/> */}
     </div>
   );
 }

@@ -26,3 +26,15 @@ Feature: contract test
     When method POST
     Then status 200
     And match response.details == "This is the details of the contract"
+
+  Scenario: get all by owner name
+    Given path 'api/v1/contracts/search-by-owner-name'
+    And param ownername = "default user"
+    When method GET
+    Then status 200
+
+  Scenario: get all by tenant name
+    Given path 'api/v1/contracts/search-by-tenant-name/'
+    And param tenantname = "default user"
+    When method GET
+    Then status 200

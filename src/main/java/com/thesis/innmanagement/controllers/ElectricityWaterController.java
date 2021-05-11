@@ -2,13 +2,12 @@ package com.thesis.innmanagement.controllers;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.ElectricityWater;
-import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
+import com.thesis.innmanagement.services.ElectricityWaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,38 +17,32 @@ import java.util.Map;
 public class ElectricityWaterController {
 
     @Autowired
-    private ElectricityWaterRepository electricityWaterRepository;
+    private ElectricityWaterService electricityWaterService;
 
     @GetMapping("/")
-    public List<ElectricityWater> GetAll(){
-        return electricityWaterRepository.findAll();
+    public List<ElectricityWater> getAll(){
+        return electricityWaterService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ElectricityWater> GetElectricityWaterById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-        ElectricityWater electricityWater = electricityWaterRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Electricity-Water not found on id: " + id));
-        return ResponseEntity.ok().body(electricityWater);
+    public ResponseEntity<ElectricityWater> getElectricityWaterById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok().body(electricityWaterService.findById(id));
     }
 
     @PostMapping("/")
-    public ElectricityWater Create(@Validated @RequestBody ElectricityWater electricityWater) throws Exception{
-        return electricityWaterRepository.save(electricityWater);
+    public ElectricityWater create(@Validated @RequestBody ElectricityWater electricityWater) throws Exception{
+        return electricityWaterService.createOrUpdate(null, electricityWater);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ElectricityWater> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody ElectricityWater electricityWaterDetails) throws Exception{
-        ElectricityWater electricityWater = electricityWaterRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Electricity-Water not found on id: "+ id));
-        final ElectricityWater electricityWaterInfo = electricityWaterRepository.save(electricityWater);
-        return ResponseEntity.ok().body(electricityWaterInfo);
+    public ResponseEntity<ElectricityWater> update(@PathVariable(value = "id") Long id, @Validated @RequestBody ElectricityWater electricityWaterDetails) throws Exception{
+        ElectricityWater electricityWater = electricityWaterService.createOrUpdate(id, electricityWaterDetails);
+        return ResponseEntity.ok().body(electricityWater);
     }
 
     @DeleteMapping("/{id}/delete")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id) throws
             Exception {
-        ElectricityWater electricityWater = electricityWaterRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Electricity-Water not found on: " + id));
-        electricityWaterRepository.delete(electricityWater);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return electricityWaterService.delete(id);
     }
 }

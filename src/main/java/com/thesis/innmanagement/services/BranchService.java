@@ -6,11 +6,11 @@ import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Component
+@Service
 public class BranchService {
 
     @Autowired
@@ -31,8 +31,6 @@ public class BranchService {
     }
 
     public Branches createOrUpdate(Long id, Branches branch) throws ResourceNotFoundException {
-        Users owner = userRepository.findById(branch.getOwnerId()).orElseThrow(() -> new ResourceNotFoundException("Owner not found with id " + branch.getOwnerId()));
-        branch.setOwner(owner);
         branch.setFacilities(facilityRepository.findAllById(branch.getFacilityIds()));
         if(id == null) {
             branchRepository.save(branch);
@@ -45,7 +43,6 @@ public class BranchService {
             branchUpdate.setDescription(branch.getDescription());
             branchUpdate.setNumberOfStages(branch.getNumberOfStages());
             branchUpdate.setNumberOfRooms(branch.getNumberOfRooms());
-            branchUpdate.setOwner(branch.getOwner());
             branchUpdate.setFacilities(branch.getFacilities());
             branchRepository.save(branchUpdate);
             return branchUpdate;

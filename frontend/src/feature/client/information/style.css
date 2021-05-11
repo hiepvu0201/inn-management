@@ -1,0 +1,22 @@
+.box {
+  width: 100%;
+  height: auto;
+ display:flex;
+ justify-content: center;
+}
+.container {
+  width: 70%;
+  height: auto;
+  background-color: white;
+}
+.title {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 50px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.title-1{
+     font-family: "Source Sans Pro", sans-serif;
+  font-size: 20px;
+  padding-left: 10px;
+}

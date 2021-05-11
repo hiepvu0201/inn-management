@@ -58,4 +58,8 @@ public class RoomService {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    public List<Rooms> findAllByUserName(String userName) {
+        return roomRepository.findAllByUserName(userName);
+    }
 }

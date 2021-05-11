@@ -1,8 +1,6 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.entities.Branches;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
-import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +18,6 @@ public class UserService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private BranchRepository branchRepository;
-
-    @Autowired
-    private ContractRepository contractRepository;
-
-    @Autowired
     private ReportedIssueRepository reportedIssueRepository;
 
     public List<Users> findAll() {
@@ -34,6 +26,10 @@ public class UserService {
 
     public Users findById(Long id) throws ResourceNotFoundException {
         return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found on id: "+id));
+    }
+
+    public List<Users> findAllByRoleName(String roleName) {
+        return userRepository.findAllByRoleName(roleName);
     }
 
     public Users createOrUpdate(Long id, Users user) throws ResourceNotFoundException {

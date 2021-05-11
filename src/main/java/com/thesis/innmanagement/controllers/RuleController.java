@@ -20,21 +20,21 @@ public class RuleController {
     private RuleService ruleService;
 
     @GetMapping("/")
-    public List<Rules> GetAll(){
+    public List<Rules> getAll(){
         return ruleService.findAll();
     }
 
-    public ResponseEntity<Rules> GetRuleById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<Rules> getRuleById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
         return ResponseEntity.ok().body(ruleService.findById(id));
     }
 
     @PostMapping("/")
-    public Rules Create(@Validated @RequestBody Rules rule) throws Exception{
+    public Rules create(@Validated @RequestBody Rules rule) throws Exception{
         return ruleService.createOrUpdate(null, rule);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rules> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Rules ruleDetail) throws Exception{
+    public ResponseEntity<Rules> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Rules ruleDetail) throws Exception{
         Rules rule = ruleService.createOrUpdate(id, ruleDetail);
         return ResponseEntity.ok().body(rule);
     }

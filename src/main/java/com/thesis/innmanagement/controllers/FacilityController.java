@@ -19,22 +19,22 @@ public class FacilityController {
     private FacilityService facilityService;
 
     @GetMapping("/")
-    public List<Facilities> GetAll(){
+    public List<Facilities> getAll(){
         return facilityService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Facilities> GetFacilityById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<Facilities> getFacilityById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
         return ResponseEntity.ok().body(facilityService.findById(id));
     }
 
     @PostMapping("/")
-    public Facilities Create(@Validated @RequestBody Facilities facility) throws Exception{
+    public Facilities create(@Validated @RequestBody Facilities facility) throws Exception{
         return facilityService.createOrUpdate(null, facility);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Facilities> Update(@PathVariable(value = "id") Long id, @Validated @RequestBody Facilities facilityDetails) throws Exception{
+    public ResponseEntity<Facilities> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Facilities facilityDetails) throws Exception{
         Facilities facility = facilityService.createOrUpdate(id, facilityDetails);
         return ResponseEntity.ok().body(facility);
     }

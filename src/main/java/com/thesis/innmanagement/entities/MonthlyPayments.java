@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ public class MonthlyPayments extends BasicEntity {
     @Column(precision = 16, scale = 4)
     private Double cost;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     private Branches branch;
 

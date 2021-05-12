@@ -1,9 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-// import Login from './feature/login/index'
-// import Register  from './feature/register'
-// import Forgotpassword from "./feature/forgotpassword";
-// import Home from './feature/homepage'
+
 import Branches from "./../src/feature/admin/branches";
 // import Customer from './feature/admin/customer'
 import Revenue from "./feature/admin/revenue";
@@ -27,7 +23,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <Switch>
         <Route path="/branches">
           <Branches />
@@ -69,25 +64,6 @@ function App() {
           <Homepage_admin/>
         </Route>
       </Switch>
-
-=======
-      {/* <Login/> */}
-      {/* <Register/> */}
-      {/* <Forgotpassword/> */}
-      {/* <Home/> */}
-      <Branches/>
-       {/* <Role/> */}
-       {/* <Rules/> */}
-       
-        {/* <Reportedissues/> */}
-        {/* <Notification/>/ */}
-      {/* <Customer/>
-       */}
-       {/* <Revenue/> */}
-       {/* <Monthlyincome/> */}
-       {/* <Monthlypayment/> */}
-       {/* <Users/> */}
->>>>>>> IM-18
     </div>
   );
 }

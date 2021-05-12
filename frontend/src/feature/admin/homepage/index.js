@@ -10,8 +10,21 @@ import {
   faTrash,
   faEdit,
   faBed,
+  faTags,
+  faPlug,
+  faCloud,
+  faUsers,
+  faUserTag,
+  faPencilRuler
 } from "@fortawesome/free-solid-svg-icons";
-import { faSave, faMoneyBillAlt,faLightbulb } from "@fortawesome/free-regular-svg-icons";
+import {
+  faSave,
+  faMoneyBillAlt,
+  faLightbulb,
+  faBuilding,
+  faHandshake,
+  faBell,faFlag
+} from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import {
   Table,
@@ -31,49 +44,45 @@ import branchesApi from "./../../../api/branchesApi";
 const { Option } = Select;
 
 function Homepage_admin(props) {
-  
-const columns = [
-  {
-    title: "Tầng",
-    dataIndex: "numberOfStages",
-    key: "numberOfStages",
-  },
-  {
-    title: "Phòng",
-    dataIndex: "room",
-    key: "room",
-  },
-  {
-    title: "Số người",
-    dataIndex: "numberOfPeople",
-    key: "address",
-  },
-  {
-    title: "Đơn giá",
-    key: "money",
-    dataIndex: "money",
-  },
-  {
-    title: "Số ĐT",
-    key: "phoneNo",
-    dataIndex: "phoneNo",
-  },
-  {
-    title: "Điện-Nước",
-    key: "electricwater",
-    dataIndex: "electricwater",
-  },
-  {
-    title: "Thiết bị",
-    key: "facility",
-    dataIndex: "facility",
-  },
- 
-];
+  const columns = [
+    {
+      title: "Tầng",
+      dataIndex: "numberOfStages",
+      key: "numberOfStages",
+    },
+    {
+      title: "Phòng",
+      dataIndex: "room",
+      key: "room",
+    },
+    {
+      title: "Số người",
+      dataIndex: "numberOfPeople",
+      key: "address",
+    },
+    {
+      title: "Đơn giá",
+      key: "money",
+      dataIndex: "money",
+    },
+    {
+      title: "Số ĐT",
+      key: "phoneNo",
+      dataIndex: "phoneNo",
+    },
+    {
+      title: "Điện-Nước",
+      key: "electricwater",
+      dataIndex: "electricwater",
+    },
+    {
+      title: "Thiết bị",
+      key: "facility",
+      dataIndex: "facility",
+    },
+  ];
 
-const data = [
-  
-];
+  const data = [];
   return (
     <div>
       <div
@@ -502,13 +511,575 @@ const data = [
                     </div>
                   </div>
                   <div>
-                    <Table columns={columns} bordered/>
+                    <Table columns={columns} bordered />
                   </div>
                 </div>
               </div>
             </Col>
             <Col lg={6} md={24}>
-              1
+              <div
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  // backgroundColor: "#007c7e",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "80%",
+                    height: "auto",
+                    backgroundColor: "white",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                    paddingTop: "10px",
+                    paddingBottom: "15px",
+                    paddingRight: "5px",
+                  }}
+                >
+                  <div
+                    style={{ display: "flex", borderBottom: "solid 1px black" }}
+                  >
+                    <div style={{ paddingTop: "5px" }}>
+                      <FontAwesomeIcon
+                        icon={faTags}
+                        size="2x"
+                        color="#007c7e"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        color: "#007c7e",
+                        fontWeight: "bold",
+                        paddingTop: "5px",
+                        paddingLeft: "5px",
+                      }}
+                    >
+                      TRUY CẬP NHANH
+                    </div>
+                  </div>
+                  <div>
+                    <Row style={{ paddingTop: "5px" }}>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faBuilding}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              CHI NHÁNH
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faBed}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              PHÒNG
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faHandshake}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              HỢP ĐỒNG
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    </Row>
+                    {/* //row2 */}
+                    <Row style={{ paddingTop: "5px" }}>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faPlug}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              ĐIỆN - NƯỚC
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faCloud}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              THIẾT BỊ
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faUsers}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              KHÁCH THUÊ
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    </Row>
+                    {/* ROW 3 */}
+                    <Row style={{ paddingTop: "5px" }}>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faMoneyBillAlt}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              NGUỒN THU
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faMoneyBillAlt}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              NGUỒN CHI
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faUserTag}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              PHÂN QUYỀN
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    </Row>
+                    {/* Row 4 */}
+                    <Row style={{ paddingTop: "5px" }}>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faBell}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              THÔNG BÁO{" "}
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faPencilRuler}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              NỘI QUY
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg={8} md={24}>
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            // backgroundColor: "yellow",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "90%",
+                              height: "auto",
+                              backgroundColor: "#007c7e",
+                              textAlign: "center",
+                              display: "block",
+                            }}
+                          >
+                            <div style={{ paddingTop: "10px" }}>
+                              <FontAwesomeIcon
+                                icon={faFlag}
+                                size="2x"
+                                color="#efefef"
+                              />
+                            </div>
+
+                            <div
+                              style={{
+                                fontFamily: "PT Sans, sans-serif",
+                                fontSize: "12px",
+                                width: "100%",
+                                height: "auto",
+                                paddingTop: "5px",
+                                color: "#efefef",
+                              }}
+                            >
+                              BÁO CÁO
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </div>
             </Col>
           </Row>
         </div>

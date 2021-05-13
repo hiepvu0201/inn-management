@@ -37,10 +37,10 @@ function App() {
        {/* <Revenue/> */}
        {/* <Monthlyincome/> */}
        {/* <Monthlypayment/> */}
-       {/* <Users/> */}
+       <Users/>
        {/* <Room/> */}
        {/* <ElectricityWaters/> */}
-       <Contract/>
+       {/* <Contract/> */}
     </div>
   );
 }

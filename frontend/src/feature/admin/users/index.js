@@ -51,12 +51,34 @@ function Users(props) {
   const [idSelected, setidSelected] = useState([]);
   const [idReport, setidReport] = useState([]);
   const [idSelected_1, setidSelected_1] = useState([]);
+  const [dataTable, setdataTable] = useState([]);
   const [idReport_1, setidReport_1] = useState([]);
+  // const updatetable = async (roleIds) => {
+  //   dataTable=[...usersList];
+  //   console.log("abc",()=>fetchRolebyId(roleIds));
+
+  // }
+  const fetchRolebyId = async (roleIds) => {
+    try {
+      const response = await roleApi.getbyId(roleIds);
+      console.log("id", roleIds);
+      console.log("Get by id successfully", response.data);
+      // return response.data.name;
+      console.log("name", response.data.name);
+      setIsusersList([...usersList, response.data.name]);
+      // console.log("abc22",response.data);
+    } catch (error) {
+      console.log("Failed to get by id list: ", error);
+    }
+  };
   const fetchUsersList = async () => {
+    const roleIds = { roleIds: idSelected };
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
+      const dataupdate = fetchRolebyId(roleIds);
       setIsusersList(response.data);
+      dataTable([...userList,dataupdate]);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -88,12 +110,14 @@ function Users(props) {
       console.log("Failed to fetch getAll reportedissues list: ", error);
     }
   };
+  const [rolebyid, setRolebyid] = useState([]);
 
   useEffect(() => {
     fetchUsersList();
     fetchRoleList();
     fetchReportedList();
   }, []);
+
   //form
   const [table, setTable] = useState([]);
   //create
@@ -142,11 +166,10 @@ function Users(props) {
     const dataUpdate = {
       ...values,
       roleIds: idSelected,
-      reportedIssueIds: idReport
+      reportedIssueIds: idReport,
     };
     const fetchUpdateUsers = async () => {
-      
-       const data_update = { id: rowEdit.id, data: dataUpdate };
+      const data_update = { id: rowEdit.id, data: dataUpdate };
       console.log("dataupdate", dataUpdate);
       setIsloadingUpdate(true);
       try {
@@ -236,6 +259,7 @@ function Users(props) {
       title: "Phân quyền người dùng",
       dataIndex: "roleIds",
       key: "roleIds",
+      render: (roleIds) => fetchRolebyId(roleIds),
     },
     {
       title: "",
@@ -497,7 +521,7 @@ function Users(props) {
                       </Select>
                     </Form.Item>
                     <Form.Item label="Báo cáo">
-                      <Select onChange={handleChange_1} >
+                      <Select onChange={handleChange_1}>
                         {reportList.map((reportid) => (
                           <Select.Option key={reportid.id} value={reportid.id}>
                             {reportid.id}

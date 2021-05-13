@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public List<Users> getAll(){
+    public List<Users> getAll() {
         return userService.findAll();
     }
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public Users create(@Validated @RequestBody Users user) throws Exception{
+    public Users create(@Validated @RequestBody Users user) throws Exception {
         return userService.createOrUpdate(null, user);
     }
 

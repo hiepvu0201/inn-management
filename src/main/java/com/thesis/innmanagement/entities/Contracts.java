@@ -16,14 +16,16 @@ public class Contracts extends BasicEntity {
     private Date signDate;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant")
     private List<Users> tenant;
 
     @ElementCollection
     private List<Long> tenantIds;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contracts")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner")
     private List<Users> owner;
 
     @ElementCollection

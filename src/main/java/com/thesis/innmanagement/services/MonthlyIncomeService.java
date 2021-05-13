@@ -1,6 +1,5 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.entities.Branches;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.MonthlyIncomes;
 import com.thesis.innmanagement.repositories.BranchRepository;
@@ -8,6 +7,7 @@ import com.thesis.innmanagement.repositories.MonthlyIncomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,19 +26,21 @@ public class MonthlyIncomeService {
     }
 
     public MonthlyIncomes findById(Long id) throws ResourceNotFoundException {
-        return monthlyIncomeRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Monthly income not found on id: "+id));
+        return monthlyIncomeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Monthly income not found on id: " + id));
     }
 
     public MonthlyIncomes createOrUpdate(Long id, MonthlyIncomes monthlyIncomes) throws ResourceNotFoundException {
-        if(id == null) {
+        monthlyIncomes.setBranch(branchRepository.findById(monthlyIncomes.getBranchId()).orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyIncomes.getBranchId())));
+        if (id == null) {
             monthlyIncomeRepository.save(monthlyIncomes);
             return monthlyIncomes;
-        }
-        else {
+        } else {
             MonthlyIncomes monthlyIncomeUpdate = monthlyIncomeRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This monthly income not found on:" + id));
             monthlyIncomeUpdate.setItemName(monthlyIncomes.getItemName());
             monthlyIncomeUpdate.setEarn(monthlyIncomes.getEarn());
+            monthlyIncomeUpdate.setBranchId(monthlyIncomes.getBranchId());
+            monthlyIncomeUpdate.setBranch(monthlyIncomes.getBranch());
             monthlyIncomeRepository.save(monthlyIncomeUpdate);
             return monthlyIncomeUpdate;
         }

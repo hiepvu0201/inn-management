@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class ContractController {
     private ContractService contractService;
 
     @GetMapping("/")
-    public List<Contracts> getAll(){
+    public List<Contracts> getAll() {
         return contractService.findAll();
     }
 
@@ -40,12 +41,12 @@ public class ContractController {
     }
 
     @PostMapping("/")
-    public Contracts create(@Validated @RequestBody Contracts contract) throws Exception{
+    public Contracts create(@Validated @RequestBody Contracts contract) throws Exception {
         return contractService.createOrUpdate(null, contract);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contracts> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Contracts contractDetail) throws Exception{
+    public ResponseEntity<Contracts> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Contracts contractDetail) throws Exception {
         Contracts contract = contractService.createOrUpdate(id, contractDetail);
         return ResponseEntity.ok().body(contract);
     }

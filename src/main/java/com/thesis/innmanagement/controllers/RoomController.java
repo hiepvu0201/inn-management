@@ -21,7 +21,7 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping("/")
-    public List<Rooms> getAll(){
+    public List<Rooms> getAll() {
         return roomService.findAll();
     }
 
@@ -36,12 +36,12 @@ public class RoomController {
     }
 
     @PostMapping("/")
-    public Rooms create(@Validated @RequestBody Rooms room) throws Exception{
+    public Rooms create(@Validated @RequestBody Rooms room) throws Exception {
         return roomService.createOrUpdate(null, room);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rooms> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Rooms roomDetail) throws Exception{
+    public ResponseEntity<Rooms> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Rooms roomDetail) throws Exception {
         Rooms room = roomService.createOrUpdate(id, roomDetail);
         return ResponseEntity.ok().body(room);
     }

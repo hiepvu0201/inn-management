@@ -36,7 +36,8 @@ public class Users extends BasicEntity {
     private Double downPayment;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "roles")
     private List<Roles> roles;
 
     @ElementCollection
@@ -44,22 +45,42 @@ public class Users extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
     private Branches branch;
+
+    private Long branchId;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name = "owner_id"),
-        @JoinColumn(name = "tenant_id")
-    })
+    @JoinColumn(name = "contracts")
     private List<Contracts> contracts;
 
+    @ElementCollection
+    private List<Long> contractIds;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reporter")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reportedIssues")
     private List<ReportedIssues> reportedIssues;
 
     @ElementCollection
     private List<Long> reportedIssueIds;
+
+    public Long getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Long branchId) {
+        this.branchId = branchId;
+    }
+
+    public List<Long> getContractIds() {
+        return contractIds;
+    }
+
+    public void setContractIds(List<Long> contractIds) {
+        this.contractIds = contractIds;
+    }
 
     public List<Long> getRoleIds() {
         return roleIds;

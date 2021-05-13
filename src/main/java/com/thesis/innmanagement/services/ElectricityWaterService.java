@@ -26,17 +26,16 @@ public class ElectricityWaterService {
     }
 
     public ElectricityWater findById(Long id) throws ResourceNotFoundException {
-        return electricityWaterRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Electricity water not found on id: "+id));
+        return electricityWaterRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Electricity water not found on id: " + id));
     }
 
     public ElectricityWater createOrUpdate(Long id, ElectricityWater electricityWater) throws ResourceNotFoundException {
         Rooms room = roomRepository.findById(electricityWater.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found with id " + electricityWater.getRoomId()));
         electricityWater.setRoom(room);
-        if(id == null) {
+        if (id == null) {
             electricityWaterRepository.save(electricityWater);
             return electricityWater;
-        }
-        else {
+        } else {
             ElectricityWater electricityWaterUpdate = electricityWaterRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This electricity water not found on:" + id));
             electricityWaterUpdate.setRoom(electricityWater.getRoom());

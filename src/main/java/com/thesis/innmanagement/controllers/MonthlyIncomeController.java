@@ -20,22 +20,22 @@ public class MonthlyIncomeController {
     private MonthlyIncomeService monthlyIncomeService;
 
     @GetMapping("/")
-    public List<MonthlyIncomes> getAll(){
+    public List<MonthlyIncomes> getAll() {
         return monthlyIncomeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MonthlyIncomes> getMonthlyIncomeById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<MonthlyIncomes> getMonthlyIncomeById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(monthlyIncomeService.findById(id));
     }
 
     @PostMapping("/")
-    public MonthlyIncomes create(@Validated @RequestBody MonthlyIncomes monthlyIncome) throws Exception{
+    public MonthlyIncomes create(@Validated @RequestBody MonthlyIncomes monthlyIncome) throws Exception {
         return monthlyIncomeService.createOrUpdate(null, monthlyIncome);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MonthlyIncomes> update(@PathVariable(value = "id") Long id, @Validated @RequestBody MonthlyIncomes monthlyIncomeDetails) throws Exception{
+    public ResponseEntity<MonthlyIncomes> update(@PathVariable(value = "id") Long id, @Validated @RequestBody MonthlyIncomes monthlyIncomeDetails) throws Exception {
         MonthlyIncomes monthlyIncome = monthlyIncomeService.createOrUpdate(id, monthlyIncomeDetails);
         return ResponseEntity.ok().body(monthlyIncome);
     }

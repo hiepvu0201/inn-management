@@ -20,7 +20,7 @@ public class BranchController {
     private BranchService branchService;
 
     @GetMapping("/")
-    public List<Branches> getAll(){
+    public List<Branches> getAll() {
         return branchService.findAll();
     }
 
@@ -30,12 +30,12 @@ public class BranchController {
     }
 
     @PostMapping("/")
-    public Branches create(@Validated @RequestBody Branches branch) throws Exception{
+    public Branches create(@Validated @RequestBody Branches branch) throws Exception {
         return branchService.createOrUpdate(null, branch);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Branches> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Branches branchDetails) throws Exception{
+    public ResponseEntity<Branches> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Branches branchDetails) throws Exception {
         Branches branch = branchService.createOrUpdate(id, branchDetails);
         return ResponseEntity.ok().body(branch);
     }

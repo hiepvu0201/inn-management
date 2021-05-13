@@ -26,7 +26,18 @@ public class ReportedIssues extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reporter")
     private Users reporter;
+
+    private Long reportedId;
+
+    public Long getReportedId() {
+        return reportedId;
+    }
+
+    public void setReportedId(Long reportedId) {
+        this.reportedId = reportedId;
+    }
 
     public String getTitle() {
         return title;

@@ -8,6 +8,7 @@ import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.*;
 
 @Service
@@ -27,16 +28,16 @@ public class BranchService {
     }
 
     public Branches findById(Long id) throws ResourceNotFoundException {
-        return branchRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Branch not found on id: "+id));
+        return branchRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + id));
     }
 
     public Branches createOrUpdate(Long id, Branches branch) throws ResourceNotFoundException {
+        branch.setOwner(userRepository.findById(branch.getOwnerId()).orElseThrow(() -> new ResolutionException("Owner not found on id: " + branch.getOwnerId())));
         branch.setFacilities(facilityRepository.findAllById(branch.getFacilityIds()));
-        if(id == null) {
+        if (id == null) {
             branchRepository.save(branch);
             return branch;
-        }
-        else {
+        } else {
             Branches branchUpdate = branchRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This branch not found on:" + id));
             branchUpdate.setLocation(branch.getLocation());
@@ -44,6 +45,9 @@ public class BranchService {
             branchUpdate.setNumberOfStages(branch.getNumberOfStages());
             branchUpdate.setNumberOfRooms(branch.getNumberOfRooms());
             branchUpdate.setFacilities(branch.getFacilities());
+            branchUpdate.setFacilityIds(branch.getFacilityIds());
+            branchUpdate.setOwnerId(branch.getOwnerId());
+            branchUpdate.setOwner(branch.getOwner());
             branchRepository.save(branchUpdate);
             return branchUpdate;
         }

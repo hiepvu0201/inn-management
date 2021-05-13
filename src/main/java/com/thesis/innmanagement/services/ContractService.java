@@ -25,7 +25,7 @@ public class ContractService {
     }
 
     public Contracts findById(Long id) throws ResourceNotFoundException {
-        return contractRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Contract not found on id: "+id));
+        return contractRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Contract not found on id: " + id));
     }
 
     public List<Contracts> findAllByOwnerName(String ownerName) {
@@ -39,11 +39,10 @@ public class ContractService {
     public Contracts createOrUpdate(Long id, Contracts contracts) throws ResourceNotFoundException {
         contracts.setTenant(userRepository.findAllById(contracts.getTenantIds()));
         contracts.setOwner(userRepository.findAllById(contracts.getOwnerIds()));
-        if(id == null) {
+        if (id == null) {
             contractRepository.save(contracts);
             return contracts;
-        }
-        else {
+        } else {
             Contracts contractUpdate = contractRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This contract not found on:" + id));
             contractUpdate.setDetails(contracts.getDetails());
@@ -52,6 +51,7 @@ public class ContractService {
             contractUpdate.setOwner(contracts.getOwner());
             contractUpdate.setNumberOfRooms(contracts.getNumberOfRooms());
             contractUpdate.setNumberOfStage(contracts.getNumberOfStage());
+            contractUpdate.setVoucher(contracts.getVoucher());
             contractRepository.save(contractUpdate);
             return contractUpdate;
         }

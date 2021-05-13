@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class ElectricityWater extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "electricityWater")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room")
     private Rooms room;
 
     private long numElectricOld;

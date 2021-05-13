@@ -1,6 +1,5 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.repositories.RoleRepository;

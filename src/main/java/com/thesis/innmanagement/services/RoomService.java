@@ -2,6 +2,7 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Rooms;
+import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
@@ -24,28 +25,35 @@ public class RoomService {
     @Autowired
     private FacilityRepository facilityRepository;
 
+    @Autowired
+    private ElectricityWaterRepository electricityWaterRepository;
+
     public List<Rooms> findAll() {
         return roomRepository.findAll();
     }
 
     public Rooms findById(Long id) throws ResourceNotFoundException {
-        return roomRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Room not found on id: "+id));
+        return roomRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + id));
     }
 
     public Rooms createOrUpdate(Long id, Rooms room) throws ResourceNotFoundException {
         room.setUsers(userRepository.findAllById(room.getUserIds()));
         room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
-        if(id == null) {
+        room.setElectricityWater(electricityWaterRepository.findById(room.getElectricityWaterId()).orElseThrow(() -> new ResourceNotFoundException("Electricity water not found in: " + room.getElectricityWaterId())));
+        if (id == null) {
             roomRepository.save(room);
             return room;
-        }
-        else {
+        } else {
             Rooms roomUpdate = roomRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This room not found on:" + id));
             roomUpdate.setRoomNo(room.getRoomNo());
             roomUpdate.setPosition(room.getPosition());
             roomUpdate.setUsers(room.getUsers());
+            roomUpdate.setUserIds(room.getUserIds());
             roomUpdate.setFacilities(room.getFacilities());
+            roomUpdate.setFacilityIds(room.getFacilityIds());
+            roomUpdate.setElectricityWaterId(room.getElectricityWaterId());
+            roomUpdate.setElectricityWater(room.getElectricityWater());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

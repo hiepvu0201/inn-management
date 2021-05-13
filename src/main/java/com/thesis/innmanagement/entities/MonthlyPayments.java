@@ -15,7 +15,18 @@ public class MonthlyPayments extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
     private Branches branch;
+
+    private Long branchId;
+
+    public Long getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Long branchId) {
+        this.branchId = branchId;
+    }
 
     public Branches getBranch() {
         return branch;

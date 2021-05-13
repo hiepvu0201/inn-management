@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,22 +20,22 @@ public class FacilityController {
     private FacilityService facilityService;
 
     @GetMapping("/")
-    public List<Facilities> getAll(){
+    public List<Facilities> getAll() {
         return facilityService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Facilities> getFacilityById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<Facilities> getFacilityById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(facilityService.findById(id));
     }
 
     @PostMapping("/")
-    public Facilities create(@Validated @RequestBody Facilities facility) throws Exception{
+    public Facilities create(@Validated @RequestBody Facilities facility) throws Exception {
         return facilityService.createOrUpdate(null, facility);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Facilities> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Facilities facilityDetails) throws Exception{
+    public ResponseEntity<Facilities> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Facilities facilityDetails) throws Exception {
         Facilities facility = facilityService.createOrUpdate(id, facilityDetails);
         return ResponseEntity.ok().body(facility);
     }

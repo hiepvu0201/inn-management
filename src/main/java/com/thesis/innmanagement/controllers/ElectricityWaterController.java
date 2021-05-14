@@ -20,7 +20,7 @@ public class ElectricityWaterController {
     private ElectricityWaterService electricityWaterService;
 
     @GetMapping("/")
-    public List<ElectricityWater> getAll(){
+    public List<ElectricityWater> getAll() {
         return electricityWaterService.findAll();
     }
 
@@ -30,12 +30,12 @@ public class ElectricityWaterController {
     }
 
     @PostMapping("/")
-    public ElectricityWater create(@Validated @RequestBody ElectricityWater electricityWater) throws Exception{
+    public ElectricityWater create(@Validated @RequestBody ElectricityWater electricityWater) throws Exception {
         return electricityWaterService.createOrUpdate(null, electricityWater);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ElectricityWater> update(@PathVariable(value = "id") Long id, @Validated @RequestBody ElectricityWater electricityWaterDetails) throws Exception{
+    public ResponseEntity<ElectricityWater> update(@PathVariable(value = "id") Long id, @Validated @RequestBody ElectricityWater electricityWaterDetails) throws Exception {
         ElectricityWater electricityWater = electricityWaterService.createOrUpdate(id, electricityWaterDetails);
         return ResponseEntity.ok().body(electricityWater);
     }

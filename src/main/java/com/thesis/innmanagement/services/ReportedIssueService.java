@@ -2,7 +2,6 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.ReportedIssues;
-import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.ReportedIssueRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +25,22 @@ public class ReportedIssueService {
     }
 
     public ReportedIssues findById(Long id) throws ResourceNotFoundException {
-        return reportedIssueRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Reported Issues not found on id: "+id));
+        return reportedIssueRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Reported Issues not found on id: " + id));
     }
 
     public ReportedIssues createOrUpdate(Long id, ReportedIssues reportedIssue) throws ResourceNotFoundException {
-        if(id == null) {
+        reportedIssue.setReporter(userRepository.findById(reportedIssue.getReportedId()).orElseThrow(() -> new ResourceNotFoundException("Reporter not found on id:" + reportedIssue.getReportedId())));
+        if (id == null) {
             reportedIssueRepository.save(reportedIssue);
             return reportedIssue;
-        }
-        else {
+        } else {
             ReportedIssues reportedIssuesUpdate = reportedIssueRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This reported issue not found on:" + id));
             reportedIssuesUpdate.setTitle(reportedIssue.getTitle());
             reportedIssuesUpdate.setDescription(reportedIssue.getDescription());
             reportedIssuesUpdate.setStatus(reportedIssue.getStatus());
+            reportedIssuesUpdate.setReportedId(reportedIssue.getReportedId());
+            reportedIssuesUpdate.setReporter(reportedIssue.getReporter());
             reportedIssueRepository.save(reportedIssuesUpdate);
             return reportedIssuesUpdate;
         }

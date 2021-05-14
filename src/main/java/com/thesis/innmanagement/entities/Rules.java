@@ -1,6 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.config.entities.BasicEntity;
+
 import javax.persistence.*;
 
 @Entity

@@ -20,22 +20,22 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @GetMapping("/")
-    public List<Notifications> getAll(){
+    public List<Notifications> getAll() {
         return notificationService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Notifications> getNotificationById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException{
+    public ResponseEntity<Notifications> getNotificationById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(notificationService.findById(id));
     }
 
     @PostMapping("/")
-    public Notifications create(@Validated @RequestBody Notifications notification) throws Exception{
+    public Notifications create(@Validated @RequestBody Notifications notification) throws Exception {
         return notificationService.createOrUpdate(null, notification);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Notifications> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Notifications notificationDetail) throws Exception{
+    public ResponseEntity<Notifications> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Notifications notificationDetail) throws Exception {
         Notifications notification = notificationService.createOrUpdate(id, notificationDetail);
         return ResponseEntity.ok().body(notification);
     }

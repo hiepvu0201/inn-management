@@ -25,22 +25,22 @@ public class FacilityService {
     }
 
     public Facilities findById(Long id) throws ResourceNotFoundException {
-        return facilityRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Facility not found on id: "+id));
+        return facilityRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Facility not found on id: " + id));
     }
 
     public Facilities createOrUpdate(Long id, Facilities facility) throws ResourceNotFoundException {
         facility.setBranches(branchRepository.findAllById(facility.getBranchIds()));
-        if(id == null) {
+        if (id == null) {
             facilityRepository.save(facility);
             return facility;
-        }
-        else {
+        } else {
             Facilities facilityUpdate = facilityRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This facility not found on:" + id));
             facilityUpdate.setName(facility.getName());
             facilityUpdate.setQuality(facility.getQuality());
             facilityUpdate.setQuantity(facility.getQuantity());
             facilityUpdate.setBranches(facility.getBranches());
+            facilityUpdate.setBranchIds(facility.getBranchIds());
             facilityRepository.save(facilityUpdate);
             return facilityUpdate;
         }

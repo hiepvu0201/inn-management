@@ -21,15 +21,14 @@ public class NotificationService {
     }
 
     public Notifications findById(Long id) throws ResourceNotFoundException {
-        return notificationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Notifications not found on id: "+id));
+        return notificationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Notifications not found on id: " + id));
     }
 
     public Notifications createOrUpdate(Long id, Notifications notification) throws ResourceNotFoundException {
-        if(id == null) {
+        if (id == null) {
             notificationRepository.save(notification);
             return notification;
-        }
-        else {
+        } else {
             Notifications notificationUpdate = notificationRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This notification not found on:" + id));
             notificationUpdate.setName(notification.getName());

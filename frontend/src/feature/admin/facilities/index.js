@@ -38,7 +38,8 @@ function Facilities(props) {
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
-
+ 
+  
   const fetchfacilitiesList = async () => {
     try {
       const response = await facilitiesApi.getAll();
@@ -158,7 +159,12 @@ function Facilities(props) {
       dataIndex: "quantity",
       key: "quantity",
     },
-
+    {
+      title:"Chi nhánh",
+      dataIndex:"branches",
+      key:"branches",
+      render:(branches)=><div>{branches[0].location}</div>
+    },
     {
       title: "",
       dataIndex: "",
@@ -255,7 +261,7 @@ function Facilities(props) {
               <Select onChange={handleChange}>
                 {branchesList.map((branchesid) => (
                   <Select.Option key={branchesid.id} value={branchesid.id}>
-                    {branchesid.id}
+                    {branchesid.location}
                   </Select.Option>
                 ))}
               </Select>
@@ -352,7 +358,7 @@ function Facilities(props) {
                             key={branchesid.id}
                             value={branchesid.id}
                           >
-                            {branchesid.id}
+                            {branchesid.location}
                           </Select.Option>
                         ))}
                       </Select>

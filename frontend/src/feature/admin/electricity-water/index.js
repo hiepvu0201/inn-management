@@ -148,6 +148,14 @@ function ElectricityWaters(props) {
   }
   const columns = [
     {
+      title: "Phòng",
+      dataIndex: "room",
+      key: "room",
+      render:(room) => <div>
+        {room.roomNo}
+      </div>
+    },
+    {
       title: "Số điện cũ",
       dataIndex: "numElectricOld",
       key: "numElectricOld",
@@ -308,7 +316,7 @@ function ElectricityWaters(props) {
               <Select onChange={handleChange}>
                 {roomList.map((roomsid) => (
                   <Select.Option key={roomsid.id} value={roomsid.id}>
-                    {roomsid.id}
+                    {roomsid.roomNo}
                   </Select.Option>
                 ))}
               </Select>
@@ -457,7 +465,7 @@ function ElectricityWaters(props) {
                       <Select onChange={handleChange}>
                         {roomList.map((roomsid) => (
                           <Select.Option key={roomsid.id} value={roomsid.id}>
-                            {roomsid.id}
+                            {roomsid.roomNo}
                           </Select.Option>
                         ))}
                       </Select>

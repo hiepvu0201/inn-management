@@ -130,6 +130,11 @@ function Notification(props) {
       key: "description",
     },
     {
+      title: "Ngày đăng thông báo",
+      dataIndex: "createdDate",
+      key: "createdDate",
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -137,7 +142,9 @@ function Notification(props) {
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-            onConfirm={()=>{fetchDeleteNotification(record)}}
+            onConfirm={() => {
+              fetchDeleteNotification(record);
+            }}
             okText="Có"
             cancelText="Không"
           >

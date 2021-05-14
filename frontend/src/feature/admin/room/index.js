@@ -13,7 +13,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
-import usersApi from "../../../api/branchesApi";
+import usersApi from "../../../api/usersApi";
 import {
   Table,
   Popconfirm,
@@ -97,7 +97,7 @@ function Rooms(props) {
       ...values,
       userIds: idSelected,
       facilityIds: selected_1,
-      electricityWaterIds: selected_2,
+      // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
 
@@ -198,6 +198,18 @@ function Rooms(props) {
       key: "position",
     },
     {
+      title: "Khách thuê",
+      dataIndex: "users",
+      key: "users",
+      render: (users) => <div>{users[0].fullName}</div>,
+    },
+    {
+      title: "Thiết bị",
+      dataIndex: "facilities",
+      key: "facilities",
+      render: (facilities) => <div>{facilities[0].name}</div>,
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -289,7 +301,7 @@ function Rooms(props) {
               <Select onChange={handleChange}>
                 {usersList.map((usersid) => (
                   <Select.Option key={usersid.id} value={usersid.id}>
-                    {usersid.id}
+                    {usersid.fullName}
                   </Select.Option>
                 ))}
               </Select>
@@ -301,12 +313,12 @@ function Rooms(props) {
               >
                 {facilitiesList.map((facilitiesid) => (
                   <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.id}
+                    {facilitiesid.name}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Điện nước">
+            {/* <Form.Item label="Điện nước">
               <Select onChange={handleChange_2}>
                 {electricitywatersList.map((electricitywatersid) => (
                   <Select.Option
@@ -317,7 +329,7 @@ function Rooms(props) {
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -405,7 +417,7 @@ function Rooms(props) {
                       <Select onChange={handleChange}>
                         {usersList.map((usersid) => (
                           <Select.Option key={usersid.id} value={usersid.id}>
-                            {usersid.id}
+                            {usersid.fullName}
                           </Select.Option>
                         ))}
                       </Select>
@@ -417,12 +429,12 @@ function Rooms(props) {
                             key={facilitiesid.id}
                             value={facilitiesid.id}
                           >
-                            {facilitiesid.id}
+                            {facilitiesid.name}
                           </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Điện nước">
+                    {/* <Form.Item label="Điện nước">
                       <Select onChange={handleChange_2}>
                         {electricitywatersList.map((electricitywatersid) => (
                           <Select.Option
@@ -433,7 +445,7 @@ function Rooms(props) {
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item>
+                    </Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

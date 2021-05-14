@@ -31,16 +31,18 @@ function App() {
        {/* <Rules/> */}
        {/* <Facilities/> */}
         {/* <Reportedissues/> */}
-        {/* <Notification/>/ */}
+        {/* <Branches/> */}
+        {/* <Notification/> */}
       {/* <Customer/>
        */}
        {/* <Revenue/> */}
        {/* <Monthlyincome/> */}
        {/* <Monthlypayment/> */}
-       <Users/>
+       {/* <Users/> */}
        {/* <Room/> */}
-       {/* <ElectricityWaters/> */}
+       <ElectricityWaters/>
        {/* <Contract/> */}
+       {/* <Users/> */}
     </div>
   );
 }

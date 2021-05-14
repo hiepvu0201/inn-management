@@ -18,7 +18,7 @@ const roleApi={
     },
     getbyId(role){
         const url=`/api/v1/roles/${role}`;
-        return axiosClient.get(url,role)
+        return axiosClient.get(url)
     }
 }
 export default roleApi;

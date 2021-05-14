@@ -53,20 +53,32 @@ function Users(props) {
   const [idSelected_1, setidSelected_1] = useState([]);
   const [dataTable, setdataTable] = useState([]);
   const [idReport_1, setidReport_1] = useState([]);
+
+  const [abcd, setAbcd] = useState([]);
   // const updatetable = async (roleIds) => {
   //   dataTable=[...usersList];
   //   console.log("abc",()=>fetchRolebyId(roleIds));
 
   // }
-  const fetchRolebyId = async (roleIds) => {
+  const fetchRolebyId = async (userArr) => {
     try {
-      const response = await roleApi.getbyId(roleIds);
-      console.log("id", roleIds);
-      console.log("Get by id successfully", response.data);
-      // return response.data.name;
-      console.log("name", response.data.name);
-      setIsusersList([...usersList, response.data.name]);
-      // console.log("abc22",response.data);
+      let nameRole;
+     
+      let newUserList = userArr;
+      userArr.map((us) => {
+        console.log("us", us.roleIds[0]);
+        const roleID = us.roleIds[0];
+        const response = new Promise((resolve, reject) => {
+          resolve(roleApi.getbyId(roleID));
+        });
+
+        response.then((value) => {
+          const index = userArr.findIndex((x) => x.id === us.id);
+          newUserList[index] = { ...userArr[index], hienlen:Object.values[value.data.name] };
+        });
+      });
+      return newUserList;
+      // setAbcd(newUserList);
     } catch (error) {
       console.log("Failed to get by id list: ", error);
     }
@@ -76,9 +88,16 @@ function Users(props) {
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
-      const dataupdate = fetchRolebyId(roleIds);
-      setIsusersList(response.data);
-      dataTable([...userList,dataupdate]);
+
+      const responseABC = new Promise((resolve, reject) => {
+        resolve(fetchRolebyId(response.data));
+      });
+      responseABC.then((value) => {
+         setAbcd(value);
+      });
+      // setIsusersList(response.data);
+      // dataTable([...userList, response.data]);
+      // console.log("response.data.roleIds[0] >>", response.data[0].roleIds);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -256,15 +275,14 @@ function Users(props) {
       key: "job",
     },
     {
-      title: "Phân quyền người dùng",
-      dataIndex: "roleIds",
-      key: "roleIds",
-      render: (roleIds) => fetchRolebyId(roleIds),
+      title: "hienlen",
+      dataIndex: "hienlen",
+      key: "hienlen",
     },
     {
-      title: "",
-      dataIndex: "reportedIssueIds",
-      key: "reportedIssueIds",
+      title: "passwordHash",
+      dataIndex: "passwordHash",
+      key: "passwordHash",
     },
     // {
     //   title: "Ngày vào",
@@ -422,6 +440,7 @@ function Users(props) {
           </Form>
         </Spin>
       </Modal>
+      <Button onClick={() => console.log(">>newarrClick",abcd)}>hiện lên coi</Button>
       <div
         style={{
           width: "100%",
@@ -558,7 +577,7 @@ function Users(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={usersList} />
+              <Table columns={columns} bordered dataSource={abcd} />
             </div>
           </div>
         </div>

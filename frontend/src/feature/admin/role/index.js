@@ -50,16 +50,16 @@ function Role(props) {
     fetchRoleList();
   }, []);
   //delete
-    const fetchDeleteRole = async (record) => {
-      try {
-        const response = await roleApi.deleteRole(record.id);
-        console.log("Delete role successfully", response);
-        setRoleList(roleList.filter((item) => item.id !== record.id));
-      } catch (error) {
-        console.log("Failed to delete role list", error);
-      }
-    };
- 
+  const fetchDeleteRole = async (record) => {
+    try {
+      const response = await roleApi.deleteRole(record.id);
+      console.log("Delete role successfully", response);
+      setRoleList(roleList.filter((item) => item.id !== record.id));
+    } catch (error) {
+      console.log("Failed to delete role list", error);
+    }
+  };
+
   //form
   const fetchUpdateRole = async (editv) => {
     setIsloadingUpdate(true);
@@ -79,10 +79,9 @@ function Role(props) {
       try {
         const response = await roleApi.createRole(values);
         console.log("Fetch create role successfully: ", response);
-        setRoleList([...roleList, values]);
+        setRoleList([...roleList, response.data]);
         console.log(roleList);
-              setIsModalVisible_1(false);
-
+        setIsModalVisible(false);
       } catch (error) {
         console.log("failed to fetch create role list: ", error);
       }
@@ -205,9 +204,16 @@ function Role(props) {
             <Form.Item label="Tên phân quyền người dùng" name="name">
               <Input placeholder={rowEdit.name} />
             </Form.Item>
-            <Button type="primary" htmlType="submit">
-              LƯU LẠI
-            </Button>
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                LƯU LẠI
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
           </Form>
         </Spin>
       </Modal>

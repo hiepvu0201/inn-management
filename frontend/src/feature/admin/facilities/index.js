@@ -38,8 +38,7 @@ function Facilities(props) {
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
- 
-  
+
   const fetchfacilitiesList = async () => {
     try {
       const response = await facilitiesApi.getAll();
@@ -90,7 +89,7 @@ function Facilities(props) {
     try {
       const response = await facilitiesApi.updatefacilities(edittv);
       console.log("Fetch update facilities successfully", response);
-       console.log("edit data", edittv);
+      console.log("edit data", edittv);
       fetchfacilitiesList();
       setIsModalVisible_1(false);
     } catch (error) {
@@ -109,21 +108,20 @@ function Facilities(props) {
 
     const data_update = { id: rowEdit.id, data: dataUpdate };
     fetchUpdateFacilities(data_update);
-    
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
- const fetchDeleteFacilities = async (record) => {
-   try {
-     const response = await facilitiesApi.deletefacilities(record.id);
-     console.log("Delete facilities successfully", response);
-     setFacilitiesList(facilitiesList.filter((item) => item.id !== record.id));
-   } catch (error) {
-     console.log("Failed to delete facilities list", error);
-   }
- };
- 
+  const fetchDeleteFacilities = async (record) => {
+    try {
+      const response = await facilitiesApi.deletefacilities(record.id);
+      console.log("Delete facilities successfully", response);
+      setFacilitiesList(facilitiesList.filter((item) => item.id !== record.id));
+    } catch (error) {
+      console.log("Failed to delete facilities list", error);
+    }
+  };
+
   //select
   function handleChange(value) {
     console.log(`selected branches id ${value}`);
@@ -160,12 +158,6 @@ function Facilities(props) {
       key: "quantity",
     },
     {
-      title:"Chi nhánh",
-      dataIndex:"branches",
-      key:"branches",
-      render:(branches)=><div>{branches[0].location}</div>
-    },
-    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -173,8 +165,7 @@ function Facilities(props) {
         <div style={{ display: "flex" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                       onConfirm={() => fetchDeleteFacilities(record)}
-
+            onConfirm={() => fetchDeleteFacilities(record)}
             onCancel={cancel}
             okText="Có"
             cancelText="Không"
@@ -256,17 +247,6 @@ function Facilities(props) {
             <Form.Item label="Số lượng" name="quantity">
               <Input placeholder={rowEdit.quantity} />
             </Form.Item>
-
-            <Form.Item label="Chi nhánh">
-              <Select onChange={handleChange}>
-                {branchesList.map((branchesid) => (
-                  <Select.Option key={branchesid.id} value={branchesid.id}>
-                    {branchesid.location}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -351,19 +331,6 @@ function Facilities(props) {
                     <Form.Item label="Số lượng" name="quantity">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Chi nhánh">
-                      <Select onChange={handleChange}>
-                        {branchesList.map((branchesid) => (
-                          <Select.Option
-                            key={branchesid.id}
-                            value={branchesid.id}
-                          >
-                            {branchesid.location}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    {/* <Form.Item></Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

@@ -26,8 +26,9 @@ function App() {
       {/* <Register/> */}
       {/* <Forgotpassword/> */}
       {/* <Home/> */}
-      {/* <Branches/> */}
+      <Branches/>
        {/* <Role/> */}
+       {/* <Notification/> */}
        {/* <Rules/> */}
        {/* <Facilities/> */}
         {/* <Reportedissues/> */}
@@ -40,7 +41,7 @@ function App() {
        {/* <Monthlypayment/> */}
        {/* <Users/> */}
        {/* <Room/> */}
-       <ElectricityWaters/>
+       {/* <ElectricityWaters/> */}
        {/* <Contract/> */}
        {/* <Users/> */}
     </div>

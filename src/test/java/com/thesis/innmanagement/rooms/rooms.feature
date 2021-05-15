@@ -22,7 +22,7 @@ Feature: rooms test
     And request roomInfo
     When method POST
     Then status 200
-    And match response.roomNo == "E1-001"
+    And match $.roomNo == "E1-001"
 
   Scenario: find all by user name
     Given path 'api/v1/rooms/search-by-username/'

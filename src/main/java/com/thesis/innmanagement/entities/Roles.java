@@ -1,6 +1,6 @@
 package com.thesis.innmanagement.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.thesis.innmanagement.common.ERole;
 import com.thesis.innmanagement.config.entities.BasicEntity;
 
 import javax.persistence.*;
@@ -8,13 +8,15 @@ import javax.persistence.*;
 @Entity
 public class Roles extends BasicEntity {
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ERole name;
 
-    public String getName() {
+    public ERole getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ERole name) {
         this.name = name;
     }
 }

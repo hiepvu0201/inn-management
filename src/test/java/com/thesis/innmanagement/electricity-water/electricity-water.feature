@@ -27,4 +27,4 @@ Feature: electricity test
     And request electricityWaterInfo
     When method POST
     Then status 200
-    And match response.numElectricOld == 100
+    And match $.numElectricOld == 100

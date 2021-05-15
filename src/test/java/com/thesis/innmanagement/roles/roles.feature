@@ -12,11 +12,11 @@ Feature: roles test
     And def roleInfo =
     """
     {
-      "name": "client",
+      "name": 0,
     }
     """
     Given path 'api/v1/roles/'
     And request roleInfo
     When method POST
     Then status 200
-    And match response.name == "client"
+    And match $.name == "ROLE_USER"

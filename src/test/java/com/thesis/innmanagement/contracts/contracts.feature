@@ -25,7 +25,7 @@ Feature: contract test
     And request contractInfo
     When method POST
     Then status 200
-    And match response.details == "This is the details of the contract"
+    And match $.details == "This is the details of the contract"
 
   Scenario: get all by owner name
     Given path 'api/v1/contracts/search-by-owner-name'

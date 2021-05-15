@@ -20,3 +20,4 @@ Feature: rules test
     And request ruleInfo
     When method POST
     Then status 200
+    And $.name == "Door closing time"

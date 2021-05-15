@@ -32,3 +32,4 @@ Feature: users test
     And request userInfo
     When method POST
     Then status 200
+    And $.username == "default user"

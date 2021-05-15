@@ -20,4 +20,4 @@ Feature: notifications test
     And request notificationInfo
     When method POST
     Then status 200
-    And match response.name == "first quarter"
+    And match $.name == "first quarter"

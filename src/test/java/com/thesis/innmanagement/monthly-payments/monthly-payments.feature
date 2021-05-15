@@ -21,4 +21,4 @@ Feature: monthly-payments test
     And request monthlyPaymentInfo
     When method POST
     Then status 200
-    And match response.itemName == "first quarter"
+    And match $.itemName == "first quarter"

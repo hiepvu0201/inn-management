@@ -18,13 +18,7 @@ public class UserService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private ReportedIssueRepository reportedIssueRepository;
-
-    @Autowired
     private BranchRepository branchRepository;
-
-    @Autowired
-    private ContractRepository contractRepository;
 
     public List<Users> findAll() {
         return userRepository.findAll();
@@ -40,8 +34,6 @@ public class UserService {
 
     public Users createOrUpdate(Long id, Users user) throws ResourceNotFoundException {
         user.setRoles(roleRepository.findAllById(user.getRoleIds()));
-        user.setReportedIssues(reportedIssueRepository.findAllById(user.getReportedIssueIds()));
-        user.setContracts(contractRepository.findAllById(user.getContractIds()));
         user.setBranch(branchRepository.findById(user.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + user.getBranchId())));
         if (id == null) {
             userRepository.save(user);
@@ -63,12 +55,8 @@ public class UserService {
             userUpdate.setDownPayment(user.getDownPayment());
             userUpdate.setRoles(user.getRoles());
             userUpdate.setRoleIds(user.getRoleIds());
-            userUpdate.setReportedIssues(user.getReportedIssues());
-            userUpdate.setReportedIssueIds(user.getReportedIssueIds());
             userUpdate.setBranchId(user.getBranchId());
             userUpdate.setBranch(user.getBranch());
-            userUpdate.setContracts(user.getContracts());
-            userUpdate.setContractIds(user.getContractIds());
             userRepository.save(userUpdate);
             return userUpdate;
         }

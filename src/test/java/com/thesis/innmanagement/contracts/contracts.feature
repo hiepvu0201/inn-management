@@ -14,7 +14,7 @@ Feature: contract test
     {
       "details": "This is the details of the contract",
       "signDate": "",
-      "tenantIds": [1],
+      "tenantIds": [2],
       "ownerIds": [1],
       "numberOfRooms": "",
       "numberOfStage": "",

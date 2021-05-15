@@ -15,7 +15,6 @@ Feature: facilities test
       "name": "light",
       "quality": "new",
       "quantity": "100",
-      "branchIds": [1]
     }
     """
     Given path 'api/v1/facilities/'

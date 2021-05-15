@@ -9,12 +9,13 @@ Feature: reported-issues test
     Then status 200
 
   Scenario: create
-    And def notificationInfo =
+    * def notificationInfo =
     """
     {
       "title": "rent payment increased",
       "description": "",
-      "status": ""
+      "status": "",
+      "reporterId": 1
     }
     """
     Given path 'api/v1/reported-issues/'

@@ -2,7 +2,6 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Rooms;
-import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
@@ -25,9 +24,6 @@ public class RoomService {
     @Autowired
     private FacilityRepository facilityRepository;
 
-    @Autowired
-    private ElectricityWaterRepository electricityWaterRepository;
-
     public List<Rooms> findAll() {
         return roomRepository.findAll();
     }
@@ -39,7 +35,6 @@ public class RoomService {
     public Rooms createOrUpdate(Long id, Rooms room) throws ResourceNotFoundException {
         room.setUsers(userRepository.findAllById(room.getUserIds()));
         room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
-        room.setElectricityWater(electricityWaterRepository.findById(room.getElectricityWaterId()).orElseThrow(() -> new ResourceNotFoundException("Electricity water not found in: " + room.getElectricityWaterId())));
         if (id == null) {
             roomRepository.save(room);
             return room;
@@ -52,8 +47,6 @@ public class RoomService {
             roomUpdate.setUserIds(room.getUserIds());
             roomUpdate.setFacilities(room.getFacilities());
             roomUpdate.setFacilityIds(room.getFacilityIds());
-            roomUpdate.setElectricityWaterId(room.getElectricityWaterId());
-            roomUpdate.setElectricityWater(room.getElectricityWater());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

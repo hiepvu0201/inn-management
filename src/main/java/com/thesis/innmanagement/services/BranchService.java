@@ -4,11 +4,9 @@ import com.thesis.innmanagement.entities.*;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
-import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.*;
 
 @Service
@@ -20,9 +18,6 @@ public class BranchService {
     @Autowired
     private FacilityRepository facilityRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     public List<Branches> findAll() {
         return branchRepository.findAll();
     }
@@ -32,7 +27,6 @@ public class BranchService {
     }
 
     public Branches createOrUpdate(Long id, Branches branch) throws ResourceNotFoundException {
-        branch.setOwner(userRepository.findById(branch.getOwnerId()).orElseThrow(() -> new ResolutionException("Owner not found on id: " + branch.getOwnerId())));
         branch.setFacilities(facilityRepository.findAllById(branch.getFacilityIds()));
         if (id == null) {
             branchRepository.save(branch);
@@ -46,8 +40,6 @@ public class BranchService {
             branchUpdate.setNumberOfRooms(branch.getNumberOfRooms());
             branchUpdate.setFacilities(branch.getFacilities());
             branchUpdate.setFacilityIds(branch.getFacilityIds());
-            branchUpdate.setOwnerId(branch.getOwnerId());
-            branchUpdate.setOwner(branch.getOwner());
             branchRepository.save(branchUpdate);
             return branchUpdate;
         }

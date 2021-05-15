@@ -18,27 +18,12 @@ public class Branches extends BasicEntity {
     private int numberOfRooms;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner")
-    private Users owner;
-
-    private Long ownerId;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "facilities")
     private List<Facilities> facilities;
 
     @ElementCollection
     private List<Long> facilityIds;
-
-    public Long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
 
     public List<Long> getFacilityIds() {
         return facilityIds;
@@ -78,14 +63,6 @@ public class Branches extends BasicEntity {
 
     public void setNumberOfRooms(int numberOfRooms) {
         this.numberOfRooms = numberOfRooms;
-    }
-
-    public Users getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Users owner) {
-        this.owner = owner;
     }
 
     public List<Facilities> getFacilities() {

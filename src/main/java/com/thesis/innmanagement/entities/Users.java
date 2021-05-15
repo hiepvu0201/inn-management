@@ -36,7 +36,7 @@ public class Users extends BasicEntity {
     private Double downPayment;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "roles")
     private List<Roles> roles;
 
@@ -50,36 +50,12 @@ public class Users extends BasicEntity {
 
     private Long branchId;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contracts")
-    private List<Contracts> contracts;
-
-    @ElementCollection
-    private List<Long> contractIds;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reportedIssues")
-    private List<ReportedIssues> reportedIssues;
-
-    @ElementCollection
-    private List<Long> reportedIssueIds;
-
     public Long getBranchId() {
         return branchId;
     }
 
     public void setBranchId(Long branchId) {
         this.branchId = branchId;
-    }
-
-    public List<Long> getContractIds() {
-        return contractIds;
-    }
-
-    public void setContractIds(List<Long> contractIds) {
-        this.contractIds = contractIds;
     }
 
     public List<Long> getRoleIds() {
@@ -90,36 +66,12 @@ public class Users extends BasicEntity {
         this.roleIds = roleIds;
     }
 
-    public List<Long> getReportedIssueIds() {
-        return reportedIssueIds;
-    }
-
-    public void setReportedIssueIds(List<Long> reportedIssueIds) {
-        this.reportedIssueIds = reportedIssueIds;
-    }
-
     public Branches getBranch() {
         return branch;
     }
 
     public void setBranch(Branches branch) {
         this.branch = branch;
-    }
-
-    public List<Contracts> getContracts() {
-        return contracts;
-    }
-
-    public void setContracts(List<Contracts> contracts) {
-        this.contracts = contracts;
-    }
-
-    public List<ReportedIssues> getReportedIssues() {
-        return reportedIssues;
-    }
-
-    public void setReportedIssues(List<ReportedIssues> reportedIssues) {
-        this.reportedIssues = reportedIssues;
     }
 
     public List<Roles> getRoles() {

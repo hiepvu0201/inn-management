@@ -16,7 +16,6 @@ Feature: branches test
       "description": "Chi nhanh 1",
       "numberOfStages": "3",
       "numberOfRooms": "10",
-      "ownerId": 1,
       "facilityIds": [1]
     }
     """
@@ -24,3 +23,4 @@ Feature: branches test
     And request branchInfo
     When method POST
     Then status 200
+    And match localtion == "TP.Thu Duc"

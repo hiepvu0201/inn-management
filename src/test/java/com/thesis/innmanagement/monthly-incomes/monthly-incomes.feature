@@ -14,6 +14,7 @@ Feature: monthly-incomes test
     {
       "itemName": "first quarter",
       "earn": "10000",
+      "branchId": 1
     }
     """
     Given path 'api/v1/monthly-incomes/'

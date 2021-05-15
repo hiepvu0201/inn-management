@@ -23,4 +23,4 @@ Feature: branches test
     And request branchInfo
     When method POST
     Then status 200
-    And match localtion == "TP.Thu Duc"
+    And match $.localtion == "TP.Thu Duc"

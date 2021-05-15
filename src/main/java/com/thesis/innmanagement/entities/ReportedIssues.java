@@ -29,14 +29,14 @@ public class ReportedIssues extends BasicEntity {
     @JoinColumn(name = "reporter")
     private Users reporter;
 
-    private Long reportedId;
+    private Long reporterId;
 
-    public Long getReportedId() {
-        return reportedId;
+    public Long getReporterId() {
+        return reporterId;
     }
 
-    public void setReportedId(Long reportedId) {
-        this.reportedId = reportedId;
+    public void setReporterId(Long reporterId) {
+        this.reporterId = reporterId;
     }
 
     public String getTitle() {

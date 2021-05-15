@@ -14,6 +14,7 @@ Feature: monthly-payments test
     {
       "itemName": "first quarter",
       "cost": "10000",
+      "branchId": 1
     }
     """
     Given path 'api/v1/monthly-payments/'

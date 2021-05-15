@@ -16,7 +16,6 @@ Feature: rooms test
       "position": "TP.Thu Duc",
       "userIds": [1],
       "facilityIds": [1],
-      "electricityWaterIds": [1]
     }
     """
     Given path 'api/v1/rooms/'

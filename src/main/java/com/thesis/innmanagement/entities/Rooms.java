@@ -29,21 +29,6 @@ public class Rooms extends BasicEntity {
     @ElementCollection
     private List<Long> facilityIds;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "electricityWater")
-    private ElectricityWater electricityWater;
-
-    private Long electricityWaterId;
-
-    public Long getElectricityWaterId() {
-        return electricityWaterId;
-    }
-
-    public void setElectricityWaterId(Long electricityWaterId) {
-        this.electricityWaterId = electricityWaterId;
-    }
-
     public List<Long> getUserIds() {
         return userIds;
     }
@@ -58,14 +43,6 @@ public class Rooms extends BasicEntity {
 
     public void setFacilityIds(List<Long> facilityIds) {
         this.facilityIds = facilityIds;
-    }
-
-    public ElectricityWater getElectricityWater() {
-        return electricityWater;
-    }
-
-    public void setElectricityWater(ElectricityWater electricityWater) {
-        this.electricityWater = electricityWater;
     }
 
     public String getRoomNo() {

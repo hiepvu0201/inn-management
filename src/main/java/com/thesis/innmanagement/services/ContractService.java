@@ -52,6 +52,8 @@ public class ContractService {
             contractUpdate.setNumberOfRooms(contracts.getNumberOfRooms());
             contractUpdate.setNumberOfStage(contracts.getNumberOfStage());
             contractUpdate.setVoucher(contracts.getVoucher());
+            contractUpdate.setOwnerIds(contracts.getOwnerIds());
+            contractUpdate.setTenantIds(contracts.getTenantIds());
             contractRepository.save(contractUpdate);
             return contractUpdate;
         }

@@ -2,7 +2,6 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.entities.Facilities;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
-import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,6 @@ public class FacilityService {
     @Autowired
     private FacilityRepository facilityRepository;
 
-    @Autowired
-    private BranchRepository branchRepository;
-
     public List<Facilities> findAll() {
         return facilityRepository.findAll();
     }
@@ -29,7 +25,6 @@ public class FacilityService {
     }
 
     public Facilities createOrUpdate(Long id, Facilities facility) throws ResourceNotFoundException {
-        facility.setBranches(branchRepository.findAllById(facility.getBranchIds()));
         if (id == null) {
             facilityRepository.save(facility);
             return facility;
@@ -39,8 +34,6 @@ public class FacilityService {
             facilityUpdate.setName(facility.getName());
             facilityUpdate.setQuality(facility.getQuality());
             facilityUpdate.setQuantity(facility.getQuantity());
-            facilityUpdate.setBranches(facility.getBranches());
-            facilityUpdate.setBranchIds(facility.getBranchIds());
             facilityRepository.save(facilityUpdate);
             return facilityUpdate;
         }

@@ -21,7 +21,7 @@ public class ReportedIssueService {
     private ReportedIssueRepository reportedIssueRepository;
 
     public List<ReportedIssues> findAll() {
-        return (List<ReportedIssues>) reportedIssueRepository.findAll();
+        return reportedIssueRepository.findAll();
     }
 
     public ReportedIssues findById(Long id) throws ResourceNotFoundException {
@@ -29,7 +29,7 @@ public class ReportedIssueService {
     }
 
     public ReportedIssues createOrUpdate(Long id, ReportedIssues reportedIssue) throws ResourceNotFoundException {
-        reportedIssue.setReporter(userRepository.findById(reportedIssue.getReportedId()).orElseThrow(() -> new ResourceNotFoundException("Reporter not found on id:" + reportedIssue.getReportedId())));
+        reportedIssue.setReporter(userRepository.findById(reportedIssue.getReporterId()).orElseThrow(() -> new ResourceNotFoundException("Reporter not found on id:" + reportedIssue.getReporterId())));
         if (id == null) {
             reportedIssueRepository.save(reportedIssue);
             return reportedIssue;
@@ -39,7 +39,7 @@ public class ReportedIssueService {
             reportedIssuesUpdate.setTitle(reportedIssue.getTitle());
             reportedIssuesUpdate.setDescription(reportedIssue.getDescription());
             reportedIssuesUpdate.setStatus(reportedIssue.getStatus());
-            reportedIssuesUpdate.setReportedId(reportedIssue.getReportedId());
+            reportedIssuesUpdate.setReporterId(reportedIssue.getReporterId());
             reportedIssuesUpdate.setReporter(reportedIssue.getReporter());
             reportedIssueRepository.save(reportedIssuesUpdate);
             return reportedIssuesUpdate;

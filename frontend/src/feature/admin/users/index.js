@@ -30,6 +30,7 @@ import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
+import branchesApi from "../../../api/branchesApi";
 const { Option } = Select;
 
 function Users(props) {
@@ -53,7 +54,7 @@ function Users(props) {
   const [idSelected_1, setidSelected_1] = useState([]);
   const [dataTable, setdataTable] = useState([]);
   const [idReport_1, setidReport_1] = useState([]);
-
+  const [branchesList, setBranchesList] = useState([]);
   const [abcd, setAbcd] = useState([]);
   // const updatetable = async (roleIds) => {
   //   dataTable=[...usersList];
@@ -63,7 +64,7 @@ function Users(props) {
   // const fetchRolebyId = async (userArr) => {
   //   try {
   //     let nameRole;
-     
+
   //     let newUserList = userArr;
   //     userArr.map((us) => {
   //       console.log("us", us.roleIds[0]);
@@ -117,24 +118,23 @@ function Users(props) {
       console.log("Failed to fetch getAll roles list: ", error);
     }
   };
-  const fetchReportedList = async () => {
+  const fetchBranchesList = async () => {
     try {
-      const response = await reportedissueApi.getAll();
-      console.log("Fetch getAll reportedissues successfully: ", response.data);
+      const response = await branchesApi.getAll();
+      console.log("Fetch getAll branches successfully: ", response.data);
 
-      setreportList(response.data);
+      setBranchesList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
-      console.log("Failed to fetch getAll reportedissues list: ", error);
+      console.log("Failed to fetch getAll branches list: ", error);
     }
   };
-  const [rolebyid, setRolebyid] = useState([]);
 
   useEffect(() => {
     fetchUsersList();
     fetchRoleList();
-    fetchReportedList();
+    fetchBranchesList();
   }, []);
 
   //form
@@ -145,7 +145,6 @@ function Users(props) {
     const dataCreate = {
       ...values,
       roleIds: idSelected,
-      reportedIssueIds: idReport,
     };
     console.log("dataCreate", dataCreate);
     const fetchCreateUsers = async () => {
@@ -209,11 +208,6 @@ function Users(props) {
     console.log(`selected role ${value}`);
     const rolevalue = [value];
     setidSelected(rolevalue);
-  }
-  function handleChange_1(value) {
-    console.log(`selected report ${value}`);
-    const reportvalue = [value];
-    setidReport(reportvalue);
   }
   function handleChange_2(value) {
     console.log(`selected role1 ${value}`);
@@ -280,7 +274,12 @@ function Users(props) {
       key: "roles",
       render: (roles) => <div>{roles[0].name}</div>,
     },
-   
+    {
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      render: (branch) => <div>{branch.description}</div>,
+    },
     {
       title: "",
       dataIndex: "",
@@ -394,16 +393,16 @@ function Users(props) {
               <Select onChange={handleChange}>
                 {roleList.map((roleid) => (
                   <Select.Option key={roleid.id} value={roleid.id}>
-                    {roleid.id}
+                    {roleid.name}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Báo cáo">
-              <Select onChange={handleChange_1}>
-                {reportList.map((reportid) => (
-                  <Select.Option key={reportid.id} value={reportid.id}>
-                    {reportid.id}
+            <Form.Item label="Chi nhánh" name="branchId">
+              <Select>
+                {branchesList.map((branchesid) => (
+                  <Select.Option key={branchesid.id} value={branchesid.id}>
+                    {branchesid.description}
                   </Select.Option>
                 ))}
               </Select>
@@ -515,16 +514,19 @@ function Users(props) {
                       <Select onChange={handleChange}>
                         {roleList.map((roleid) => (
                           <Select.Option key={roleid.id} value={roleid.id}>
-                            {roleid.id}
+                            {roleid.name}
                           </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Báo cáo">
-                      <Select onChange={handleChange_1}>
-                        {reportList.map((reportid) => (
-                          <Select.Option key={reportid.id} value={reportid.id}>
-                            {reportid.id}
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchesList.map((branchesid) => (
+                          <Select.Option
+                            key={branchesid.id}
+                            value={branchesid.id}
+                          >
+                            {branchesid.description}
                           </Select.Option>
                         ))}
                       </Select>

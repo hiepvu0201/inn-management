@@ -261,7 +261,7 @@ function Reportedissues(props) {
             <Form.Item label="Tình trạng" name="status">
               <Input placeholder={rowEdit.status} />
             </Form.Item>
-            <Form.Item label="Người báo cáo" name="reportedId">
+            <Form.Item label="Người báo cáo" name="reporterId">
               <Select>
                 {usersList.map((reporterid) => (
                   <Select.Option key={reporterid.id} value={reporterid.id}>
@@ -306,7 +306,7 @@ function Reportedissues(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ CÁC VẤN ĐỀ CỦA NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ BÁO CÁO ĐỀ MỤC CỦA NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -360,7 +360,7 @@ function Reportedissues(props) {
                     <Form.Item label="Ngày hoàn thành" name="solvedDate">
                       <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                     </Form.Item> */}
-                    <Form.Item label="Người báo cáo" name="reportedId">
+                    <Form.Item label="Người báo cáo" name="reporterId">
                       <Select>
                         {usersList.map((reporterid) => (
                           <Select.Option

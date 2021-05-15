@@ -306,7 +306,7 @@ function Rooms(props) {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Vật liệu">
+            <Form.Item label="Thiết bị">
               <Select
                 onChange={handleChange_1}
                 placeholder={rowEdit.facilityIds}
@@ -367,7 +367,7 @@ function Rooms(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ PHÒNG NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ PHÒNG TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -422,7 +422,7 @@ function Rooms(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Vật liệu">
+                    <Form.Item label="Thiết bị">
                       <Select onChange={handleChange_1}>
                         {facilitiesList.map((facilitiesid) => (
                           <Select.Option
@@ -434,18 +434,6 @@ function Rooms(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    {/* <Form.Item label="Điện nước">
-                      <Select onChange={handleChange_2}>
-                        {electricitywatersList.map((electricitywatersid) => (
-                          <Select.Option
-                            key={electricitywatersid.id}
-                            value={electricitywatersid.id}
-                          >
-                            {electricitywatersid.id}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

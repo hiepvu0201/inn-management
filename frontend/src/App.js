@@ -28,10 +28,12 @@ function App() {
       {/* <Home/> */}
       {/* <Branches/> */}
        {/* <Role/> */}
+       {/* <Notification/> */}
        {/* <Rules/> */}
        {/* <Facilities/> */}
         {/* <Reportedissues/> */}
-        {/* <Notification/>/ */}
+        {/* <Branches/> */}
+        {/* <Notification/> */}
       {/* <Customer/>
        */}
        {/* <Revenue/> */}
@@ -41,6 +43,7 @@ function App() {
        {/* <Room/> */}
        {/* <ElectricityWaters/> */}
        <Contract/>
+       {/* <Users/> */}
     </div>
   );
 }

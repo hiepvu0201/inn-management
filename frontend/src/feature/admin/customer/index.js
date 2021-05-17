@@ -292,7 +292,7 @@ function Customer() {
   return (
     <div>
       <div
-        style={{ width: "100%", height: "100vmax", backgroundColor: "#efefef" }}
+        style={{ width: "100%", height: "100vh", backgroundColor: "#efefef" }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />

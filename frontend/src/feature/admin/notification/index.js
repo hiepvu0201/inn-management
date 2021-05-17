@@ -239,7 +239,7 @@ function Notification(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >

@@ -19,9 +19,9 @@ function Footer() {
     <div>
       <div className="box-foot">
         <div className="middle-foot">
-          <Row>
-            <Col lg={8} md={24}>
-              <div style={{ display: "block", textAlign: "left" }}>
+          <Row style={{paddingTop:"10px"}}>
+            <Col lg={8} md={24} style={{paddingRight:"40px"}}>
+              <div style={{ display: "block", textAlign: "left",width:"100%" }}>
                 <div>
                   <img src={Images.LOGIN} className="img-icon" />
                 </div>
@@ -192,7 +192,7 @@ function Footer() {
                 </div>
               </div>
             </Col>
-            <Col lg={8} md={24}>
+            <Col lg={8} md={24} style={{paddingLeft:"120px"}}>
               <div style={{ display: "block" }}>
                 <div className="topic-title">
                   <div className="char"></div>

@@ -305,7 +305,7 @@ function Branches(props) {
           backgroundColor: "#efefef",
         }}
       >
-        <div style={{ height: "100px" }}>
+        <div style={{ height: "100px",backgroundColor:"white" }}>
           <Menu_AdminPage />
         </div>
         <div className="rectangle">

@@ -22,14 +22,14 @@ import Contract from "./../src/feature/admin/contract";
 import Notification_tag from "./components/notification_tag";
 import Notification_client from "./feature/client/notification";
 import Footer_client from './../src/components/footer_client'
+import Room_client from './../src/feature/client/room'
+import Room_tag from './../src/components/room_tag'
 function App() {
   return (
     <div className="App">
-      <Notification_client />
-      {/* <Notification_tag/> */}
-      {/* <Footer_client/> */}
+      <Room_client/>
+      {/* <Room_tag/> */}
     </div>
   );
 }
-
 export default App;

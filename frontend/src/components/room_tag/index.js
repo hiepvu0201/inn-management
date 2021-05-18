@@ -1,6 +1,8 @@
 import React from "react";
 import { Images } from "./../../config/image";
-import './style.css'
+import "./style.css";
+import { Link } from "react-router-dom";
+
 function Room_tag(props) {
   return (
     <div>
@@ -121,7 +123,19 @@ function Room_tag(props) {
               </div>
             </div>
             <div style={{ textAlign: "center", paddingTop: "10px" }}>
-              <button className="btn">Xem chi tiết</button>
+              <Link
+                to={{
+                  pathname: `detailroom/${props.id}`,
+                  state: {
+                    id: props.id,
+                    roomNo: props.roomNo,
+                    position: props.position,
+                    facilities: props.facilities,
+                  },
+                }}
+              >
+                <button className="btn"> Xem chi tiết</button>
+              </Link>
             </div>
           </div>
         </div>

@@ -301,11 +301,11 @@ function Branches(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
-        <div style={{ height: "100px",backgroundColor:"white" }}>
+        <div style={{ height: "120px" }}>
           <Menu_AdminPage />
         </div>
         <div className="rectangle">

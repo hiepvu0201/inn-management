@@ -24,11 +24,52 @@ import Notification_client from "./feature/client/notification";
 import Footer_client from './../src/components/footer_client'
 import Room_client from './../src/feature/client/room'
 import Room_tag from './../src/components/room_tag'
+import Homepage_admin from './../src/feature/admin/homepage'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
 function App() {
   return (
     <div className="App">
-      <Room_client/>
-      {/* <Room_tag/> */}
+      <Switch>
+        <Route path="/branches">
+          <Branches />
+        </Route>
+        <Route path="/rooms">
+          <Room />
+        </Route>
+        <Route path="/facilities">
+          <Facilities />
+        </Route>
+        <Route path="/electricity-water">
+          <ElectricityWaters />
+        </Route>
+        <Route path="/monthlyincome">
+          <Monthlyincome />
+        </Route>
+        <Route path="/monthlypayment">
+          <Monthlypayment />
+        </Route>
+        <Route path="/contract">
+          <Contract />
+        </Route>
+        <Route path="/user">
+          <Users />
+        </Route>
+        <Route path="/role">
+          <Role />
+        </Route>
+        <Route path="/rule">
+          <Rules />
+        </Route>
+        <Route path="/notification">
+          <Notification />
+        </Route>
+        <Route path="/reported-issue">
+          <Reportedissues />
+        </Route>
+        <Route path="/">
+          <Homepage_admin />
+        </Route>
+      </Switch>
     </div>
   );
 }

@@ -26,10 +26,13 @@ import Room_client from './../src/feature/client/room'
 import Room_tag from './../src/components/room_tag'
 import Homepage_admin from './../src/feature/admin/homepage'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
+import Reportissues_client from './feature/client/report-issues'
+import Reportissues_tag from "./components/reportissue_tag";
+
 function App() {
   return (
     <div className="App">
-      <Switch>
+      {/* <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -69,7 +72,12 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch>
+      </Switch> */}
+      {/* <Reportissues_tag /> */}
+      <Reportissues_client/>
+      {/* <Reportedissues/> */}
+
+      {/* <Notification_client/> */}
     </div>
   );
 }

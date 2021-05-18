@@ -28,7 +28,8 @@ import Homepage_admin from './../src/feature/admin/homepage'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
 import Reportissues_client from './feature/client/report-issues'
 import Reportissues_tag from "./components/reportissue_tag";
-
+import Detail_room from './feature/client/detail_room'
+import Detailroom_tag from './components/detailroom_tag'
 function App() {
   return (
     <div className="App">
@@ -73,11 +74,17 @@ function App() {
           <Homepage_admin />
         </Route>
       </Switch> */}
-      {/* <Reportissues_tag /> */}
-      <Reportissues_client/>
-      {/* <Reportedissues/> */}
-
-      {/* <Notification_client/> */}
+      {/* <Room_client/> */}
+      <Switch>
+        <Route path="/detailroom">
+          <Detail_room/>
+        </Route>
+        <Route path="/room">
+          <Room_client/>
+        </Route>
+      </Switch>
+      {/* <Detail_room/> */}
+      {/* <Detailroom_tag/> */}
     </div>
   );
 }

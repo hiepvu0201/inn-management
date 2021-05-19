@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 @CrossOrigin(origins = "*")
 @Repository
 public interface ContractRepository extends JpaRepository<Contracts, Long> {
 
     @Query("select distinct c from Contracts c inner join Users u on u.username = :ownerName")
-    List<Contracts> findAllByOwnerName(String ownerName);
+    Stream<Contracts> findAllByOwnerName(String ownerName);
 
     @Query("select distinct c from Contracts c inner join Users u on u.username = :tenantName")
-    List<Contracts> findAllByTenantName(String tenantName);
+    Stream<Contracts> findAllByTenantName(String tenantName);
 }

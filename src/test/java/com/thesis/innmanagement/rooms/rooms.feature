@@ -26,7 +26,6 @@ Feature: rooms test
 
   Scenario: find all by user name
     Given path 'api/v1/rooms/search-by-username/'
-    And param username = "default user"
+    And param userName = "default user"
     When method GET
     Then status 200
-    And match $.username == "default user"

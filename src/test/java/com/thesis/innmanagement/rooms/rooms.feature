@@ -29,3 +29,4 @@ Feature: rooms test
     And param username = "default user"
     When method GET
     Then status 200
+    And match $.username == "default user"

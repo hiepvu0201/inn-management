@@ -21,4 +21,4 @@ Feature: facilities test
     And request facilityInfo
     When method POST
     Then status 200
-    And $.name == "light"
+    And match $.name == "light"

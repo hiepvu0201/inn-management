@@ -32,9 +32,11 @@ Feature: contract test
     And param ownername = "default user"
     When method GET
     Then status 200
+    And match $.ownername == "default user"
 
   Scenario: get all by tenant name
     Given path 'api/v1/contracts/search-by-tenant-name/'
     And param tenantname = "default user"
     When method GET
     Then status 200
+    And match $.tenantname == "default user"

@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
+import branchesApi from "./../../../api/branchesApi";
+
 import {
   Table,
   Popconfirm,
@@ -29,6 +31,8 @@ import monthlyincomesApi from "../../../api/monthlyincomeApi";
 const { Option } = Select;
 
 function Monthlyincome(props) {
+  const [branchList, setBranchList] = useState([]);
+
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //api
@@ -45,7 +49,18 @@ function Monthlyincome(props) {
       console.log("Failed to fetch monthly income list: ", error);
     }
   };
+  const fetchBranchList = async () => {
+    try {
+      const response = await branchesApi.getAll();
+      console.log("Fetch branch successfully: ", response.data);
+      setBranchList(response.data);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch branch list: ", error);
+    }
+  };
   useEffect(() => {
+    fetchBranchList();
     fetchMonthlyincomeList();
   }, []);
   //api - update
@@ -62,29 +77,29 @@ function Monthlyincome(props) {
     }
   };
   //delete
-   const fetchDeleteMonthlyincome= async (record) => {
-     try {
-       const response = await monthlyincomesApi.deletemonthlyincome(record.id);
-       console.log("Delete monthlyincome successfully", response);
-       setMonthlyincomeList(monthlyincomeList.filter((item) => item.id !== record.id));
-       fetchMonthlyincomeList();
-     } catch (error) {
-       console.log("Failed to delete rule list", error);
-     }
-   };
+  const fetchDeleteMonthlyincome = async (record) => {
+    try {
+      const response = await monthlyincomesApi.deletemonthlyincome(record.id);
+      console.log("Delete monthlyincome successfully", response);
+      setMonthlyincomeList(
+        monthlyincomeList.filter((item) => item.id !== record.id)
+      );
+      fetchMonthlyincomeList();
+    } catch (error) {
+      console.log("Failed to delete rule list", error);
+    }
+  };
   //form
   const onFinish = (values) => {
-
     const fetchCreateMonthlyincomes = async () => {
       try {
         // values["id"]=values.id;
         const response = await monthlyincomesApi.createmonthlyincome(values);
         console.log("Fetch create monthlyincomes succesSfully: ", response);
         setMonthlyincomeList([...monthlyincomeList, response.data]);
-        console.log("In response",response);
+        console.log("In response", response);
         setIsModalVisible(false);
         console.log("tabledata: ", monthlyincomeList);
-
       } catch (error) {
         console.log("failed to fetch rules list: ", error);
       }
@@ -128,6 +143,12 @@ function Monthlyincome(props) {
       title: "Số tiền thu",
       dataIndex: "earn",
       key: "earn",
+    },
+    {
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      render: (branch) => <div>{branch.location}</div>,
     },
     {
       title: "",
@@ -216,7 +237,15 @@ function Monthlyincome(props) {
             <Form.Item label="Số tiền thu" name="earn">
               <Input placeholder={rowEdit.earn} />
             </Form.Item>
-
+            <Form.Item label="Chi nhánh" name="branchId">
+              <Select>
+                {branchList.map((branchid) => (
+                  <Select.Option key={branchid.id} value={branchid.id}>
+                    {branchid.location}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -233,7 +262,7 @@ function Monthlyincome(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
@@ -298,7 +327,15 @@ function Monthlyincome(props) {
                     <Form.Item label="Số tiền thu" name="earn">
                       <Input />
                     </Form.Item>
-
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchList.map((branchid) => (
+                          <Select.Option key={branchid.id} value={branchid.id}>
+                            {branchid.location}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

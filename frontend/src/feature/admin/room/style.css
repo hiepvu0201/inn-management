@@ -8,12 +8,15 @@
 .topic-left{
     float: left;
     display: flex;
+    width:100%
 }
 .content{
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;
     padding-left: 20px;
+    width:80%;
+    text-align: left;
 
 }
 .btn-right{

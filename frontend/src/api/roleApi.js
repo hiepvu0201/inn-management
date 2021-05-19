@@ -15,6 +15,10 @@ const roleApi={
     deleteRole(role){
         const url=`/api/v1/roles/${role}/delete/`;
         return axiosClient.delete(url);
+    },
+    getbyId(role){
+        const url=`/api/v1/roles/${role}`;
+        return axiosClient.get(url)
     }
 }
 export default roleApi;

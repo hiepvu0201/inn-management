@@ -26,11 +26,24 @@ import {
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
 import monthlypaymentsApi from "../../../api/monthlypaymentApi";
+import branchesApi from "./../../../api/branchesApi";
+
 const { Option } = Select;
 
 function Monthlypayment(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
+  const [branchList, setBranchList] = useState([]);
+const fetchBranchList = async () => {
+  try {
+    const response = await branchesApi.getAll();
+    console.log("Fetch branch successfully: ", response.data);
+    setBranchList(response.data);
+    setIsModalVisible_1(false);
+  } catch (error) {
+    console.log("Failed to fetch branch list: ", error);
+  }
+};
   //api
   const [rowEdit, setRowEdit] = useState({});
   const [monthlypaymentList, setMonthlypaymentList] = useState([]);
@@ -46,6 +59,7 @@ function Monthlypayment(props) {
     }
   };
   useEffect(() => {
+    fetchBranchList();
     fetchMonthlypaymentList();
   }, []);
   //api - update
@@ -127,6 +141,12 @@ function Monthlypayment(props) {
       title: "Số tiền chi",
       dataIndex: "cost",
       key: "cost",
+    },
+    {
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      render:(branch)=><div>{branch.location}</div>
     },
     {
       title: "",
@@ -215,7 +235,15 @@ function Monthlypayment(props) {
             <Form.Item label="Số tiền chi" name="cost">
               <Input placeholder={rowEdit.cost} />
             </Form.Item>
-
+            <Form.Item label="Chi nhánh" name="branchId">
+              <Select>
+                {branchList.map((branchid) => (
+                  <Select.Option key={branchid.id} value={branchid.id}>
+                    {branchid.location}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -232,7 +260,7 @@ function Monthlypayment(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
@@ -252,7 +280,7 @@ function Monthlypayment(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NGUỒN THU NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ NGUỒN CHI NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -297,7 +325,15 @@ function Monthlypayment(props) {
                     <Form.Item label="Số tiền chi" name="cost">
                       <Input />
                     </Form.Item>
-
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchList.map((branchid) => (
+                          <Select.Option key={branchid.id} value={branchid.id}>
+                            {branchid.location}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

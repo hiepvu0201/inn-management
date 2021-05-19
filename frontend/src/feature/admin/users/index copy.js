@@ -30,7 +30,6 @@ import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
-import branchesApi from "../../../api/branchesApi";
 const { Option } = Select;
 
 function Users(props) {
@@ -54,49 +53,49 @@ function Users(props) {
   const [idSelected_1, setidSelected_1] = useState([]);
   const [dataTable, setdataTable] = useState([]);
   const [idReport_1, setidReport_1] = useState([]);
-  const [branchesList, setBranchesList] = useState([]);
+
   const [abcd, setAbcd] = useState([]);
   // const updatetable = async (roleIds) => {
   //   dataTable=[...usersList];
   //   console.log("abc",()=>fetchRolebyId(roleIds));
 
   // }
-  // const fetchRolebyId = async (userArr) => {
-  //   try {
-  //     let nameRole;
+  const fetchRolebyId = async (userArr) => {
+    try {
+      let nameRole;
+     
+      let newUserList = userArr;
+      userArr.map((us) => {
+        console.log("us", us.roleIds[0]);
+        const roleID = us.roleIds[0];
+        const response = new Promise((resolve, reject) => {
+          resolve(roleApi.getbyId(roleID));
+        });
 
-  //     let newUserList = userArr;
-  //     userArr.map((us) => {
-  //       console.log("us", us.roleIds[0]);
-  //       const roleID = us.roleIds[0];
-  //       const response = new Promise((resolve, reject) => {
-  //         resolve(roleApi.getbyId(roleID));
-  //       });
-
-  //       response.then((value) => {
-  //         const index = userArr.findIndex((x) => x.id === us.id);
-  //         newUserList[index] = { ...userArr[index], hienlen:value.data.name };
-  //       });
-  //     });
-  //     return newUserList;
-  //     // setAbcd(newUserList);
-  //   } catch (error) {
-  //     console.log("Failed to get by id list: ", error);
-  //   }
-  // };
+        response.then((value) => {
+          const index = userArr.findIndex((x) => x.id === us.id);
+          newUserList[index] = { ...userArr[index], hienlen:value.data.name };
+        });
+      });
+      return newUserList;
+      // setAbcd(newUserList);
+    } catch (error) {
+      console.log("Failed to get by id list: ", error);
+    }
+  };
   const fetchUsersList = async () => {
     const roleIds = { roleIds: idSelected };
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
 
-      // const responseABC = new Promise((resolve, reject) => {
-      //   resolve(fetchRolebyId(response.data));
-      // });
-      // responseABC.then((value) => {
-      //    setAbcd(value);
-      // });
-      setIsusersList(response.data);
+      const responseABC = new Promise((resolve, reject) => {
+        resolve(fetchRolebyId(response.data));
+      });
+      responseABC.then((value) => {
+         setAbcd(value);
+      });
+      // setIsusersList(response.data);
       // dataTable([...userList, response.data]);
       // console.log("response.data.roleIds[0] >>", response.data[0].roleIds);
       setIsloadingUpdate(false);
@@ -110,7 +109,7 @@ function Users(props) {
     try {
       const response = await roleApi.getAll();
       console.log("Fetch getAll roles successfully: ", response.data);
-      // console.log("<<",response.data.)
+
       setRoleList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
@@ -118,23 +117,24 @@ function Users(props) {
       console.log("Failed to fetch getAll roles list: ", error);
     }
   };
-  const fetchBranchesList = async () => {
+  const fetchReportedList = async () => {
     try {
-      const response = await branchesApi.getAll();
-      console.log("Fetch getAll branches successfully: ", response.data);
+      const response = await reportedissueApi.getAll();
+      console.log("Fetch getAll reportedissues successfully: ", response.data);
 
-      setBranchesList(response.data);
+      setreportList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
-      console.log("Failed to fetch getAll branches list: ", error);
+      console.log("Failed to fetch getAll reportedissues list: ", error);
     }
   };
+  const [rolebyid, setRolebyid] = useState([]);
 
   useEffect(() => {
     fetchUsersList();
     fetchRoleList();
-    fetchBranchesList();
+    fetchReportedList();
   }, []);
 
   //form
@@ -145,6 +145,7 @@ function Users(props) {
     const dataCreate = {
       ...values,
       roleIds: idSelected,
+      reportedIssueIds: idReport,
     };
     console.log("dataCreate", dataCreate);
     const fetchCreateUsers = async () => {
@@ -209,6 +210,11 @@ function Users(props) {
     const rolevalue = [value];
     setidSelected(rolevalue);
   }
+  function handleChange_1(value) {
+    console.log(`selected report ${value}`);
+    const reportvalue = [value];
+    setidReport(reportvalue);
+  }
   function handleChange_2(value) {
     console.log(`selected role1 ${value}`);
     const rolevalue_1 = [value];
@@ -269,17 +275,30 @@ function Users(props) {
       key: "job",
     },
     {
-      title: "Quyền",
-      dataIndex: "roles",
-      key: "roles",
-      render: (roles) => <div>{roles[0].name}</div>,
+      title: "hienlen",
+      dataIndex: "hienlen",
+      key: "hienlen",
     },
     {
-      title: "Chi nhánh",
-      dataIndex: "branch",
-      key: "branch",
-      render: (branch) => <div>{branch.description}</div>,
+      title: "passwordHash",
+      dataIndex: "passwordHash",
+      key: "passwordHash",
     },
+    // {
+    //   title: "Ngày vào",
+    //   dataIndex: "checkinDate",
+    //   key: "checkinDate",
+    // },
+    // {
+    //   title: "Ngày ra",
+    //   dataIndex: "checkoutDate",
+    //   key: "checkoutDate",
+    // },
+    // {
+    //   title: "Tiền cọc",
+    //   dataIndex: "downPayment",
+    //   key: "downPayment",
+    // },
     {
       title: "",
       dataIndex: "",
@@ -393,16 +412,16 @@ function Users(props) {
               <Select onChange={handleChange}>
                 {roleList.map((roleid) => (
                   <Select.Option key={roleid.id} value={roleid.id}>
-                    {roleid.name}
+                    {roleid.id}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Chi nhánh" name="branchId">
-              <Select>
-                {branchesList.map((branchesid) => (
-                  <Select.Option key={branchesid.id} value={branchesid.id}>
-                    {branchesid.description}
+            <Form.Item label="Báo cáo">
+              <Select onChange={handleChange_1}>
+                {reportList.map((reportid) => (
+                  <Select.Option key={reportid.id} value={reportid.id}>
+                    {reportid.id}
                   </Select.Option>
                 ))}
               </Select>
@@ -421,10 +440,11 @@ function Users(props) {
           </Form>
         </Spin>
       </Modal>
+      <Button onClick={() => console.log(">>newarrClick",abcd)}>hiện lên coi</Button>
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "100vmax",
           backgroundColor: "#efefef",
         }}
       >
@@ -514,19 +534,16 @@ function Users(props) {
                       <Select onChange={handleChange}>
                         {roleList.map((roleid) => (
                           <Select.Option key={roleid.id} value={roleid.id}>
-                            {roleid.name}
+                            {roleid.id}
                           </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Chi nhánh" name="branchId">
-                      <Select>
-                        {branchesList.map((branchesid) => (
-                          <Select.Option
-                            key={branchesid.id}
-                            value={branchesid.id}
-                          >
-                            {branchesid.description}
+                    <Form.Item label="Báo cáo">
+                      <Select onChange={handleChange_1}>
+                        {reportList.map((reportid) => (
+                          <Select.Option key={reportid.id} value={reportid.id}>
+                            {reportid.id}
                           </Select.Option>
                         ))}
                       </Select>
@@ -560,7 +577,7 @@ function Users(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={usersList} />
+              <Table columns={columns} bordered dataSource={abcd} />
             </div>
           </div>
         </div>

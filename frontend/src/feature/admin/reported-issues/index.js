@@ -23,15 +23,27 @@ import {
   Select,
   InputNumber,
   Spin,
+  DatePicker
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
+import usersApi from "../../../api/usersApi";
+
 import ReportedissuesApi from "../../../api/reportedissuesApi";
 const { Option } = Select;
 
 function Reportedissues(props) {
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
-
+  const [usersList, setUsersList] = useState([]);
+  const fetchUserList = async () => {
+    try {
+      const response = await usersApi.getAll();
+      console.log("Fetch users successfully: ", response.data);
+      setUsersList(response.data);
+    } catch (error) {
+      console.log("Failed to fetch users list: ", error);
+    }
+  };
   //
   const [rowEdit, setRowEdit] = useState({});
   //api
@@ -49,15 +61,22 @@ function Reportedissues(props) {
     }
   };
   useEffect(() => {
+    fetchUserList();
     fetchReportedissuesList();
   }, []);
   //form
   const [table, setTable] = useState([]);
   //create
   const onFinish = (values) => {
+    const create_value = {
+      ...values,
+      // "createdDate": values["createdDate"].format("YYYY-MM-DD HH:mm:ss"),
+      // "solvedDate": values["solvedDate"].format("YYYY-MM-DD HH:mm:ss"),
+    };
+    console.log("<<",create_value)
     const fetchCreateReportedissues = async () => {
       try {
-        const response = await ReportedissuesApi.createReportedissues(values);
+        const response = await ReportedissuesApi.createReportedissues(create_value);
         console.log("Fetch create reported-issues succesfully: ", response);
         setIsreportedList([...reportedList, response.data]);
         setIsModalVisible(false);
@@ -82,16 +101,16 @@ function Reportedissues(props) {
     }
   };
   //delete
-   const fetchDeleteReportedissues = async (record) => {
-     try {
-       const response = await ReportedissuesApi.deleteReportedissues(record.id);
-       console.log("Delete reported-issues successfully", response);
-       setIsreportedList(reportedList.filter((item) => item.id !== record.id));
-       fetchReportedissuesList();
-     } catch (error) {
-       console.log("Failed to delete reported-issues list", error);
-     }
-   };
+  const fetchDeleteReportedissues = async (record) => {
+    try {
+      const response = await ReportedissuesApi.deleteReportedissues(record.id);
+      console.log("Delete reported-issues successfully", response);
+      setIsreportedList(reportedList.filter((item) => item.id !== record.id));
+      fetchReportedissuesList();
+    } catch (error) {
+      console.log("Failed to delete reported-issues list", error);
+    }
+  };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -130,11 +149,28 @@ function Reportedissues(props) {
       key: "description",
     },
     {
+      title: "Ngày tạo",
+      dataIndex: "createdDate",
+      key: "createdDate",
+    },
+    {
+      title: "Ngày hoàn thành",
+      dataIndex: "solvedDate",
+      key: "solvedDate",
+    },
+    {
       title: "Tình trạng",
       dataIndex: "status",
       key: "status",
     },
+    {
+      title: "Người báo cáo",
+      dataIndex: "reporter",
+      key: "reporter",
+      // render: (owner) => <div>{owner[0].fullName}</div>,
 
+      render: (reporter) => <div>{reporter.fullName}</div>,
+    },
     {
       title: "",
       dataIndex: "",
@@ -225,6 +261,15 @@ function Reportedissues(props) {
             <Form.Item label="Tình trạng" name="status">
               <Input placeholder={rowEdit.status} />
             </Form.Item>
+            <Form.Item label="Người báo cáo" name="reporterId">
+              <Select>
+                {usersList.map((reporterid) => (
+                  <Select.Option key={reporterid.id} value={reporterid.id}>
+                    {reporterid.fullName}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -241,7 +286,7 @@ function Reportedissues(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
@@ -261,7 +306,7 @@ function Reportedissues(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ CÁC VẤN ĐỀ CỦA NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ BÁO CÁO ĐỀ MỤC CỦA NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -309,7 +354,24 @@ function Reportedissues(props) {
                     <Form.Item label="Tình trạng" name="status">
                       <Input />
                     </Form.Item>
-
+                    {/* <Form.Item label="Ngày tạo" name="createdDate">
+                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                    </Form.Item>
+                    <Form.Item label="Ngày hoàn thành" name="solvedDate">
+                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                    </Form.Item> */}
+                    <Form.Item label="Người báo cáo" name="reporterId">
+                      <Select>
+                        {usersList.map((reporterid) => (
+                          <Select.Option
+                            key={reporterid.id}
+                            value={reporterid.id}
+                          >
+                            {reporterid.fullName}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
                     {/* <Form.Item></Form.Item> */}
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">

@@ -14,7 +14,7 @@ public class Rooms extends BasicEntity {
     private String position;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "users")
     private List<Users> users;
 
@@ -22,7 +22,7 @@ public class Rooms extends BasicEntity {
     private List<Long> userIds;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "facilities")
     private List<Facilities> facilities;
 

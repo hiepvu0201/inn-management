@@ -13,7 +13,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
-import usersApi from "../../../api/branchesApi";
+import usersApi from "../../../api/usersApi";
 import {
   Table,
   Popconfirm,
@@ -97,7 +97,7 @@ function Rooms(props) {
       ...values,
       userIds: idSelected,
       facilityIds: selected_1,
-      electricityWaterIds: selected_2,
+      // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
 
@@ -198,6 +198,18 @@ function Rooms(props) {
       key: "position",
     },
     {
+      title: "Khách thuê",
+      dataIndex: "users",
+      key: "users",
+      render: (users) => <div>{users[0].fullName}</div>,
+    },
+    {
+      title: "Thiết bị",
+      dataIndex: "facilities",
+      key: "facilities",
+      render: (facilities) => <div>{facilities[0].name}</div>,
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -289,24 +301,24 @@ function Rooms(props) {
               <Select onChange={handleChange}>
                 {usersList.map((usersid) => (
                   <Select.Option key={usersid.id} value={usersid.id}>
-                    {usersid.id}
+                    {usersid.fullName}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Vật liệu">
+            <Form.Item label="Thiết bị">
               <Select
                 onChange={handleChange_1}
                 placeholder={rowEdit.facilityIds}
               >
                 {facilitiesList.map((facilitiesid) => (
                   <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.id}
+                    {facilitiesid.name}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Điện nước">
+            {/* <Form.Item label="Điện nước">
               <Select onChange={handleChange_2}>
                 {electricitywatersList.map((electricitywatersid) => (
                   <Select.Option
@@ -317,7 +329,7 @@ function Rooms(props) {
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -335,7 +347,7 @@ function Rooms(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
@@ -355,7 +367,7 @@ function Rooms(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ PHÒNG NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ PHÒNG TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -405,31 +417,19 @@ function Rooms(props) {
                       <Select onChange={handleChange}>
                         {usersList.map((usersid) => (
                           <Select.Option key={usersid.id} value={usersid.id}>
-                            {usersid.id}
+                            {usersid.fullName}
                           </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Vật liệu">
+                    <Form.Item label="Thiết bị">
                       <Select onChange={handleChange_1}>
                         {facilitiesList.map((facilitiesid) => (
                           <Select.Option
                             key={facilitiesid.id}
                             value={facilitiesid.id}
                           >
-                            {facilitiesid.id}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item label="Điện nước">
-                      <Select onChange={handleChange_2}>
-                        {electricitywatersList.map((electricitywatersid) => (
-                          <Select.Option
-                            key={electricitywatersid.id}
-                            value={electricitywatersid.id}
-                          >
-                            {electricitywatersid.id}
+                            {facilitiesid.name}
                           </Select.Option>
                         ))}
                       </Select>

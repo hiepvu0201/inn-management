@@ -27,6 +27,8 @@ import {
 import arr_data_brand from "./../../../mock/data_brand";
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
+import usersApi from "../../../api/usersApi";
+
 const { Option } = Select;
 
 function Branches(props) {
@@ -41,7 +43,16 @@ function Branches(props) {
   //getAll
   const [branchList, setBranchList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
-
+  const [usersList, setUsersList] = useState([]);
+  const fetchUserList = async () => {
+    try {
+      const response = await usersApi.getAll();
+      console.log("Fetch users successfully: ", response.data);
+      setUsersList(response.data);
+    } catch (error) {
+      console.log("Failed to fetch users list: ", error);
+    }
+  };
   const fetchBranchList = async () => {
     try {
       const response = await branchesApi.getAll();
@@ -62,6 +73,7 @@ function Branches(props) {
     }
   };
   useEffect(() => {
+    fetchUserList();
     fetchFacilityList();
     fetchBranchList();
   }, []);
@@ -165,6 +177,12 @@ function Branches(props) {
       key: "numberOfRooms",
     },
     {
+      title: "Thiết bị",
+      dataIndex: "facilities",
+      key: "facilities",
+      render: (facilities) => <div>{facilities[0].name}</div>,
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -257,12 +275,11 @@ function Branches(props) {
             <Form.Item label="Số phòng" name="numberOfRooms">
               <Input placeholder={rowEdit.numberOfRooms} />
             </Form.Item>
-
             <Form.Item label="Vật liệu">
               <Select onChange={handleChange}>
                 {facilitiesList.map((facilitiesid) => (
                   <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.id}
+                    {facilitiesid.name}
                   </Select.Option>
                 ))}
               </Select>
@@ -284,11 +301,11 @@ function Branches(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
-        <div style={{ height: "100px" }}>
+        <div style={{ height: "120px" }}>
           <Menu_AdminPage />
         </div>
         <div className="rectangle">
@@ -304,7 +321,7 @@ function Branches(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ DANH SÁCH NHÀ TRỌ</div>
+                <div className="content">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -355,14 +372,14 @@ function Branches(props) {
                     <Form.Item label="Số phòng" name="numberOfRooms">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Quyền">
+                    <Form.Item label="Thiết bị">
                       <Select onChange={handleChange}>
                         {facilitiesList.map((facilitiesid) => (
                           <Select.Option
                             key={facilitiesid.id}
                             value={facilitiesid.id}
                           >
-                            {facilitiesid.id}
+                            {facilitiesid.name}
                           </Select.Option>
                         ))}
                       </Select>

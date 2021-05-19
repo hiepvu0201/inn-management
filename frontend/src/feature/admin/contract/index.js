@@ -58,7 +58,15 @@ function Contract(props) {
     try {
       const response = await contractsApi.getAll();
       console.log("Fetch contracts successfully: ", response.data);
-      setContractList(response.data);
+      // console.log("<<tenant", response.data[1].owner);
+      // let arr=response.data[1].owner;
+      // console.log(">>",arr);
+      // console.log(">>", arr[0].fullName);
+      // const prefer=response.data[0].owner.map((owner)=>{
+      //   console.log(">>>map",owner.fullName)
+      // })
+      // console.log(prefer)
+      setContractList(response.data)
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -187,7 +195,18 @@ function Contract(props) {
       dataIndex: "voucher",
       key: "voucher",
     },
-
+    {
+      title: "Chủ trọ",
+      dataIndex: "owner",
+      key: "owner",
+      render: (owner) => <div>{owner[0].fullName}</div>,
+    },
+    {
+      title: "Khách thuê",
+      dataIndex: "tenant",
+      key: "tenant",
+      render: (tenant) => <div>{tenant[0].fullName}</div>,
+    },
     {
       title: "",
       dataIndex: "",
@@ -286,9 +305,9 @@ function Contract(props) {
             </Form.Item>
             <Form.Item label="Chủ trọ">
               <Select onChange={handleChange}>
-                {usersList.map((ownerid) => (
-                  <Select.Option key={ownerid.id} value={ownerid.id}>
-                    {ownerid.id}
+                {usersList.map((owner) => (
+                  <Select.Option key={owner.id} value={owner.id}>
+                    {owner.fullName}
                   </Select.Option>
                 ))}
               </Select>
@@ -297,7 +316,7 @@ function Contract(props) {
               <Select onChange={handleChange_1}>
                 {usersList.map((tenantid) => (
                   <Select.Option key={tenantid.id} value={tenantid.id}>
-                    {tenantid.id}
+                    {tenantid.fullName}
                   </Select.Option>
                 ))}
               </Select>
@@ -318,7 +337,7 @@ function Contract(props) {
       <div
         style={{
           width: "100%",
-          height: "100vmax",
+          height: "100vh",
           backgroundColor: "#efefef",
         }}
       >
@@ -338,7 +357,7 @@ function Contract(props) {
             >
               <div className="topic-left">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
+                <div className="content">QUẢN LÝ HỢP ĐỒNG</div>
               </div>
               <div className="btn-right">
                 <button className="detailed-btn" onClick={showModal}>
@@ -396,7 +415,7 @@ function Contract(props) {
                       <Select onChange={handleChange}>
                         {usersList.map((ownerid) => (
                           <Select.Option key={ownerid.id} value={ownerid.id}>
-                            {ownerid.id}
+                            {ownerid.fullName}
                           </Select.Option>
                         ))}
                       </Select>
@@ -405,7 +424,7 @@ function Contract(props) {
                       <Select onChange={handleChange_1}>
                         {usersList.map((tenantid) => (
                           <Select.Option key={tenantid.id} value={tenantid.id}>
-                            {tenantid.id}
+                            {tenantid.fullName}
                           </Select.Option>
                         ))}
                       </Select>

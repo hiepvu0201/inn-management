@@ -31,12 +31,12 @@ public class ContractController {
     }
 
     @GetMapping("/search-by-owner-name")
-    public ResponseEntity<List<Contracts>> getContractByOwnerName(@Param(value = "ownername") String ownerName) {
+    public ResponseEntity<List<Contracts>> getContractByOwnerName(@Param(value = "ownerName") String ownerName) {
         return ResponseEntity.ok().body(contractService.findAllByOwnerName(ownerName));
     }
 
     @GetMapping("/search-by-tenant-name")
-    public ResponseEntity<List<Contracts>> getContractByTenantName(@Param(value = "tenantname") String tenantName) {
+    public ResponseEntity<List<Contracts>> getContractByTenantName(@Param(value = "tenantName") String tenantName) {
         return ResponseEntity.ok().body(contractService.findAllByTenantName(tenantName));
     }
 

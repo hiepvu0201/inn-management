@@ -31,7 +31,7 @@ public class RoomController {
     }
 
     @GetMapping("/search-by-username")
-    public ResponseEntity<List<Rooms>> getRoomByUserName(@Param(value = "username") String userName) {
+    public ResponseEntity<List<Rooms>> getRoomByUserName(@Param(value = "userName") String userName) {
         return ResponseEntity.ok().body(roomService.findAllByUserName(userName));
     }
 

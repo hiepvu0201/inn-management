@@ -8,9 +8,11 @@ import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
@@ -60,7 +62,8 @@ public class RoomService {
         return response;
     }
 
+    @Transactional
     public List<Rooms> findAllByUserName(String userName) {
-        return roomRepository.findAllByUserName(userName);
+        return roomRepository.findAllByUserName(userName).collect(Collectors.toList());
     }
 }

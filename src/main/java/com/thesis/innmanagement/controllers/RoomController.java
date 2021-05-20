@@ -35,6 +35,11 @@ public class RoomController {
         return ResponseEntity.ok().body(roomService.findAllByUserName(userName));
     }
 
+    @GetMapping("/search-by-branch-location")
+    public ResponseEntity<List<Rooms>> getRoomByBranchLocation(@Param(value = "branchLocation") String branchLocation) {
+        return ResponseEntity.ok().body(roomService.findAllByBranchLocation(branchLocation));
+    }
+
     @PostMapping("/")
     public Rooms create(@Validated @RequestBody Rooms room) throws Exception {
         return roomService.createOrUpdate(null, room);

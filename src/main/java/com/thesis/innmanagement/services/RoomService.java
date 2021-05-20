@@ -66,4 +66,9 @@ public class RoomService {
     public List<Rooms> findAllByUserName(String userName) {
         return roomRepository.findAllByUserName(userName).collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<Rooms> findAllByBranchLocation(String branchLocation) {
+        return roomRepository.findAllByBranchLocation(branchLocation).collect(Collectors.toList());
+    }
 }

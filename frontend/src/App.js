@@ -86,7 +86,8 @@ function App() {
       </Switch> */}
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
-      <Rules_client/>
+      {/* <Rules_client/> */}
+      <Reportissues_client/>
     </div>
   );
 }

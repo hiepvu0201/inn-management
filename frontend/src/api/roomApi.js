@@ -17,5 +17,9 @@ const roomsApi = {
     const url = `/api/v1/rooms/${room.id}/`;
     return axiosClient.put(url, room.data);
   },
+  getRoombyUsername(params){
+    const url = `/api/v1/rooms/search-by-username/?username=${params}`;
+    return axiosClient.get(url);
+  }
 };
 export default roomsApi;

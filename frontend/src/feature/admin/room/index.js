@@ -31,9 +31,15 @@ import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
+const { Search } = Input;
 
 function Rooms(props) {
   //api
+  //search
+
+  // const onSearch_1=(value)=>{
+  //   console.log(value)
+  // }
   //getAll
   const [roomList, setRoomList] = useState([]);
   const [usersList, setUsersList] = useState([]);
@@ -49,7 +55,7 @@ function Rooms(props) {
       const response = await roomApi.getAll();
       console.log("Fetch rooms successfully: ", response.data);
       setRoomList(response.data);
-
+      setIsstateInput(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -74,15 +80,17 @@ function Rooms(props) {
       console.log("Failed to fetch facilities list: ", error);
     }
   };
-  const fetchElectricitywaterList = async () => {
+  const fetchElectricitywaterList = async (userName) => {
     try {
-      const response = await electricityWaterApi.getAll();
+      const response = await electricityWaterApi.getAll(userName);
       console.log("Fetch electricities successfully: ", response.data);
       setElectricitywaterList(response.data);
     } catch (error) {
       console.log("Failed to fetch electricities list: ", error);
     }
   };
+  const [stateInput, setIsstateInput] = useState([]);
+
   useEffect(() => {
     fetchElectricitywaterList();
     fetchFacilitiesList();
@@ -201,7 +209,7 @@ function Rooms(props) {
       title: "Khách thuê",
       dataIndex: "users",
       key: "users",
-      render: (users) => <div>{users[0].fullName}</div>,
+      render: (users) => <div>{users[0].username}</div>,
     },
     {
       title: "Thiết bị",
@@ -261,6 +269,20 @@ function Rooms(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  };
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    const fetchRoombyUsername = async () => {
+      try {
+        const response = await roomApi.getRoombyUsername(value);
+        console.log("Fetch room by username successfully: ", response.data);
+        // setIsstateInput(response.data);
+        setRoomList(response.data);
+      } catch (error) {
+        console.log("Failed to fetch room by username: ", error);
+      }
+    };
+    fetchRoombyUsername();
   };
   return (
     <div>
@@ -365,11 +387,19 @@ function Rooms(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-room">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ PHÒNG TRỌ</div>
               </div>
-              <div className="btn-right">
+              <div className="btn-right-rooms">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
+                </div>
+
                 <button className="detailed-btn" onClick={showModal}>
                   THÊM MỚI
                 </button>

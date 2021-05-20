@@ -10,7 +10,7 @@ import java.util.List;;
 @Entity
 public class Users extends BasicEntity {
 
-    private String username;
+    private String userName;
 
     private String passwordHash;
 
@@ -82,12 +82,12 @@ public class Users extends BasicEntity {
         this.roles = roles;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPasswordHash() {

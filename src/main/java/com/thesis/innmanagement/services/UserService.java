@@ -41,7 +41,7 @@ public class UserService {
         } else {
             Users userUpdate = userRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This user not found on:" + id));
-            userUpdate.setUsername(user.getUsername());
+            userUpdate.setUserName(user.getUserName());
             userUpdate.setPasswordHash(user.getPasswordHash());
             userUpdate.setEmail(user.getEmail());
             userUpdate.setFullName(user.getFullName());

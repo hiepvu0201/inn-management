@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 @Repository
 public interface ContractRepository extends JpaRepository<Contracts, Long> {
 
-    @Query("select distinct c from Contracts c inner join c.owner o on o.username = :ownerName")
+    @Query("select distinct c from Contracts c inner join c.owner o on o.userName = :ownerName")
     Stream<Contracts> findAllByOwnerName(String ownerName);
 
-    @Query("select distinct c from Contracts c inner join c.tenant t on t.username = :tenantName")
+    @Query("select distinct c from Contracts c inner join c.tenant t on t.userName = :tenantName")
     Stream<Contracts> findAllByTenantName(String tenantName);
 }

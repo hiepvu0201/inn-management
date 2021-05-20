@@ -12,7 +12,7 @@ Feature: users test
     And def userInfo =
     """
     {
-      "username": "user",
+      "userName": "user",
       "passwordHash": "",
       "email": "default@gmail.com",
       "fullName": "default user name",
@@ -32,4 +32,4 @@ Feature: users test
     And request userInfo
     When method POST
     Then status 200
-    And match $.username == "user"
+    And match $.userName == "user"

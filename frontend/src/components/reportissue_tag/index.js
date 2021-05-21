@@ -10,6 +10,9 @@ function Reportissues_tag(props) {
             display: "block",
             backgroundColor: "white",
             boxShadow: "2px 5px gray",
+            paddingLeft: "15px",
+            paddingTop:"10px",
+            paddingBottom:"10px"
           }}
         >
           <div style={{ width: "100%", display: "flex" }}>
@@ -134,6 +137,31 @@ function Reportissues_tag(props) {
             >
               {/* Phòng trừ Covid */}
               {props.solvedDate}
+            </div>
+          </div>
+          <div style={{ width: "100%", display: "flex" }}>
+            <div
+              style={{
+                width: "18%",
+                fontFamily: "PT Sans, sans-serif",
+                fontWeight: "bold",
+                fontSize: "15px",
+                textAlign: "left",
+              }}
+            >
+              Tên người tạo báo cáo:
+            </div>
+            <div
+              style={{
+                width: "82%",
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "15px",
+                textAlign: "left",
+                paddingRight: "15px",
+              }}
+            >
+              {/* Phòng trừ Covid */}
+              {props.reporter}
             </div>
           </div>
         </div>

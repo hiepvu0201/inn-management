@@ -29,12 +29,12 @@ Feature: contract test
 
   Scenario: get all by owner name
     Given path 'api/v1/contracts/search-by-owner-name'
-    And param ownerName = "default user"
+    And param ownerName = "user"
     When method GET
     Then status 200
 
   Scenario: get all by tenant name
     Given path 'api/v1/contracts/search-by-tenant-name/'
-    And param tenantName = "default user"
+    And param tenantName = "user"
     When method GET
     Then status 200

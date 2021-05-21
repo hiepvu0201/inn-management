@@ -355,99 +355,95 @@ function Contract(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-con">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ HỢP ĐỒNG</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
-                  THÊM MỚI
-                </button>
-                <Modal
-                  title={
-                    <div style={{ display: "flex" }}>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        size="1x"
-                        color="#007c7e"
-                      />{" "}
-                      <div
-                        style={{
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          color: "#007c7e",
-                          paddingLeft: "10px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Thêm mới
+              <div className="topic-right-con">
+                <div className="btn-right-con">
+                  <button className="detailed-btn-con" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title={
+                      <div style={{ display: "flex" }}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          size="1x"
+                          color="#007c7e"
+                        />{" "}
+                        <div
+                          style={{
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            color: "#007c7e",
+                            paddingLeft: "10px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thêm mới
+                        </div>
                       </div>
-                    </div>
-                  }
-                  onOk={handleOk}
-                  onCancel={handleCancel}
-                  visible={isModalVisible}
-                  okText="THÊM MỚI"
-                  cancelText="HỦY BỎ"
-                  footer={null}
-                >
-                  <Form
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    }
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    visible={isModalVisible}
+                    okText="THÊM MỚI"
+                    cancelText="HỦY BỎ"
+                    footer={null}
                   >
-                    <Form.Item label="Chi tiết hợp đồng" name="details">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Ngày ký" name="signDate">
-                      <DatePicker />
-                    </Form.Item>
-                    <Form.Item label="Số phòng" name="numberOfRooms">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số lầu" name="numberOfStage">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Khuyến mãi" name="voucher">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Chủ trọ">
-                      <Select onChange={handleChange}>
-                        {usersList.map((ownerid) => (
-                          <Select.Option key={ownerid.id} value={ownerid.id}>
-                            {ownerid.fullName}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item label="Người thuê">
-                      <Select onChange={handleChange_1}>
-                        {usersList.map((tenantid) => (
-                          <Select.Option key={tenantid.id} value={tenantid.id}>
-                            {tenantid.fullName}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <div style={{ display: "flex" }}>
-                      <Button type="primary" htmlType="submit">
-                        THÊM MỚI
-                      </Button>
-                      <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                    <Form
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item label="Chi tiết hợp đồng" name="details">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Ngày ký" name="signDate">
+                        <DatePicker />
+                      </Form.Item>
+                      <Form.Item label="Số phòng" name="numberOfRooms">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số lầu" name="numberOfStage">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Khuyến mãi" name="voucher">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Chủ trọ">
+                        <Select onChange={handleChange}>
+                          {usersList.map((ownerid) => (
+                            <Select.Option key={ownerid.id} value={ownerid.id}>
+                              {ownerid.fullName}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                      <Form.Item label="Người thuê">
+                        <Select onChange={handleChange_1}>
+                          {usersList.map((tenantid) => (
+                            <Select.Option
+                              key={tenantid.id}
+                              value={tenantid.id}
+                            >
+                              {tenantid.fullName}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default">HỦY BỎ</Button>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
-                </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
+                    </Form>
+                  </Modal>
+                </div>
               </div>
             </div>
 

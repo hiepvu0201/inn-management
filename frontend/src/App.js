@@ -87,7 +87,7 @@ function App() {
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
       {/* <Rules_client/> */}
-      <Reportissues_client/>
+      {/* <Reportissues_client/> */}
     </div>
   );
 }

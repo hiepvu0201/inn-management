@@ -5,9 +5,13 @@
     display: flex;
     justify-content: space-between;
 }
-.topic-left{
+.topic-left-elec{
     float: left;
     display: flex;
+    width:40%;
+}
+.topic-right-elec{
+    width:60%;
 }
 .content{
     font-size: 20px;
@@ -16,11 +20,11 @@
     padding-left: 20px;
 
 }
-.btn-right{
+.btn-right-elec{
     float:right;
     display: flex;
 }
-.detailed-btn{
+.detailed-btn-elec{
     font-size: 15px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;

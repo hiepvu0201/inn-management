@@ -56,6 +56,7 @@ function Rooms(props) {
       console.log("Fetch rooms successfully: ", response.data);
       setRoomList(response.data);
       setIsstateInput(response.data);
+      setstate(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -209,7 +210,7 @@ function Rooms(props) {
       title: "Khách thuê",
       dataIndex: "users",
       key: "users",
-      render: (users) => <div>{users[0].username}</div>,
+      render: (users) => <div>{users[0].userName}</div>,
     },
     {
       title: "Thiết bị",
@@ -270,19 +271,27 @@ function Rooms(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+  const [state, setstate] = useState([])
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-    const fetchRoombyUsername = async () => {
-      try {
-        const response = await roomApi.getRoombyUsername(value);
-        console.log("Fetch room by username successfully: ", response.data);
-        // setIsstateInput(response.data);
-        setRoomList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch room by username: ", error);
-      }
-    };
-    fetchRoombyUsername();
+    if(value==="")
+    {
+      setRoomList(state);
+    }
+    else{
+ const fetchRoombyUsername = async () => {
+   try {
+     const response = await roomApi.getRoombyUsername(value);
+     console.log("Fetch room by username successfully: ", response.data);
+     // setIsstateInput(response.data);
+     setRoomList(response.data);
+   } catch (error) {
+     console.log("Failed to fetch room by username: ", error);
+   }
+ };
+ fetchRoombyUsername();
+    }
+   
   };
   return (
     <div>

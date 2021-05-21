@@ -8,11 +8,9 @@
 .topic-left-con{
     float: left;
     display: flex;
-    width:40%;
+    width:70%;
 }
-.topic-right-con{
-    width:60%
-}
+
 .content{
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
@@ -23,6 +21,8 @@
 .btn-right-con{
     float:right;
     display: flex;
+    width:30%;
+
 }
 .detailed-btn-con{
     font-size: 15px;

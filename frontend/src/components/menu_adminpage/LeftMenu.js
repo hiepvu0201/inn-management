@@ -27,7 +27,7 @@ const LeftMenu = () => {
         style={{
           backgroundColor: "#007c7e",
           paddingLeft: "10px",
-          color:"white"
+          color: "white",
         }}
       >
         <FontAwesomeIcon
@@ -35,10 +35,8 @@ const LeftMenu = () => {
           color="#efefef"
           size="1x"
           style={{ marginRight: "10px" }}
-        />
-       
-          {" "}
-          <Link to="/">Trang chủ</Link>
+        />{" "}
+        <Link to="/">Trang chủ</Link>
       </Menu.Item>
       <SubMenu
         key="menu-2"
@@ -174,6 +172,22 @@ const LeftMenu = () => {
             style={{ marginRight: "10px" }}
           />
           <Link to="/monthlypayment"> Nguồn chi</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="monthlypayment"
+          style={{
+            color: "#007c7e",
+            fontSize: "15px",
+            fontFamily: "PT Sans, sans-serif",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMoneyBillAlt}
+            color="grey"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />
+          <Link to="/invoices">Hóa đơn</Link>
         </Menu.Item>
       </SubMenu>
       <SubMenu

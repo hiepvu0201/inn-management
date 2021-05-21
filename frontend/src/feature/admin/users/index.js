@@ -235,8 +235,8 @@ function Users(props) {
   const columns = [
     {
       title: "Tài khoản",
-      dataIndex: "username",
-      key: "username",
+      dataIndex: "userName",
+      key: "userName",
     },
     {
       title: "Email",
@@ -362,8 +362,8 @@ function Users(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tài khoản" name="username">
-              <Input placeholder={rowEdit.username} />
+            <Form.Item label="Tài khoản" name="userName">
+              <Input placeholder={rowEdit.userName} />
             </Form.Item>
             <Form.Item label="Mật khẩu" name="passwordHash">
               <Input.Password placeholder={rowEdit.passwordHash} />
@@ -483,7 +483,7 @@ function Users(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tài khoản" name="username">
+                    <Form.Item label="Tài khoản" name="userName">
                       <Input />
                     </Form.Item>
                     <Form.Item label="Mật khẩu" name="passwordHash">

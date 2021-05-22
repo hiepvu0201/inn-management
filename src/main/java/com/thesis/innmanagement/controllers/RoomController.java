@@ -30,11 +30,6 @@ public class RoomController {
         return ResponseEntity.ok().body(roomService.findById(id));
     }
 
-    @GetMapping("/search-by-username")
-    public ResponseEntity<List<Rooms>> getRoomByUserName(@Param(value = "userName") String userName) {
-        return ResponseEntity.ok().body(roomService.findAllByUserName(userName));
-    }
-
     @GetMapping("/search-by-branch-location")
     public ResponseEntity<List<Rooms>> getRoomByBranchLocation(@Param(value = "branchLocation") String branchLocation) {
         return ResponseEntity.ok().body(roomService.findAllByBranchLocation(branchLocation));

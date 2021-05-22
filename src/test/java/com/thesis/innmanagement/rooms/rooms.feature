@@ -14,8 +14,8 @@ Feature: rooms test
     {
       "roomNo": "E1-001",
       "position": "TP.Thu Duc",
-      "userIds": [1],
       "facilityIds": [1],
+      "branch": 1
     }
     """
     Given path 'api/v1/rooms/'
@@ -23,9 +23,3 @@ Feature: rooms test
     When method POST
     Then status 200
     And match $.roomNo == "E1-001"
-
-  Scenario: find all by user name
-    Given path 'api/v1/rooms/search-by-username/'
-    And param userName = "default user"
-    When method GET
-    Then status 200

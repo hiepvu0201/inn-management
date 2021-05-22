@@ -13,9 +13,9 @@ Feature: facilities test
     """
     {
       "name": "light",
-           "quality": "new",
-           "quantity": "100",
-         }
+      "quality": "new",
+      "quantity": "100",
+    }
     """
     Given path 'api/v1/facilities/'
     And request facilityInfo

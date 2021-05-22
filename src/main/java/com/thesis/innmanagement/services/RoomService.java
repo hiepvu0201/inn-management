@@ -2,9 +2,9 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Rooms;
+import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
-import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +21,10 @@ public class RoomService {
     private RoomRepository roomRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private FacilityRepository facilityRepository;
 
     @Autowired
-    private FacilityRepository facilityRepository;
+    private BranchRepository branchRepository;
 
     public List<Rooms> findAll() {
         return roomRepository.findAll();
@@ -35,8 +35,8 @@ public class RoomService {
     }
 
     public Rooms createOrUpdate(Long id, Rooms room) throws ResourceNotFoundException {
-        room.setUsers(userRepository.findAllById(room.getUserIds()));
         room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
+        room.setBranch(branchRepository.findById(room.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + room.getBranchId())));
         if (id == null) {
             roomRepository.save(room);
             return room;
@@ -45,10 +45,10 @@ public class RoomService {
                     .orElseThrow(() -> new ResourceNotFoundException("This room not found on:" + id));
             roomUpdate.setRoomNo(room.getRoomNo());
             roomUpdate.setPosition(room.getPosition());
-            roomUpdate.setUsers(room.getUsers());
-            roomUpdate.setUserIds(room.getUserIds());
             roomUpdate.setFacilities(room.getFacilities());
             roomUpdate.setFacilityIds(room.getFacilityIds());
+            roomUpdate.setBranch(room.getBranch());
+            roomUpdate.setBranchId(room.getBranchId());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }
@@ -60,11 +60,6 @@ public class RoomService {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
-    }
-
-    @Transactional
-    public List<Rooms> findAllByUserName(String userName) {
-        return roomRepository.findAllByUserName(userName).collect(Collectors.toList());
     }
 
     @Transactional

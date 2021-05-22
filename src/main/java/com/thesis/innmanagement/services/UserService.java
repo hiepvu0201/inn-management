@@ -18,7 +18,7 @@ public class UserService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private BranchRepository branchRepository;
+    private RoomRepository roomRepository;
 
     public List<Users> findAll() {
         return userRepository.findAll();
@@ -34,7 +34,7 @@ public class UserService {
 
     public Users createOrUpdate(Long id, Users user) throws ResourceNotFoundException {
         user.setRoles(roleRepository.findAllById(user.getRoleIds()));
-        user.setBranch(branchRepository.findById(user.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + user.getBranchId())));
+        user.setRoom(roomRepository.findById(user.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + user.getRoomId())));
         if (id == null) {
             userRepository.save(user);
             return user;
@@ -55,8 +55,8 @@ public class UserService {
             userUpdate.setDownPayment(user.getDownPayment());
             userUpdate.setRoles(user.getRoles());
             userUpdate.setRoleIds(user.getRoleIds());
-            userUpdate.setBranchId(user.getBranchId());
-            userUpdate.setBranch(user.getBranch());
+            userUpdate.setRoom(user.getRoom());
+            userUpdate.setRoomId(user.getRoomId());
             userRepository.save(userUpdate);
             return userUpdate;
         }

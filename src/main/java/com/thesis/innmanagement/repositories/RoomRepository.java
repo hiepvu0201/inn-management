@@ -12,10 +12,6 @@ import java.util.stream.Stream;
 @Repository
 @CrossOrigin(origins = "*")
 public interface RoomRepository extends JpaRepository<Rooms, Long> {
-    @Query("select distinct r from Rooms r inner join Users u on u.username = :userName")
-    Stream<Rooms> findAllByUserName(String userName);
-
-    @Query("select distinct r from Rooms r inner join Users u inner join Branches b on b.location = :branchLocation")
+    @Query("select distinct r from Rooms r inner join r.branch b on b.location = :branchLocation")
     Stream<Rooms> findAllByBranchLocation(String branchLocation);
-
 }

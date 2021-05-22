@@ -45,17 +45,25 @@ public class Users extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch")
-    private Branches branch;
+    @JoinColumn(name = "room")
+    private Rooms room;
 
-    private Long branchId;
+    private Long roomId;
 
-    public Long getBranchId() {
-        return branchId;
+    public Rooms getRoom() {
+        return room;
     }
 
-    public void setBranchId(Long branchId) {
-        this.branchId = branchId;
+    public void setRoom(Rooms room) {
+        this.room = room;
+    }
+
+    public Long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 
     public List<Long> getRoleIds() {
@@ -64,14 +72,6 @@ public class Users extends BasicEntity {
 
     public void setRoleIds(List<Long> roleIds) {
         this.roleIds = roleIds;
-    }
-
-    public Branches getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branches branch) {
-        this.branch = branch;
     }
 
     public List<Roles> getRoles() {

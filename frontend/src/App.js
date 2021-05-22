@@ -30,6 +30,7 @@ import Reportissues_client from './feature/client/report-issues'
 import Reportissues_tag from "./components/reportissue_tag";
 import Detail_room from './feature/client/detail_room'
 import Detailroom_tag from './components/detailroom_tag'
+import Rules_client from './feature/client/rules'
 function App() {
   return (
     <div className="App">
@@ -75,16 +76,18 @@ function App() {
         </Route>
       </Switch> */}
       {/* <Room_client/> */}
-      <Switch>
+      {/* <Switch>
         <Route path="/detailroom">
           <Detail_room/>
         </Route>
         <Route path="/room">
           <Room_client/>
         </Route>
-      </Switch>
+      </Switch> */}
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
+      {/* <Rules_client/> */}
+      <Reportissues_client/>
     </div>
   );
 }

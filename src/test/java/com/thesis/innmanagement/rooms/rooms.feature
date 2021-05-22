@@ -23,3 +23,9 @@ Feature: rooms test
     When method POST
     Then status 200
     And match $.roomNo == "E1-001"
+
+  Scenario: get room by branch location
+    Given path 'api/v1/rooms/search-by-branch-location/'
+    And param branchLocation = "TP.Thu Duc"
+    When method GET
+    Then status 200

@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.services;
 
+import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.*;
@@ -34,7 +35,9 @@ public class UserService {
 
     public Users createOrUpdate(Long id, Users user) throws ResourceNotFoundException {
         user.setRoles(roleRepository.findAllById(user.getRoleIds()));
-        user.setRoom(roomRepository.findById(user.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + user.getRoomId())));
+        if (user.getRoomId() != null) {
+            user.setRoom(roomRepository.findById(user.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + user.getRoomId())));
+        }
         if (id == null) {
             userRepository.save(user);
             return user;
@@ -55,8 +58,10 @@ public class UserService {
             userUpdate.setDownPayment(user.getDownPayment());
             userUpdate.setRoles(user.getRoles());
             userUpdate.setRoleIds(user.getRoleIds());
-            userUpdate.setRoom(user.getRoom());
-            userUpdate.setRoomId(user.getRoomId());
+            if (user.getRoom() != null && user.getRoomId() != null) {
+                userUpdate.setRoom(user.getRoom());
+                userUpdate.setRoomId(user.getRoomId());
+            }
             userRepository.save(userUpdate);
             return userUpdate;
         }
@@ -68,5 +73,26 @@ public class UserService {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    public String checkIn(String userName, String roomNo) {
+        Users user = userRepository.findByUserName(userName);
+        Rooms room = roomRepository.findByRoomNo(roomNo);
+        user.setRoom(room);
+        user.setRoomId(room.getId());
+        userRepository.save(user);
+        return "Check in success! Have a good day!";
+    }
+
+    public String checkOut(String userName) {
+        try {
+            Users user = userRepository.findByUserName(userName);
+            user.setRoom(null);
+            user.setRoomId(null);
+            userRepository.save(user);
+            return "Check out success! Have a good day!";
+        } catch (Exception e) {
+            return "Check out failed! Error: " + e.getMessage();
+        }
     }
 }

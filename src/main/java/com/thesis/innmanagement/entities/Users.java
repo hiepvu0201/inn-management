@@ -10,6 +10,7 @@ import java.util.List;;
 @Entity
 public class Users extends BasicEntity {
 
+    @Column(unique = true)
     private String userName;
 
     private String passwordHash;

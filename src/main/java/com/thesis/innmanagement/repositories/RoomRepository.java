@@ -13,4 +13,6 @@ import java.util.stream.Stream;
 public interface RoomRepository extends JpaRepository<Rooms, Long> {
     @Query("select distinct r from Rooms r inner join r.branch b on b.location = :branchLocation")
     Stream<Rooms> findAllByBranchLocation(String branchLocation);
+
+    Rooms findByRoomNo(String roomNo);
 }

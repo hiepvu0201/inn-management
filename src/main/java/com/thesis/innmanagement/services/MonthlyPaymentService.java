@@ -7,10 +7,12 @@ import com.thesis.innmanagement.repositories.MonthlyPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MonthlyPaymentService {
@@ -27,6 +29,11 @@ public class MonthlyPaymentService {
 
     public MonthlyPayments findById(Long id) throws ResourceNotFoundException {
         return monthlyPaymentRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Monthly payment not found on id: "+id));
+    }
+
+    @Transactional
+    public List<MonthlyPayments> findAllByBranchLocation(String branchLocation) {
+        return monthlyPaymentRepository.findAllByBranchLocation(branchLocation).collect(Collectors.toList());
     }
 
     public MonthlyPayments createOrUpdate(Long id, MonthlyPayments monthlyPayment) throws ResourceNotFoundException {

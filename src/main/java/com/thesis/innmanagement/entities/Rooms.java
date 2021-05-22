@@ -15,26 +15,33 @@ public class Rooms extends BasicEntity {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users")
-    private List<Users> users;
-
-    @ElementCollection
-    private List<Long> userIds;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "facilities")
     private List<Facilities> facilities;
 
     @ElementCollection
     private List<Long> facilityIds;
 
-    public List<Long> getUserIds() {
-        return userIds;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
+    private Branches branch;
+
+    private Long branchId;
+
+    public Branches getBranch() {
+        return branch;
     }
 
-    public void setUserIds(List<Long> userIds) {
-        this.userIds = userIds;
+    public void setBranch(Branches branch) {
+        this.branch = branch;
+    }
+
+    public Long getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Long branchId) {
+        this.branchId = branchId;
     }
 
     public List<Long> getFacilityIds() {
@@ -59,14 +66,6 @@ public class Rooms extends BasicEntity {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public List<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<Users> users) {
-        this.users = users;
     }
 
     public List<Facilities> getFacilities() {

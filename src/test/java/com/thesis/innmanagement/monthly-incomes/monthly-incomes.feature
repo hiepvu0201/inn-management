@@ -22,3 +22,9 @@ Feature: monthly-incomes test
     When method POST
     Then status 200
     And match $.itemName == "first quarter"
+    
+  Scenario: get by branch
+    Given path 'api/v1/monthly-incomes/search-by-branch/'
+    And param branchLocation = 'TP.Thu Duc'
+    When method GET
+    Then status 200

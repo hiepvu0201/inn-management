@@ -12,7 +12,7 @@ Feature: roles test
     And def roleInfo =
     """
     {
-      "name": 0,
+      "name": 1,
     }
     """
     Given path 'api/v1/roles/'

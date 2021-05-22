@@ -24,7 +24,7 @@ Feature: users test
       "checkinDate": "",
       "checkoutDate": "",
       "downPayment": "",
-      "roleIds": [1],
+      "roleIds": [2],
       "roomId": 1,
     }
     """

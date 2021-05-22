@@ -15,7 +15,7 @@ Feature: rooms test
       "roomNo": "E1-001",
       "position": "TP.Thu Duc",
       "facilityIds": [1],
-      "branch": 1
+      "branchId": 1
     }
     """
     Given path 'api/v1/rooms/'

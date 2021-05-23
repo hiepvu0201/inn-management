@@ -30,7 +30,7 @@ import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
-import branchesApi from "../../../api/branchesApi";
+import roomApi from "../../../api/roomApi";
 const { Option } = Select;
 
 function Users(props) {
@@ -54,48 +54,13 @@ function Users(props) {
   const [idSelected_1, setidSelected_1] = useState([]);
   const [dataTable, setdataTable] = useState([]);
   const [idReport_1, setidReport_1] = useState([]);
-  const [branchesList, setBranchesList] = useState([]);
+  const [roomList, setRoomList] = useState([]);
   const [abcd, setAbcd] = useState([]);
-  // const updatetable = async (roleIds) => {
-  //   dataTable=[...usersList];
-  //   console.log("abc",()=>fetchRolebyId(roleIds));
-
-  // }
-  // const fetchRolebyId = async (userArr) => {
-  //   try {
-  //     let nameRole;
-
-  //     let newUserList = userArr;
-  //     userArr.map((us) => {
-  //       console.log("us", us.roleIds[0]);
-  //       const roleID = us.roleIds[0];
-  //       const response = new Promise((resolve, reject) => {
-  //         resolve(roleApi.getbyId(roleID));
-  //       });
-
-  //       response.then((value) => {
-  //         const index = userArr.findIndex((x) => x.id === us.id);
-  //         newUserList[index] = { ...userArr[index], hienlen:value.data.name };
-  //       });
-  //     });
-  //     return newUserList;
-  //     // setAbcd(newUserList);
-  //   } catch (error) {
-  //     console.log("Failed to get by id list: ", error);
-  //   }
-  // };
   const fetchUsersList = async () => {
     const roleIds = { roleIds: idSelected };
     try {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
-
-      // const responseABC = new Promise((resolve, reject) => {
-      //   resolve(fetchRolebyId(response.data));
-      // });
-      // responseABC.then((value) => {
-      //    setAbcd(value);
-      // });
       setIsusersList(response.data);
       // dataTable([...userList, response.data]);
       // console.log("response.data.roleIds[0] >>", response.data[0].roleIds);
@@ -118,23 +83,22 @@ function Users(props) {
       console.log("Failed to fetch getAll roles list: ", error);
     }
   };
-  const fetchBranchesList = async () => {
+  const fetchRoomList = async () => {
     try {
-      const response = await branchesApi.getAll();
-      console.log("Fetch getAll branches successfully: ", response.data);
-
-      setBranchesList(response.data);
+      const response = await roomApi.getAll();
+      console.log("Fetch getAll room successfully: ", response.data);
+      setRoomList(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
-      console.log("Failed to fetch getAll branches list: ", error);
+      console.log("Failed to fetch getAll rooms list: ", error);
     }
   };
 
   useEffect(() => {
     fetchUsersList();
     fetchRoleList();
-    fetchBranchesList();
+    fetchRoomList();
   }, []);
 
   //form
@@ -275,10 +239,10 @@ function Users(props) {
       render: (roles) => <div>{roles[0].name}</div>,
     },
     {
-      title: "Chi nhánh",
-      dataIndex: "branch",
-      key: "branch",
-      render: (branch) => <div>{branch.description}</div>,
+      title: "Phòng",
+      dataIndex: "room",
+      key: "room",
+      render: (room) => <div>{room.roomNo}</div>,
     },
     {
       title: "",
@@ -398,11 +362,11 @@ function Users(props) {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Chi nhánh" name="branchId">
+            <Form.Item label="Phòng" name="roomId">
               <Select>
-                {branchesList.map((branchesid) => (
-                  <Select.Option key={branchesid.id} value={branchesid.id}>
-                    {branchesid.description}
+                {roomList.map((roomid) => (
+                  <Select.Option key={roomid.id} value={roomid.id}>
+                    {roomid.roomNo}
                   </Select.Option>
                 ))}
               </Select>
@@ -520,14 +484,11 @@ function Users(props) {
                           ))}
                         </Select>
                       </Form.Item>
-                      <Form.Item label="Chi nhánh" name="branchId">
+                      <Form.Item label="Phòng" name="roomId">
                         <Select>
-                          {branchesList.map((branchesid) => (
-                            <Select.Option
-                              key={branchesid.id}
-                              value={branchesid.id}
-                            >
-                              {branchesid.description}
+                          {roomList.map((roomid) => (
+                            <Select.Option key={roomid.id} value={roomid.id}>
+                              {roomid.roomNo}
                             </Select.Option>
                           ))}
                         </Select>

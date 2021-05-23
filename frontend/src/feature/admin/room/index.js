@@ -13,7 +13,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
-import usersApi from "../../../api/usersApi";
+import branchesApi from "../../../api/branchesApi";
 import {
   Table,
   Popconfirm,
@@ -42,7 +42,7 @@ function Rooms(props) {
   // }
   //getAll
   const [roomList, setRoomList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
+  const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
 
@@ -63,13 +63,13 @@ function Rooms(props) {
       console.log("Failed to fetch rooms list: ", error);
     }
   };
-  const fetchUsersList = async () => {
+  const fetchBranchesList = async () => {
     try {
-      const response = await usersApi.getAll();
-      console.log("Fetch users successfully: ", response.data);
-      setUsersList(response.data);
+      const response = await branchesApi.getAll();
+      console.log("Fetch branches successfully: ", response.data);
+      setBranchesList(response.data);
     } catch (error) {
-      console.log("Failed to fetch users list: ", error);
+      console.log("Failed to fetch branches list: ", error);
     }
   };
   const fetchFacilitiesList = async () => {
@@ -95,7 +95,7 @@ function Rooms(props) {
   useEffect(() => {
     fetchElectricitywaterList();
     fetchFacilitiesList();
-    fetchUsersList();
+    fetchBranchesList();
     fetchRoomList();
     // fetchBranchesList();
     // fetchfacilitiesList();
@@ -104,7 +104,6 @@ function Rooms(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      userIds: idSelected,
       facilityIds: selected_1,
       // electricityWaterIds: selected_2,
     };
@@ -143,9 +142,9 @@ function Rooms(props) {
     // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
-      userIds: idSelected,
+      // userIds: idSelected,
       facilityIds: selected_1,
-      electricityWaterIds: selected_2,
+      // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -207,10 +206,11 @@ function Rooms(props) {
       key: "position",
     },
     {
-      title: "Khách thuê",
-      dataIndex: "users",
-      key: "users",
-      render: (users) => <div>{users[0].userName}</div>,
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      // render: (users) => <div>{users[0].userName}</div>,
+      render:(branch)=><div>{branch.location}</div>
     },
     {
       title: "Thiết bị",
@@ -279,20 +279,19 @@ function Rooms(props) {
       setRoomList(state);
     }
     else{
- const fetchRoombyUsername = async () => {
+ const SearchRoombyBranch = async () => {
    try {
-     const response = await roomApi.getRoombyUsername(value);
-     console.log("Fetch room by username successfully: ", response.data);
+     const response = await roomApi.searchRoombyBranch(value);
+     console.log("Fetch room by branch successfully: ", response.data);
      // setIsstateInput(response.data);
      setRoomList(response.data);
    } catch (error) {
-     console.log("Failed to fetch room by username: ", error);
+     console.log("Failed to fetch room by ranch: ", error);
    }
  };
- fetchRoombyUsername();
-    }
-   
-  };
+ SearchRoombyBranch();
+    };
+  }
   return (
     <div>
       <Modal
@@ -328,11 +327,11 @@ function Rooms(props) {
               <Input placeholder={rowEdit.position} />
             </Form.Item>
 
-            <Form.Item label="Người dùng">
+            <Form.Item label="Chi nhánh" name="branchId">
               <Select onChange={handleChange}>
-                {usersList.map((usersid) => (
-                  <Select.Option key={usersid.id} value={usersid.id}>
-                    {usersid.fullName}
+                {branchesList.map((branchesid) => (
+                  <Select.Option key={branchesid.id} value={branchesid.id}>
+                    {branchesid.location}
                   </Select.Option>
                 ))}
               </Select>
@@ -349,19 +348,6 @@ function Rooms(props) {
                 ))}
               </Select>
             </Form.Item>
-            {/* <Form.Item label="Điện nước">
-              <Select onChange={handleChange_2}>
-                {electricitywatersList.map((electricitywatersid) => (
-                  <Select.Option
-                    key={electricitywatersid.id}
-                    value={electricitywatersid.id}
-                  >
-                    {electricitywatersid.id}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -452,11 +438,14 @@ function Rooms(props) {
                       <Input />
                     </Form.Item>
 
-                    <Form.Item label="Người dùng">
+                    <Form.Item label="Chi nhánh" name="branchId">
                       <Select onChange={handleChange}>
-                        {usersList.map((usersid) => (
-                          <Select.Option key={usersid.id} value={usersid.id}>
-                            {usersid.fullName}
+                        {branchesList.map((branchesid) => (
+                          <Select.Option
+                            key={branchesid.id}
+                            value={branchesid.id}
+                          >
+                            {branchesid.location}
                           </Select.Option>
                         ))}
                       </Select>

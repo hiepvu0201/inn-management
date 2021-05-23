@@ -25,7 +25,7 @@ Feature: users test
       "checkoutDate": "",
       "downPayment": "",
       "roleIds": [1],
-      "branchId": 1,
+      "roomId": ,
     }
     """
     Given path 'api/v1/users/'
@@ -33,3 +33,16 @@ Feature: users test
     When method POST
     Then status 200
     And match $.userName == "user"
+
+  Scenario: check in
+    Given path 'api/v1/users/checkin'
+    And param userName = 'user'
+    And param roomNo = 'E1-001'
+    When method GET
+    Then status 200
+
+  Scenario: check out
+    Given path 'api/v1/users/checkout'
+    And param userName = 'user'
+    When method GET
+    Then status 200

@@ -30,6 +30,19 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findById(id));
     }
 
+    @GetMapping("/checkin")
+    public ResponseEntity<String> checkIn(@Param("userName") String userName,
+                                          @Param("roomNo") String roomNo) {
+        String message = userService.checkIn(userName, roomNo);
+        return ResponseEntity.ok().body(message);
+    }
+
+    @GetMapping("/checkout")
+    public ResponseEntity<String> checkout(@Param("userName") String userName) {
+        String message = userService.checkOut(userName);
+        return ResponseEntity.ok().body(message);
+    }
+
     @PostMapping("/")
     public Users create(@Validated @RequestBody Users user) throws Exception {
         return userService.createOrUpdate(null, user);

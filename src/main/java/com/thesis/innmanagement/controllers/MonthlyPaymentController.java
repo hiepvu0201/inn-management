@@ -1,9 +1,11 @@
 package com.thesis.innmanagement.controllers;
 
+import com.thesis.innmanagement.entities.MonthlyIncomes;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.MonthlyPayments;
 import com.thesis.innmanagement.services.MonthlyPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,11 @@ public class MonthlyPaymentController {
     @GetMapping("/{id}")
     public ResponseEntity<MonthlyPayments> getMonthlyPaymentById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(monthlyPaymentService.findById(id));
+    }
+
+    @GetMapping("/search-by-branch")
+    public ResponseEntity<List<MonthlyPayments>> getIncomeByBranch(@Param(value = "branchLocation") String branchLocation) {
+        return ResponseEntity.ok().body(monthlyPaymentService.findAllByBranchLocation(branchLocation));
     }
 
     @PostMapping("/")

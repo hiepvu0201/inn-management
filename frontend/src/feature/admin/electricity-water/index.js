@@ -74,13 +74,14 @@ function ElectricityWaters(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      
     };
     console.log("dataCreate", dataCreate);
 
     const fetchCreateElectricityWater = async () => {
       try {
-        const response = await electricityWaterApi.createelectricitywater(dataCreate);
+        const response = await electricityWaterApi.createelectricitywater(
+          dataCreate
+        );
         console.log("Fetch create electricity-water succesfully: ", response);
         setElectricitywaterList([...electricitywatersList, response.data]);
         console.log("DATA: ", response);
@@ -109,7 +110,7 @@ function ElectricityWaters(props) {
   const onFinish_edit = (values) => {
     // console.log("Success", values);
     // fetchUpdateUsers(data_update);
-    
+
     console.log("dataupdate", values);
     const data_update = { id: rowEdit.id, data: values };
     fetchUpdateElectricityWater(data_update);
@@ -119,9 +120,13 @@ function ElectricityWaters(props) {
   };
   const fetchDeleteElectricityWater = async (record) => {
     try {
-      const response = await electricityWaterApi.deleteelectricitywater(record.id);
+      const response = await electricityWaterApi.deleteelectricitywater(
+        record.id
+      );
       console.log("Delete electricity-water successfully", response);
-      setElectricitywaterList(electricitywatersList.filter((item) => item.id !== record.id));
+      setElectricitywaterList(
+        electricitywatersList.filter((item) => item.id !== record.id)
+      );
     } catch (error) {
       console.log("Failed to delete electricity-water list", error);
     }
@@ -151,9 +156,7 @@ function ElectricityWaters(props) {
       title: "Phòng",
       dataIndex: "room",
       key: "room",
-      render:(room) => <div>
-        {room.roomNo}
-      </div>
+      render: (room) => <div>{room.roomNo}</div>,
     },
     {
       title: "Số điện cũ",
@@ -390,109 +393,104 @@ function ElectricityWaters(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-elec">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
-                  THÊM MỚI
-                </button>
-                <Modal
-                  title={
-                    <div style={{ display: "flex" }}>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        size="1x"
-                        color="#007c7e"
-                      />{" "}
-                      <div
-                        style={{
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          color: "#007c7e",
-                          paddingLeft: "10px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Thêm mới
+              <div className="topic-right-elec">
+                <div className="btn-right">
+                  <button className="detailed-btn" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title={
+                      <div style={{ display: "flex" }}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          size="1x"
+                          color="#007c7e"
+                        />{" "}
+                        <div
+                          style={{
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            color: "#007c7e",
+                            paddingLeft: "10px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thêm mới
+                        </div>
                       </div>
-                    </div>
-                  }
-                  onOk={handleOk}
-                  onCancel={handleCancel}
-                  visible={isModalVisible}
-                  okText="THÊM MỚI"
-                  cancelText="HỦY BỎ"
-                  footer={null}
-                >
-                  <Form
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    }
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    visible={isModalVisible}
+                    okText="THÊM MỚI"
+                    cancelText="HỦY BỎ"
+                    footer={null}
                   >
-                    <Form.Item label="Số điện cũ" name="numElectricOld">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số điện mới" name="numElectricNew">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item
-                      label="Số điện tiêu thụ"
-                      name="numElectricConsump"
+                    <Form
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
                     >
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số nước cũ" name="numWaterOld">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số nước mới" name="numWaterNew">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Tháng" name="month">
-                      <InputNumber />
-                    </Form.Item>
-                    <Form.Item label="Kiểm tra" name="checked">
-                      <Radio.Group>
-                        <Radio value="true">True</Radio>
-                        <Radio value="false">False</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item label="Phòng" name="roomId">
-                      <Select onChange={handleChange}>
-                        {roomList.map((roomsid) => (
-                          <Select.Option key={roomsid.id} value={roomsid.id}>
-                            {roomsid.roomNo}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
+                      <Form.Item label="Số điện cũ" name="numElectricOld">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số điện mới" name="numElectricNew">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        label="Số điện tiêu thụ"
+                        name="numElectricConsump"
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số nước cũ" name="numWaterOld">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số nước mới" name="numWaterNew">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        label="Số nước tiêu thụ"
+                        name="numWaterConsump"
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Tháng" name="month">
+                        <InputNumber />
+                      </Form.Item>
+                      <Form.Item label="Kiểm tra" name="checked">
+                        <Radio.Group>
+                          <Radio value="true">True</Radio>
+                          <Radio value="false">False</Radio>
+                        </Radio.Group>
+                      </Form.Item>
+                      <Form.Item label="Phòng" name="roomId">
+                        <Select onChange={handleChange}>
+                          {roomList.map((roomsid) => (
+                            <Select.Option key={roomsid.id} value={roomsid.id}>
+                              {roomsid.roomNo}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
 
-                    <div style={{ display: "flex" }}>
-                      <Button type="primary" htmlType="submit">
-                        THÊM MỚI
-                      </Button>
-                      <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default">HỦY BỎ</Button>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
-                </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
+                    </Form>
+                  </Modal>
+                </div>
               </div>
             </div>
-
             <div
               style={{
                 paddingTop: "30px",

@@ -17,5 +17,9 @@ const monthlypaymentsApi = {
     const url = `/api/v1/monthly-payments/${monthlypayments}/delete/`;
     return axiosClient.delete(url);
   },
+  searchpaymentsbybranch(params) {
+    const url = `/api/v1/monthly-payments/search-by-branch/?branchLocation=${params}`;
+    return axiosClient.get(url);
+  },
 };
 export default monthlypaymentsApi;

@@ -66,7 +66,8 @@ function Contract(props) {
       //   console.log(">>>map",owner.fullName)
       // })
       // console.log(prefer)
-      setContractList(response.data)
+      setContractList(response.data);
+      setstate(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -130,16 +131,13 @@ function Contract(props) {
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    setIsModalVisible(false);
   };
   const fetchDeleteContract = async (record) => {
     try {
-      const response = await contractsApi.deletecontracts(
-        record.id
-      );
+      const response = await contractsApi.deletecontracts(record.id);
       console.log("Delete contract successfully", response);
-      setContractList(
-        contractList.filter((item) => item.id !== record.id)
-      );
+      setContractList(contractList.filter((item) => item.id !== record.id));
     } catch (error) {
       console.log("Failed to delete contract list", error);
     }
@@ -199,13 +197,13 @@ function Contract(props) {
       title: "Chủ trọ",
       dataIndex: "owner",
       key: "owner",
-      render: (owner) => <div>{owner[0].fullName}</div>,
+      render: (owner) => <div>{owner[0].userName}</div>,
     },
     {
       title: "Khách thuê",
       dataIndex: "tenant",
       key: "tenant",
-      render: (tenant) => <div>{tenant[0].fullName}</div>,
+      render: (tenant) => <div>{tenant[0].userName}</div>,
     },
     {
       title: "",
@@ -259,6 +257,40 @@ function Contract(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  };
+  const [tenantName, settenantName] = useState([]);
+  const [state, setstate] = useState([]);
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === "") {
+      setContractList(state);
+    } else {
+      const fetchContractbyTenantname = async () => {
+        try {
+          const response = await contractsApi.getContractbytenantName(value);
+          console.log("Fetch contract by tenant name successfully: ", response.data);
+          // setIsstateInput(response.data);
+          setContractList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+       const fetchContractbyOwnername = async () => {
+         try {
+           const response = await contractsApi.getContractbyownerName(value);
+           console.log(
+             "Fetch contract by owner name successfully: ",
+             response.data
+           );
+           // setIsstateInput(response.data);
+           setContractList(response.data);
+         } catch (error) {
+           console.log("Failed to fetch list: ", error);
+         }
+       };
+       fetchContractbyOwnername();
+      fetchContractbyTenantname();
+    }
   };
   return (
     <div>
@@ -355,12 +387,20 @@ function Contract(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-con">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ HỢP ĐỒNG</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
+
+              <div className="btn-right-con">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Input.Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
+                </div>
+                <button className="detailed-btn-con" onClick={showModal}>
                   THÊM MỚI
                 </button>
                 <Modal
@@ -394,7 +434,7 @@ function Contract(props) {
                   <Form
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    onFinishFailed={handleCancel}
                   >
                     <Form.Item label="Chi tiết hợp đồng" name="details">
                       <Input />
@@ -439,15 +479,6 @@ function Contract(props) {
                     </div>
                   </Form>
                 </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
               </div>
             </div>
 

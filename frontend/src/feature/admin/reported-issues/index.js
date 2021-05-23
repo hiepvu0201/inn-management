@@ -23,7 +23,7 @@ import {
   Select,
   InputNumber,
   Spin,
-  DatePicker
+  DatePicker,
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
@@ -73,10 +73,12 @@ function Reportedissues(props) {
       // "createdDate": values["createdDate"].format("YYYY-MM-DD HH:mm:ss"),
       // "solvedDate": values["solvedDate"].format("YYYY-MM-DD HH:mm:ss"),
     };
-    console.log("<<",create_value)
+    console.log("<<", create_value);
     const fetchCreateReportedissues = async () => {
       try {
-        const response = await ReportedissuesApi.createReportedissues(create_value);
+        const response = await ReportedissuesApi.createReportedissues(
+          create_value
+        );
         console.log("Fetch create reported-issues succesfully: ", response);
         setIsreportedList([...reportedList, response.data]);
         setIsModalVisible(false);
@@ -304,94 +306,84 @@ function Reportedissues(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-report">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ BÁO CÁO ĐỀ MỤC CỦA NHÀ TRỌ</div>
+                <div className="content">
+                  QUẢN LÝ BÁO CÁO ĐỀ MỤC CỦA NHÀ TRỌ
+                </div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
-                  THÊM MỚI
-                </button>
-                <Modal
-                  title={
-                    <div style={{ display: "flex" }}>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        size="1x"
-                        color="#007c7e"
-                      />{" "}
-                      <div
-                        style={{
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          color: "#007c7e",
-                          paddingLeft: "10px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Thêm mới
+              <div className="topic-right-report">
+                <div className="btn-right-report">
+                  <button className="detailed-btn-report" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title={
+                      <div style={{ display: "flex" }}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          size="1x"
+                          color="#007c7e"
+                        />{" "}
+                        <div
+                          style={{
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            color: "#007c7e",
+                            paddingLeft: "10px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thêm mới
+                        </div>
                       </div>
-                    </div>
-                  }
-                  onOk={handleOk}
-                  onCancel={handleCancel}
-                  visible={isModalVisible}
-                  okText="THÊM MỚI"
-                  cancelText="HỦY BỎ"
-                  footer={null}
-                >
-                  <Form
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    }
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    visible={isModalVisible}
+                    okText="THÊM MỚI"
+                    cancelText="HỦY BỎ"
+                    footer={null}
                   >
-                    <Form.Item label="Tiêu đê" name="title">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Mô tả" name="description">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Tình trạng" name="status">
-                      <Input />
-                    </Form.Item>
-                    {/* <Form.Item label="Ngày tạo" name="createdDate">
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                    </Form.Item>
-                    <Form.Item label="Ngày hoàn thành" name="solvedDate">
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                    </Form.Item> */}
-                    <Form.Item label="Người báo cáo" name="reporterId">
-                      <Select>
-                        {usersList.map((reporterid) => (
-                          <Select.Option
-                            key={reporterid.id}
-                            value={reporterid.id}
-                          >
-                            {reporterid.fullName}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    {/* <Form.Item></Form.Item> */}
-                    <div style={{ display: "flex" }}>
-                      <Button type="primary" htmlType="submit">
-                        THÊM MỚI
-                      </Button>
-                      <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                    <Form
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item label="Tiêu đê" name="title">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Mô tả" name="description">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Tình trạng" name="status">
+                        <Input />
+                      </Form.Item>
+
+                      <Form.Item label="Người báo cáo" name="reporterId">
+                        <Select>
+                          {usersList.map((reporterid) => (
+                            <Select.Option
+                              key={reporterid.id}
+                              value={reporterid.id}
+                            >
+                              {reporterid.fullName}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                      {/* <Form.Item></Form.Item> */}
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default">HỦY BỎ</Button>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
-                </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
+                    </Form>
+                  </Modal>
+                </div>
               </div>
             </div>
 

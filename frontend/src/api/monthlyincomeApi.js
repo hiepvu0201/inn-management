@@ -17,5 +17,9 @@ const monthlyincomesApi = {
     const url = `/api/v1/monthly-incomes/${rules}/delete/`;
     return axiosClient.delete(url);
   },
+  searchincomebybranch(params){
+    const url=`/api/v1/monthly-incomes/search-by-branch/?branchLocation=${params}`;
+    return axiosClient.get(url);
+  }
 };
 export default monthlyincomesApi;

@@ -62,29 +62,29 @@ function Notification(props) {
     }
   };
   //delete
-   const fetchDeleteNotification = async (record) => {
-     try {
-       const response = await notificationApi.deletenotification(record.id);
-       console.log("Delete notification  successfully", response);
-       setNotificationList(notificationList.filter((item) => item.id !== record.id));
-       fetchNotificationList();
-     } catch (error) {
-       console.log("Failed to delete rule list", error);
-     }
-   };
+  const fetchDeleteNotification = async (record) => {
+    try {
+      const response = await notificationApi.deletenotification(record.id);
+      console.log("Delete notification  successfully", response);
+      setNotificationList(
+        notificationList.filter((item) => item.id !== record.id)
+      );
+      fetchNotificationList();
+    } catch (error) {
+      console.log("Failed to delete rule list", error);
+    }
+  };
   //form
   const onFinish = (values) => {
-
     const fetchCreateNotification = async () => {
       try {
         // values["id"]=values.id;
         const response = await notificationApi.createnotifications(values);
         console.log("Fetch create notification succesSfully: ", response);
         setNotificationList([...notificationList, response.data]);
-        console.log("In response",response);
+        console.log("In response", response);
         setIsModalVisible(false);
         console.log("data: ", notificationList);
-
       } catch (error) {
         console.log("failed to fetch notification list: ", error);
       }
@@ -257,78 +257,70 @@ function Notification(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-noti">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ THÔNG BÁO NHÀ TRỌ</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
-                  THÊM MỚI
-                </button>
-                <Modal
-                  title={
-                    <div style={{ display: "flex" }}>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        size="1x"
-                        color="#007c7e"
-                      />{" "}
-                      <div
-                        style={{
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          color: "#007c7e",
-                          paddingLeft: "10px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Thêm mới
+              <div className="topic-right-noti">
+                <div className="btn-right-noti">
+                  <button className="detailed-btn-noti" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title={
+                      <div style={{ display: "flex" }}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          size="1x"
+                          color="#007c7e"
+                        />{" "}
+                        <div
+                          style={{
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            color: "#007c7e",
+                            paddingLeft: "10px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thêm mới
+                        </div>
                       </div>
-                    </div>
-                  }
-                  onOk={handleOk}
-                  onCancel={handleCancel}
-                  visible={isModalVisible}
-                  okText="THÊM MỚI"
-                  cancelText="HỦY BỎ"
-                  footer={null}
-                >
-                  <Form
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    }
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    visible={isModalVisible}
+                    okText="THÊM MỚI"
+                    cancelText="HỦY BỎ"
+                    footer={null}
                   >
-                    <Form.Item label="Tên" name="name">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Mô tả" name="description">
-                      <Input />
-                    </Form.Item>
+                    <Form
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item label="Tên" name="name">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Mô tả" name="description">
+                        <Input />
+                      </Form.Item>
 
-                    <div style={{ display: "flex" }}>
-                      <Button type="primary" htmlType="submit">
-                        THÊM MỚI
-                      </Button>
-                      <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default" onClick={handleCancel}>
-                          HỦY BỎ
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI
                         </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
-                </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
+                    </Form>
+                  </Modal>
+                </div>
               </div>
             </div>
-
             <div
               style={{
                 paddingTop: "30px",

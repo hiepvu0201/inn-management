@@ -17,5 +17,9 @@ const roomsApi = {
     const url = `/api/v1/rooms/${room.id}/`;
     return axiosClient.put(url, room.data);
   },
+  searchRoombyBranch(params){
+    const url = `/api/v1/rooms/search-by-branch-location/?branchLocation=${params}`;
+    return axiosClient.get(url);
+  }
 };
 export default roomsApi;

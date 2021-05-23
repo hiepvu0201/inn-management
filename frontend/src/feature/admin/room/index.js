@@ -13,7 +13,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
-import usersApi from "../../../api/usersApi";
+import branchesApi from "../../../api/branchesApi";
 import {
   Table,
   Popconfirm,
@@ -31,12 +31,18 @@ import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
+const { Search } = Input;
 
 function Rooms(props) {
   //api
+  //search
+
+  // const onSearch_1=(value)=>{
+  //   console.log(value)
+  // }
   //getAll
   const [roomList, setRoomList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
+  const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
 
@@ -49,20 +55,21 @@ function Rooms(props) {
       const response = await roomApi.getAll();
       console.log("Fetch rooms successfully: ", response.data);
       setRoomList(response.data);
-
+      setIsstateInput(response.data);
+      setstate(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
       console.log("Failed to fetch rooms list: ", error);
     }
   };
-  const fetchUsersList = async () => {
+  const fetchBranchesList = async () => {
     try {
-      const response = await usersApi.getAll();
-      console.log("Fetch users successfully: ", response.data);
-      setUsersList(response.data);
+      const response = await branchesApi.getAll();
+      console.log("Fetch branches successfully: ", response.data);
+      setBranchesList(response.data);
     } catch (error) {
-      console.log("Failed to fetch users list: ", error);
+      console.log("Failed to fetch branches list: ", error);
     }
   };
   const fetchFacilitiesList = async () => {
@@ -74,19 +81,21 @@ function Rooms(props) {
       console.log("Failed to fetch facilities list: ", error);
     }
   };
-  const fetchElectricitywaterList = async () => {
+  const fetchElectricitywaterList = async (userName) => {
     try {
-      const response = await electricityWaterApi.getAll();
+      const response = await electricityWaterApi.getAll(userName);
       console.log("Fetch electricities successfully: ", response.data);
       setElectricitywaterList(response.data);
     } catch (error) {
       console.log("Failed to fetch electricities list: ", error);
     }
   };
+  const [stateInput, setIsstateInput] = useState([]);
+
   useEffect(() => {
     fetchElectricitywaterList();
     fetchFacilitiesList();
-    fetchUsersList();
+    fetchBranchesList();
     fetchRoomList();
     // fetchBranchesList();
     // fetchfacilitiesList();
@@ -95,7 +104,6 @@ function Rooms(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      userIds: idSelected,
       facilityIds: selected_1,
       // electricityWaterIds: selected_2,
     };
@@ -134,9 +142,9 @@ function Rooms(props) {
     // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
-      userIds: idSelected,
+      // userIds: idSelected,
       facilityIds: selected_1,
-      electricityWaterIds: selected_2,
+      // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -198,10 +206,11 @@ function Rooms(props) {
       key: "position",
     },
     {
-      title: "Khách thuê",
-      dataIndex: "users",
-      key: "users",
-      render: (users) => <div>{users[0].fullName}</div>,
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      // render: (users) => <div>{users[0].userName}</div>,
+      render:(branch)=><div>{branch.location}</div>
     },
     {
       title: "Thiết bị",
@@ -262,6 +271,27 @@ function Rooms(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+  const [state, setstate] = useState([])
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if(value==="")
+    {
+      setRoomList(state);
+    }
+    else{
+ const SearchRoombyBranch = async () => {
+   try {
+     const response = await roomApi.searchRoombyBranch(value);
+     console.log("Fetch room by branch successfully: ", response.data);
+     // setIsstateInput(response.data);
+     setRoomList(response.data);
+   } catch (error) {
+     console.log("Failed to fetch room by ranch: ", error);
+   }
+ };
+ SearchRoombyBranch();
+    };
+  }
   return (
     <div>
       <Modal
@@ -297,11 +327,11 @@ function Rooms(props) {
               <Input placeholder={rowEdit.position} />
             </Form.Item>
 
-            <Form.Item label="Người dùng">
+            <Form.Item label="Chi nhánh" name="branchId">
               <Select onChange={handleChange}>
-                {usersList.map((usersid) => (
-                  <Select.Option key={usersid.id} value={usersid.id}>
-                    {usersid.fullName}
+                {branchesList.map((branchesid) => (
+                  <Select.Option key={branchesid.id} value={branchesid.id}>
+                    {branchesid.location}
                   </Select.Option>
                 ))}
               </Select>
@@ -318,19 +348,6 @@ function Rooms(props) {
                 ))}
               </Select>
             </Form.Item>
-            {/* <Form.Item label="Điện nước">
-              <Select onChange={handleChange_2}>
-                {electricitywatersList.map((electricitywatersid) => (
-                  <Select.Option
-                    key={electricitywatersid.id}
-                    value={electricitywatersid.id}
-                  >
-                    {electricitywatersid.id}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -365,11 +382,19 @@ function Rooms(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-room">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ PHÒNG TRỌ</div>
               </div>
-              <div className="btn-right">
+              <div className="btn-right-rooms">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
+                </div>
+
                 <button className="detailed-btn" onClick={showModal}>
                   THÊM MỚI
                 </button>
@@ -413,11 +438,14 @@ function Rooms(props) {
                       <Input />
                     </Form.Item>
 
-                    <Form.Item label="Người dùng">
+                    <Form.Item label="Chi nhánh" name="branchId">
                       <Select onChange={handleChange}>
-                        {usersList.map((usersid) => (
-                          <Select.Option key={usersid.id} value={usersid.id}>
-                            {usersid.fullName}
+                        {branchesList.map((branchesid) => (
+                          <Select.Option
+                            key={branchesid.id}
+                            value={branchesid.id}
+                          >
+                            {branchesid.location}
                           </Select.Option>
                         ))}
                       </Select>

@@ -34,7 +34,7 @@ import Rules_client from './feature/client/rules'
 function App() {
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -74,7 +74,7 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch> */}
+      </Switch>
       {/* <Room_client/> */}
       {/* <Switch>
         <Route path="/detailroom">
@@ -87,7 +87,7 @@ function App() {
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
       {/* <Rules_client/> */}
-      <Reportissues_client/>
+      {/* <Reportissues_client/> */}
     </div>
   );
 }

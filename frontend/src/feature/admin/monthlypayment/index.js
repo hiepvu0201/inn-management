@@ -52,6 +52,7 @@ function Monthlypayment(props) {
       const response = await monthlypaymentsApi.getAll();
       console.log("Fetch load monthly payment successfully: ", response.data);
       setMonthlypaymentList(response.data);
+      setstate(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -204,6 +205,29 @@ function Monthlypayment(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+      const [state, setstate] = useState([]);
+
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === "") {
+      setMonthlypaymentList(state);
+    } else {
+      const fetchSearchPaymentbyBranch = async () => {
+        try {
+          const response = await monthlypaymentsApi.searchpaymentsbybranch(value);
+          console.log(
+            "Fetch monthlypayment by branch name successfully: ",
+            response.data
+          );
+          // setIsstateInput(response.data);
+          setMonthlypaymentList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      fetchSearchPaymentbyBranch();
+    }
+  };
   return (
     <div>
       <Modal
@@ -285,75 +309,77 @@ function Monthlypayment(props) {
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ NGUỒN CHI NHÀ TRỌ</div>
               </div>
-              <div className="topic-right-payment">
-                <div className="btn-right-payment">
-                  <button className="detailed-btn-payment" onClick={showModal}>
-                    THÊM MỚI
-                  </button>
-                  <Modal
-                    title={
-                      <div style={{ display: "flex" }}>
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          size="1x"
-                          color="#007c7e"
-                        />{" "}
-                        <div
-                          style={{
-                            fontFamily: "PT Sans, sans-serif",
-                            fontSize: "20px",
-                            color: "#007c7e",
-                            paddingLeft: "10px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Thêm mới
-                        </div>
-                      </div>
-                    }
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                    visible={isModalVisible}
-                    okText="THÊM MỚI"
-                    cancelText="HỦY BỎ"
-                    footer={null}
-                  >
-                    <Form
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                    >
-                      <Form.Item label="Tên" name="itemName">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số tiền chi" name="cost">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Chi nhánh" name="branchId">
-                        <Select>
-                          {branchList.map((branchid) => (
-                            <Select.Option
-                              key={branchid.id}
-                              value={branchid.id}
-                            >
-                              {branchid.location}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                      <div style={{ display: "flex" }}>
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel}>
-                            HỦY BỎ
-                          </Button>
-                        </div>
-                      </div>
-                    </Form>
-                  </Modal>
+              <div className="btn-right-payment">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Input.Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
                 </div>
+                <button className="detailed-btn-payment" onClick={showModal}>
+                  THÊM MỚI
+                </button>
+                <Modal
+                  title={
+                    <div style={{ display: "flex" }}>
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        size="1x"
+                        color="#007c7e"
+                      />{" "}
+                      <div
+                        style={{
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                          color: "#007c7e",
+                          paddingLeft: "10px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Thêm mới
+                      </div>
+                    </div>
+                  }
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                  visible={isModalVisible}
+                  okText="THÊM MỚI"
+                  cancelText="HỦY BỎ"
+                  footer={null}
+                >
+                  <Form
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                  >
+                    <Form.Item label="Tên" name="itemName">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Số tiền chi" name="cost">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchList.map((branchid) => (
+                          <Select.Option key={branchid.id} value={branchid.id}>
+                            {branchid.location}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <div style={{ display: "flex" }}>
+                      <Button type="primary" htmlType="submit">
+                        THÊM MỚI
+                      </Button>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <Button type="default" onClick={handleCancel}>
+                          HỦY BỎ
+                        </Button>
+                      </div>
+                    </div>
+                  </Form>
+                </Modal>
               </div>
             </div>
 

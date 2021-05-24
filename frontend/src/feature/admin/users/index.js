@@ -197,6 +197,7 @@ const showModal_Checkout = (values) => {
   const onFinish_checkin = (values) => {
     const datacheckin = {
       ...values,
+      userName: rowEditcheck.userName,
     };
     const fetchCheckin = async () => {
       // const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -220,6 +221,7 @@ const showModal_Checkout = (values) => {
     const onFinish_checkout = (values) => {
       const datacheckout = {
         ...values,
+        userName:rowEditcheckout.userName
       };
       const fetchCheckout = async () => {
         // const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -437,12 +439,8 @@ const showModal_Checkout = (values) => {
             onFinish={onFinish_checkin}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item
-              label="Khách trọ"
-              name="userName"
-              value={rowEditcheck.userName}
-            >
-              <Input placeholder={rowEditcheck.userName} value={rowEditcheck.userName} />
+            <Form.Item label="Khách trọ" name="userName" value="userName">
+              <Input placeholder={rowEditcheck.userName} disabled />
             </Form.Item>
             <Form.Item label="Phòng" name="roomNo">
               <Select>
@@ -500,11 +498,11 @@ const showModal_Checkout = (values) => {
             <Form.Item
               label="Khách trọ"
               name="userName"
-              value={rowEditcheckout.userName}
+              value="userName"
             >
-              <Input placeholder={rowEditcheckout.userName} />
+              <Input placeholder={rowEditcheckout.userName} disabled />
             </Form.Item>
-           
+
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CẬP NHẬT{" "}

@@ -128,7 +128,17 @@ const showModal_Checkout = (values) => {
     fetchRoleList();
     fetchRoomList();
   }, []);
-
+const { Option } = Select;
+const propsselect = [];
+{
+  roleList.map((rolesid) =>
+    propsselect.push(
+      <Option key={rolesid.id} value={rolesid.id}>
+        {rolesid.name}
+      </Option>
+    )
+  );
+}
   //form
   const [table, setTable] = useState([]);
   //create
@@ -136,7 +146,7 @@ const showModal_Checkout = (values) => {
     // console.log("Value", values);
     const dataCreate = {
       ...values,
-      roleIds: idSelected,
+      // roleIds: idSelected,
     };
     console.log("dataCreate", dataCreate);
     const fetchCreateUsers = async () => {
@@ -174,8 +184,8 @@ const showModal_Checkout = (values) => {
     // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
-      roleIds: idSelected,
-      reportedIssueIds: idReport,
+      // roleIds: idSelected,
+      // reportedIssueIds: idReport,
     };
     const fetchUpdateUsers = async () => {
       const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -242,18 +252,18 @@ const showModal_Checkout = (values) => {
   //select
   function handleChange(value) {
     console.log(`selected role ${value}`);
-    const rolevalue = [value];
-    setidSelected(rolevalue);
+    // const rolevalue = [value];
+    // setidSelected(rolevalue);
   }
   function handleChange_2(value) {
     console.log(`selected role1 ${value}`);
-    const rolevalue_1 = [value];
-    setidSelected_1(rolevalue_1);
+    // const rolevalue_1 = [value];
+    // setidSelected_1(rolevalue_1);
   }
   function handleChange_3(value) {
     console.log(`selected report1 ${value}`);
-    const reportvalue_1 = [value];
-    setidReport_1(reportvalue_1);
+    // const reportvalue_1 = [value];
+    // setidReport_1(reportvalue_1);
   }
   //input_num
   function onChange_inputnum(value) {
@@ -308,7 +318,9 @@ const showModal_Checkout = (values) => {
       title: "Quyền",
       dataIndex: "roles",
       key: "roles",
-      render: (roles) => <div>{roles[0].name}</div>,
+      render: (roles) => <div>{roles.map((us)=>us.name) + " "}</div>,
+            // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
+
     },
     {
       title: "Phòng",
@@ -442,7 +454,10 @@ const showModal_Checkout = (values) => {
               name="userName"
               value={rowEditcheck.userName}
             >
-              <Input placeholder={rowEditcheck.userName} value={rowEditcheck.userName} />
+              <Input
+                placeholder={rowEditcheck.userName}
+                value={rowEditcheck.userName}
+              />
             </Form.Item>
             <Form.Item label="Phòng" name="roomNo">
               <Select>
@@ -504,7 +519,7 @@ const showModal_Checkout = (values) => {
             >
               <Input placeholder={rowEditcheckout.userName} />
             </Form.Item>
-           
+
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CẬP NHẬT{" "}
@@ -572,13 +587,9 @@ const showModal_Checkout = (values) => {
             <Form.Item label="Số điện thoại" name="phoneNo">
               <Input placeholder={rowEdit.phoneNo} />
             </Form.Item>
-            <Form.Item label="Quyền">
-              <Select onChange={handleChange}>
-                {roleList.map((roleid) => (
-                  <Select.Option key={roleid.id} value={roleid.id}>
-                    {roleid.name}
-                  </Select.Option>
-                ))}
+            <Form.Item label="Quyền" name="roleIds">
+              <Select onChange={handleChange} allowClear mode="multiple">
+                {propsselect}
               </Select>
             </Form.Item>
             <div style={{ display: "flex" }}>
@@ -684,13 +695,13 @@ const showModal_Checkout = (values) => {
                       <Form.Item label="Số điện thoại" name="phoneNo">
                         <Input />
                       </Form.Item>
-                      <Form.Item label="Quyền">
-                        <Select onChange={handleChange}>
-                          {roleList.map((roleid) => (
-                            <Select.Option key={roleid.id} value={roleid.id}>
-                              {roleid.name}
-                            </Select.Option>
-                          ))}
+                      <Form.Item label="Quyền" name="roleIds">
+                        <Select
+                          onChange={handleChange}
+                          allowClear
+                          mode="multiple"
+                        >
+                          {propsselect}
                         </Select>
                       </Form.Item>
                       <Form.Item label="Phòng" name="roomId">

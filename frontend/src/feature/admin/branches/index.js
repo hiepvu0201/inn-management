@@ -68,6 +68,7 @@ function Branches(props) {
       const response = await facilitiesApi.getAll();
       console.log("Fetch Facility successfully: ", response.data);
       setFacilitiesList(response.data);
+      // setPropselect(response.data);
     } catch (error) {
       console.log("Failed to fetch Facility list: ", error);
     }
@@ -78,13 +79,21 @@ function Branches(props) {
     fetchBranchList();
   }, []);
   //form
-  const propsselect = [];
+  const { Option } = Select;
+  const propsselect=[];
+  {
+    facilitiesList.map((facilitiesid) =>
+      propsselect.push(
+        <Option key={facilitiesid.id} value={facilitiesid.id}>{facilitiesid.name}</Option>
+      )
+    );
+  }
   const [table, setTable] = useState([]);
   const onFinish = (values) => {
     const fetchCreateBranch = async () => {
       const dataCreate = {
         ...values,
-        facilityIds: idSelected,
+        // facilityIds: idSelected,
       };
       console.log("dataCreate", dataCreate);
       try {
@@ -126,7 +135,7 @@ function Branches(props) {
     // console.log("Success", values);
     const dataUpdate = {
       ...values,
-      facilityIds: idSelected,
+      // facilityIds: idSelected,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -139,8 +148,8 @@ function Branches(props) {
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
-    const rolevalue = [value];
-    setidSelected(rolevalue);
+    // const rolevalue = [value];
+    // setidSelected(rolevalue);
   }
 
   //input_num
@@ -181,7 +190,7 @@ function Branches(props) {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
-      render: (facilities) => <div>{facilities[0].name}</div>,
+      render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
       title: "",
@@ -276,7 +285,12 @@ function Branches(props) {
             <Form.Item label="Số phòng" name="numberOfRooms">
               <Input placeholder={rowEdit.numberOfRooms} />
             </Form.Item>
-            <Form.Item label="Vật liệu">
+            <Form.Item label="Thiết bị" name="facilityIds">
+              <Select onChange={handleChange} allowClear mode="multiple">
+                {propsselect}
+              </Select>
+            </Form.Item>
+            {/* <Form.Item label="Vật liệu">
               <Select
                 mode="multiple"
                 optionLabelProp="label"
@@ -288,7 +302,7 @@ function Branches(props) {
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -378,22 +392,13 @@ function Branches(props) {
                       <Form.Item label="Số phòng" name="numberOfRooms">
                         <Input />
                       </Form.Item>
-                      <Form.Item label="Thiết bị">
+                      <Form.Item label="Thiết bị" name="facilityIds">
                         <Select
                           onChange={handleChange}
                           allowClear
                           mode="multiple"
                         >
-                          {facilitiesList.map((facilitiesid) =>
-                              <Select.Option
-                                key={facilitiesid.id}
-                                value={facilitiesid.id}
-                              >
-                           
-                                {facilitiesid.name}
-                              </Select.Option>
-                          )}
-                          {console.log(propsselect)}
+                          {propsselect}
                         </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}

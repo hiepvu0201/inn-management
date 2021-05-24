@@ -78,6 +78,7 @@ function Branches(props) {
     fetchBranchList();
   }, []);
   //form
+  const propsselect = [];
   const [table, setTable] = useState([]);
   const onFinish = (values) => {
     const fetchCreateBranch = async () => {
@@ -276,7 +277,11 @@ function Branches(props) {
               <Input placeholder={rowEdit.numberOfRooms} />
             </Form.Item>
             <Form.Item label="Vật liệu">
-              <Select onChange={handleChange}>
+              <Select
+                mode="multiple"
+                optionLabelProp="label"
+                onChange={handleChange}
+              >
                 {facilitiesList.map((facilitiesid) => (
                   <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
                     {facilitiesid.name}
@@ -374,15 +379,21 @@ function Branches(props) {
                         <Input />
                       </Form.Item>
                       <Form.Item label="Thiết bị">
-                        <Select onChange={handleChange}>
-                          {facilitiesList.map((facilitiesid) => (
-                            <Select.Option
-                              key={facilitiesid.id}
-                              value={facilitiesid.id}
-                            >
-                              {facilitiesid.name}
-                            </Select.Option>
-                          ))}
+                        <Select
+                          onChange={handleChange}
+                          allowClear
+                          mode="multiple"
+                        >
+                          {facilitiesList.map((facilitiesid) =>
+                              <Select.Option
+                                key={facilitiesid.id}
+                                value={facilitiesid.id}
+                              >
+                           
+                                {facilitiesid.name}
+                              </Select.Option>
+                          )}
+                          {console.log(propsselect)}
                         </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}

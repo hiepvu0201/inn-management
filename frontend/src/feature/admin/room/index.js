@@ -41,6 +41,7 @@ function Rooms(props) {
   //   console.log(value)
   // }
   //getAll
+  
   const [roomList, setRoomList] = useState([]);
   const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
@@ -100,11 +101,22 @@ function Rooms(props) {
     // fetchBranchesList();
     // fetchfacilitiesList();
   }, []);
+   const { Option } = Select;
+   const propsselect = [];
+   {
+     facilitiesList.map((facilitiesid) =>
+       propsselect.push(
+         <Option key={facilitiesid.id} value={facilitiesid.id}>
+           {facilitiesid.name}
+         </Option>
+       )
+     );
+   }
   //form
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      facilityIds: selected_1,
+      // facilityIds: selected_1,
       // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
@@ -143,7 +155,7 @@ function Rooms(props) {
     const dataUpdate = {
       ...values,
       // userIds: idSelected,
-      facilityIds: selected_1,
+      // facilityIds: selected_1,
       // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
@@ -166,14 +178,14 @@ function Rooms(props) {
   //select
   function handleChange(value) {
     console.log(`selected users ${value}`);
-    const usersvalue = [value];
-    setidSelected(usersvalue);
+    // const usersvalue = [value];
+    // setidSelected(usersvalue);
   }
   const [selected_1, setIdselected_1] = useState([]);
   function handleChange_1(value) {
     console.log(`selected facilities id ${value}`);
-    const facilitiesvalue = [value];
-    setIdselected_1(facilitiesvalue);
+    // const facilitiesvalue = [value];
+    // setIdselected_1(facilitiesvalue);
   }
   const [selected_2, setIdselected_2] = useState([]);
   function handleChange_2(value) {
@@ -216,7 +228,9 @@ function Rooms(props) {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
-      render: (facilities) => <div>{facilities[0].name}</div>,
+      // render: (facilities) => <div>{facilities[0].name}</div>,
+            render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
+
     },
     {
       title: "",
@@ -336,18 +350,21 @@ function Rooms(props) {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Thiết bị">
-              <Select
-                onChange={handleChange_1}
-                placeholder={rowEdit.facilityIds}
-              >
-                {facilitiesList.map((facilitiesid) => (
-                  <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.name}
-                  </Select.Option>
-                ))}
+            <Form.Item label="Thiết bị" name="facilityIds">
+              <Select onChange={handleChange_1} allowClear mode="multiple">
+                {propsselect}
               </Select>
             </Form.Item>
+            {/* <Form.Item label="Thiết bị" name="facilityIds">
+              <Select
+                onChange={handleChange_1}
+                // placeholder={rowEdit.facilityIds}
+                  allowClear
+                          mode="multiple"
+              >
+                {propsselect}
+              </Select>
+            </Form.Item> */}
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -450,18 +467,15 @@ function Rooms(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Thiết bị">
-                      <Select onChange={handleChange_1}>
-                        {facilitiesList.map((facilitiesid) => (
-                          <Select.Option
-                            key={facilitiesid.id}
-                            value={facilitiesid.id}
-                          >
-                            {facilitiesid.name}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
+                    <Form.Item label="Thiết bị" name="facilityIds">
+                        <Select
+                          onChange={handleChange}
+                          allowClear
+                          mode="multiple"
+                        >
+                          {propsselect}
+                        </Select>
+                      </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

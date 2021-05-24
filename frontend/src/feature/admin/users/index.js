@@ -9,6 +9,8 @@ import {
   faPlus,
   faTrash,
   faEdit,
+  faMapMarkerAlt,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
@@ -25,7 +27,12 @@ import {
   Spin,
   Radio,
   DatePicker,
+  Tag,
+  notification,
 } from "antd";
+import {
+ CheckOutlined
+} from '@ant-design/icons';
 import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
@@ -34,16 +41,12 @@ import roomApi from "../../../api/roomApi";
 const { Option } = Select;
 
 function Users(props) {
-  //get foreign key of table role
-  // const getRolenamebyid=(roleid)={
-  //   const roleObj=role
-  // }
-  //select
-
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //
   const [rowEdit, setRowEdit] = useState({});
+  const [rowEditcheck, setRowEditcheck] = useState({});
+  const [rowEditcheckout,setRowEditcheckout]=useState({});
   //api
   //getAll
   const [usersList, setIsusersList] = useState([]);
@@ -56,6 +59,31 @@ function Users(props) {
   const [idReport_1, setidReport_1] = useState([]);
   const [roomList, setRoomList] = useState([]);
   const [abcd, setAbcd] = useState([]);
+  const [isModalCheckin, setIsModalCheckin] = useState(false);
+    const [isModalCheckout, setIsModalCheckout] = useState(false);
+
+  const showModal_Checkin = (values) => {
+    setIsModalCheckin(true);
+    //  setIsModalVisible_1(true);
+    console.log("values edit:", values);
+    setRowEditcheck(values);
+  };
+const showModal_Checkout = (values) => {
+    setIsModalCheckout(true);
+    //  setIsModalVisible_1(true);
+    console.log("values edit:", values);
+    setRowEditcheckout(values);
+  };
+  const handleOk_Checkin = () => {
+    setIsModalCheckin(false);
+  };
+
+  const handleCancel_Checkin = () => {
+    setIsModalCheckin(false);
+  };
+  const handleCancel_Checkout = () => {
+    setIsModalCheckout(false);
+  };
   const fetchUsersList = async () => {
     const roleIds = { roleIds: idSelected };
     try {
@@ -118,7 +146,6 @@ function Users(props) {
         setIsusersList([...usersList, response.data]);
         console.log("abc", response);
         setIsModalVisible(false);
-        // console.log("tabledata: ", branchList);
       } catch (error) {
         console.log("failed to fetch user list: ", error);
       }
@@ -166,7 +193,52 @@ function Users(props) {
     };
     fetchUpdateUsers();
   };
-
+  //form_checkin
+  const onFinish_checkin = (values) => {
+    const datacheckin = {
+      ...values,
+    };
+    const fetchCheckin = async () => {
+      // const data_update = { id: rowEdit.id, data: dataUpdate };
+      console.log("dataCheckin", datacheckin);
+      setIsloadingUpdate(true);
+      try {
+        const response = await usersApi.checkin(datacheckin);
+        console.log("Fetch checkin users successfully", response);
+        setIsModalCheckin(false);
+        // console.log("edit data", data_update);
+        fetchUsersList();
+        message.success("Checkin successfully")
+      } catch (error) {
+        console.log("Failed to checkin users", error);
+        setIsloadingUpdate(false);
+      }
+    };
+    fetchCheckin();
+  };
+  //form_checkout
+    const onFinish_checkout = (values) => {
+      const datacheckout = {
+        ...values,
+      };
+      const fetchCheckout = async () => {
+        // const data_update = { id: rowEdit.id, data: dataUpdate };
+        console.log("dataCheckin", datacheckout);
+        setIsloadingUpdate(true);
+        try {
+          const response = await usersApi.checkout(datacheckout);
+          console.log("Fetch checkout users successfully", response);
+          setIsModalCheckout(false);
+          // console.log("edit data", data_update);
+          fetchUsersList();
+          message.success("Checkout successfully");
+        } catch (error) {
+          console.log("Failed to checkout users", error);
+          setIsloadingUpdate(false);
+        }
+      };
+      fetchCheckout();
+    };
   //select
   function handleChange(value) {
     console.log(`selected role ${value}`);
@@ -242,14 +314,22 @@ function Users(props) {
       title: "Phòng",
       dataIndex: "room",
       key: "room",
-      render: (room) => <div>{room.roomNo}</div>,
+      render: (room) => (
+        <>
+          {room === null ? (
+            <Tag color="#5a7197">NULL</Tag>
+          ) : (
+            <div>{room.roomNo}</div>
+          )}
+        </>
+      ),
     },
     {
       title: "",
       dataIndex: "",
       key: "x",
       render: (text, record) => (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", paddingLeft: "10px" }}>
           <Popconfirm
             title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
             onConfirm={() => fetchDeleteReportedissues(record)}
@@ -266,6 +346,33 @@ function Users(props) {
             }}
           >
             <FontAwesomeIcon icon={faEdit} />
+          </div>
+          <div
+            style={{
+              paddingLeft: "5px",
+              paddingBottom: "3px",
+              lineHeight: "5px",
+            }}
+            onClick={() => {
+              showModal_Checkin(record);
+            }}
+          >
+            <FontAwesomeIcon icon={faMapMarkerAlt} color="#15aabf" />
+          </div>
+          <div
+            style={{
+              paddingLeft: "5px",
+              paddingBottom: "3px",
+              lineHeight: "5px",
+            }}
+             onClick={() => {
+              showModal_Checkout(record);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faSignOutAlt}
+              color="#9cbc5e"
+            />
           </div>
         </div>
       ),
@@ -300,6 +407,118 @@ function Users(props) {
 
   return (
     <div>
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Checkin
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalCheckin}
+        okText="LƯU LẠI"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Spin spinning={isloadingUpdate} size="large">
+          <Form
+            initialValues={{ remember: true }}
+            onFinish={onFinish_checkin}
+            onFinishFailed={handleCancel_Checkin}
+          >
+            <Form.Item
+              label="Khách trọ"
+              name="userName"
+              value={rowEditcheck.userName}
+            >
+              <Input placeholder={rowEditcheck.userName} value={rowEditcheck.userName} />
+            </Form.Item>
+            <Form.Item label="Phòng" name="roomNo">
+              <Select>
+                {roomList.map((roomid) => (
+                  <Select.Option key={roomid.roomNo} value={roomid.roomNo}>
+                    {roomid.roomNo}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CẬP NHẬT{" "}
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_Checkin}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+          </Form>
+        </Spin>
+      </Modal>
+
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Checkout
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalCheckout}
+        okText="LƯU LẠI"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Spin spinning={isloadingUpdate} size="large">
+          <Form
+            initialValues={{ remember: true }}
+            onFinish={onFinish_checkout}
+            onFinishFailed={handleCancel_Checkin}
+          >
+            <Form.Item
+              label="Khách trọ"
+              name="userName"
+              value={rowEditcheckout.userName}
+            >
+              <Input placeholder={rowEditcheckout.userName} />
+            </Form.Item>
+           
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CẬP NHẬT{" "}
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_Checkout}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+          </Form>
+        </Spin>
+      </Modal>
+
       <Modal
         title={
           <div style={{ display: "flex" }}>
@@ -362,16 +581,6 @@ function Users(props) {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Phòng" name="roomId">
-              <Select>
-                {roomList.map((roomid) => (
-                  <Select.Option key={roomid.id} value={roomid.id}>
-                    {roomid.roomNo}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -485,7 +694,7 @@ function Users(props) {
                         </Select>
                       </Form.Item>
                       <Form.Item label="Phòng" name="roomId">
-                        <Select>
+                        <Select disabled>
                           {roomList.map((roomid) => (
                             <Select.Option key={roomid.id} value={roomid.id}>
                               {roomid.roomNo}

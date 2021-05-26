@@ -1,5 +1,7 @@
 package com.thesis.innmanagement.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.repositories.BranchRepository;
@@ -7,6 +9,8 @@ import com.thesis.innmanagement.repositories.FacilityRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.util.HashMap;
@@ -26,6 +30,9 @@ public class RoomService {
     @Autowired
     private BranchRepository branchRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
     public List<Rooms> findAll() {
         return roomRepository.findAll();
     }
@@ -34,9 +41,22 @@ public class RoomService {
         return roomRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + id));
     }
 
-    public Rooms createOrUpdate(Long id, Rooms room) throws ResourceNotFoundException {
+    public Rooms createOrUpdate(Long id, String roomReq, MultipartFile images) throws ResourceNotFoundException, JsonProcessingException {
+
+        Rooms room = new Rooms();
+        ObjectMapper objectMapper = new ObjectMapper();
+        room = objectMapper.readValue(roomReq, Rooms.class);
+
+        String fileName = fileStorageService.storeFile(images);
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/getImage/")
+                .path(fileName)
+                .toUriString();
+
+        room.setImages(fileDownloadUri);
         room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
-        room.setBranch(branchRepository.findById(room.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + room.getBranchId())));
+        Rooms finalRoom = room;
+        room.setBranch(branchRepository.findById(room.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + finalRoom.getBranchId())));
         if (id == null) {
             roomRepository.save(room);
             return room;

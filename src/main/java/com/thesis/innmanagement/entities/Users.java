@@ -51,6 +51,16 @@ public class Users extends BasicEntity {
 
     private Long roomId;
 
+    private String images;
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
+
     public Rooms getRoom() {
         return room;
     }

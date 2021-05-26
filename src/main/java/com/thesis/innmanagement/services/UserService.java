@@ -1,12 +1,16 @@
 package com.thesis.innmanagement.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -21,6 +25,9 @@ public class UserService {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
     public List<Users> findAll() {
         return userRepository.findAll();
     }
@@ -33,10 +40,22 @@ public class UserService {
         return userRepository.findAllByRoleName(roleName);
     }
 
-    public Users createOrUpdate(Long id, Users user) throws ResourceNotFoundException {
+    public Users createOrUpdate(Long id, String userReq, MultipartFile image) throws ResourceNotFoundException, IOException {
+
+        Users user = new Users();
+        ObjectMapper objectMapper = new ObjectMapper();
+        user = objectMapper.readValue(userReq, Users.class);
+
+        String fileName = fileStorageService.storeFile(image);
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/getImage/")
+                .path(fileName)
+                .toUriString();
+        user.setImages(fileDownloadUri);
         user.setRoles(roleRepository.findAllById(user.getRoleIds()));
         if (user.getRoomId() != null) {
-            user.setRoom(roomRepository.findById(user.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + user.getRoomId())));
+            Users finalUser = user;
+            user.setRoom(roomRepository.findById(user.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found on id: " + finalUser.getRoomId())));
         }
         if (id == null) {
             userRepository.save(user);
@@ -62,8 +81,7 @@ public class UserService {
                 userUpdate.setRoom(user.getRoom());
                 userUpdate.setRoomId(user.getRoomId());
             }
-            userRepository.save(userUpdate);
-            return userUpdate;
+            return userRepository.save(userUpdate);
         }
     }
 

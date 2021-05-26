@@ -17,5 +17,13 @@ const usersApi = {
     const url = `/api/v1/users/${users}/delete/`;
     return axiosClient.delete(url);
   },
+  checkin(params){
+    const url = `/api/v1/users/checkin/?roomNo=${params.roomNo}&userName=${params.userName}`;
+    return axiosClient.get(url);
+  },
+   checkout(params){
+    const url = `/api/v1/users/checkout/?userName=${params.userName}`;
+    return axiosClient.get(url);
+  }
 };
 export default usersApi;

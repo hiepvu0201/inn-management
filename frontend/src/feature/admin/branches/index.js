@@ -68,6 +68,7 @@ function Branches(props) {
       const response = await facilitiesApi.getAll();
       console.log("Fetch Facility successfully: ", response.data);
       setFacilitiesList(response.data);
+      // setPropselect(response.data);
     } catch (error) {
       console.log("Failed to fetch Facility list: ", error);
     }
@@ -78,12 +79,21 @@ function Branches(props) {
     fetchBranchList();
   }, []);
   //form
+  const { Option } = Select;
+  const propsselect=[];
+  {
+    facilitiesList.map((facilitiesid) =>
+      propsselect.push(
+        <Option key={facilitiesid.id} value={facilitiesid.id}>{facilitiesid.name}</Option>
+      )
+    );
+  }
   const [table, setTable] = useState([]);
   const onFinish = (values) => {
     const fetchCreateBranch = async () => {
       const dataCreate = {
         ...values,
-        facilityIds: idSelected,
+        // facilityIds: idSelected,
       };
       console.log("dataCreate", dataCreate);
       try {
@@ -125,7 +135,7 @@ function Branches(props) {
     // console.log("Success", values);
     const dataUpdate = {
       ...values,
-      facilityIds: idSelected,
+      // facilityIds: idSelected,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -138,8 +148,8 @@ function Branches(props) {
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
-    const rolevalue = [value];
-    setidSelected(rolevalue);
+    // const rolevalue = [value];
+    // setidSelected(rolevalue);
   }
 
   //input_num
@@ -180,7 +190,7 @@ function Branches(props) {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
-      render: (facilities) => <div>{facilities[0].name}</div>,
+      render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
       title: "",
@@ -275,15 +285,24 @@ function Branches(props) {
             <Form.Item label="Số phòng" name="numberOfRooms">
               <Input placeholder={rowEdit.numberOfRooms} />
             </Form.Item>
-            <Form.Item label="Vật liệu">
-              <Select onChange={handleChange}>
+            <Form.Item label="Thiết bị" name="facilityIds">
+              <Select onChange={handleChange} allowClear mode="multiple">
+                {propsselect}
+              </Select>
+            </Form.Item>
+            {/* <Form.Item label="Vật liệu">
+              <Select
+                mode="multiple"
+                optionLabelProp="label"
+                onChange={handleChange}
+              >
                 {facilitiesList.map((facilitiesid) => (
                   <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
                     {facilitiesid.name}
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -319,83 +338,81 @@ function Branches(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-branches">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
-                  THÊM MỚI
-                </button>
-                <Modal
-                  title={
-                    <div style={{ display: "flex" }}>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        size="1x"
-                        color="#007c7e"
-                      />{" "}
-                      <div
-                        style={{
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          color: "#007c7e",
-                          paddingLeft: "10px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Thêm mới
+              <div className="topic-right-branches">
+                <div className="btn-right-branches">
+                  <button className="detailed-btn-branches" onClick={showModal}>
+                    THÊM MỚI
+                  </button>
+                  <Modal
+                    title={
+                      <div style={{ display: "flex" }}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          size="1x"
+                          color="#007c7e"
+                        />{" "}
+                        <div
+                          style={{
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            color: "#007c7e",
+                            paddingLeft: "10px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thêm mới
+                        </div>
                       </div>
-                    </div>
-                  }
-                  onOk={handleOk}
-                  onCancel={handleCancel}
-                  visible={isModalVisible}
-                  okText="THÊM MỚI"
-                  cancelText="HỦY BỎ"
-                  footer={null}
-                >
-                  <Form
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    }
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    visible={isModalVisible}
+                    okText="THÊM MỚI"
+                    cancelText="HỦY BỎ"
+                    footer={null}
                   >
-                    <Form.Item label="Vị trí" name="location">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Tên chi nhánh" name="description">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số lầu" name="numberOfStages">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Số phòng" name="numberOfRooms">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Thiết bị">
-                      <Select onChange={handleChange}>
-                        {facilitiesList.map((facilitiesid) => (
-                          <Select.Option
-                            key={facilitiesid.id}
-                            value={facilitiesid.id}
-                          >
-                            {facilitiesid.name}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    {/* <Form.Item></Form.Item> */}
-                    <div style={{ display: "flex" }}>
-                      <Button type="primary" htmlType="submit">
-                        THÊM MỚI
-                      </Button>
-                      <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                    <Form
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item label="Vị trí" name="location">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Tên chi nhánh" name="description">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số lầu" name="numberOfStages">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Số phòng" name="numberOfRooms">
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Thiết bị" name="facilityIds">
+                        <Select
+                          onChange={handleChange}
+                          allowClear
+                          mode="multiple"
+                        >
+                          {propsselect}
+                        </Select>
+                      </Form.Item>
+                      {/* <Form.Item></Form.Item> */}
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default">HỦY BỎ</Button>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
-                </Modal>
-                {/* <Popconfirm
+                    </Form>
+                  </Modal>
+                  {/* <Popconfirm
                   title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
                   onConfirm={confirm}
                   onCancel={cancel}
@@ -404,6 +421,7 @@ function Branches(props) {
                 >
                   <button className="detailed-btn">XÓA NHIỀU</button>
                 </Popconfirm> */}
+                </div>
               </div>
             </div>
 

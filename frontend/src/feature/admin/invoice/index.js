@@ -33,7 +33,8 @@ import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
 
-function ElectricityWaters(props) {
+
+function Invoices(props) {
   //api
   //getAll
   const [roomList, setRoomList] = useState([]);
@@ -152,6 +153,12 @@ function ElectricityWaters(props) {
     message.error("Click on No");
   }
   const columns = [
+    {
+      title: "Khách trọ",
+      dataIndex: "room",
+      key: "room",
+      render: (room) => <div>{room.users[0].userName}</div>,
+    },
     {
       title: "Phòng",
       dataIndex: "room",
@@ -395,13 +402,13 @@ function ElectricityWaters(props) {
             >
               <div className="topic-left-elec">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
+                <div className="content">QUẢN LÝ HÓA ĐƠN</div>
               </div>
               <div className="topic-right-elec">
                 <div className="btn-right">
-                  <button className="detailed-btn" onClick={showModal}>
+                  {/* <button className="detailed-btn" onClick={showModal}>
                     THÊM MỚI
-                  </button>
+                  </button> */}
                   <Modal
                     title={
                       <div style={{ display: "flex" }}>
@@ -510,4 +517,4 @@ function ElectricityWaters(props) {
     </div>
   );
 }
-export default ElectricityWaters;
+export default Invoices;

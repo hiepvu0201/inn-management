@@ -31,10 +31,11 @@ import Reportissues_tag from "./components/reportissue_tag";
 import Detail_room from './feature/client/detail_room'
 import Detailroom_tag from './components/detailroom_tag'
 import Rules_client from './feature/client/rules'
+import Invoices from './feature/admin/invoice'
 function App() {
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -71,10 +72,13 @@ function App() {
         <Route path="/reported-issue">
           <Reportedissues />
         </Route>
+        <Route path="/invoices">
+          <Invoices />
+        </Route>
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch> */}
+      </Switch>
       {/* <Room_client/> */}
       {/* <Switch>
         <Route path="/detailroom">
@@ -87,7 +91,7 @@ function App() {
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
       {/* <Rules_client/> */}
-      <Reportissues_client/>
+      {/* <Reportissues_client/> */}
     </div>
   );
 }

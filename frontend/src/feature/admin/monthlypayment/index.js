@@ -34,16 +34,16 @@ function Monthlypayment(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [branchList, setBranchList] = useState([]);
-const fetchBranchList = async () => {
-  try {
-    const response = await branchesApi.getAll();
-    console.log("Fetch branch successfully: ", response.data);
-    setBranchList(response.data);
-    setIsModalVisible_1(false);
-  } catch (error) {
-    console.log("Failed to fetch branch list: ", error);
-  }
-};
+  const fetchBranchList = async () => {
+    try {
+      const response = await branchesApi.getAll();
+      console.log("Fetch branch successfully: ", response.data);
+      setBranchList(response.data);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch branch list: ", error);
+    }
+  };
   //api
   const [rowEdit, setRowEdit] = useState({});
   const [monthlypaymentList, setMonthlypaymentList] = useState([]);
@@ -52,6 +52,7 @@ const fetchBranchList = async () => {
       const response = await monthlypaymentsApi.getAll();
       console.log("Fetch load monthly payment successfully: ", response.data);
       setMonthlypaymentList(response.data);
+      setstate(response.data);
       setIsloadingUpdate(false);
       setIsModalVisible_1(false);
     } catch (error) {
@@ -76,26 +77,29 @@ const fetchBranchList = async () => {
     }
   };
   //delete
-   const fetchDeleteMonthlypayment= async (record) => {
-     try {
-       const response = await monthlypaymentsApi.deletemonthlypayments(record.id);
-       console.log("Delete monthlypayment successfully", response);
-       setMonthlypaymentList(monthlypaymentList.filter((item) => item.id !== record.id));
-       fetchMonthlypaymentList();
-     } catch (error) {
-       console.log("Failed to delete monthlypayment list", error);
-     }
-   };
+  const fetchDeleteMonthlypayment = async (record) => {
+    try {
+      const response = await monthlypaymentsApi.deletemonthlypayments(
+        record.id
+      );
+      console.log("Delete monthlypayment successfully", response);
+      setMonthlypaymentList(
+        monthlypaymentList.filter((item) => item.id !== record.id)
+      );
+      fetchMonthlypaymentList();
+    } catch (error) {
+      console.log("Failed to delete monthlypayment list", error);
+    }
+  };
   //form
   const onFinish = (values) => {
-
     const fetchCreateMonthlypayments = async () => {
       try {
         // values["id"]=values.id;
         const response = await monthlypaymentsApi.createmonthlypayments(values);
         console.log("Fetch create monthlypayments succesSfully: ", response);
         setMonthlypaymentList([...monthlypaymentList, response.data]);
-        console.log("In response",response);
+        console.log("In response", response);
         setIsModalVisible(false);
         console.log("tabledata: ", monthlypaymentList);
       } catch (error) {
@@ -146,7 +150,7 @@ const fetchBranchList = async () => {
       title: "Chi nhánh",
       dataIndex: "branch",
       key: "branch",
-      render:(branch)=><div>{branch.location}</div>
+      render: (branch) => <div>{branch.location}</div>,
     },
     {
       title: "",
@@ -200,6 +204,29 @@ const fetchBranchList = async () => {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  };
+      const [state, setstate] = useState([]);
+
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === "") {
+      setMonthlypaymentList(state);
+    } else {
+      const fetchSearchPaymentbyBranch = async () => {
+        try {
+          const response = await monthlypaymentsApi.searchpaymentsbybranch(value);
+          console.log(
+            "Fetch monthlypayment by branch name successfully: ",
+            response.data
+          );
+          // setIsstateInput(response.data);
+          setMonthlypaymentList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      fetchSearchPaymentbyBranch();
+    }
   };
   return (
     <div>
@@ -278,12 +305,19 @@ const fetchBranchList = async () => {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-payment">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ NGUỒN CHI NHÀ TRỌ</div>
               </div>
-              <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
+              <div className="btn-right-payment">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Input.Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
+                </div>
+                <button className="detailed-btn-payment" onClick={showModal}>
                   THÊM MỚI
                 </button>
                 <Modal
@@ -346,15 +380,6 @@ const fetchBranchList = async () => {
                     </div>
                   </Form>
                 </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
               </div>
             </div>
 

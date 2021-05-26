@@ -40,6 +40,30 @@ public class UserService {
         return userRepository.findAllByRoleName(roleName);
     }
 
+    private Users update(Users user, Long id) throws ResourceNotFoundException {
+        Users userUpdate = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("This user not found on:" + id));
+        userUpdate.setUserName(user.getUserName());
+        userUpdate.setPasswordHash(user.getPasswordHash());
+        userUpdate.setEmail(user.getEmail());
+        userUpdate.setFullName(user.getFullName());
+        userUpdate.setIdNo(user.getIdNo());
+        userUpdate.setSex(user.getSex());
+        userUpdate.setJob(user.getJob());
+        userUpdate.setAddress(user.getAddress());
+        userUpdate.setPhoneNo(user.getPhoneNo());
+        userUpdate.setCheckinDate(user.getCheckinDate());
+        userUpdate.setCheckoutDate(user.getCheckoutDate());
+        userUpdate.setDownPayment(user.getDownPayment());
+        userUpdate.setRoles(user.getRoles());
+        userUpdate.setRoleIds(user.getRoleIds());
+        if (user.getRoom() != null && user.getRoomId() != null) {
+            userUpdate.setRoom(user.getRoom());
+            userUpdate.setRoomId(user.getRoomId());
+        }
+        return userUpdate;
+    }
+
     public Users createOrUpdate(Long id, String userReq, MultipartFile image) throws ResourceNotFoundException, IOException {
 
         Users user = new Users();
@@ -48,7 +72,7 @@ public class UserService {
 
         String fileName = fileStorageService.storeFile(image);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/getImage/")
+                .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
         user.setImages(fileDownloadUri);
@@ -61,26 +85,7 @@ public class UserService {
             userRepository.save(user);
             return user;
         } else {
-            Users userUpdate = userRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("This user not found on:" + id));
-            userUpdate.setUserName(user.getUserName());
-            userUpdate.setPasswordHash(user.getPasswordHash());
-            userUpdate.setEmail(user.getEmail());
-            userUpdate.setFullName(user.getFullName());
-            userUpdate.setIdNo(user.getIdNo());
-            userUpdate.setSex(user.getSex());
-            userUpdate.setJob(user.getJob());
-            userUpdate.setAddress(user.getAddress());
-            userUpdate.setPhoneNo(user.getPhoneNo());
-            userUpdate.setCheckinDate(user.getCheckinDate());
-            userUpdate.setCheckoutDate(user.getCheckoutDate());
-            userUpdate.setDownPayment(user.getDownPayment());
-            userUpdate.setRoles(user.getRoles());
-            userUpdate.setRoleIds(user.getRoleIds());
-            if (user.getRoom() != null && user.getRoomId() != null) {
-                userUpdate.setRoom(user.getRoom());
-                userUpdate.setRoomId(user.getRoomId());
-            }
+            Users userUpdate = update(user, id);
             return userRepository.save(userUpdate);
         }
     }

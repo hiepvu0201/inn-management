@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -43,9 +45,10 @@ public class UserController {
         return ResponseEntity.ok().body(message);
     }
 
-    @PostMapping("/")
-    public Users create(@Validated @RequestBody Users user) throws Exception {
-        return userService.createOrUpdate(null, user);
+    @PostMapping(value = "/")
+    public Users create(@Validated @RequestPart String user,
+                        @RequestPart("images") MultipartFile images) throws ResourceNotFoundException, IOException {
+        return userService.createOrUpdate(null, user, images);
     }
 
     @GetMapping("/search-by-rolename")
@@ -54,8 +57,11 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Users> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Users userDetail) throws ResourceNotFoundException {
-        Users userInfo = userService.createOrUpdate(id, userDetail);
+    public ResponseEntity<Users> update(@PathVariable(value = "id") Long id,
+                                        @Validated @RequestPart("userDetail") String userDetail,
+                                        @RequestPart("images") MultipartFile images)
+            throws ResourceNotFoundException, IOException {
+        Users userInfo = userService.createOrUpdate(id, userDetail, images);
         return ResponseEntity.ok().body(userInfo);
     }
 

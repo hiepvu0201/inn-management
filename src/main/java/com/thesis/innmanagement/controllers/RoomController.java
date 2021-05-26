@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -36,13 +37,16 @@ public class RoomController {
     }
 
     @PostMapping("/")
-    public Rooms create(@Validated @RequestBody Rooms room) throws Exception {
-        return roomService.createOrUpdate(null, room);
+    public Rooms create(@Validated @RequestPart String room,
+                        @RequestPart("images") MultipartFile images) throws Exception {
+        return roomService.createOrUpdate(null, room, images);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rooms> update(@PathVariable(value = "id") Long id, @Validated @RequestBody Rooms roomDetail) throws Exception {
-        Rooms room = roomService.createOrUpdate(id, roomDetail);
+    public ResponseEntity<Rooms> update(@PathVariable(value = "id") Long id,
+                                        @Validated @RequestBody String roomDetail,
+                                        @RequestPart("images") MultipartFile images) throws Exception {
+        Rooms room = roomService.createOrUpdate(id, roomDetail, images);
         return ResponseEntity.ok().body(room);
     }
 

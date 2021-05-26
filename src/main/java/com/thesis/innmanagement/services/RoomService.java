@@ -69,6 +69,7 @@ public class RoomService {
             roomUpdate.setFacilityIds(room.getFacilityIds());
             roomUpdate.setBranch(room.getBranch());
             roomUpdate.setBranchId(room.getBranchId());
+            roomUpdate.setImages(room.getImages());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

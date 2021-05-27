@@ -44,7 +44,7 @@ public class RoomController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Rooms> update(@PathVariable(value = "id") Long id,
-                                        @Validated @RequestBody String roomDetail,
+                                        @Validated @RequestPart("roomDetail") String roomDetail,
                                         @RequestPart("images") MultipartFile images) throws Exception {
         Rooms room = roomService.createOrUpdate(id, roomDetail, images);
         return ResponseEntity.ok().body(room);

@@ -21,4 +21,5 @@ export const Images = {
   IMG_ROOM_1: IMAGE_URL + "/img/ads-4-min.png",
   IMG_ROOM_2: IMAGE_URL + "/img/img_room.jpg",
   DETAIL_ROOM:IMAGE_URL+"/img/detairoom.jpg",
+  AVATAR_USER:IMAGE_URL+"/img/avatar.png",
 };

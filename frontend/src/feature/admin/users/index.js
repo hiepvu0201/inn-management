@@ -62,6 +62,7 @@ function Users(props) {
   const [isModalCheckout, setIsModalCheckout] = useState(false);
   const [fileList, setfileList] = useState([]);
   const [checkaddimg, setcheck] = useState(false);
+  
   const [imgfile, setimgfile] = useState(null);
 
   const uploadimg = (info) => {

@@ -32,6 +32,10 @@ const usersApi = {
   getimage(file){
     const url=`/downloadFile/${file}`;
     return axiosClient.get(url);
+  },
+  getuserid(){
+    const url=`/api/v1/users/${26}`;
+    return axiosClient.get(url);
   }
 };
 export default usersApi;

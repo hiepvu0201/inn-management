@@ -35,7 +35,7 @@ import Invoices from './feature/admin/invoice'
 function App() {
   return (
     <div className="App">
-      <Switch>
+      {/* <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -78,16 +78,16 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch>
+      </Switch> */}
       {/* <Room_client/> */}
-      {/* <Switch>
+      <Switch>
         <Route path="/detailroom">
           <Detail_room/>
         </Route>
         <Route path="/room">
           <Room_client/>
         </Route>
-      </Switch> */}
+      </Switch>
       {/* <Detail_room/> */}
       {/* <Detailroom_tag/> */}
       {/* <Rules_client/> */}

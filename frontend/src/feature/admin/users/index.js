@@ -29,10 +29,9 @@ import {
   DatePicker,
   Tag,
   notification,
+  Upload
 } from "antd";
-import {
- CheckOutlined
-} from '@ant-design/icons';
+import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
@@ -60,8 +59,37 @@ function Users(props) {
   const [roomList, setRoomList] = useState([]);
   const [abcd, setAbcd] = useState([]);
   const [isModalCheckin, setIsModalCheckin] = useState(false);
-    const [isModalCheckout, setIsModalCheckout] = useState(false);
+  const [isModalCheckout, setIsModalCheckout] = useState(false);
+  const [fileList, setfileList] = useState([]);
+  const [checkaddimg, setcheck] = useState(false);
+  const [imgfile, setimgfile] = useState(null);
 
+  const uploadimg = (info) => {
+    console.log(">>>>info: ", info);
+    console.log(fileList);
+  };
+  const propsimg = {
+    onChange: uploadimg,
+  };
+  const [state, setstate] = useState({
+    previewVisible: false,
+    previewImage: "",
+    fileList: [],
+  });
+    const handleChangeimg = (fileList) => {
+      setstate(fileList);
+      setimgfile(fileList.file.originFileObj);
+      console.log(">>state", state);
+      console.log(">>fileList", fileList);
+      console.log(">>originFileObj", imgfile);
+    };
+    const handlePreview = (file) => {
+      setstate({
+        ...state,
+        previewImage: file.url || file.thumbUrl,
+        previewVisible: true,
+      });
+    };
   const showModal_Checkin = (values) => {
     setIsModalCheckin(true);
     //  setIsModalVisible_1(true);
@@ -148,12 +176,27 @@ const propsselect = [];
       ...values,
       // roleIds: idSelected,
     };
-    console.log("dataCreate", dataCreate);
+    console.log("<<<",dataCreate)
+    var myJSON=JSON.stringify(dataCreate);
+    console.log("<<<Stringify",myJSON)
+    const responsedata={
+      user:myJSON,
+      images:imgfile
+    }
+    console.log("dataCreate", responsedata);
+
+     var form_data = new FormData();
+
+     for (var key in responsedata) {
+       form_data.append(key, responsedata[key]);
+     }
+    
     const fetchCreateUsers = async () => {
       try {
-        const response = await usersApi.createusers(dataCreate);
+        const response = await usersApi.createusers(form_data);
         console.log("Fetch create users succesfully: ", response);
         setIsusersList([...usersList, response.data]);
+        setimgfile(null);
         console.log("abc", response);
         setIsModalVisible(false);
       } catch (error) {
@@ -180,16 +223,24 @@ const propsselect = [];
   };
   //form_edit
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
-    // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
-      // roleIds: idSelected,
-      // reportedIssueIds: idReport,
+      userName:rowEdit.userName
     };
+    console.log("<<<",dataUpdate)
+    var myJSONupdate=JSON.stringify(dataUpdate);
+    console.log("<<<Stringify",myJSONupdate)
+    const responsedata={
+      userDetail:myJSONupdate,
+      images:imgfile
+    }
+    console.log("dataUpdate", responsedata);
+     var form_data = new FormData();
+      for (var key in responsedata) {
+        form_data.append(key, responsedata[key]);
+      }
     const fetchUpdateUsers = async () => {
-      const data_update = { id: rowEdit.id, data: dataUpdate };
-      console.log("dataupdate", dataUpdate);
+      const data_update = { id: rowEdit.id, data: form_data };
       setIsloadingUpdate(true);
       try {
         const response = await usersApi.updateusers(data_update);
@@ -210,14 +261,12 @@ const propsselect = [];
       userName: rowEditcheck.userName,
     };
     const fetchCheckin = async () => {
-      // const data_update = { id: rowEdit.id, data: dataUpdate };
       console.log("dataCheckin", datacheckin);
       setIsloadingUpdate(true);
       try {
         const response = await usersApi.checkin(datacheckin);
         console.log("Fetch checkin users successfully", response);
         setIsModalCheckin(false);
-        // console.log("edit data", data_update);
         fetchUsersList();
         message.success("Checkin successfully")
       } catch (error) {
@@ -234,14 +283,12 @@ const propsselect = [];
         userName:rowEditcheckout.userName
       };
       const fetchCheckout = async () => {
-        // const data_update = { id: rowEdit.id, data: dataUpdate };
         console.log("dataCheckin", datacheckout);
         setIsloadingUpdate(true);
         try {
           const response = await usersApi.checkout(datacheckout);
           console.log("Fetch checkout users successfully", response);
           setIsModalCheckout(false);
-          // console.log("edit data", data_update);
           fetchUsersList();
           message.success("Checkout successfully");
         } catch (error) {
@@ -315,6 +362,15 @@ const propsselect = [];
       title: "Công việc",
       dataIndex: "job",
       key: "job",
+    },
+    {
+      title:"Hình ảnh",
+      dataIndex:"images",
+      key:"images",
+      width:200,
+      render:(images)=>(
+        <img style={{ width: "100%" }} src={`${images}`} />
+      ),
     },
     {
       title: "Quyền",
@@ -460,6 +516,7 @@ const propsselect = [];
                 placeholder={rowEditcheck.userName}
                 value={rowEditcheck.userName}
               />
+            </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">
               <Input placeholder={rowEditcheck.userName} disabled />
             </Form.Item>
@@ -516,11 +573,7 @@ const propsselect = [];
             onFinish={onFinish_checkout}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item
-              label="Khách trọ"
-              name="userName"
-              value="userName"
-            >
+            <Form.Item label="Khách trọ" name="userName" value="userName">
               <Input placeholder={rowEditcheckout.userName} disabled />
             </Form.Item>
 
@@ -564,8 +617,8 @@ const propsselect = [];
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tài khoản" name="userName">
-              <Input placeholder={rowEdit.userName} />
+            <Form.Item label="Tài khoản" name="userName" value="userName">
+              <Input placeholder={rowEdit.userName} disabled />
             </Form.Item>
             <Form.Item label="Mật khẩu" name="passwordHash">
               <Input.Password placeholder={rowEdit.passwordHash} />
@@ -595,6 +648,23 @@ const propsselect = [];
               <Select onChange={handleChange} allowClear mode="multiple">
                 {propsselect}
               </Select>
+            </Form.Item>
+            <Form.Item>
+              <Upload
+                {...propsimg}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture"
+                defaultFileList={[...fileList]}
+                onPreview={handlePreview}
+                onChange={handleChangeimg}
+                fileList={state.fileList}
+              >
+                {state?.fileList.length < 1 && (
+                  <Button onClick={uploadimg} icon={<UploadOutlined />}>
+                    Upload
+                  </Button>
+                )}
+              </Upload>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -708,14 +778,25 @@ const propsselect = [];
                           {propsselect}
                         </Select>
                       </Form.Item>
-                      <Form.Item label="Phòng" name="roomId">
-                        <Select disabled>
-                          {roomList.map((roomid) => (
-                            <Select.Option key={roomid.id} value={roomid.id}>
-                              {roomid.roomNo}
-                            </Select.Option>
-                          ))}
-                        </Select>
+                      <Form.Item>
+                        <Upload
+                          {...propsimg}
+                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                          listType="picture"
+                          defaultFileList={[...fileList]}
+                          onPreview={handlePreview}
+                          onChange={handleChangeimg}
+                          fileList={state.fileList}
+                        >
+                          {state?.fileList.length < 1 && (
+                            <Button
+                              onClick={uploadimg}
+                              icon={<UploadOutlined />}
+                            >
+                              Upload
+                            </Button>
+                          )}
+                        </Upload>
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">

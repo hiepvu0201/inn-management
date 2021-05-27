@@ -26,7 +26,7 @@ function Room_tag(props) {
           <div style={{ display: "block" }}>
             <div style={{ paddingTop: "10px" }}>
               <img
-                src={Images.IMG_ROOM_2}
+                src={`${props.images}`}
                 style={{ width: "100%", height: "auto" }}
               />
               {/* <img src={props.image} /> */}
@@ -59,6 +59,36 @@ function Room_tag(props) {
               >
                 {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
                 {props.roomNo}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "45%",
+                  fontSize: "15px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                }}
+              >
+                Chi nhánh:
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  fontSize: "15px",
+                  fontFamily: "PT Sans, sans-serif",
+                }}
+              >
+                {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
+                {props.location}
               </div>
             </div>
             <div
@@ -131,6 +161,8 @@ function Room_tag(props) {
                     roomNo: props.roomNo,
                     position: props.position,
                     facilities: props.facilities,
+                    location:props.location,
+                    images: props.images,
                   },
                 }}
               >

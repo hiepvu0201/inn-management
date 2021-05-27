@@ -14,6 +14,7 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
 import branchesApi from "../../../api/branchesApi";
+import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Table,
   Popconfirm,
@@ -25,6 +26,7 @@ import {
   Select,
   Spin,
   InputNumber,
+  Upload
 } from "antd";
 import arr_data_brand from "../../../mock/data_brand";
 import facilitiesApi from "../../../api/facilitiesApi";
@@ -50,7 +52,35 @@ function Rooms(props) {
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
+  const [fileList, setfileList] = useState([]);
+    const [imgfile, setimgfile] = useState(null);
 
+ const uploadimg = (info) => {
+   console.log(">>>>info: ", info);
+   console.log(fileList);
+ };
+ const propsimg = {
+   onChange: uploadimg,
+ };
+ const [stateimg, setstateimg] = useState({
+   previewVisible: false,
+   previewImage: "",
+   fileList: [],
+ });
+ const handleChangeimg = (fileList) => {
+   setstateimg(fileList);
+   setimgfile(fileList.file.originFileObj);
+   console.log(">>state", stateimg);
+   console.log(">>fileList", fileList);
+   console.log(">>originFileObj", imgfile);
+ };
+ const handlePreview = (file) => {
+   setstateimg({
+     ...stateimg,
+     previewImage: file.url || file.thumbUrl,
+     previewVisible: true,
+   });
+ };
   const fetchRoomList = async () => {
     try {
       const response = await roomApi.getAll();
@@ -120,10 +150,23 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
+     var myJSON = JSON.stringify(dataCreate);
+     console.log("<<<Stringify", myJSON);
+     const responsedata = {
+       room: myJSON,
+       images: imgfile,
+     };
+     console.log("dataCreate", responsedata);
 
+     var form_data = new FormData();
+
+     for (var key in responsedata) {
+       form_data.append(key, responsedata[key]);
+     }
+    
     const fetchCreateRooms = async () => {
       try {
-        const response = await roomsApi.createrooms(dataCreate);
+        const response = await roomsApi.createrooms(form_data);
         console.log("Fetch create rooms succesfully: ", response);
         setRoomList([...roomList, response.data]);
         console.log("DATA: ", response);
@@ -159,7 +202,18 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
-    const data_update = { id: rowEdit.id, data: dataUpdate };
+    var myJSONupdate=JSON.stringify(dataUpdate);
+    console.log("<<<Stringify",myJSONupdate)
+    const responsedata={
+      roomDetail:myJSONupdate,
+      images:imgfile
+    }
+    console.log("dataUpdate", responsedata);
+     var form_data = new FormData();
+      for (var key in responsedata) {
+        form_data.append(key, responsedata[key]);
+      }
+    const data_update = { id: rowEdit.id, data: form_data };
     fetchUpdateRooms(data_update);
   };
   const onFinishFailed = (errorInfo) => {
@@ -208,6 +262,13 @@ function Rooms(props) {
   }
   const columns = [
     {
+      title: "Hình",
+      dataIndex: "images",
+      key: "images",
+      width: 200,
+      render: (images) => <img style={{ width: "100%" }} src={`${images}`} />,
+    },
+    {
       title: "Số phòng",
       dataIndex: "roomNo",
       key: "roomNo",
@@ -222,15 +283,16 @@ function Rooms(props) {
       dataIndex: "branch",
       key: "branch",
       // render: (users) => <div>{users[0].userName}</div>,
-      render:(branch)=><div>{branch.location}</div>
+      render: (branch) => <div>{branch.location}</div>,
     },
     {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
       // render: (facilities) => <div>{facilities[0].name}</div>,
-            render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
-
+      render: (facilities) => (
+        <div>{facilities.map((us) => us.name) + " "}</div>
+      ),
     },
     {
       title: "",
@@ -355,16 +417,23 @@ function Rooms(props) {
                 {propsselect}
               </Select>
             </Form.Item>
-            {/* <Form.Item label="Thiết bị" name="facilityIds">
-              <Select
-                onChange={handleChange_1}
-                // placeholder={rowEdit.facilityIds}
-                  allowClear
-                          mode="multiple"
+            <Form.Item>
+              <Upload
+                {...propsimg}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture"
+                defaultFileList={[...fileList]}
+                onPreview={handlePreview}
+                onChange={handleChangeimg}
+                fileList={stateimg.fileList}
               >
-                {propsselect}
-              </Select>
-            </Form.Item> */}
+                {stateimg?.fileList.length < 1 && (
+                  <Button onClick={uploadimg} icon={<UploadOutlined />}>
+                    Upload
+                  </Button>
+                )}
+              </Upload>
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -468,14 +537,31 @@ function Rooms(props) {
                       </Select>
                     </Form.Item>
                     <Form.Item label="Thiết bị" name="facilityIds">
-                        <Select
-                          onChange={handleChange}
-                          allowClear
-                          mode="multiple"
-                        >
-                          {propsselect}
-                        </Select>
-                      </Form.Item>
+                      <Select
+                        onChange={handleChange}
+                        allowClear
+                        mode="multiple"
+                      >
+                        {propsselect}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item>
+                      <Upload
+                        {...propsimg}
+                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                        listType="picture"
+                        defaultFileList={[...fileList]}
+                        onPreview={handlePreview}
+                        onChange={handleChangeimg}
+                        fileList={stateimg.fileList}
+                      >
+                        {stateimg?.fileList.length < 1 && (
+                          <Button onClick={uploadimg} icon={<UploadOutlined />}>
+                            Upload
+                          </Button>
+                        )}
+                      </Upload>
+                    </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI

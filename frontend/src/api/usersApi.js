@@ -5,6 +5,10 @@ const usersApi = {
     const url = "/api/v1/users/";
     return axiosClient.get(url);
   },
+  // createuserwithimg(){
+  //   const url= "/api/v1/users/";
+  //   return axiosClient(url,users)
+  // }
   createusers(users) {
     const url = "/api/v1/users/";
     return axiosClient.post(url, users);
@@ -23,6 +27,10 @@ const usersApi = {
   },
    checkout(params){
     const url = `/api/v1/users/checkout/?userName=${params.userName}`;
+    return axiosClient.get(url);
+  },
+  getimage(file){
+    const url=`/downloadFile/${file}`;
     return axiosClient.get(url);
   }
 };

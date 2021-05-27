@@ -60,7 +60,7 @@ function Detail_room() {
                   }}
                 >
                   <img
-                    src={Images.DETAIL_ROOM}
+                    src={location.state.images}
                     style={{ height: "auto", width: "100%" }}
                   />
                 </Col>

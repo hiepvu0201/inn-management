@@ -1,30 +1,51 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Menu_client from "./../../../components/menu_client";
 import { Input, Button, Card, Popover, Form, Row, Col, Select } from "antd";
 import Room_tag from "./../../../components/room_tag";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import roomApi from "./../../../api/roomApi";
-import Footer_client from './../../../components/footer_client'
+import Footer_client from "./../../../components/footer_client";
 import {
   faFacebookSquare,
   faTwitterSquare,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
+const { Search } = Input;
 function Room_client() {
   const [roomList, setIsRoomList] = useState([]);
-   useEffect(() => {
-     const fetchRoomList = async () => {
-       try {
-         const response = await roomApi.getAll();
-         console.log("Fetch room successfully: ", response.data);
-         setIsRoomList(response.data);
-       } catch (error) {
-         console.log("Failed to fetch ROOM list: ", error);
-       }
-     };
-     fetchRoomList();
-   }, []);
+  useEffect(() => {
+    const fetchRoomList = async () => {
+      try {
+        const response = await roomApi.getAll();
+        console.log("Fetch room successfully: ", response.data);
+        setIsRoomList(response.data);
+        setstate(response.data);
+      } catch (error) {
+        console.log("Failed to fetch ROOM list: ", error);
+      }
+    };
+    fetchRoomList();
+  }, []);
+  const [state, setstate] = useState([]);
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === "") {
+      setIsRoomList(state);
+    } else {
+      const SearchRoombyBranch = async () => {
+        try {
+          const response = await roomApi.searchRoombyBranch(value);
+          console.log("Fetch room by branch successfully: ", response.data);
+          // setIsstateInput(response.data);
+          setIsRoomList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch room by ranch: ", error);
+        }
+      };
+      SearchRoombyBranch();
+    }
+  };
   return (
     <div>
       <div
@@ -74,6 +95,13 @@ function Room_client() {
                     }}
                   >
                     <div>
+                      <div style={{ paddingBottom: "20px" }}>
+                        <Search
+                          placeholder="Tìm kiếm phòng theo chi nhánh"
+                          allowClear
+                          onSearch={onSearch_1}
+                        />
+                      </div>
                       <div
                         style={{
                           width: "100%",
@@ -116,6 +144,8 @@ function Room_client() {
                               roomNo={roomId.roomNo}
                               position={roomId.position}
                               facilities={roomId.facilities[0].name}
+                              images={roomId.images}
+                              location={roomId.branch.location}
                             />
                           </Col>
                         ))}
@@ -205,8 +235,8 @@ function Room_client() {
             ></Col>
           </Row>
         </div>
-        <div style={{paddingTop:"20px"}}>
-            <Footer_client/>
+        <div style={{ paddingTop: "20px" }}>
+          <Footer_client />
         </div>
       </div>
     </div>

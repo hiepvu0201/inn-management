@@ -15,7 +15,7 @@ export const Images = {
   ANALYSIS: IMAGE_URL + "/img/001-analysis.png",
   BUSINESS_PLAN: IMAGE_URL + "/img/006-business-plan.png",
   FACE_1: IMAGE_URL + "/img/icon-face-1jpg.jpg",
-  ICON_RIGHT: IMAGE_URL + "/img/avatar.png",
+  ICON_RIGHT: IMAGE_URL + "/img/avataradmin.png",
   LOGO_FOOTER: IMAGE_URL + "/img/logo_footer.png",
   IMG_ROOM: IMAGE_URL + "/img/ads-3-min.png",
   IMG_ROOM_1: IMAGE_URL + "/img/ads-4-min.png",

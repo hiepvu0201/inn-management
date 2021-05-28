@@ -10,7 +10,7 @@ import {
   faTrash,
   faEdit,
   faMapMarkerAlt,
-  faSignOutAlt
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
@@ -29,7 +29,7 @@ import {
   DatePicker,
   Tag,
   notification,
-  Upload
+  Upload,
 } from "antd";
 import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import arr_data_brand from "../../../mock/data_brand";
@@ -45,7 +45,7 @@ function Users(props) {
   //
   const [rowEdit, setRowEdit] = useState({});
   const [rowEditcheck, setRowEditcheck] = useState({});
-  const [rowEditcheckout,setRowEditcheckout]=useState({});
+  const [rowEditcheckout, setRowEditcheckout] = useState({});
   //api
   //getAll
   const [usersList, setIsusersList] = useState([]);
@@ -62,7 +62,7 @@ function Users(props) {
   const [isModalCheckout, setIsModalCheckout] = useState(false);
   const [fileList, setfileList] = useState([]);
   const [checkaddimg, setcheck] = useState(false);
-  
+
   const [imgfile, setimgfile] = useState(null);
 
   const uploadimg = (info) => {
@@ -77,27 +77,27 @@ function Users(props) {
     previewImage: "",
     fileList: [],
   });
-    const handleChangeimg = (fileList) => {
-      setstate(fileList);
-      setimgfile(fileList.file.originFileObj);
-      console.log(">>state", state);
-      console.log(">>fileList", fileList);
-      console.log(">>originFileObj", imgfile);
-    };
-    const handlePreview = (file) => {
-      setstate({
-        ...state,
-        previewImage: file.url || file.thumbUrl,
-        previewVisible: true,
-      });
-    };
+  const handleChangeimg = (fileList) => {
+    setstate(fileList);
+    setimgfile(fileList.file.originFileObj);
+    console.log(">>state", state);
+    console.log(">>fileList", fileList);
+    console.log(">>originFileObj", imgfile);
+  };
+  const handlePreview = (file) => {
+    setstate({
+      ...state,
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  };
   const showModal_Checkin = (values) => {
     setIsModalCheckin(true);
     //  setIsModalVisible_1(true);
     console.log("values edit:", values);
     setRowEditcheck(values);
   };
-const showModal_Checkout = (values) => {
+  const showModal_Checkout = (values) => {
     setIsModalCheckout(true);
     //  setIsModalVisible_1(true);
     console.log("values edit:", values);
@@ -157,54 +157,57 @@ const showModal_Checkout = (values) => {
     fetchRoleList();
     fetchRoomList();
   }, []);
-const { Option } = Select;
-const propsselect = [];
-{
-  roleList.map((rolesid) =>
-    propsselect.push(
-      <Option key={rolesid.id} value={rolesid.id}>
-        {rolesid.name}
-      </Option>
-    )
-  );
-}
+  const { Option } = Select;
+  const propsselect =[];
+  {
+    roleList.map((rolesid) =>
+      propsselect.push(
+        <Option key={rolesid.id} value={rolesid.id}>
+          {rolesid.name}
+        </Option>
+      )
+    );
+  }
   //form
   const [table, setTable] = useState([]);
   //create
   const onFinish = (values) => {
-    // console.log("Value", values);
+    console.log("Value", values);
     const dataCreate = {
       ...values,
       // roleIds: idSelected,
     };
-    console.log("<<<",dataCreate)
-    var myJSON=JSON.stringify(dataCreate);
-    console.log("<<<Stringify",myJSON)
-    const responsedata={
-      user:myJSON,
-      images:imgfile
-    }
-    console.log("dataCreate", responsedata);
-
-     var form_data = new FormData();
-
-     for (var key in responsedata) {
-       form_data.append(key, responsedata[key]);
-     }
-    
-    const fetchCreateUsers = async () => {
-      try {
-        const response = await usersApi.createusers(form_data);
-        console.log("Fetch create users succesfully: ", response);
-        setIsusersList([...usersList, response.data]);
-        setimgfile(null);
-        console.log("abc", response);
-        setIsModalVisible(false);
-      } catch (error) {
-        console.log("failed to fetch user list: ", error);
-      }
+    console.log("<<<", dataCreate);
+    var myJSON = JSON.stringify(dataCreate);
+    console.log("<<<Stringify", myJSON);
+    const responsedata = {
+      user: myJSON,
+      images: imgfile,
     };
-    fetchCreateUsers();
+    if (responsedata.images === null || values.roleIds===undefined || dataCreate.roleIds===[]) {
+      message.warning("Nhập thiếu thông tin xin vui lòng nhập lại")
+    } else {
+      console.log("dataCreate", responsedata);
+      var form_data = new FormData();
+      for (var key in responsedata) {
+        form_data.append(key, responsedata[key]);
+      }
+      const fetchCreateUsers = async () => {
+        try {
+          const response = await usersApi.createusers(form_data);
+          console.log("Fetch create users succesfully: ", response);
+          setIsusersList([...usersList, response.data]);
+          setimgfile(null);
+          console.log("abc", response);
+          setIsModalVisible(false);
+        } catch (error) {
+          console.log("failed to fetch user list: ", error);
+          if ((error = 500))
+            message.error("Đã nhập trùng Username. Xin vui lòng nhập lại!!!");
+        }
+      };
+      fetchCreateUsers();
+    }
   };
   //update
 
@@ -226,20 +229,20 @@ const propsselect = [];
   const onFinish_edit = (values) => {
     const dataUpdate = {
       ...values,
-      userName:rowEdit.userName
+      userName: rowEdit.userName,
     };
-    console.log("<<<",dataUpdate)
-    var myJSONupdate=JSON.stringify(dataUpdate);
-    console.log("<<<Stringify",myJSONupdate)
-    const responsedata={
-      userDetail:myJSONupdate,
-      images:imgfile
-    }
+    console.log("<<<", dataUpdate);
+    var myJSONupdate = JSON.stringify(dataUpdate);
+    console.log("<<<Stringify", myJSONupdate);
+    const responsedata = {
+      userDetail: myJSONupdate,
+      images: imgfile,
+    };
     console.log("dataUpdate", responsedata);
-     var form_data = new FormData();
-      for (var key in responsedata) {
-        form_data.append(key, responsedata[key]);
-      }
+    var form_data = new FormData();
+    for (var key in responsedata) {
+      form_data.append(key, responsedata[key]);
+    }
     const fetchUpdateUsers = async () => {
       const data_update = { id: rowEdit.id, data: form_data };
       setIsloadingUpdate(true);
@@ -269,7 +272,7 @@ const propsselect = [];
         console.log("Fetch checkin users successfully", response);
         setIsModalCheckin(false);
         fetchUsersList();
-        message.success("Checkin successfully")
+        message.success("Checkin successfully");
       } catch (error) {
         console.log("Failed to checkin users", error);
         setIsloadingUpdate(false);
@@ -278,27 +281,27 @@ const propsselect = [];
     fetchCheckin();
   };
   //form_checkout
-    const onFinish_checkout = (values) => {
-      const datacheckout = {
-        ...values,
-        userName:rowEditcheckout.userName
-      };
-      const fetchCheckout = async () => {
-        console.log("dataCheckin", datacheckout);
-        setIsloadingUpdate(true);
-        try {
-          const response = await usersApi.checkout(datacheckout);
-          console.log("Fetch checkout users successfully", response);
-          setIsModalCheckout(false);
-          fetchUsersList();
-          message.success("Checkout successfully");
-        } catch (error) {
-          console.log("Failed to checkout users", error);
-          setIsloadingUpdate(false);
-        }
-      };
-      fetchCheckout();
+  const onFinish_checkout = (values) => {
+    const datacheckout = {
+      ...values,
+      userName: rowEditcheckout.userName,
     };
+    const fetchCheckout = async () => {
+      console.log("dataCheckin", datacheckout);
+      setIsloadingUpdate(true);
+      try {
+        const response = await usersApi.checkout(datacheckout);
+        console.log("Fetch checkout users successfully", response);
+        setIsModalCheckout(false);
+        fetchUsersList();
+        message.success("Checkout successfully");
+      } catch (error) {
+        console.log("Failed to checkout users", error);
+        setIsloadingUpdate(false);
+      }
+    };
+    fetchCheckout();
+  };
   //select
   function handleChange(value) {
     console.log(`selected role ${value}`);
@@ -365,21 +368,18 @@ const propsselect = [];
       key: "job",
     },
     {
-      title:"Hình ảnh",
-      dataIndex:"images",
-      key:"images",
-      width:200,
-      render:(images)=>(
-        <img style={{ width: "100%" }} src={`${images}`} />
-      ),
+      title: "Hình ảnh",
+      dataIndex: "images",
+      key: "images",
+      width: 200,
+      render: (images) => <img style={{ width: "100%" }} src={`${images}`} />,
     },
     {
       title: "Quyền",
       dataIndex: "roles",
       key: "roles",
-      render: (roles) => <div>{roles.map((us)=>us.name) + " "}</div>,
-            // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
-
+      render: (roles) => <div>{roles.map((us) => us.name) + " "}</div>,
+      // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
       title: "Phòng",
@@ -436,14 +436,11 @@ const propsselect = [];
               paddingBottom: "3px",
               lineHeight: "5px",
             }}
-             onClick={() => {
+            onClick={() => {
               showModal_Checkout(record);
             }}
           >
-            <FontAwesomeIcon
-              icon={faSignOutAlt}
-              color="#9cbc5e"
-            />
+            <FontAwesomeIcon icon={faSignOutAlt} color="#9cbc5e" />
           </div>
         </div>
       ),

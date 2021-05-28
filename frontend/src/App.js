@@ -36,7 +36,7 @@ import Profile from './feature/client/profile'
 function App() {
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -79,7 +79,7 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch> */}
+      </Switch>
       {/* <Room_client/> */}
       {/* <Switch>
         <Route path="/detailroom">
@@ -93,7 +93,7 @@ function App() {
       {/* <Detailroom_tag/> */}
       {/* <Rules_client/> */}
       {/* <Reportissues_client/> */}
-      <Profile/>
+      {/* <Profile/> */}
     </div>
   );
 }

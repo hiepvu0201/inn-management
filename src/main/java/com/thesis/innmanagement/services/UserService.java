@@ -6,6 +6,9 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,7 +17,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -43,7 +46,7 @@ public class UserService {
     private Users update(Users user, Long id) throws ResourceNotFoundException {
         Users userUpdate = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("This user not found on:" + id));
-        userUpdate.setPasswordHash(user.getPasswordHash());
+        userUpdate.setPassword(user.getPassword());
         userUpdate.setEmail(user.getEmail());
         userUpdate.setFullName(user.getFullName());
         userUpdate.setIdNo(user.getIdNo());
@@ -117,5 +120,11 @@ public class UserService {
         } catch (Exception e) {
             return "Check out failed! Error: " + e.getMessage();
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users user = userRepository.findByUserName(username);
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), new ArrayList<>());
     }
 }

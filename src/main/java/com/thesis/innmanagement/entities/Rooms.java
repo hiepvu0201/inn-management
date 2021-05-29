@@ -2,7 +2,7 @@ package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.common.ERoom;
-import com.thesis.innmanagement.config.entities.BasicEntity;
+import com.thesis.innmanagement.config.entity.BasicEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

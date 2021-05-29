@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.config.entities;
+package com.thesis.innmanagement.config.entity;
 
 public interface HasId {
 

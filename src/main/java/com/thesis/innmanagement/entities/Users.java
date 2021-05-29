@@ -1,7 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thesis.innmanagement.config.entities.BasicEntity;
+import com.thesis.innmanagement.config.entity.BasicEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Users extends BasicEntity {
     @Column(unique = true)
     private String userName;
 
-    private String passwordHash;
+    private String password;
 
     private String email;
 
@@ -101,12 +101,12 @@ public class Users extends BasicEntity {
         this.userName = userName;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

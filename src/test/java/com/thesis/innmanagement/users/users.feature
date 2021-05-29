@@ -13,7 +13,7 @@ Feature: users test
     """
     {
       "userName": "user",
-      "passwordHash": "",
+      "password": "123456",
       "email": "default@gmail.com",
       "fullName": "default user name",
       "idNo": "123456789",

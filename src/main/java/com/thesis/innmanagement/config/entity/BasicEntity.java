@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.config.entities;
+package com.thesis.innmanagement.config.entity;
 
 import org.springframework.context.annotation.Lazy;
 

@@ -1,11 +1,15 @@
 package com.thesis.innmanagement.controllers;
 
+import com.thesis.innmanagement.entities.AuthRequest;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.services.UserService;
+import com.thesis.innmanagement.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +25,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @GetMapping("/")
     public List<Users> getAll() {
@@ -69,5 +79,17 @@ public class UserController {
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id) throws
             Exception {
         return userService.delete(id);
+    }
+
+    @PostMapping("/login")
+    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+            );
+        } catch (Exception ex) {
+            throw new Exception("inavalid username/password");
+        }
+        return jwtUtil.generateToken(authRequest.getUserName());
     }
 }

@@ -1,7 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.thesis.innmanagement.common.ERole;
-import com.thesis.innmanagement.config.entities.BasicEntity;
+import com.thesis.innmanagement.config.entity.BasicEntity;
 
 import javax.persistence.*;
 

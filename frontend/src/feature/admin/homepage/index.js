@@ -40,7 +40,6 @@ import {
   Row,
   Col,
 } from "antd";
-import arr_data_brand from "./../../../mock/data_brand";
 import branchesApi from "./../../../api/branchesApi";
 const { Option } = Select;
 
@@ -536,7 +535,6 @@ function Homepage_admin(props) {
                 style={{
                   width: "100%",
                   height: "auto",
-                  // backgroundColor: "#007c7e",
                   display: "flex",
                   justifyContent: "center",
                 }}
@@ -583,7 +581,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -625,7 +622,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -667,7 +663,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -712,7 +707,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -754,7 +748,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -796,7 +789,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -841,7 +833,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -883,7 +874,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -925,7 +915,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -970,7 +959,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -1012,7 +1000,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}
@@ -1054,7 +1041,6 @@ function Homepage_admin(props) {
                           style={{
                             width: "100%",
                             height: "auto",
-                            // backgroundColor: "yellow",
                             display: "flex",
                             justifyContent: "center",
                           }}

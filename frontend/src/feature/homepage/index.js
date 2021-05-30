@@ -117,10 +117,6 @@ function Home() {
             <div className="btnfree">
               <button
                 className="button-free"
-                // type="primary"
-                //     style={{width:"45%",height:"80%",borderRadius:"20px", fontFamily:"EB Garamond, serif",color:"white",
-                //     backgroundColor:"#00808b",
-                //     fontSize:"15px"}}
               >
                 DÙNG THỬ MIỄN PHÍ <FontAwesomeIcon icon={faChevronRight} />
               </button>

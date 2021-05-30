@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col,Input,Form } from "antd";
-import Detailroom_tag from "./../../../components/detailroom_tag";
 import Menu_client from "./../../../components/menu_client";
 import Footer_client from "./../../../components/footer_client";
 import { useLocation, useParams } from "react-router-dom";
@@ -126,7 +125,6 @@ function Detail_room() {
                         }}
                       >
                         {location.state.roomNo}
-                        {/* A2-301 */}
                       </div>
                     </div>
                     <div
@@ -161,7 +159,6 @@ function Detail_room() {
                         }}
                       >
                         {location.state.position}
-                        {/* A2-301 */}
                       </div>
                     </div>
                     <div
@@ -196,29 +193,8 @@ function Detail_room() {
                         }}
                       >
                         {location.state.facilities}
-                        {/* A2-301 */}
                       </div>
                     </div>
-                    {/* <div
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        textAlign: "left",
-                        paddingTop: "20px",
-                      }}
-                    >
-                      <button
-                        style={{
-                          height: "auto",
-                          width: "60%",
-                          fontFamily: "PT Sans, sans-serif",
-                          fontSize: "20px",
-                          borderRadius: "8px",
-                        }}
-                      >
-                        ĐẶT LỊCH HẸN
-                      </button>
-                    </div> */}
                   </div>
                 </Col>
               </Row>

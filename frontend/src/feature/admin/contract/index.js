@@ -28,7 +28,6 @@ import {
   DatePicker,
   Radio,
 } from "antd";
-import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import contractsApi from "../../../api/contractApi";
 const { Option } = Select;
@@ -58,14 +57,6 @@ function Contract(props) {
     try {
       const response = await contractsApi.getAll();
       console.log("Fetch contracts successfully: ", response.data);
-      // console.log("<<tenant", response.data[1].owner);
-      // let arr=response.data[1].owner;
-      // console.log(">>",arr);
-      // console.log(">>", arr[0].fullName);
-      // const prefer=response.data[0].owner.map((owner)=>{
-      //   console.log(">>>map",owner.fullName)
-      // })
-      // console.log(prefer)
       setContractList(response.data);
       setstate(response.data);
       setIsloadingUpdate(false);
@@ -102,8 +93,6 @@ function Contract(props) {
     fetchCreateContract();
   };
   const fetchUpdateContract = async (edittv) => {
-    //  const data_update = { id: rowEdit.id, data: dataUpdate };
-    //  console.log("dataupdate", dataUpdate);
     setIsloadingUpdate(true);
     try {
       const response = await contractsApi.updatecontracts(edittv);
@@ -117,8 +106,6 @@ function Contract(props) {
     }
   };
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
-    // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
       ownerIds: idSelected,

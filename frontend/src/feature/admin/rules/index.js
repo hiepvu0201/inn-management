@@ -24,7 +24,6 @@ import {
   InputNumber,
   Spin,
 } from "antd";
-import arr_data_brand from "../../../mock/data_brand";
 import rulesApi from "../../../api/rulesApi";
 const { Option } = Select;
 

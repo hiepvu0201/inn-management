@@ -32,7 +32,6 @@ function Rules_tag(props) {
               textAlign: "left",
             }}
           >
-            {/* Phòng trừ Covid */}
             {props.name}
           </div>
         </div>
@@ -57,7 +56,6 @@ function Rules_tag(props) {
               paddingRight: "15px",
             }}
           >
-            {/* Phòng trừ Covid */}
             {props.description}
           </div>
         </div>

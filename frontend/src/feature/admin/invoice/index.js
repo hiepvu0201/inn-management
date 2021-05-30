@@ -28,7 +28,6 @@ import {
   DatePicker,
   Radio,
 } from "antd";
-import arr_data_brand from "../../../mock/data_brand";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
@@ -331,41 +330,6 @@ function Invoices(props) {
                 ))}
               </Select>
             </Form.Item>
-
-            {/* <Form.Item label="Người dùng">
-              <Select onChange={handleChange}>
-                {usersList.map((usersid) => (
-                  <Select.Option key={usersid.id} value={usersid.id}>
-                    {usersid.id}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Vật liệu">
-              <Select
-                onChange={handleChange_1}
-                placeholder={rowEdit.facilityIds}
-              >
-                {facilitiesList.map((facilitiesid) => (
-                  <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.id}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Điện nước">
-              <Select onChange={handleChange_2}>
-                {electricitywatersList.map((electricitywatersid) => (
-                  <Select.Option
-                    key={electricitywatersid.id}
-                    value={electricitywatersid.id}
-                  >
-                    {electricitywatersid.id}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}

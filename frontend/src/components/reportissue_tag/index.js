@@ -60,7 +60,6 @@ function Reportissues_tag(props) {
                 paddingRight: "15px",
               }}
             >
-              {/* Phòng trừ Covid */}
               {props.description}
             </div>
           </div>
@@ -85,7 +84,6 @@ function Reportissues_tag(props) {
                 paddingRight: "15px",
               }}
             >
-              {/* Phòng trừ Covid */}
               {props.status}
             </div>
           </div>
@@ -110,7 +108,6 @@ function Reportissues_tag(props) {
                 paddingRight: "15px",
               }}
             >
-              {/* Phòng trừ Covid */}
               {props.createdDate}
             </div>
           </div>
@@ -135,7 +132,6 @@ function Reportissues_tag(props) {
                 paddingRight: "15px",
               }}
             >
-              {/* Phòng trừ Covid */}
               {props.solvedDate}
             </div>
           </div>
@@ -160,7 +156,6 @@ function Reportissues_tag(props) {
                 paddingRight: "15px",
               }}
             >
-              {/* Phòng trừ Covid */}
               {props.reporter}
             </div>
           </div>

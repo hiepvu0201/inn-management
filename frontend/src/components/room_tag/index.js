@@ -29,7 +29,6 @@ function Room_tag(props) {
                 src={`${props.images}`}
                 style={{ width: "100%", height: "auto" }}
               />
-              {/* <img src={props.image} /> */}
             </div>
             <div
               style={{
@@ -57,7 +56,6 @@ function Room_tag(props) {
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
-                {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
                 {props.roomNo}
               </div>
             </div>
@@ -87,7 +85,6 @@ function Room_tag(props) {
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
-                {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
                 {props.location}
               </div>
             </div>
@@ -117,7 +114,6 @@ function Room_tag(props) {
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
-                {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
                 {props.position}
               </div>
             </div>
@@ -148,7 +144,6 @@ function Room_tag(props) {
                   paddingRight: "10px",
                 }}
               >
-                {/* Số 9-10, dãy b5 ngõ 7 Kim Mã Thượng */}
                 {props.facilities}
               </div>
             </div>
@@ -175,5 +170,4 @@ function Room_tag(props) {
     </div>
   );
 }
-
 export default Room_tag;

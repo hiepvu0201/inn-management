@@ -24,7 +24,6 @@ import {
   Spin,
   InputNumber,
 } from "antd";
-import arr_data_brand from "./../../../mock/data_brand";
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
 import usersApi from "../../../api/usersApi";
@@ -80,11 +79,13 @@ function Branches(props) {
   }, []);
   //form
   const { Option } = Select;
-  const propsselect=[];
+  const propsselect = [];
   {
     facilitiesList.map((facilitiesid) =>
       propsselect.push(
-        <Option key={facilitiesid.id} value={facilitiesid.id}>{facilitiesid.name}</Option>
+        <Option key={facilitiesid.id} value={facilitiesid.id}>
+          {facilitiesid.name}
+        </Option>
       )
     );
   }
@@ -190,7 +191,9 @@ function Branches(props) {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
-      render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
+      render: (facilities) => (
+        <div>{facilities.map((us) => us.name) + " "}</div>
+      ),
     },
     {
       title: "",
@@ -290,20 +293,6 @@ function Branches(props) {
                 {propsselect}
               </Select>
             </Form.Item>
-            {/* <Form.Item label="Vật liệu">
-              <Select
-                mode="multiple"
-                optionLabelProp="label"
-                onChange={handleChange}
-              >
-                {facilitiesList.map((facilitiesid) => (
-                  <Select.Option key={facilitiesid.id} value={facilitiesid.id}>
-                    {facilitiesid.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -412,15 +401,6 @@ function Branches(props) {
                       </div>
                     </Form>
                   </Modal>
-                  {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
                 </div>
               </div>
             </div>

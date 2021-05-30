@@ -23,7 +23,6 @@ function Notification_tag(props) {
             }}
           >
           {props.name}
-            {/* Nghỉ lễ 30-4 và 1-5 */}
           </div>
           <div
             style={{
@@ -34,7 +33,6 @@ function Notification_tag(props) {
             }}
           >
           {props.description}
-            {/* Ngày 30-4 và 1-5 mọi hoạt động xin được phép ngưng{" "} */}
           </div>
           <div
             style={{
@@ -46,7 +44,6 @@ function Notification_tag(props) {
             }}
           >
           {props.createdDate}
-            {/* 2021-05-15T18:46:21.652+00:00{" "} */}
           </div>
         </div>
       </div>

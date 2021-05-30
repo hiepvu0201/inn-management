@@ -1,11 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-// import Login from './feature/login/index'
-// import Register  from './feature/register'
-// import Forgotpassword from "./feature/forgotpassword";
 import Home from './feature/homepage'
 import Branches from "./../src/feature/admin/branches";
-// import Customer from './feature/admin/customer'
 import Revenue from "./feature/admin/revenue";
 import Component_Block_Last from "./components/component_block_last";
 import Role from "./../src/feature/admin/role";
@@ -29,7 +25,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Reportissues_client from './feature/client/report-issues'
 import Reportissues_tag from "./components/reportissue_tag";
 import Detail_room from './feature/client/detail_room'
-import Detailroom_tag from './components/detailroom_tag'
 import Rules_client from './feature/client/rules'
 import Invoices from './feature/admin/invoice'
 import Profile from './feature/client/profile'

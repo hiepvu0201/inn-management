@@ -25,7 +25,6 @@ import {
   Spin,
   DatePicker,
 } from "antd";
-import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 
 import ReportedissuesApi from "../../../api/reportedissuesApi";

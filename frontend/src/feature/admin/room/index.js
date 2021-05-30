@@ -28,7 +28,6 @@ import {
   InputNumber,
   Upload
 } from "antd";
-import arr_data_brand from "../../../mock/data_brand";
 import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";

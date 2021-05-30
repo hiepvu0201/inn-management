@@ -24,7 +24,6 @@ import {
   InputNumber,
   Spin,
 } from "antd";
-import arr_data_brand from "./../../../mock/data_brand";
 import roleApi from "./../../../api/roleApi";
 const { Option } = Select;
 
@@ -296,15 +295,6 @@ function Role(props) {
                     </div>
                   </Form>
                 </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
               </div>
             </div>
 

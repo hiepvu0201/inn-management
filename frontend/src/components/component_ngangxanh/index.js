@@ -16,11 +16,6 @@ function Component_NgangXanh(props) {
         <div>
           <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
             <div className="icon-hover">{props.icon}
-              {/* <FontAwesomeIcon
-                icon={faHourglassEnd}
-                size="3x"
-                color="#007c7e"
-              /> */}
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>

@@ -37,7 +37,6 @@ function Room_client() {
         try {
           const response = await roomApi.searchRoombyBranch(value);
           console.log("Fetch room by branch successfully: ", response.data);
-          // setIsstateInput(response.data);
           setIsRoomList(response.data);
         } catch (error) {
           console.log("Failed to fetch room by ranch: ", error);
@@ -72,7 +71,6 @@ function Room_client() {
               style={{
                 width: "100%",
                 height: "auto",
-                // backgroundColor: "green",
               }}
             >
               <Row>
@@ -81,7 +79,6 @@ function Room_client() {
                   style={{
                     width: "100%",
                     height: "auto",
-                    // backgroundColor: "red",
                     display: "flex",
                     justifyContent: "center",
                   }}
@@ -91,7 +88,6 @@ function Room_client() {
                       width: "90%",
                       height: "auto",
                       display: "block",
-                      //   backgroundColor: "blue",
                     }}
                   >
                     <div>
@@ -135,7 +131,6 @@ function Room_client() {
                             style={{
                               width: "100%",
                               height: "auto",
-                              // backgroundColor: "red",
                               paddingLeft: "15px",
                             }}
                           >

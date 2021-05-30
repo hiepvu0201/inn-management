@@ -32,7 +32,6 @@ import {
   Upload,
 } from "antd";
 import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
-import arr_data_brand from "../../../mock/data_brand";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";

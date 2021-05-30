@@ -32,8 +32,6 @@ public class Rooms extends BasicEntity {
 
     private ERoom roomType;
 
-    private BigDecimal price;
-
     @Column(length = 64)
     private String images;
 
@@ -43,14 +41,6 @@ public class Rooms extends BasicEntity {
 
     public void setRoomType(ERoom roomType) {
         this.roomType = roomType;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public String getImages() {

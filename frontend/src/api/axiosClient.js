@@ -5,11 +5,6 @@ const axiosClient = axios.create({
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-    "Access-Control-Allow-Headers":
-      " Content-Type",
-    "Access-Control-Max-Age":"86400"
-    // "Access-Control-Allow-Origin": "https://amazing.site",
   },
 });
 //Interceptors

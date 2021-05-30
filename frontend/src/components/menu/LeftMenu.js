@@ -1,8 +1,9 @@
 import React from "react";
 import { Menu, Grid } from "antd";
+import {Images} from './../../config/image'
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
-import {Images} from './../../config/image'
 const { useBreakpoint } = Grid;
 
 const LeftMenu = () => {

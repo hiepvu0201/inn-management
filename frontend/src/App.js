@@ -32,7 +32,7 @@ import Login from './feature/login'
 function App() {
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -75,7 +75,7 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch> */}
+      </Switch>
       {/* <Room_client/> */}
       {/* <Switch>
         <Route path="/detailroom">

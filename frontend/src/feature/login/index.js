@@ -5,7 +5,7 @@ import { Input, Button, Form } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import userApi from "./../../api/usersApi";
-function login() {
+function Login() {
   const [loginstate, setloginstate] = useState([]);
   const login =async(values)=>{
     try {
@@ -125,4 +125,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

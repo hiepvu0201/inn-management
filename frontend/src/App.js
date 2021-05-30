@@ -28,10 +28,11 @@ import Detail_room from './feature/client/detail_room'
 import Rules_client from './feature/client/rules'
 import Invoices from './feature/admin/invoice'
 import Profile from './feature/client/profile'
+import Login from './feature/login'
 function App() {
   return (
     <div className="App">
-      <Switch>
+      {/* <Switch>
         <Route path="/branches">
           <Branches />
         </Route>
@@ -74,7 +75,7 @@ function App() {
         <Route path="/">
           <Homepage_admin />
         </Route>
-      </Switch>
+      </Switch> */}
       {/* <Room_client/> */}
       {/* <Switch>
         <Route path="/detailroom">
@@ -89,6 +90,7 @@ function App() {
       {/* <Rules_client/> */}
       {/* <Reportissues_client/> */}
       {/* <Profile/> */}
+      <Login/>
     </div>
   );
 }

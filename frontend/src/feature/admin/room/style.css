@@ -1,42 +1,75 @@
-.rectangle{
-    width:100%;
-    height:auto;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
+.rectangleroom {
+  width: 98%;
+  height: auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
 }
-.topic-left-room{
-    float: left;
-    display: flex;
-    width:70%
+.topic-left-room {
+  float: left;
+  display: flex;
+  width: 70%;
+  padding-left: 12px;
 }
-.content{
-    font-size: 20px;
-    font-family: "PT Sans, sans-serif";
-    color:#007c7e;
-    padding-left: 20px;
-    width:80%;
-    text-align: left;
-
+.contentroom {
+  font-size: 20px;
+  font-family: "PT Sans, sans-serif";
+  color: #007c7e;
+  padding-left: 20px;
+  width: 80%;
+  text-align: left;
 }
-.btn-right-rooms{
-    float:right;
-    display: flex;
-    width:30%
+.btn-right-rooms {
+  float: right;
+  display: flex;
+  width: 30%;
 }
-.detailed-btn{
-    font-size: 15px;
-    font-family: "PT Sans, sans-serif";
-    color:#007c7e;
-    width:40%;
-    background-color: white;
-    border-color: #007c7e;
-    border-style: solid;
-    height:auto;
-    margin-right:20px;
-    border-radius:20px;
+.detailed-btnroom {
+  font-size: 15px;
+  font-family: "PT Sans, sans-serif";
+  color: #007c7e;
+  width: 30%;
+  background-color: white;
+  border-color: #007c7e;
+  border-style: solid;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 20px;
 }
-.detailed-btn:hover{
-    background-color: #007c7e;
-    color:white;
+.detailed-btnroom:hover {
+  background-color: #007c7e;
+  color: white;
+}
+.boxroom {
+  width: 100%;
+  height: 100vh;
+  background-color: #efefef;
+}
+@media only screen and (max-width: 1026px) {
+  .menu {
+    display: none;
+  }
+  .contentroom {
+    height: auto;
+    padding-top: 5px;
+    font-size: 12px;
+    width: 90%;
+  }
+  .topic-left-room {
+    width: 50%;
+  }
+  .btn-right-rooms {
+    width: 50%;
+  }
+  .detailed-btnroom {
+    font-size: 10px;
+    width: 40%;
+  }
+  .rectangleroom {
+    width: 93%;
+  }
+  .boxroom {
+    height: auto;
+  }
 }

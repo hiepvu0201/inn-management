@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LeftMenu from './LeftMenu'
+import LeftMenu_admin from './LeftMenu'
 import './style.css'
 import { Drawer, Button } from 'antd';
 import {Images} from '../../config/image'
-class Navbar extends Component {
+class Navbar_admin extends Component {
 	state = {
 		current: 'mail',
 		visible: false
@@ -22,36 +22,37 @@ class Navbar extends Component {
 
 	render() {
 		return (
-			<nav className="menuBar">
-				<div className="logo">
-					<img src={Images.LOGIN} style={{width:"100%",paddingTop:"10px"}}/>
-				</div>
-				<div className="menuCon">
-					<div className="leftMenu">
-						<LeftMenu />
+      <nav className="menuBaradmin">
+        <div className="logoadmin">
+          <img
+            src={Images.LOGIN}
+            style={{ width: "auto", height: "70px", paddingTop: "10px" }}
+          />
+        </div>
+        <div className="menuConadmin">
+          <div className="leftMenu">
+            <LeftMenu_admin />
+          </div>
+          <div className="rightMenu">
+            <img src={Images.ICON_RIGHT} />
+          </div>
 
-					</div>
-					<div className="rightMenu">
-						<img src={Images.ICON_RIGHT}/>
-					</div>
-					
-					<Button className="barsMenu" type="primary" onClick={this.showDrawer}>
-						<span className="barsBtn"></span>
-					</Button>
-					<Drawer
-						title="Admin Menu"
-						placement="right"
-						closable={false}
-						onClose={this.onClose}
-						visible={this.state.visible}
-					>
-						<LeftMenu />
-					</Drawer>
-
-				</div>
-			</nav>
-		);
+          <Button className="barsMenu" type="primary" onClick={this.showDrawer}>
+            <span className="barsBtn"></span>
+          </Button>
+          <Drawer
+            title="Admin Menu"
+            placement="right"
+            closable={false}
+            onClose={this.onClose}
+            visible={this.state.visible}
+          >
+            <LeftMenu_admin />
+          </Drawer>
+        </div>
+      </nav>
+    );
 	}
 }
 
-export default Navbar;
+export default Navbar_admin;

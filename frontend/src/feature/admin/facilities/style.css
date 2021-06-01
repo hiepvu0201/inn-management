@@ -1,27 +1,38 @@
-.rectangle {
-  width: 100%;
+.rectanglefacilities {
+  width: 98%;
   height: auto;
   background-color: white;
   display: flex;
   justify-content: space-between;
+  margin-left: 15px;
 }
 .topic-left-faci {
   float: left;
   display: flex;
-  width: 40%;
+  width: 50%;
+  padding-left: 15px;
 }
 .topic-right-faci {
-  width: 60%;
+  width: 50%;
 }
-.content {
+.contentfacilities {
   font-size: 20px;
   font-family: "PT Sans, sans-serif";
   color: #007c7e;
   padding-left: 20px;
+  width: 33%;
+  height: auto;
+  padding-top: 5px;
 }
 .btn-right-faci {
   float: right;
   display: flex;
+  width: 20%;
+}
+.boxfacilities {
+  width: 100%;
+  height: 100vh;
+  background-color: #efefef;
 }
 .detailed-btn-faci {
   font-size: 15px;
@@ -38,4 +49,31 @@
 .detailed-btn-faci:hover {
   background-color: #007c7e;
   color: white;
+}
+@media only screen and (max-width: 1026px) {
+  .boxfacilities {
+    height: auto;
+  }
+  .contentfacilities {
+    font-size: 12px;
+    width: 70%;
+  }
+  .topic-left-faci {
+    width: 70%;
+  }
+  .topic-right-faci {
+    width: 30%;
+  }
+  .btn-right-faci {
+    width: 100%;
+    height: auto;
+    padding-top: 6px;
+  }
+  .detailed-btn-faci {
+    font-size: 12px;
+    width: 80%;
+  }
+  .rectanglefacilities {
+    width: 94%;
+  }
 }

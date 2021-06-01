@@ -346,7 +346,7 @@ function ElectricityWaters(props) {
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleelectricwater">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -357,13 +357,13 @@ function ElectricityWaters(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left-elec">
+              <div className="topic-left-electric">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
+                <div className="contentelectricwater">QUẢN LÝ ĐIỆN NƯỚC</div>
               </div>
-              <div className="topic-right-elec">
+              <div className="topic-right-electric">
                 <div className="btn-right">
-                  <button className="detailed-btn" onClick={showModal}>
+                  <button className="detailed-btn-elec" onClick={showModal}>
                     THÊM MỚI
                   </button>
                   <Modal
@@ -460,6 +460,7 @@ function ElectricityWaters(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

@@ -316,7 +316,7 @@ function Branches(props) {
         <div style={{ height: "120px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglebranches">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -329,7 +329,7 @@ function Branches(props) {
             >
               <div className="topic-left-branches">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
+                <div className="contentbranches">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
               </div>
               <div className="topic-right-branches">
                 <div className="btn-right-branches">
@@ -408,8 +408,9 @@ function Branches(props) {
             <div
               style={{
                 paddingTop: "30px",
-                paddingLeft: "15px",
-                paddingRight: "15px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                paddingBottom: "15px",
               }}
             >
               <Table columns={columns} bordered dataSource={branchList} />

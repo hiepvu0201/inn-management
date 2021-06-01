@@ -677,16 +677,12 @@ function Users(props) {
         </Spin>
       </Modal>
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
+        className="sumusser"
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleusers">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -699,7 +695,7 @@ function Users(props) {
             >
               <div className="topic-left-user">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ KHÁCH TRỌ</div>
+                <div className="contentusers">QUẢN LÝ KHÁCH TRỌ</div>
               </div>
               <div className="topic-right-user">
                 <div className="btn-right-user">
@@ -795,7 +791,7 @@ function Users(props) {
                           )}
                         </Upload>
                       </Form.Item>
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtnussers">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -814,6 +810,7 @@ function Users(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table columns={columns} bordered dataSource={usersList} />

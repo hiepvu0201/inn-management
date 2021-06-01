@@ -1,5 +1,6 @@
-.rectangle{
-    width:100%;
+.rectangleusers{
+    width:98%;
+    margin-left: 15px;
     height:auto;
     background-color: white;
     display: flex;
@@ -9,15 +10,19 @@
     float: left;
     display: flex;
     width: 40%;
+    padding-left: 15px;
 }
 .topic-right-user{
     width:60%;
 }
-.content{
+.contentusers{
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;
     padding-left: 20px;
+    height:auto;
+    padding-top: 5px;
+    text-align: left;
 
 }
 .btn-right-user{
@@ -39,4 +44,46 @@
 .detailed-btn-user:hover{
     background-color: #007c7e;
     color:white;
+}
+.sumusser{
+    
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(239, 239, 239);
+
+}
+.btnbtnussers{
+    display: flex;
+}
+@media only screen and (max-width: 1026px) {
+  .topic-left-user{
+      width:60%;
+  }
+  .contentusers{
+      font-size: 12px;
+      width: 100%;
+  }
+  .topic-right-user{
+      width: 40%;
+  }
+  .btn-right-user{
+      width: 70%;
+  }
+  .detailed-btn-user{
+      font-size: 12px;
+      width: 80%;
+  }
+  .sumusser{
+      height:auto
+  }
+  .rectangleusers{
+      width:94%;
+  }
+  .btnbtnussers{
+      width:100%;
+      padding-left:240px
+  }
+ .ant-form-item-control-input {
+    width: 88%;
+ }
 }

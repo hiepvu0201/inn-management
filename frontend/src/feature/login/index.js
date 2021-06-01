@@ -25,25 +25,27 @@ function login() {
             </div>
             <div className="forgetPW">Quên mật khẩu</div>
             <div
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "10px",
-                paddingRight: "10px",
-                paddingBottom: "20px",
-              }}
+              className="box-btn"
+              // style={{
+              //   width: "100%",
+              //   height: "auto",
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   paddingTop: "10px",
+              //   paddingRight: "10px",
+              //   paddingBottom: "20px",
+              // }}
             >
               <Button
-                style={{
-                  width: "335px",
-                  height: "auto",
-                  fontSize: "15px",
-                  backgroundColor: "#4485bc",
-                  color: "white",
-                  fontFamily: "Noto Sans JP, sans-serif",
-                }}
+                className="btn-detailed"
+                // style={{
+                //   width: "335px",
+                //   height: "auto",
+                //   fontSize: "15px",
+                //   backgroundColor: "#4485bc",
+                //   color: "white",
+                //   fontFamily: "Noto Sans JP, sans-serif",
+                // }}
               >
                 ĐĂNG NHẬP
               </Button>

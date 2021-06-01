@@ -6,7 +6,9 @@ function forgotpassword() {
     <div>
       <div className="form-register">
         <div className="form-box">
-          <div style={{ width: "100%", display: "block" }}>
+          <div 
+          className="container-box"
+          style={{ width: "100%", display: "block" }}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className="sign-up">
                 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 - SỐ 1 THỊ
@@ -21,25 +23,27 @@ function forgotpassword() {
               </div>
             </div>
             <div
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "10px",
-                paddingRight: "10px",
-                paddingBottom: "20px",
-              }}
+            className="outer-btn"
+              // style={{
+              //   width: "100%",
+              //   height: "auto",
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   paddingTop: "10px",
+              //   paddingRight: "10px",
+              //   paddingBottom: "20px",
+              // }}
             >
               <Button
-                style={{
-                  width: "335px",
-                  height: "auto",
-                  fontSize: "15px",
-                  backgroundColor: "#286090",
-                  color: "white",
-                  fontFamily: "'Open Sans', sans-serif",
-                }}
+              className="detailed-btn"
+                // style={{
+                //   width: "335px",
+                //   height: "auto",
+                //   fontSize: "15px",
+                //   backgroundColor: "#286090",
+                //   color: "white",
+                //   fontFamily: "'Open Sans', sans-serif",
+                // }}
               >
                 ĐĂNG KÝ DÙNG THỬ
               </Button>

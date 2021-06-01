@@ -227,17 +227,11 @@ function Rules(props) {
           </Form>
         </Spin>
       </Modal>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
-      >
+      <div className="containercontainerussers">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglerules">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -248,11 +242,11 @@ function Rules(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left-rules">
+              <div className="topic-left-rules1">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NỘI QUY NHÀ TRỌ</div>
+                <div className="contentrules">QUẢN LÝ NỘI QUY NHÀ TRỌ</div>
               </div>
-              <div className="topic-right-rules">
+              <div className="topic-right-rules1">
                 <div className="btn-right-rules">
                   <button className="detailed-btn-rules" onClick={showModal}>
                     THÊM MỚI
@@ -297,7 +291,7 @@ function Rules(props) {
                         <Input />
                       </Form.Item>
 
-                      <div style={{ display: "flex" }}>
+                      <div className="btncreaterules">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -318,6 +312,7 @@ function Rules(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

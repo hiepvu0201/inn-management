@@ -26,7 +26,7 @@ import {
   Select,
   Spin,
   InputNumber,
-  Upload
+  Upload,
 } from "antd";
 import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
@@ -42,7 +42,7 @@ function Rooms(props) {
   //   console.log(value)
   // }
   //getAll
-  
+
   const [roomList, setRoomList] = useState([]);
   const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
@@ -52,34 +52,34 @@ function Rooms(props) {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
   const [fileList, setfileList] = useState([]);
-    const [imgfile, setimgfile] = useState(null);
+  const [imgfile, setimgfile] = useState(null);
 
- const uploadimg = (info) => {
-   console.log(">>>>info: ", info);
-   console.log(fileList);
- };
- const propsimg = {
-   onChange: uploadimg,
- };
- const [stateimg, setstateimg] = useState({
-   previewVisible: false,
-   previewImage: "",
-   fileList: [],
- });
- const handleChangeimg = (fileList) => {
-   setstateimg(fileList);
-   setimgfile(fileList.file.originFileObj);
-   console.log(">>state", stateimg);
-   console.log(">>fileList", fileList);
-   console.log(">>originFileObj", imgfile);
- };
- const handlePreview = (file) => {
-   setstateimg({
-     ...stateimg,
-     previewImage: file.url || file.thumbUrl,
-     previewVisible: true,
-   });
- };
+  const uploadimg = (info) => {
+    console.log(">>>>info: ", info);
+    console.log(fileList);
+  };
+  const propsimg = {
+    onChange: uploadimg,
+  };
+  const [stateimg, setstateimg] = useState({
+    previewVisible: false,
+    previewImage: "",
+    fileList: [],
+  });
+  const handleChangeimg = (fileList) => {
+    setstateimg(fileList);
+    setimgfile(fileList.file.originFileObj);
+    console.log(">>state", stateimg);
+    console.log(">>fileList", fileList);
+    console.log(">>originFileObj", imgfile);
+  };
+  const handlePreview = (file) => {
+    setstateimg({
+      ...stateimg,
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  };
   const fetchRoomList = async () => {
     try {
       const response = await roomApi.getAll();
@@ -130,17 +130,17 @@ function Rooms(props) {
     // fetchBranchesList();
     // fetchfacilitiesList();
   }, []);
-   const { Option } = Select;
-   const propsselect = [];
-   {
-     facilitiesList.map((facilitiesid) =>
-       propsselect.push(
-         <Option key={facilitiesid.id} value={facilitiesid.id}>
-           {facilitiesid.name}
-         </Option>
-       )
-     );
-   }
+  const { Option } = Select;
+  const propsselect = [];
+  {
+    facilitiesList.map((facilitiesid) =>
+      propsselect.push(
+        <Option key={facilitiesid.id} value={facilitiesid.id}>
+          {facilitiesid.name}
+        </Option>
+      )
+    );
+  }
   //form
   const onFinish = (values) => {
     const dataCreate = {
@@ -149,20 +149,20 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
-     var myJSON = JSON.stringify(dataCreate);
-     console.log("<<<Stringify", myJSON);
-     const responsedata = {
-       room: myJSON,
-       images: imgfile,
-     };
-     console.log("dataCreate", responsedata);
+    var myJSON = JSON.stringify(dataCreate);
+    console.log("<<<Stringify", myJSON);
+    const responsedata = {
+      room: myJSON,
+      images: imgfile,
+    };
+    console.log("dataCreate", responsedata);
 
-     var form_data = new FormData();
+    var form_data = new FormData();
 
-     for (var key in responsedata) {
-       form_data.append(key, responsedata[key]);
-     }
-    
+    for (var key in responsedata) {
+      form_data.append(key, responsedata[key]);
+    }
+
     const fetchCreateRooms = async () => {
       try {
         const response = await roomsApi.createrooms(form_data);
@@ -201,17 +201,17 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
-    var myJSONupdate=JSON.stringify(dataUpdate);
-    console.log("<<<Stringify",myJSONupdate)
-    const responsedata={
-      roomDetail:myJSONupdate,
-      images:imgfile
-    }
+    var myJSONupdate = JSON.stringify(dataUpdate);
+    console.log("<<<Stringify", myJSONupdate);
+    const responsedata = {
+      roomDetail: myJSONupdate,
+      images: imgfile,
+    };
     console.log("dataUpdate", responsedata);
-     var form_data = new FormData();
-      for (var key in responsedata) {
-        form_data.append(key, responsedata[key]);
-      }
+    var form_data = new FormData();
+    for (var key in responsedata) {
+      form_data.append(key, responsedata[key]);
+    }
     const data_update = { id: rowEdit.id, data: form_data };
     fetchUpdateRooms(data_update);
   };
@@ -346,27 +346,25 @@ function Rooms(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-  const [state, setstate] = useState([])
+  const [state, setstate] = useState([]);
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-    if(value==="")
-    {
+    if (value === "") {
       setRoomList(state);
+    } else {
+      const SearchRoombyBranch = async () => {
+        try {
+          const response = await roomApi.searchRoombyBranch(value);
+          console.log("Fetch room by branch successfully: ", response.data);
+          // setIsstateInput(response.data);
+          setRoomList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch room by ranch: ", error);
+        }
+      };
+      SearchRoombyBranch();
     }
-    else{
- const SearchRoombyBranch = async () => {
-   try {
-     const response = await roomApi.searchRoombyBranch(value);
-     console.log("Fetch room by branch successfully: ", response.data);
-     // setIsstateInput(response.data);
-     setRoomList(response.data);
-   } catch (error) {
-     console.log("Failed to fetch room by ranch: ", error);
-   }
- };
- SearchRoombyBranch();
-    };
-  }
+  };
   return (
     <div>
       <Modal
@@ -447,16 +445,17 @@ function Rooms(props) {
         </Spin>
       </Modal>
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
+        className="boxroom"
+        // style={{
+        //   width: "100%",
+        //   height: "100vh",
+        //   backgroundColor: "#efefef",
+        // }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleroom">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -469,7 +468,7 @@ function Rooms(props) {
             >
               <div className="topic-left-room">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ PHÒNG TRỌ</div>
+                <div className="contentroom">QUẢN LÝ PHÒNG TRỌ</div>
               </div>
               <div className="btn-right-rooms">
                 <div style={{ paddingRight: "10px", width: "60%" }}>
@@ -480,7 +479,7 @@ function Rooms(props) {
                   />
                 </div>
 
-                <button className="detailed-btn" onClick={showModal}>
+                <button className="detailed-btnroom" onClick={showModal}>
                   THÊM MỚI
                 </button>
                 <Modal
@@ -588,6 +587,7 @@ function Rooms(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table columns={columns} bordered dataSource={roomList} />

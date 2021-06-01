@@ -1,60 +1,63 @@
 @import "~antd/dist/antd.css";
 
-.menuBar {
+.menuBaradmin {
   padding: 0 20px;
   border-bottom: solid 1px #e8e8e8;
   /* overflow: auto; */
   box-shadow: 0 0 30px #f3f1f1;
-  display:"flex";
+  display:flex;
+  width: 100%;
 }
 
-.logo {
-  width: 170px;
+.logoadmin {
+  width:5%;
   float: left;
   
 }
 
-.logo a {
+.logoadmin a {
   display: inline-block;
   font-size: 20px;
   padding: 19px 20px;
   text-transform: capitalize;
 }
 
-.menuCon {
+.menuConadmin {
   /* width: calc(100% - 150px); */
-  float: left;
-  width: 86%;
+  width: 93%;
   margin-top: 10px;
   margin-right: 20px;
 }
 
-.menuCon .ant-menu-item {
+.menuConadmin .ant-menu-item {
   padding: 0px 5px;
 }
 
-.menuCon .ant-menu-submenu-title {
+.menuConadmin .ant-menu-submenu-title {
   padding: 5px 10px;
 }
 
-.menuCon .ant-menu-item a,
-.menuCon .ant-menu-submenu-title a {
+.menuConadmin .ant-menu-item a,
+.menuConadmin .ant-menu-submenu-title a {
   padding: 10px 5px;
 }
 
-.menuCon .ant-menu-horizontal {
+.menuConadmin .ant-menu-horizontal {
   border-bottom: none;
   background-color: #efefef;
 }
 
-.menuCon .leftMenu {
+.menuConadmin .leftMenu {
   float: left;
-  padding-left: 60px;
+  padding-left: 160px;
+  width: 85%;
 }
 
-.menuCon .rightMenu {
+.menuConadmin .rightMenu {
   float: right;
   padding-bottom: 10px;
+  width: 15%;
+    padding-left: 250px;
 }
 
 .barsMenu {
@@ -122,16 +125,16 @@
     display: none;
   }
 
-  .logo a {
+  .logoadmin a {
     margin-left: -20px;
   }
 
-  .menuCon .ant-menu-item,
-  .menuCon .ant-menu-submenu-title {
+  .menuConadmin .ant-menu-item,
+  .menuConadmin .ant-menu-submenu-title {
     padding: 1px 20px;
   }
 
-  .logo a {
+  .logoadmin a {
     padding: 10px 20px;
   }
   .rightMenu{

@@ -29,3 +29,13 @@
     font-family: "PT Sans", sans-serif;
 
 }
+.row-block{
+    padding-top: 20px;
+    padding-left: 30px;
+}
+@media only screen and (max-width: 1026px) {
+  .row-block{
+      display: block;
+      padding-left: 70px;
+  }
+}

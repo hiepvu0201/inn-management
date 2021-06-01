@@ -54,3 +54,31 @@
     color: white;
     text-transform: uppercase!important;
 }
+.box-btn{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.btn-detailed{
+    width:335px;
+    height:auto;
+    font-size: 15px;
+    background-color: #4485bc;
+    color:white;
+    font-family: "Noto Sans JP, sans-serif";
+}
+@media only screen and (max-width: 1026px) {
+  .form-box{
+      width: 80%;
+  }
+  .box-btn{
+      padding-right: initial;
+  }
+  .btn-detailed{
+      width:280px;
+  }
+}

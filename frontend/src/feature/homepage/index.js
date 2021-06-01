@@ -6,7 +6,7 @@ import Menu from "../../components/menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./demo-files/demo.css";
 import "./ie7/ie7.css";
-import Footer from './../../components/footer'
+import Footer from "./../../components/footer";
 import "./themify-icons.css";
 import {
   faChevronRight,
@@ -42,82 +42,101 @@ function Home() {
           //  style={{ backgroundColor: "blue" }}
         >
           <div style={{ display: "flex", paddingTop: "150px" }}>
-            <div style={{ position: "relative", left: "90px" }}>
-              <img src={Images.DESKTOP} style={{ width: "320px" }} />
-            </div>
-            <div
-              style={{ position: "absolute", bottom: "10px", left: "250px" }}
-            >
-              {" "}
+            {/* <div style={{ position: "relative", left: "90px" }} className="element1"> */}
+            <div className="element1">
+              {/* <img src={Images.DESKTOP} style={{ width: "320px" }} className="element1-img" /> */}
               <img
-                src={Images.MONITOR}
-                style={{ width: "480px", height: "350px" }}
+                src={Images.DESKTOP}
+                // style={{ width: "320px" }}
+                className="element1-img"
               />
             </div>
             <div
-              style={{ position: "absolute", left: "640px", bottom: "10px" }}
+              className="element2"
+              // style={{ position: "absolute", bottom: "10px", left: "250px" }}
             >
-              <img src={Images.TABLET} style={{ width: "150px" }} />
+              {" "}
+              <img
+                className="element2-img"
+                src={Images.MONITOR}
+                // style={{ width: "480px", height: "350px" }}
+              />
             </div>
             <div
-              style={{ position: "absolute", left: "615px", bottom: "15px" }}
+              // style={{ position: "absolute", left: "640px", bottom: "10px" }}
+              className="position-element4"
             >
-              <img src={Images.PHONE} style={{ width: "75px" }} />
+              <img src={Images.TABLET} className="element4" />
+            </div>
+            <div
+              // style={{ position: "absolute", left: "615px", bottom: "15px" }}
+              className="position-element5"
+            >
+              <img
+                src={Images.PHONE}
+                // style={{ width: "75px" }}
+                className="element5"
+              />
             </div>
           </div>
         </Col>
         <Col span={8}>
-          <div style={{ display: "block", paddingTop: "10px" }}>
+          <div
+            // style={{ display: "block", paddingTop: "10px" }}
+            className="element3-outer"
+          >
             <div
-              style={{
-                fontSize: "30px",
-                color: "#007c7e",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: "bold",
-              }}
+              // style={{
+              //   fontSize: "30px",
+              //   color: "#007c7e",
+              //   fontFamily: "'Open Sans', sans-serif",
+              //   fontWeight: "bold",
+              // }}
+              className="element3"
             >
               KHUNHATRO - CHUOICANHO
             </div>
             <div
-              style={{
-                fontSize: "30px",
-                color: "#007c7e",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: "bold",
-              }}
+              // style={{
+              //   fontSize: "30px",
+              //   color: "#007c7e",
+              //   fontFamily: "'Open Sans', sans-serif",
+              //   fontWeight: "bold",
+              // }}
+              className="element3"
             >
               PHẦN MỀM QUẢN LÝ
             </div>
             <div
-              style={{
-                fontSize: "30px",
-                color: "#007c7e",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: "bold",
-              }}
+              className="element3"
+              // style={{
+              //   fontSize: "30px",
+              //   color: "#007c7e",
+              //   fontFamily: "'Open Sans', sans-serif",
+              //   fontWeight: "bold",
+              // }}
             >
               NHÀ TRỌ CĂN HỘ DỊCH VỤ
             </div>
-            <div style={{ paddingTop: "10px" }}>
-              <img src={Images.NO1} />
-            </div>
+            {/* <div style={{ paddingTop: "10px" }}>
+              <img src={Images.NO1} className="img-ele3" />
+            </div> */}
             <div
-              style={{
-                fontFamily: "'Open Sans', sans-serif",
-                color: "#007c7e",
-                fontSize: "16px",
-                fontWeight: "bold",
-              }}
+              // style={{
+              //   fontFamily: "'Open Sans', sans-serif",
+              //   color: "#007c7e",
+              //   fontSize: "16px",
+              //   fontWeight: "bold",
+              // }}
+              className="element4"
             >
               Thiết kế đơn giản, dễ dàng sử dụng và tiết kiệm tối đa chi phí
             </div>
             <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-              <img src={Images.ICON} />
+              <img src={Images.ICON} className="img-ele3" />
             </div>
             <div className="btnfree">
-              <button
-                className="button-free"
-              >
+              <button className="button-free">
                 DÙNG THỬ MIỄN PHÍ <FontAwesomeIcon icon={faChevronRight} />
               </button>
             </div>
@@ -125,12 +144,13 @@ function Home() {
         </Col>
       </Row>
       <div
-        style={{
-          width: "100%",
-          height: "620px",
-          display: "flex",
-          justifyContent: "center",
-        }}
+        className="partIII"
+        // style={{
+        //   width: "100%",
+        //   height: "620px",
+        //   display: "flex",
+        //   justifyContent: "center",
+        // }}
       >
         <div
           style={{
@@ -140,12 +160,13 @@ function Home() {
             justifyContent: "center",
           }}
         >
-          <div style={{ display: "block" }}>
+          <div className="part2">
             <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
+              className="container-part2"
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "center",
+              // }}
             >
               <div className="topic">
                 <div className="circle-topic"></div>
@@ -155,13 +176,15 @@ function Home() {
               </div>
             </div>
             <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
+              className="container-part3"
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "center",
+              // }}
             >
               <div
-                style={{ fontFamily: " PT Sans, sans-serif", fontSize: "15px" }}
+                className="content-part3"
+                // style={{ fontFamily: " PT Sans, sans-serif", fontSize: "15px" }}
               >
                 Cho thuê nhà trọ, căn hộ là loại hình kinh doanh khá hấp dẫn vì
                 có tiềm năng lớn, nhu cầu cao, doanh thu ổn định và an toàn. Tuy
@@ -171,7 +194,10 @@ function Home() {
               </div>
             </div>
             <div>
-              <Row style={{ paddingTop: "15px", paddingLeft: "40px" }}>
+              <Row
+                // style={{ paddingTop: "15px", paddingLeft: "40px" }}
+                className="row-part3"
+              >
                 <Col lg={8} md={24}>
                   <Component1
                     icon={
@@ -212,7 +238,10 @@ function Home() {
                   />
                 </Col>
               </Row>
-              <Row style={{ paddingTop: "15px", paddingLeft: "40px" }}>
+              <Row
+                // style={{ paddingTop: "15px", paddingLeft: "40px" }}
+                className="row2-part3"
+              >
                 <Col lg={8} md={24}>
                   <Component1
                     icon={
@@ -258,13 +287,14 @@ function Home() {
         </div>
       </div>
       <div
-        style={{
-          width: "100%",
-          height: "430px",
-          backgroundColor: "#efefef",
-          display: "flex",
-          justifyContent: "center",
-        }}
+        className="partIV"
+        // style={{
+        //   width: "100%",
+        //   height: "430px",
+        //   backgroundColor: "#efefef",
+        //   display: "flex",
+        //   justifyContent: "center",
+        // }}
       >
         <div
           style={{
@@ -299,8 +329,14 @@ function Home() {
               hiệu quả của các chuỗi nhà trọ, căn hộ. Nhưng để quản lý hiệu quả
               không phải chuyện đơn giản.
             </div>
-            <Row style={{ paddingLeft: "40px", paddingTop: "20px" }}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+            <Row
+              // style={{ paddingLeft: "40px", paddingTop: "20px" }}
+              className="paddingrow"
+            >
+              <div
+                // style={{ display: "flex", justifyContent: "center" }}
+                className="positionrow-partIV"
+              >
                 <Col lg={6} md={24}>
                   <Component2
                     icon={
@@ -359,13 +395,14 @@ function Home() {
         </div>
       </div>
       <div
-        style={{
-          width: "100%",
-          height: "380px",
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: "20px",
-        }}
+        className="partV"
+        // style={{
+        //   width: "100%",
+        //   height: "380px",
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   paddingTop: "20px",
+        // }}
       >
         <div
           style={{
@@ -377,18 +414,22 @@ function Home() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className="topic">
                 <div className="circle-topic"></div>
-                <div style={{ position: "relative", bottom: "10px" }}>
+                <div
+                  // style={{ position: "relative", bottom: "10px" }}
+                  className="content-partV"
+                >
                   Phần mềm Quản lý Nhà Trọ - TỐT NHẤT HIỆN NAY
                 </div>
               </div>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div
-                style={{
-                  fontFamily: " PT Sans, sans-serif",
-                  fontSize: "15px",
-                  width: "80%",
-                }}
+                // style={{
+                //   fontFamily: " PT Sans, sans-serif",
+                //   fontSize: "15px",
+                //   width: "80%",
+                // }}
+                className="content-title-partV"
               >
                 Giải quyết 90% lo lắng của chủ trọ trong việc quản lý và vận
                 hành nhà trọ với chi phí tiết kiệm tối đa. Cắt giảm 50% thời
@@ -428,21 +469,38 @@ function Home() {
               </Col>
             </Row>
             <div
-              style={{
-                textAlign: "center",
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "30px",
-              }}
+              // style={{
+              //   textAlign: "center",
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   paddingTop: "30px",
+              // }}
+              className="conclusion-partV"
             >
-              <strong style={{ fontSize: "25px" }}>KHUTRO</strong>
-              <div style={{ paddingLeft: "5px", fontSize: "25px" }}>
+              <strong
+                // style={{ fontSize: "25px" }}
+                className="content-rowFirst"
+              >
+                KHUTRO
+              </strong>
+              <div
+                className="content-rowSecond"
+                // style={{ paddingLeft: "5px", fontSize: "25px" }}
+              >
                 giải pháp
               </div>
-              <strong style={{ paddingLeft: "5px", fontSize: "25px" }}>
-                Phần Mềm Quản Lý Nhà Trọ Số 1 HIỆN NAY
+              <strong
+                className="content-rowThird"
+                //  style={{ paddingLeft: "5px", fontSize: "25px" }}
+              >
+                Phần Mềm Quản Lý Nhà Trọ
               </strong>
-              <div style={{ fontSize: "25px" }}>, đăng ký dùng thử ngay …</div>
+              <div
+                className="content-rowFourth"
+                // style={{ fontSize: "25px" }}
+              >
+                , đăng ký dùng thử ngay …
+              </div>
             </div>
             <div style={{ paddingTop: "20px" }}>
               <button className="btn-signup-2">DÙNG THỬ MIỄN PHÍ</button>
@@ -452,14 +510,15 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "430px",
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "20px",
-            backgroundColor: "#efefef",
-          }}
+          className="partVI"
+          // style={{
+          //   width: "100%",
+          //   height: "430px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   paddingTop: "20px",
+          //   backgroundColor: "#efefef",
+          // }}
         >
           <div
             style={{
@@ -478,11 +537,12 @@ function Home() {
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div
-                  style={{
-                    fontFamily: " PT Sans, sans-serif",
-                    fontSize: "15px",
-                    width: "80%",
-                  }}
+                  className="content-partVI"
+                  // style={{
+                  //   fontFamily: " PT Sans, sans-serif",
+                  //   fontSize: "15px",
+                  //   width: "80%",
+                  // }}
                 >
                   Giao diện đơn giản, thông minh, giúp quản lý nhà trọ mọi lúc
                   mọi nơi với dữ liệu được bảo mật an toàn tuyệt đối, kiểm soát
@@ -490,7 +550,10 @@ function Home() {
                   hành.
                 </div>
               </div>
-              <Row style={{ paddingLeft: "30px", paddingTop: "20px" }}>
+              <Row
+                className="row-partVI"
+                // style={{ paddingLeft: "30px", paddingTop: "20px" }}
+              >
                 <Col lg={6} md={24} style={{ paddingLeft: "10px" }}>
                   <Component4
                     img={Images.BAR_CHART}
@@ -526,13 +589,14 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "680px",
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "20px",
-          }}
+          className="partVII"
+          // style={{
+          //   width: "100%",
+          //   height: "680px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   paddingTop: "20px",
+          // }}
         >
           <div
             style={{
@@ -551,18 +615,22 @@ function Home() {
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div
-                  style={{
-                    fontFamily: " PT Sans, sans-serif",
-                    fontSize: "15px",
-                    width: "80%",
-                  }}
+                  // style={{
+                  //   fontFamily: " PT Sans, sans-serif",
+                  //   fontSize: "15px",
+                  //   width: "80%",
+                  // }}
+                  className="content-partVII"
                 >
                   Cùng với các chuyên gia IT dày kinh nghiệm, chúng tôi nghiên
                   cứu thiết kế phần mềm quản lý nhà trọ tối ưu phù hợp với nhiều
                   mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
                 </div>
               </div>
-              <Row style={{ paddingTop: "10px" }}>
+              <Row
+                // style={{ paddingTop: "10px" }}
+                className="detailedrow-partVI"
+              >
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
@@ -603,7 +671,11 @@ function Home() {
                   />
                 </Col>
               </Row>
-              <Row style={{ paddingTop: "10px" }}>
+              <Row
+                className="detailedrow-partVI"
+
+                // style={{ paddingTop: "10px" }}
+              >
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
@@ -650,13 +722,14 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "560px",
-            backgroundColor: "#efefef",
-            display: "flex",
-            justifyContent: "center",
-          }}
+          // style={{
+          //   width: "100%",
+          //   height: "450px",
+          //   backgroundColor: "#efefef",
+          //   display: "flex",
+          //   justifyContent: "center",
+          // }}
+          className="partVIII"
         >
           <div
             style={{
@@ -674,25 +747,33 @@ function Home() {
               >
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div style={{ position: "relative", bottom: "10px" }}>
+                  <div
+                    className="content-partVIII"
+
+                    //  style={{ position: "relative", bottom: "10px" }}
+                  >
                     Với nhiều tính năng ưu việt chỉ có tại KHUTRO{" "}
                   </div>
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div
-                  style={{
-                    fontFamily: " PT Sans, sans-serif",
-                    fontSize: "15px",
-                    width: "80%",
-                  }}
+                  // style={{
+                  //   fontFamily: " PT Sans, sans-serif",
+                  //   fontSize: "15px",
+                  //   width: "80%",
+                  // }}
+                  className="content2-partVIII"
                 >
                   Cùng với các chuyên gia IT dày kinh nghiệm, chúng tôi nghiên
                   cứu thiết kế phần mềm quản lý nhà trọ tối ưu phù hợp với nhiều
                   mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
                 </div>
               </div>
-              <Row style={{ paddingTop: "5px" }}>
+              <Row
+                className="row-partVIII"
+                // style={{ paddingTop: "5px" }}
+              >
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
@@ -733,22 +814,34 @@ function Home() {
                   />
                 </Col>
               </Row>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "15px",
+                }}
+              >
                 <div className="content-contact">
                   Hãy để chúng tôi đồng hành cùng bạn
                 </div>
               </div>
               <div className="content-atlast">
-                <div style={{ fontSize: "15px", paddingRight: "10px" }}>
-                  Tại
+                <div
+                  className="content-partVI-atlast"
+                  // style={{ fontSize: "15px", paddingRight: "10px" }}
+                >
+                  Tại KHUTRO , chúng tôi luôn cố gắng tạo ra môi trường làm việc
+                  chuyên nghiệp, sáng tạo và kỷ luật cao. Cùng với đội ngũ kỹ sư
+                  trẻ giàu nhiệt huyết và các nhân viên tư vấn khách hàng luôn
+                  sẵn sàng hỗ trợ bạn 24/7.
                 </div>
-                <strong style={{ fontSize: "15px" }}>KHUTRO</strong>
-                <div style={{ paddingLeft: "10px", fontSize: "15px" }}>
-                  , chúng tôi luôn cố gắng tạo ra môi trường làm việc chuyên
+                {/* <strong style={{ fontSize: "15px" }}>KHUTRO</strong> */}
+                {/* <div style={{ paddingLeft: "10px", fontSize: "15px" }}> */}
+                {/* , chúng tôi luôn cố gắng tạo ra môi trường làm việc chuyên
                   nghiệp, sáng tạo và kỷ luật cao. Cùng với đội ngũ kỹ sư trẻ
                   giàu nhiệt huyết và các nhân viên tư vấn khách hàng luôn sẵn
-                  sàng hỗ trợ bạn 24/7.
-                </div>
+                  sàng hỗ trợ bạn 24/7. */}
+                {/* </div> */}
               </div>
             </div>
           </div>
@@ -756,12 +849,13 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "450px",
-            display: "flex",
-            justifyContent: "center",
-          }}
+          // style={{
+          //   width: "100%",
+          //   height: "450px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          // }}
+          className="partIX"
         >
           <div
             style={{
@@ -779,25 +873,30 @@ function Home() {
               >
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div style={{ position: "relative", bottom: "10px" }}>
+                  <div
+                    className="content-partIX"
+                    // style={{ position: "relative", bottom: "10px" }}
+                  >
                     Quy trình mua Phần mềm KHUTRO
                   </div>
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <div style={{ fontSize: "15px" }}>
-                  Dưới đây là các bước để tiến hành mua{" "}
+                <div
+                  className="content2-partIX"
+                  // style={{ fontSize: "15px" }}
+                >
+                  Dưới đây là các bước để tiến hành mua , KHUTRO – Phần mềm Quản
+                  lý Nhà trọ.
                 </div>
-                <strong
+                {/* <strong
                   style={{
                     fontSize: "15px",
                     paddingRight: "10px",
                     paddingLeft: "10px",
                   }}
-                >
-                  KHUTRO – Phần mềm Quản lý Nhà trọ, Căn hộ{" "}
-                </strong>
-                <div style={{ fontSize: "15px" }}>của chúng tôi.</div>
+                ></strong>
+                <div style={{ fontSize: "15px" }}></div> */}
               </div>
               <Component6 />
             </div>
@@ -807,13 +906,14 @@ function Home() {
       <div>
         <div>
           <div
-            style={{
-              width: "100%",
-              height: "560px",
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "#efefef",
-            }}
+            className="partX"
+            // style={{
+            //   width: "100%",
+            //   height: "560px",
+            //   display: "flex",
+            //   justifyContent: "center",
+            //   backgroundColor: "#efefef",
+            // }}
           >
             <div
               style={{
@@ -840,29 +940,9 @@ function Home() {
                   <div style={{ fontSize: "15px" }}>
                     Kinh doanh hiệu quả phải quản lý tốt nhưng không phải chủ
                     trọ, căn hộ nào cũng biết cách làm, cũng như có đủ thời gian
-                    để làm. Với
+                    Phần mềm Quản lý Nhà trọ, Căn hộ để làm. Với KHUTRO, bạn có
+                    thể
                   </div>
-                  <strong
-                    style={{
-                      fontSize: "15px",
-                      paddingRight: "5px",
-                      paddingLeft: "5px",
-                    }}
-                  >
-                    KHUTRO
-                  </strong>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <strong
-                    style={{
-                      fontSize: "15px",
-                      paddingRight: "10px",
-                      paddingLeft: "10px",
-                    }}
-                  >
-                    Phần mềm Quản lý Nhà trọ, Căn hộ
-                  </strong>
-                  <div style={{ fontSize: "15px" }}>,bạn có thể</div>
                 </div>
                 <Component7 />
               </div>
@@ -872,12 +952,13 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "380px",
-            display: "flex",
-            justifyContent: "center",
-          }}
+          className="partXI"
+          // style={{
+          //   width: "100%",
+          //   height: "380px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          // }}
         >
           <div
             style={{
@@ -902,13 +983,14 @@ function Home() {
               </div>
               <div style={{ justifyContent: "center", display: "flex" }}>
                 <div
-                  style={{
-                    fontSize: "15px",
-                    width: "80%",
-                    height: "auto",
-                    fontFamily: "PT Sans, sans-serif",
-                    paddingTop: "5px",
-                  }}
+                  className="content-partXUI"
+                  // style={{
+                  //   fontSize: "15px",
+                  //   width: "80%",
+                  //   height: "auto",
+                  //   fontFamily: "PT Sans, sans-serif",
+                  //   paddingTop: "5px",
+                  // }}
                 >
                   KHUTRO luôn tâm niệm khác biệt tạo nên thành công. Chính vì
                   thế, chúng tôi luôn nỗ lực để tạo nên những giá trị khác biệt
@@ -1044,13 +1126,14 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "550px",
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#efefef",
-          }}
+          // style={{
+          //   width: "100%",
+          //   height: "550px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   backgroundColor: "#efefef",
+          // }}
+          className="partXII"
         >
           <div
             style={{
@@ -1068,7 +1151,10 @@ function Home() {
               >
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div style={{ position: "relative", bottom: "10px" }}>
+                  <div
+                  className="content-circle"
+                  //  style={{ position: "relative", bottom: "10px" }}
+                  >
                     Khách hàng nói về KHUTRO
                   </div>
                 </div>
@@ -1090,8 +1176,10 @@ function Home() {
                   phản hồi đó.
                 </div>
               </div>
-              <Row style={{ paddingLeft: "50px" }}>
-                <Col lg={8} md={24}>
+              <Row 
+              // style={{ paddingLeft: "50px" }} 
+              className="row-row">
+                <Col lg={8} md={24} className="col-row">
                   <Component8
                     img={Images.FACE_1}
                     content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
@@ -1099,7 +1187,7 @@ function Home() {
                     func="Chủ trọ"
                   />
                 </Col>
-                <Col lg={8} md={24}>
+                <Col lg={8} md={24} className="col-row">
                   <Component8
                     img={Images.FACE_1}
                     content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
@@ -1107,7 +1195,7 @@ function Home() {
                     func="Chủ trọ"
                   />
                 </Col>
-                <Col lg={8} md={24}>
+                <Col lg={8} md={24} className="col-row">
                   <Component8
                     img={Images.FACE_1}
                     content="Giao diện thân thiện và rất dễ sử dụng, nhiều tính năng hữu ích, phù hợp với mọi chủ trọ."
@@ -1122,12 +1210,13 @@ function Home() {
       </div>
       <div>
         <div
-          style={{
-            width: "100%",
-            height: "400px",
-            display: "flex",
-            justifyContent: "center",
-          }}
+          className="partXIII"
+          // style={{
+          //   width: "100%",
+          //   height: "400px",
+          //   display: "flex",
+          //   justifyContent: "center",
+          // }}
         >
           <div
             style={{
@@ -1145,7 +1234,10 @@ function Home() {
               >
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div style={{ position: "relative", bottom: "10px" }}>
+                  <div 
+                  className="content-circle-XIII"
+                  // style={{ position: "relative", bottom: "10px" }}
+                  >
                     Đồng hành 24/7 cùng công việc quản lý nhà trọ, căn hộ của
                     bạn
                   </div>
@@ -1153,13 +1245,14 @@ function Home() {
               </div>
               <div style={{ justifyContent: "center", display: "flex" }}>
                 <div
-                  style={{
-                    fontSize: "15px",
-                    width: "80%",
-                    height: "auto",
-                    fontFamily: "PT Sans, sans-serif",
-                    paddingTop: "5px",
-                  }}
+                  className="content2-circle-XIII"
+                  // style={{
+                  //   fontSize: "15px",
+                  //   width: "80%",
+                  //   height: "auto",
+                  //   fontFamily: "PT Sans, sans-serif",
+                  //   paddingTop: "5px",
+                  // }}
                 >
                   Chúng tôi luôn cố gắng tạo ra môi trường làm việc chuyên
                   nghiệp, sáng tạo và kỷ luật cao. Đội ngũ kỹ sư trẻ giàu nhiệt
@@ -1168,18 +1261,42 @@ function Home() {
                   hàng ngày.
                 </div>
               </div>
-              <Row style={{paddingTop:"20px"}}>
+              <Row 
+              // style={{ paddingTop: "20px" }} 
+                className="row-XIII-col"
+              >
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1189,15 +1306,36 @@ function Home() {
                 </Col>
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1207,15 +1345,36 @@ function Home() {
                 </Col>
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1228,7 +1387,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
       {/* <div>footer</div> */}
     </div>
   );

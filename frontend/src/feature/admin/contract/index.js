@@ -354,33 +354,22 @@ function Contract(props) {
         </Spin>
       </Modal>
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
+       className="containercontainer"
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglecontract">
           <div style={{ display: "block", width: "100%" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
+            <div className="btnsearch"
             >
               <div className="topic-left-con">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ HỢP ĐỒNG</div>
+                <div className="contentcontract">QUẢN LÝ HỢP ĐỒNG</div>
               </div>
 
               <div className="btn-right-con">
-                <div style={{ paddingRight: "10px", width: "60%" }}>
+                <div className="detailedsearch">
                   <Input.Search
                     placeholder="Tìm kiếm"
                     allowClear
@@ -456,7 +445,7 @@ function Contract(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    <div style={{ display: "flex" }}>
+                    <div className="btbtncreate">
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI
                       </Button>
@@ -474,6 +463,7 @@ function Contract(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom:"15px",
               }}
             >
               <Table columns={columns} bordered dataSource={contractList} />

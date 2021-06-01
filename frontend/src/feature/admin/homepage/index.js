@@ -86,12 +86,17 @@ function Homepage_admin(props) {
   return (
     <div>
       <div
-        style={{ width: "100%", height: "100vh", backgroundColor: "#efefef" }}
+        className="container-home"
+        // style={{ width: "100%", height: "100vh", backgroundColor: "#efefef" }}
       >
-        <div style={{ height: "120px" }}>
+        <div className="box12">
+          {/* style={{ height: "120px" }} */}
           <Menu_AdminPage />
         </div>
-        <div style={{ width: "100%", height: "atuo", display: "flex" }}>
+        <div
+          //  style={{ width: "100%", height: "auto", display: "flex" }}
+          className="box-lower"
+        >
           <div className="title">
             <FontAwesomeIcon icon={faTachometerAlt} color="#007c7e" size="1x" />
             <div
@@ -113,75 +118,88 @@ function Homepage_admin(props) {
               display: "flex",
             }}
           >
-            <div style={{ width: "70%", float: "right",display:"flex",paddingLeft:"20px" }}>
-               <div
-              style={{
-                Width: "80%",
-                height: "auto",
-                display: "flex",
-                justifyContent: "center",
-                backgroundColor: "red",
-              }}
-            >
-              <div className="title-1">Phòng đang trống</div>
-              <div className="title-1" style={{ paddingRight: "10px" }}>
-                (0)
-              </div>
-            </div>
             <div
-              style={{
-                Width: "80%",
-                height: "auto",
-                display: "flex",
-                backgroundColor: "#007c7e",
-                justifyContent: "center",
-              }}
+              className="box-lower2"
+              //  style={{ width: "67%", float: "right",display:"flex",paddingLeft:"20px" }}
             >
-              <div className="title-2" style={{ paddingLeft: "10px" }}>
-                Phòng đã được thuê
-              </div>
-              <div className="title-2" style={{ paddingRight: "10px" }}>
-                (0)
-              </div>
-            </div>
-            <div
-              style={{
-                Width: "80%",
-                height: "auto",
-                display: "flex",
-                backgroundColor: "#cccccc",
-                justifyContent: "center",
-              }}
-            >
-              <div className="title-3" style={{ paddingLeft: "10px" }}>
-                Phòng đặt cọc
+              <div
+                className="detailed-box-lower2"
+                // style={{
+                //   Width: "80%",
+                //   height: "auto",
+                //   display: "flex",
+                //   justifyContent: "center",
+                //   backgroundColor: "red",
+                // }}
+              >
+                <div className="title-1">Phòng đang trống</div>
+                <div className="title-1" style={{ paddingRight: "10px" }}>
+                  (0)
+                </div>
               </div>
               <div
-                className="title-3"
-                style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                className="detailed2-box-lower2"
+                // style={{
+                //   Width: "80%",
+                //   height: "auto",
+                //   display: "flex",
+                //   backgroundColor: "#007c7e",
+                //   justifyContent: "center",
+                // }}
               >
-                (0)
+                <div className="title-2" style={{ paddingLeft: "10px" }}>
+                  Phòng đã được thuê
+                </div>
+                <div className="title-2" style={{ paddingRight: "10px" }}>
+                  (0)
+                </div>
+              </div>
+              <div
+                // style={{
+                //   Width: "80%",
+                //   height: "auto",
+                //   display: "flex",
+                //   backgroundColor: "#cccccc",
+                //   justifyContent: "center",
+                // }}
+                className="detailed3-box-lower2"
+              >
+                <div className="title-3" style={{ paddingLeft: "10px" }}>
+                  Phòng đặt cọc
+                </div>
+                <div
+                  className="title-3"
+                  style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                >
+                  (0)
+                </div>
+              </div>
+              <div
+                // style={{
+                //   Width: "80%",
+                //   height: "auto",
+                //   display: "flex",
+                //   backgroundColor: "#f4d03f",
+                //   justifyContent: "center",
+                // }}
+                className="detailed4-box-lower2"
+              >
+                <div className="title-4" style={{ paddingLeft: "10px" }}>
+                  Phòng đặt cọc
+                </div>
+                <div className="title-4" style={{ paddingLeft: "10px" }}>
+                  (0)
+                </div>
               </div>
             </div>
             <div
-              style={{
-                Width: "80%",
-                height: "auto",
-                display: "flex",
-                backgroundColor: "#f4d03f",
-                justifyContent: "center",
-              }}
+              className="box-select"
+              //  style={{ float: "left", width: "30%" }}
             >
-              <div className="title-4" style={{ paddingLeft: "10px" }}>
-                Phòng đặt cọc
-              </div>
-              <div className="title-4" style={{ paddingLeft: "10px" }}>
-                (0)
-              </div>
-            </div> 
-            </div>
-            <div style={{ float: "left", width: "30%" }}>
-              <Select placeholder="Chọn chi nhánh" style={{ width: "280px" }} />
+              <Select
+                placeholder="Chọn chi nhánh"
+                className="detailed-select"
+              />
             </div>
           </div>
           {/* <div style={{ paddingRight:"0px", width: "20%", float: "right" }}>
@@ -189,7 +207,10 @@ function Homepage_admin(props) {
           </div> */}
         </div>
         <div>
-          <Row style={{ paddingTop: "20px" }}>
+          <Row
+            className="rowfirst"
+            // style={{ paddingTop: "20px" }}
+          >
             <Col lg={6} md={24}>
               <div
                 style={{
@@ -482,12 +503,13 @@ function Homepage_admin(props) {
           <Row style={{ paddingTop: "20px" }}>
             <Col lg={18} md={24}>
               <div
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
+                className="box-tableac"
+                // style={{
+                //   width: "100%",
+                //   height: "auto",
+                //   display: "flex",
+                //   justifyContent: "center",
+                // }}
               >
                 <div
                   style={{
@@ -525,7 +547,7 @@ function Homepage_admin(props) {
                     </div>
                   </div>
                   <div>
-                    <Table columns={columns} bordered />
+                    <Table columns={columns} bordered className="tableac" />
                   </div>
                 </div>
               </div>
@@ -540,16 +562,17 @@ function Homepage_admin(props) {
                 }}
               >
                 <div
-                  style={{
-                    width: "80%",
-                    height: "auto",
-                    backgroundColor: "white",
-                    textAlign: "left",
-                    paddingLeft: "10px",
-                    paddingTop: "10px",
-                    paddingBottom: "15px",
-                    paddingRight: "5px",
-                  }}
+                  className="statusroom"
+                  // style={{
+                  //   width: "80%",
+                  //   height: "auto",
+                  //   backgroundColor: "white",
+                  //   textAlign: "left",
+                  //   paddingLeft: "10px",
+                  //   paddingTop: "10px",
+                  //   paddingBottom: "15px",
+                  //   paddingRight: "5px",
+                  // }}
                 >
                   <div
                     style={{ display: "flex", borderBottom: "solid 1px black" }}
@@ -575,8 +598,9 @@ function Homepage_admin(props) {
                     </div>
                   </div>
                   <div>
-                    <Row style={{ paddingTop: "5px" }}>
-                      <Col lg={8} md={24}>
+                    <Row className="rowfast">
+                      {/* style={{ paddingTop: "5px" }} */}
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -617,7 +641,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -658,7 +682,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -701,8 +725,8 @@ function Homepage_admin(props) {
                       </Col>
                     </Row>
                     {/* //row2 */}
-                    <Row style={{ paddingTop: "5px" }}>
-                      <Col lg={8} md={24}>
+                    <Row className="rowfast">
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -743,7 +767,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -784,7 +808,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -827,8 +851,8 @@ function Homepage_admin(props) {
                       </Col>
                     </Row>
                     {/* ROW 3 */}
-                    <Row style={{ paddingTop: "5px" }}>
-                      <Col lg={8} md={24}>
+                    <Row className="rowfast">
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -869,7 +893,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -910,7 +934,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -953,8 +977,8 @@ function Homepage_admin(props) {
                       </Col>
                     </Row>
                     {/* Row 4 */}
-                    <Row style={{ paddingTop: "5px" }}>
-                      <Col lg={8} md={24}>
+                    <Row className="rowfast">
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -995,7 +1019,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -1036,7 +1060,7 @@ function Homepage_admin(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={8} md={24}>
+                      <Col lg={8} md={24} className="col1-fast">
                         <div
                           style={{
                             width: "100%",
@@ -1045,6 +1069,7 @@ function Homepage_admin(props) {
                             justifyContent: "center",
                           }}
                         >
+                          
                           <div
                             style={{
                               width: "90%",

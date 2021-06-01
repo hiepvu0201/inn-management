@@ -7,7 +7,10 @@ import { Row, Col } from "antd";
 function Component_Block() {
   return (
     <div>
-      <Row style={{paddingTop:"20px",paddingLeft:"30px"}}>
+      <Row
+      //  style={{paddingTop:"20px",paddingLeft:"30px"}}
+       className="row-block"
+       >
         <Col lg={6} md={24}>
           {" "}
           <div className="box-block">

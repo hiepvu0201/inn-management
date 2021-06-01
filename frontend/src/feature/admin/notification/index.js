@@ -245,7 +245,7 @@ function Notification(props) {
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglenotification">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -258,7 +258,9 @@ function Notification(props) {
             >
               <div className="topic-left-noti">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ THÔNG BÁO NHÀ TRỌ</div>
+                <div className="contentnotification">
+                  QUẢN LÝ THÔNG BÁO NHÀ TRỌ
+                </div>
               </div>
               <div className="topic-right-noti">
                 <div className="btn-right-noti">
@@ -305,7 +307,7 @@ function Notification(props) {
                         <Input />
                       </Form.Item>
 
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtnnotifi">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -325,6 +327,7 @@ function Notification(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

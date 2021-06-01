@@ -37,3 +37,9 @@
     font-family: "PT Sans", sans-serif;
     padding-top: 30px;
 }
+.row-rectangle{}
+@media only screen and (max-width: 1026px) {
+ .row-rectangle{
+         padding-left: 20px;
+ }
+}

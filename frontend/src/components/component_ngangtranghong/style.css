@@ -1,6 +1,6 @@
 .content11{
     width:80%;
-    height: 300px;
+    height: auto;
     /* background-color: gray; */
 }
 .icon-hover-11{
@@ -28,4 +28,13 @@
     font-family: "PT Sans", sans-serif;
     font-size: 15px;
     color: black;
+}
+@media only screen and (max-width: 1026px) {
+  .content{
+      text-align: center;
+      width: 90%;
+  }
+  .content11{
+      height:auto
+  }
 }

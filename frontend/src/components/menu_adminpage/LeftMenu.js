@@ -18,7 +18,7 @@ import { faHandshake,faQuestionCircle,faChartBar } from "@fortawesome/free-regul
 import { faPaypal } from "@fortawesome/free-brands-svg-icons";
 
 import { Link, Router } from "react-router-dom";
-const LeftMenu = () => {
+const LeftMenu_admin = () => {
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
@@ -316,4 +316,4 @@ const LeftMenu = () => {
   );
 };
 
-export default LeftMenu;
+export default LeftMenu_admin;

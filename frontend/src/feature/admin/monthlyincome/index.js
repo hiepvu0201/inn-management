@@ -282,106 +282,92 @@ function Monthlyincome(props) {
           </Form>
         </Spin>
       </Modal>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
-      >
+      <div className="containerincome">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglemonthlyincome">
           <div style={{ display: "block", width: "100%" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
-            >
+            <div className="formincome">
               <div className="topic-left-income">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NGUỒN THU NHÀ TRỌ</div>
-              </div>
-                <div className="btn-right-income">
-                  <div style={{ paddingRight: "10px", width: "60%" }}>
-                    <Input.Search
-                      placeholder="Tìm kiếm"
-                      allowClear
-                      onSearch={onSearch_1}
-                    />
-                  </div>
-                  <button className="detailed-btn-income" onClick={showModal}>
-                    THÊM MỚI
-                  </button>
-                  <Modal
-                    title={
-                      <div style={{ display: "flex" }}>
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          size="1x"
-                          color="#007c7e"
-                        />{" "}
-                        <div
-                          style={{
-                            fontFamily: "PT Sans, sans-serif",
-                            fontSize: "20px",
-                            color: "#007c7e",
-                            paddingLeft: "10px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Thêm mới
-                        </div>
-                      </div>
-                    }
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                    visible={isModalVisible}
-                    okText="THÊM MỚI"
-                    cancelText="HỦY BỎ"
-                    footer={null}
-                  >
-                    <Form
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                    >
-                      <Form.Item label="Tên" name="itemName">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số tiền thu" name="earn">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Chi nhánh" name="branchId">
-                        <Select>
-                          {branchList.map((branchid) => (
-                            <Select.Option
-                              key={branchid.id}
-                              value={branchid.id}
-                            >
-                              {branchid.location}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                      <div style={{ display: "flex" }}>
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel}>
-                            HỦY BỎ
-                          </Button>
-                        </div>
-                      </div>
-                    </Form>
-                  </Modal>
+                <div className="contentmonthlyincome">
+                  QUẢN LÝ NGUỒN THU NHÀ TRỌ
                 </div>
+              </div>
+              <div className="btn-right-income">
+                <div className="formselect">
+                  <Input.Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                    // style={{width:"20px"}}
+                  />
+                </div>
+                <button className="detailed-btn-income" onClick={showModal}>
+                  THÊM MỚI
+                </button>
+                <Modal
+                  title={
+                    <div style={{ display: "flex" }}>
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        size="1x"
+                        color="#007c7e"
+                      />{" "}
+                      <div
+                        style={{
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                          color: "#007c7e",
+                          paddingLeft: "10px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Thêm mới
+                      </div>
+                    </div>
+                  }
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                  visible={isModalVisible}
+                  okText="THÊM MỚI"
+                  cancelText="HỦY BỎ"
+                  footer={null}
+                >
+                  <Form
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                  >
+                    <Form.Item label="Tên" name="itemName">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Số tiền thu" name="earn">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchList.map((branchid) => (
+                          <Select.Option key={branchid.id} value={branchid.id}>
+                            {branchid.location}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <div className="btncreate">
+                      <Button type="primary" htmlType="submit">
+                        THÊM MỚI
+                      </Button>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <Button type="default" onClick={handleCancel}>
+                          HỦY BỎ
+                        </Button>
+                      </div>
+                    </div>
+                  </Form>
+                </Modal>
+              </div>
             </div>
 
             <div
@@ -389,6 +375,7 @@ function Monthlyincome(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

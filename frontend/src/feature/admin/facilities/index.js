@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Images } from "./../../../config/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
   faSitemap,
@@ -260,16 +260,17 @@ function Facilities(props) {
         </Spin>
       </Modal>
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
+        className="boxfacilities"
+        // style={{
+        //   width: "100%",
+        //   height: "100vh",
+        //   backgroundColor: "#efefef",
+        // }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglefacilities">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -282,7 +283,9 @@ function Facilities(props) {
             >
               <div className="topic-left-faci">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ THIẾT BỊ NHÀ TRỌ</div>
+                <div className="contentfacilities">
+                  QUẢN LÝ THIẾT BỊ NHÀ TRỌ
+                </div>
               </div>
               <div className="topic-right-faci">
                 <div className="btn-right-faci">
@@ -350,6 +353,7 @@ function Facilities(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom:"15px",
               }}
             >
               <Table columns={columns} bordered dataSource={facilitiesList} />

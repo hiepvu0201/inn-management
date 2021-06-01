@@ -283,33 +283,30 @@ function Monthlypayment(props) {
           </Form>
         </Spin>
       </Modal>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
-      >
+      <div className="containerpayment">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglemonthlypayment">
           <div style={{ display: "block", width: "100%" }}>
             <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
+              className="boxpayment"
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "space-between",
+              //   width: "100%",
+              //   height: "auto",
+              //   paddingTop: "10px",
+              // }}
             >
               <div className="topic-left-payment">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NGUỒN CHI NHÀ TRỌ</div>
+                <div className="contentmonthlypayment">
+                  QUẢN LÝ NGUỒN CHI NHÀ TRỌ
+                </div>
               </div>
               <div className="btn-right-payment">
-                <div style={{ paddingRight: "10px", width: "60%" }}>
+                <div className="btnbtnpayment">
                   <Input.Search
                     placeholder="Tìm kiếm"
                     allowClear
@@ -367,7 +364,7 @@ function Monthlypayment(props) {
                         ))}
                       </Select>
                     </Form.Item>
-                    <div style={{ display: "flex" }}>
+                    <div className="btncreatepayment">
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI
                       </Button>
@@ -387,6 +384,7 @@ function Monthlypayment(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

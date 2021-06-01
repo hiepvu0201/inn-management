@@ -22,8 +22,41 @@ function register() {
     <div>
       <div className="form-register">
         <div className="form-box">
-          <div style={{ width: "100%", display: "block" }}>
+          <div style={{ width: "100%",height:"auto", display: "block" }}>
             <div className="sign-up">ĐĂNG KÝ</div>
+            <div className="username">Username</div>
+            <div
+              style={{
+                width: "90%",
+                paddingLeft: "20px",
+                paddingTop: "5px",
+                paddingBottom: "10px",
+              }}
+            >
+              <Input placeholder="Nhập username" />
+            </div>
+            <div className="username">Mật khẩu</div>
+            <div
+              style={{
+                width: "90%",
+                paddingLeft: "20px",
+                paddingTop: "5px",
+                paddingBottom: "10px",
+              }}
+            >
+              <Input.Password placeholder="Nhập mật khẩu" />
+            </div>
+            <div className="username">Email</div>
+            <div
+              style={{
+                width: "90%",
+                paddingLeft: "20px",
+                paddingTop: "5px",
+                paddingBottom: "10px",
+              }}
+            >
+              <Input placeholder="Nhập email" />
+            </div>
             <div className="username">Họ và tên</div>
             <div
               style={{
@@ -34,6 +67,17 @@ function register() {
               }}
             >
               <Input placeholder="Nhập họ và tên" />
+            </div>
+            <div className="username">CMND</div>
+            <div
+              style={{
+                width: "90%",
+                paddingLeft: "20px",
+                paddingTop: "5px",
+                paddingBottom: "10px",
+              }}
+            >
+              <Input placeholder="Nhập CMND" />
             </div>
             <div className="username">Giới tính</div>
             <div
@@ -61,7 +105,7 @@ function register() {
             >
               <Input placeholder="Nhập số điện thoại" />
             </div>
-            <div className="username">Email</div>
+            <div className="username">Nghề ngiệp</div>
             <div
               style={{
                 width: "90%",
@@ -70,9 +114,9 @@ function register() {
                 paddingBottom: "10px",
               }}
             >
-              <Input placeholder="Nhập email" />
+              <Input placeholder="Nhập nghề nghiệp" />
             </div>
-            <div className="username">Tỉnh</div>
+            <div className="username">Địa chỉ</div>
             <div
               style={{
                 width: "90%",
@@ -82,18 +126,9 @@ function register() {
                 textAlign: "left",
               }}
             >
-              <Select
-                defaultValue="Chọn tỉnh thành"
-                style={{ width: 328 }}
-                onChange={handleChange}
-              >
-                <Option value="TP.HCM">TP.HCM</Option>
-                <Option value="Hà Nội">Hà Nội</Option>
-                <Option value="Vĩnh Long"></Option>
-                <Option value="Cà Mau">Cà Mau</Option>
-              </Select>
+              <Input placeholder="Nhập địa chỉ" />
             </div>
-            <div className="username">Địa chỉ</div>
+            <div className="username">Quyền</div>
             <div
               style={{
                 width: "90%",
@@ -102,7 +137,7 @@ function register() {
                 paddingBottom: "10px",
               }}
             >
-              <Input placeholder="Nhập địa chỉ" />
+              <Select style={{width:"100%"}} placeholder="Quyền người dùng" />
             </div>
             <div
               style={{
@@ -110,31 +145,35 @@ function register() {
                 paddingLeft: "20px",
                 paddingTop: "5px",
                 paddingBottom: "30px",
-                textAlign:"left"
+                textAlign: "left",
               }}
             >
-            <Checkbox onChange={onChange}>Đồng ý với điều khoản sử dụng</Checkbox>
+              <Checkbox onChange={onChange}>
+                Đồng ý với điều khoản sử dụng
+              </Checkbox>
             </div>
             <div
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "10px",
-                paddingRight: "10px",
-                paddingBottom: "20px",
-              }}
+              // style={{
+              //   width: "100%",
+              //   height: "auto",
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   paddingTop: "10px",
+              //   paddingRight: "10px",
+              //   paddingBottom: "20px",
+              // }}
+              className="btnbtn"
             >
               <Button
-                style={{
-                  width: "335px",
-                  height: "auto",
-                  fontSize: "15px",
-                  backgroundColor: "#0c61f2",
-                  color: "white",
-                  fontFamily: "'Open Sans', sans-serif",
-                }}
+                className="detailed-btn"
+                // style={{
+                //   width: "335px",
+                //   height: "auto",
+                //   fontSize: "15px",
+                //   backgroundColor: "#0c61f2",
+                //   color: "white",
+                //   fontFamily: "'Open Sans', sans-serif",
+                // }}
               >
                 ĐĂNG KÝ
               </Button>
@@ -150,14 +189,15 @@ function register() {
               }}
             >
               <div
-                style={{
-                  fontSize: "18px",
-                  color: "white",
-                  fontFamily: "Open Sans', sans-serif"
-                }}
+                className="btn-btn"
+                // style={{
+                //   fontSize: "18px",
+                //   color: "white",
+                //   fontFamily: "Open Sans', sans-serif",
+                // }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,ĐĂNG KÝ  NGAY
+                tài khoản,ĐĂNG KÝ NGAY
               </div>
             </div>
           </div>

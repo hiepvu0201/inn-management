@@ -294,7 +294,7 @@ function Reportedissues(props) {
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglereportissue">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -307,7 +307,7 @@ function Reportedissues(props) {
             >
               <div className="topic-left-report">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">
+                <div className="contentreportissue">
                   QUẢN LÝ BÁO CÁO ĐỀ MỤC CỦA NHÀ TRỌ
                 </div>
               </div>
@@ -372,7 +372,7 @@ function Reportedissues(props) {
                         </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtncreatereport">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -391,6 +391,7 @@ function Reportedissues(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table columns={columns} bordered dataSource={reportedList} />

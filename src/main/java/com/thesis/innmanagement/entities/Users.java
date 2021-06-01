@@ -15,6 +15,7 @@ public class Users extends BasicEntity {
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     private String fullName;

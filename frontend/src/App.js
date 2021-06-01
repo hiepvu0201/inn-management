@@ -28,6 +28,7 @@ import Detail_room from './feature/client/detail_room'
 import Rules_client from './feature/client/rules'
 import Invoices from './feature/admin/invoice'
 import Profile from './feature/client/profile'
+import Login from './feature/login'
 function App() {
   return (
     <div className="App">
@@ -89,6 +90,7 @@ function App() {
       {/* <Rules_client/> */}
       {/* <Reportissues_client/> */}
       {/* <Profile/> */}
+      <Login/>
     </div>
   );
 }

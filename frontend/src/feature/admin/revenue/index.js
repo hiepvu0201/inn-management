@@ -19,6 +19,7 @@ import {
   Table,
   InputNumber,
 } from "antd";
+const {Option} = Select;
 function Revenue() {
   //DatePicker
   function onChange(date, dateString) {

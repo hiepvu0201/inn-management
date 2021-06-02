@@ -100,13 +100,7 @@ function Homepage_admin(props) {
           <div className="title">
             <FontAwesomeIcon icon={faTachometerAlt} color="#007c7e" size="1x" />
             <div
-              style={{
-                width: "60%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
-                color: "#007c7e",
-              }}
+             className="adminaa"
             >
               QUẢN TRỊ CHUNG
             </div>

@@ -442,7 +442,7 @@ function ElectricityWaters(props) {
                         </Select>
                       </Form.Item>
 
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtncreateelectricitywater">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>

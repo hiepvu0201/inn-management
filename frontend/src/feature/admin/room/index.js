@@ -560,7 +560,7 @@ function Rooms(props) {
                         )}
                       </Upload>
                     </Form.Item>
-                    <div style={{ display: "flex" }}>
+                    <div className="btnbtncrateroom">
                       <Button type="primary" htmlType="submit">
                         THÊM MỚI
                       </Button>

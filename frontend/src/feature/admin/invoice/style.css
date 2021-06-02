@@ -1,5 +1,6 @@
-.rectangle{
-    width:100%;
+.rectangleinvoices{
+    width:98%;
+    margin-left: 15px;
     height:auto;
     background-color: white;
     display: flex;
@@ -9,15 +10,19 @@
     float: left;
     display: flex;
     width:40%;
+    padding-left: 15px;
 }
 .topic-right-elec{
     width:60%;
 }
-.content{
+.contentinvoices{
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;
     padding-left: 20px;
+    height:auto;
+    text-align: left;
+    padding-top: 5px;
 
 }
 .btn-right-elec{
@@ -39,4 +44,19 @@
 .detailed-btn:hover{
     background-color: #007c7e;
     color:white;
+}
+@media only screen and (max-width: 1026px) {
+  .topic-right-elec
+  {
+      width: 40%;
+  }
+  .topic-left-elec{
+      width: 60%;
+  }
+  .contentinvoices{
+      font-size: 12px;
+  }
+  .rectangleinvoices{
+      width:94%;
+  }
 }

@@ -353,7 +353,7 @@ function Invoices(props) {
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleinvoices">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -366,7 +366,7 @@ function Invoices(props) {
             >
               <div className="topic-left-elec">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ HÓA ĐƠN</div>
+                <div className="contentinvoices">QUẢN LÝ HÓA ĐƠN</div>
               </div>
               <div className="topic-right-elec">
                 <div className="btn-right">
@@ -467,6 +467,7 @@ function Invoices(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table

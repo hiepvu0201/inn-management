@@ -334,7 +334,7 @@ function Facilities(props) {
                       <Form.Item label="Số lượng" name="quantity">
                         <Input />
                       </Form.Item>
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtncreatefaci">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -353,7 +353,7 @@ function Facilities(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
-                paddingBottom:"15px",
+                paddingBottom: "15px",
               }}
             >
               <Table columns={columns} bordered dataSource={facilitiesList} />

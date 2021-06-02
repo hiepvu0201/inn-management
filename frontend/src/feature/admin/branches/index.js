@@ -391,7 +391,7 @@ function Branches(props) {
                         </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
-                      <div style={{ display: "flex" }}>
+                      <div className="btncreatebranches">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>

@@ -46,6 +46,9 @@
   height: 100vh;
   background-color: #efefef;
 }
+.btnbtncrateroom{
+  display: flex;
+}
 @media only screen and (max-width: 1026px) {
   .menu {
     display: none;
@@ -71,5 +74,9 @@
   }
   .boxroom {
     height: auto;
+  }
+  .btnbtncrateroom{
+    width:100%;
+    padding-left: 170px;
   }
 }

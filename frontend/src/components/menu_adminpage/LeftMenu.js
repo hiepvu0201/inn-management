@@ -22,36 +22,19 @@ const LeftMenu_admin = () => {
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
-      <Menu.Item
-        key="home"
-        style={{
-          backgroundColor: "#007c7e",
-          paddingLeft: "10px",
-          color: "white",
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faChartBar}
-          color="#efefef"
-          size="1x"
-          style={{ marginRight: "10px" }}
-        />{" "}
-        <Link to="/">Trang chủ</Link>
+      <Menu.Item key="home" className="homecss">
+        <FontAwesomeIcon icon={faChartBar} color="#efefef" size="1x" />{" "}
+        <Link className="linktomainpate" to="/">
+          Trang chủ
+        </Link>
       </Menu.Item>
       <SubMenu
         key="menu-2"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        className="roomcss"
         title={
           <div>
             <FontAwesomeIcon icon={faBuilding} color="white" size="1x" />
-            <a
-              href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
-            >
+            <a href="" className="contentroomcss">
               Nhà trọ
             </a>{" "}
           </div>
@@ -87,7 +70,10 @@ const LeftMenu_admin = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/rooms"> Phòng</Link>
+          <Link className="roomdetailed" to="/rooms">
+            {" "}
+            Phòng
+          </Link>
         </Menu.Item>
         <Menu.Item
           key="facility"
@@ -124,17 +110,18 @@ const LeftMenu_admin = () => {
       </SubMenu>
       <SubMenu
         key="menu-1"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        className="moneycss"
         title={
           <div>
             <FontAwesomeIcon icon={faMoneyBillAlt} color="white" size="1x" />
             <a
               href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
+              // style={{
+              //   color: "white",
+              //   fontSize: "15px",
+              //   fontFamily: "PT Sans, sans-serif",
+              // }}
+              className="contentmoneycss"
             >
               Nguồn Thu - Chi
             </a>{" "}

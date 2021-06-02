@@ -50,13 +50,16 @@
   background-color: #007c7e;
   color: white;
 }
+.btnbtncreatefaci{
+  display: flex;
+}
 @media only screen and (max-width: 1026px) {
   .boxfacilities {
     height: auto;
   }
   .contentfacilities {
     font-size: 12px;
-    width: 70%;
+    width: 80%;
   }
   .topic-left-faci {
     width: 70%;
@@ -75,5 +78,9 @@
   }
   .rectanglefacilities {
     width: 94%;
+  }
+  .btnbtncreatefaci{
+    width:100%;
+    padding-left: 170px;
   }
 }

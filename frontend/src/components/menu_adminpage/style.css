@@ -50,7 +50,7 @@
 .menuConadmin .leftMenu {
   float: left;
   padding-left: 160px;
-  width: 85%;
+  width: 83%;
 }
 
 .menuConadmin .rightMenu {
@@ -114,7 +114,30 @@
 .ant-drawer-body .ant-menu-horizontal>.ant-menu-item:hover {
   border-bottom-color: transparent;
 }
-
+.homecss{
+  margin-right: 10px;
+  background-color: #007c7e;
+}
+.roomcss{
+  background-color: #007c7e;
+  padding-left: 5px;
+}
+.contentroomcss{
+  color: white;
+    font-size: 15px;
+    font-family: "PT Sans", sans-serif;
+    padding-left: 15px;
+    
+}
+.moneycss{
+  background-color: #007c7e;
+  padding-left: 5px;
+}
+.contentmoneycss{
+  color: white;
+    font-size: 15px;
+    font-family: "PT Sans", sans-serif;
+}
 @media (max-width: 767px) {
   .barsMenu {
     display: inline-block;
@@ -141,5 +164,27 @@
 
   }
   .padding{
+  }
+  .homecss{
+    padding-left:30px;
+  }
+  .roomcss{
+    padding-left: 18px;
+  }
+  .contentroomcss{
+    padding-left: 18px;
+    width: 100%;
+  }
+  .roomdetailed{
+    padding-left: 4px;
+  }
+  .ant-menu-inline .ant-menu-item:not(:last-child) {
+    padding-left: 40px;
+  }
+  .moneycss{
+padding-left: 19px;
+  }
+  .contentmoneycss{
+    padding-left: 19px;
   }
 }

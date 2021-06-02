@@ -6,13 +6,13 @@
   display: flex;
   justify-content: space-between;
 }
-.topic-left-electric{
+.topic-left-electric {
   float: left;
   display: flex;
   width: 50%;
   padding-left: 15px;
 }
-.topic-right-electric{
+.topic-right-electric {
   width: 50%;
 }
 .contentelectricwater {
@@ -23,7 +23,7 @@
   height: auto;
   padding-top: 5px;
 }
-.btn-right-electric{
+.btn-right-electric {
   float: right;
   display: flex;
 }
@@ -43,6 +43,9 @@
   background-color: #007c7e;
   color: white;
 }
+.btnbtncreateelectricitywater {
+  display: flex;
+}
 @media only screen and (max-width: 1026px) {
   .contentelectricwater {
     font-size: 12px;
@@ -56,10 +59,14 @@
   .ant-table-thead > tr > th {
     font-size: 5px;
   }
-  .topic-left-electric{
+  .topic-left-electric {
     width: 60%;
   }
-  .topic-right-electric{
+  .topic-right-electric {
     width: 40%;
-}
+  }
+  .btnbtncreateelectricitywater {
+    width: 100%;
+    padding-left: 170px;
+  }
 }

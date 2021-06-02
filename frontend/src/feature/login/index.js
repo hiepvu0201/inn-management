@@ -4,22 +4,44 @@ import { Images } from "../../config/image";
 import { Input, Button, Form } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import userApi from "./../../api/usersApi";
-function Login() {
+import authApi from "./../../api/authApi";
+import Cookies from "js-cookie";
+import { fakeAuth } from "../../fakeAuth";
+import { Link, Redirect, useHistory } from "react-router-dom";
+
+function Login(props) {
   const [loginstate, setloginstate] = useState([]);
-  const login =async(values)=>{
+    const [Directstate, setDirectstate] = useState({
+      redirectToReferrer: false,
+    });
+const onFinish = (values) => {
+  const login = async () => {
     try {
       console.log("value", values);
-      const response = await userApi.login(values);
-      console.log("Fetch login user succesfully: ", response);
+      const response = await authApi.signin(values);
+      console.log("Fetch login user successfully: ", response);
+      fakeAuth.authenticate(() => {
+        setDirectstate(() => ({
+          redirectToReferrer: true,
+        }));
+      });
+      console.log("<<", response.data.accessToken);
+      Cookies.set("Bearer", response.data.accessToken);
+      // Cookies.get("roles",response.data.roles[0])
+      // Cookies.set("roles",response.data.roles[0])
+      Cookies.set("roles",response.data.roles[0])
     } catch (error) {
       console.log("failed to login ưser: ", error);
     }
-  }
-  const onFinish = (values) => {
-    
-    login(values);
   };
+
+  login();
+};
+  const { from } = props.location.state || { from: { pathname: "/" } };
+  const { redirectToReferrer } = Directstate;
+  if (redirectToReferrer === true) {
+    return <Redirect to={from} />;
+  }
   return (
     <div>
       <div className="form-login">
@@ -45,7 +67,7 @@ function Login() {
                     paddingTop: "10px",
                   }}
                 >
-                  <Input placeholder="Nhập email" />
+                  <Input placeholder="Nhập username" />
                 </div>
               </Form.Item>
               <div className="username">Mật khẩu</div>
@@ -62,7 +84,7 @@ function Login() {
                     paddingTop: "10px",
                   }}
                 >
-                  <Input placeholder="Nhập mật khẩu" />
+                  <Input.Password placeholder="Nhập mật khẩu" />
                 </div>
               </Form.Item>
 

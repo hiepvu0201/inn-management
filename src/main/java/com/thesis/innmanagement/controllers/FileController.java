@@ -17,6 +17,7 @@ import java.io.IOException;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("api/v1")
 public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);

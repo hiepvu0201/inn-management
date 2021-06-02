@@ -37,7 +37,7 @@ const LeftMenu = () => {
           size="1x"
           style={{ marginRight: "10px" }}
         />{" "}
-        <Link to="/">Trang chủ</Link>
+        <Link to="/home">Trang chủ</Link>
       </Menu.Item>
       <SubMenu
         key="menu-2"

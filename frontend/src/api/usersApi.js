@@ -37,9 +37,6 @@ const usersApi = {
     const url=`/api/v1/users/${26}`;
     return axiosClient.get(url);
   },
-  login(params){
-    const url =`/api/v1/user/login`;
-    return axiosClient.post(url,params);
-  }
+  
 };
 export default usersApi;

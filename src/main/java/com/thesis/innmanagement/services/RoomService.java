@@ -49,7 +49,7 @@ public class RoomService {
 
         String fileName = fileStorageService.storeFile(images);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/api/v1/downloadFile/")
                 .path(fileName)
                 .toUriString();
 

@@ -279,6 +279,7 @@ function Contract(props) {
       fetchContractbyTenantname();
     }
   };
+  
   return (
     <div>
       <Modal
@@ -326,7 +327,7 @@ function Contract(props) {
               <Select onChange={handleChange}>
                 {usersList.map((owner) => (
                   <Select.Option key={owner.id} value={owner.id}>
-                    {owner.fullName}
+                    {owner.userName}
                   </Select.Option>
                 ))}
               </Select>
@@ -335,7 +336,7 @@ function Contract(props) {
               <Select onChange={handleChange_1}>
                 {usersList.map((tenantid) => (
                   <Select.Option key={tenantid.id} value={tenantid.id}>
-                    {tenantid.fullName}
+                    {tenantid.userName}
                   </Select.Option>
                 ))}
               </Select>
@@ -438,20 +439,26 @@ function Contract(props) {
                     <Form.Item label="Khuyến mãi" name="voucher">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Chủ trọ">
+                    <Form.Item label="Chủ trọ" >
                       <Select onChange={handleChange}>
                         {usersList.map((ownerid) => (
-                          <Select.Option key={ownerid.id} value={ownerid.id}>
-                            {ownerid.fullName}
+                          <Select.Option
+                            key={ownerid.id}
+                            value={ownerid.id}
+                          >
+                            {ownerid.userName}
                           </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Người thuê">
+                    <Form.Item label="Người thuê" >
                       <Select onChange={handleChange_1}>
                         {usersList.map((tenantid) => (
-                          <Select.Option key={tenantid.id} value={tenantid.id}>
-                            {tenantid.fullName}
+                          <Select.Option
+                            key={tenantid.id}
+                            value={tenantid.id}
+                          >
+                            {tenantid.userName}
                           </Select.Option>
                         ))}
                       </Select>

@@ -72,7 +72,7 @@ public class UserService {
 
         String fileName = fileStorageService.storeFile(image);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/api/v1/downloadFile/")
                 .path(fileName)
                 .toUriString();
         user.setImages(fileDownloadUri);

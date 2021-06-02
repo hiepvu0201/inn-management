@@ -36,6 +36,7 @@ const usersApi = {
   getuserid(){
     const url=`/api/v1/users/${26}`;
     return axiosClient.get(url);
-  }
+  },
+  
 };
 export default usersApi;

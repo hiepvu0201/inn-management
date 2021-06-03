@@ -29,6 +29,16 @@ public class BranchController {
         return ResponseEntity.ok().body(branchService.findById(id));
     }
 
+    @GetMapping("/userName")
+    public ResponseEntity<List<Branches>> getAllBranchByUserName(@RequestParam(value = "userName") String userName) {
+        return ResponseEntity.ok().body(branchService.findAllByUserName(userName));
+    }
+
+    @GetMapping("/name")
+    public ResponseEntity<Branches> getBranchByBranchLocation(@RequestParam(value = "branchLocation") String branchLocation) {
+        return ResponseEntity.ok().body(branchService.getBranchByBranchLocation(branchLocation));
+    }
+
     @PostMapping("/")
     public Branches create(@Validated @RequestBody Branches branch) throws Exception {
         return branchService.createOrUpdate(null, branch);

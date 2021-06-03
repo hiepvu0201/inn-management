@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin("*")
 @Repository
 public interface UnitPriceRepository extends JpaRepository<UnitPrice, Long> {
+    UnitPrice findByBranchId(Long branchId);
 }

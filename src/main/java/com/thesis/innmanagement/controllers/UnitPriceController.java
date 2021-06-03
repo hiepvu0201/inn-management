@@ -29,6 +29,11 @@ public class UnitPriceController {
         return ResponseEntity.ok().body(unitPriceService.findById(id));
     }
 
+    @GetMapping("/branchId/{branchId}")
+    public ResponseEntity<UnitPrice> getUnitPriceByBranchId(@PathVariable(value = "branchId") Long brandId) {
+        return ResponseEntity.ok().body(unitPriceService.findByBranchId(brandId));
+    }
+
     @PostMapping("/")
     public UnitPrice create(@Validated @RequestBody UnitPrice unitPrice) throws Exception {
         return unitPriceService.createOrUpdate(null, unitPrice);

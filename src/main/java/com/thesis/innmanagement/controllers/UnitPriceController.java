@@ -1,5 +1,6 @@
 package com.thesis.innmanagement.controllers;
 
+import com.thesis.innmanagement.entities.Branches;
 import com.thesis.innmanagement.entities.UnitPrice;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.services.UnitPriceService;
@@ -30,8 +31,8 @@ public class UnitPriceController {
     }
 
     @GetMapping("/branchId/{branchId}")
-    public ResponseEntity<UnitPrice> getUnitPriceByBranchId(@PathVariable(value = "branchId") Long brandId) {
-        return ResponseEntity.ok().body(unitPriceService.findByBranchId(brandId));
+    public ResponseEntity<UnitPrice> getUnitPriceByBranchId(@PathVariable(value = "branchLocation") String brandLocation) {
+        return ResponseEntity.ok().body(unitPriceService.findByBranchLocation(brandLocation));
     }
 
     @PostMapping("/")

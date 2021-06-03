@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BranchService {
@@ -26,6 +27,14 @@ public class BranchService {
         return branchRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + id));
     }
 
+    public List<Branches> findAllByUserName(String userName) {
+        return branchRepository.findAllByUserName(userName).collect(Collectors.toList());
+    }
+
+    public Branches getBranchByBranchLocation(String branchLocation) {
+        return branchRepository.findByLocation(branchLocation);
+    }
+
     public Branches createOrUpdate(Long id, Branches branch) throws ResourceNotFoundException {
         branch.setFacilities(facilityRepository.findAllById(branch.getFacilityIds()));
         if (id == null) {
@@ -40,6 +49,7 @@ public class BranchService {
             branchUpdate.setNumberOfRooms(branch.getNumberOfRooms());
             branchUpdate.setFacilities(branch.getFacilities());
             branchUpdate.setFacilityIds(branch.getFacilityIds());
+            branchUpdate.setUserName(branch.getUserName());
             branchRepository.save(branchUpdate);
             return branchUpdate;
         }

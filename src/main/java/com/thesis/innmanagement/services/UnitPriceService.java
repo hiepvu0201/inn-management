@@ -24,6 +24,10 @@ public class UnitPriceService {
         return unitPriceRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Unit price not found on id: "+id));
     }
 
+    public UnitPrice findByBranchId(Long branchId) {
+        return unitPriceRepository.findByBranchId(branchId);
+    }
+
     public UnitPrice createOrUpdate(Long id, UnitPrice unitPrice) throws ResourceNotFoundException {
         if(id == null) {
             unitPriceRepository.save(unitPrice);

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
+import com.thesis.innmanagement.payload.PasswordChangeRequest;
 import com.thesis.innmanagement.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,6 +30,9 @@ public class UserService {
     @Autowired
     private FileStorageService fileStorageService;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     public List<Users> findAll() {
         return userRepository.findAll();
     }
@@ -40,11 +45,31 @@ public class UserService {
         return userRepository.findAllByRoleName(roleName);
     }
 
+    public Users findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
+    public String changePassword(PasswordChangeRequest passwordChangeRequest) {
+        String passwordOld = userRepository.findPasswordByUserName(passwordChangeRequest.getUserName());
+        if (!encoder.matches(passwordChangeRequest.getOldPassword(), passwordOld)) {
+            return "Sai mật khẩu!";
+        }
+        if (!passwordChangeRequest.getNewPassword().equals(passwordChangeRequest.getConfirmNewPassword())) {
+            return "Mật khẩu mới không khớp!";
+        }
+        String newPassword = encoder.encode(passwordChangeRequest.getNewPassword());
+        userRepository.updatePassword(passwordChangeRequest.getUserName(), newPassword);
+        return "Thay đổi mật khẩu thành công!";
+    }
+
+    public Boolean checkUserNameExisted(String userName) {
+        return userRepository.existsByUserName(userName);
+    }
+
     private Users update(Users user, Long id) throws ResourceNotFoundException {
         Users userUpdate = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("This user not found on:" + id));
-        userUpdate.setPassword(user.getPassword());
-        userUpdate.setEmail(user.getEmail());
+        userUpdate.setPassword(encoder.encode(user.getPassword()));
         userUpdate.setFullName(user.getFullName());
         userUpdate.setIdNo(user.getIdNo());
         userUpdate.setSex(user.getSex());

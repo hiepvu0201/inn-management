@@ -2,6 +2,7 @@ package com.thesis.innmanagement.controllers;
 
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
+import com.thesis.innmanagement.payload.PasswordChangeRequest;
 import com.thesis.innmanagement.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -54,6 +55,21 @@ public class UserController {
     @GetMapping("/search-by-rolename")
     public ResponseEntity<List<Users>> findByRoleId(@Param("rolename") String roleName) {
         return ResponseEntity.ok().body(userService.findAllByRoleName(roleName));
+    }
+
+    @GetMapping("/userName")
+    public ResponseEntity<Users> findByUserName(@Param("userName") String userName) {
+        return ResponseEntity.ok().body(userService.findByUserName(userName));
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest) {
+        return ResponseEntity.ok().body(userService.changePassword(passwordChangeRequest));
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkUserNameExisted(@RequestParam(value = "userName") String userName) {
+        return ResponseEntity.ok().body(userService.checkUserNameExisted(userName));
     }
 
     @PutMapping("/{id}")

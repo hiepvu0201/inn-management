@@ -15,6 +15,7 @@ Feature: facilities test
       "name": "light",
       "quality": "new",
       "quantity": "100",
+      "unitPrice": "100"
     }
     """
     Given path 'api/v1/facilities/'

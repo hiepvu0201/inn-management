@@ -34,6 +34,7 @@ public class FacilityService {
             facilityUpdate.setName(facility.getName());
             facilityUpdate.setQuality(facility.getQuality());
             facilityUpdate.setQuantity(facility.getQuantity());
+            facilityUpdate.setUnitPrice(facility.getUnitPrice());
             facilityRepository.save(facilityUpdate);
             return facilityUpdate;
         }

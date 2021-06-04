@@ -28,7 +28,7 @@ const onFinish = (values) => {
       console.log("<<", response.data.accessToken);
       Cookies.set("Bearer", response.data.accessToken);
       // Cookies.get("roles",response.data.roles[0])
-      // Cookies.set("roles",response.data.roles[0])
+      Cookies.set("userName", response.data.username);
       Cookies.set("roles",response.data.roles[0])
     } catch (error) {
       console.log("failed to login ưser: ", error);

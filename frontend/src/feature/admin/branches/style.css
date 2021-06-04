@@ -8,10 +8,12 @@
 .topic-left-branches{
     float: left;
     display: flex;
-    width:40%;
+    width:70%;
 }
 .topic-right-branches{
-    width:60%;
+    width:30%;
+    height:auto;
+    display: flex;
 }
 .content{
     font-size: 20px;
@@ -20,9 +22,14 @@
     padding-left: 20px;
 
 }
+.element-select{
+        width: 40%;
+    padding-right: 10px;
+}
 .btn-right-branches{
     float:right;
     display: flex;
+    width:50%;
 }
 .detailed-btn-branches{
     font-size: 15px;

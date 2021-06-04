@@ -124,25 +124,14 @@ function App() {
           render={(props) => <Login {...props} />}
         />
         {Cookies.get("Bearer") !== undefined ? (
-          Cookies.get("roles") === "ROLE_USER" ? (
-            <Route
-              exact
-              path="/"
-              name="HomeUser"
-              render={(props) => <Room_client {...props} />}
-            />
-          ) : (
-            <Route
-              path="/"
-              name="HomeAdmin"
-              render={(props) => <Homepage_admin {...props} />}
-            />
-          )
+          <Route
+            path="/"
+            name="HomeAdmin"
+            render={(props) => <Adminlayout {...props} />}
+          />
         ) : (
-          ""
+          <PrivateRoute path="/" name="HomeAdmin" component={Adminlayout} />
         )}
-        <PrivateRoute path="/" name="HomeUser" component={Room_client} />
-        <PrivateRoute path="/" name="HomeAdmin" component={Homepage_admin} />
       </Switch>
 
       {/* </Switch>   */}

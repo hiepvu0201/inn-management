@@ -17,6 +17,10 @@ const branchesApi = {
   updatebranch(branch){
       const url=`/api/v1/branches/${branch.id}/`;
       return axiosClient.put(url,branch.data);
+  },
+  getallbranchesbyusername(branch){
+    const url = `/api/v1/branches/userName/?userName=${branch}`;
+    return axiosClient.get(url);
   }
 };
 export default branchesApi;

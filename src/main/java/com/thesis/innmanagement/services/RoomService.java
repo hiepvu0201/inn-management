@@ -70,6 +70,11 @@ public class RoomService {
             roomUpdate.setBranch(room.getBranch());
             roomUpdate.setBranchId(room.getBranchId());
             roomUpdate.setImages(room.getImages());
+            roomUpdate.setPriceByFirstHour(room.getPriceByFirstHour());
+            roomUpdate.setPriceByNextHour(room.getPriceByNextHour());
+            roomUpdate.setPriceByDay(room.getPriceByDay());
+            roomUpdate.setPriceByWeek(room.getPriceByWeek());
+            roomUpdate.setPriceByMonth(room.getPriceByMonth());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

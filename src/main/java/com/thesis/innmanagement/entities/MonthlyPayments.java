@@ -2,8 +2,11 @@ package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class MonthlyPayments extends BasicEntity {
@@ -19,6 +22,28 @@ public class MonthlyPayments extends BasicEntity {
     private Branches branch;
 
     private Long branchId;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public Long getBranchId() {
         return branchId;

@@ -65,12 +65,12 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Validated @RequestBody SignUpRequest signUpRequest) {
         if (userRepository.existsByUserName(signUpRequest.getUserName())) {
-            return ResponseEntity.badRequest().body("Error: Username has already existed!");
+            return ResponseEntity.badRequest().body("Lỗi: Người dùng đã tồn tại!");
         }
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body("Error: Email is already in use!");
+                    .body("Lỗi: Email đã tồn tại!");
         }
         Users user = new Users();
         user.setUserName(signUpRequest.getUserName());
@@ -79,6 +79,6 @@ public class AuthController {
         Roles roles = roleRepository.findByName(ERole.ROLE_USER);
         user.setRoles(Arrays.asList(roles));
         userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully!");
+        return ResponseEntity.ok("Đăng ký thành công!");
     }
 }

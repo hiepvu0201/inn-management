@@ -28,7 +28,7 @@ public class BranchService {
     }
 
     public List<Branches> findAllByUserName(String userName) {
-        return branchRepository.findAllByUserName(userName).collect(Collectors.toList());
+        return branchRepository.findAllByUserName(userName);
     }
 
     public Branches getBranchByBranchLocation(String branchLocation) {

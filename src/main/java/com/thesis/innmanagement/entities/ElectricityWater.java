@@ -1,9 +1,14 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.thesis.innmanagement.Enum.EMonth;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 public class ElectricityWater extends BasicEntity {
@@ -27,9 +32,51 @@ public class ElectricityWater extends BasicEntity {
 
     private boolean isChecked;
 
-    private int month;
+    private EMonth month;
 
     private Long roomId;
+
+    private BigDecimal ElectricityUnitPrice;
+
+    private BigDecimal WaterUnitPrice;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public BigDecimal getElectricityUnitPrice() {
+        return ElectricityUnitPrice;
+    }
+
+    public void setElectricityUnitPrice(BigDecimal electricityUnitPrice) {
+        ElectricityUnitPrice = electricityUnitPrice;
+    }
+
+    public BigDecimal getWaterUnitPrice() {
+        return WaterUnitPrice;
+    }
+
+    public void setWaterUnitPrice(BigDecimal waterUnitPrice) {
+        WaterUnitPrice = waterUnitPrice;
+    }
 
     public Rooms getRoom() {
         return room;
@@ -103,11 +150,11 @@ public class ElectricityWater extends BasicEntity {
         isChecked = checked;
     }
 
-    public int getMonth() {
+    public EMonth getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(EMonth month) {
         this.month = month;
     }
 }

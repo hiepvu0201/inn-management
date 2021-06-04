@@ -20,7 +20,9 @@ Feature: electricity test
       "numWaterNew": "140",
       "numWaterConsump": "25",
       "isChecked": "true",
-      "month": "1"
+      "month": 1,
+      "electricityUnitPrice": "1000",
+      "waterUnitPrice": "1000"
     }
     """
     Given path 'api/v1/electricity-water/'

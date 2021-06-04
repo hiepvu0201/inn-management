@@ -47,6 +47,8 @@ public class ElectricityWaterService {
             electricityWaterUpdate.setNumWaterConsump(electricityWater.getNumWaterConsump());
             electricityWaterUpdate.setChecked(electricityWater.isChecked());
             electricityWaterUpdate.setMonth(electricityWater.getMonth());
+            electricityWaterUpdate.setElectricityUnitPrice(electricityWater.getElectricityUnitPrice());
+            electricityWaterUpdate.setWaterUnitPrice(electricityWater.getWaterUnitPrice());
             electricityWaterRepository.save(electricityWaterUpdate);
             return electricityWaterUpdate;
         }

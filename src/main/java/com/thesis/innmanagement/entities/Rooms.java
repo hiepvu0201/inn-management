@@ -1,7 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thesis.innmanagement.Enum.ERoom;
+import com.thesis.innmanagement.entities.enums.ERoom;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -45,46 +45,6 @@ public class Rooms extends BasicEntity {
 
     private BigDecimal priceByMonth;
 
-    public BigDecimal getPriceByFirstHour() {
-        return priceByFirstHour;
-    }
-
-    public void setPriceByFirstHour(BigDecimal priceByFirstHour) {
-        this.priceByFirstHour = priceByFirstHour;
-    }
-
-    public BigDecimal getPriceByNextHour() {
-        return priceByNextHour;
-    }
-
-    public void setPriceByNextHour(BigDecimal priceByNextHour) {
-        this.priceByNextHour = priceByNextHour;
-    }
-
-    public BigDecimal getPriceByDay() {
-        return priceByDay;
-    }
-
-    public void setPriceByDay(BigDecimal priceByDay) {
-        this.priceByDay = priceByDay;
-    }
-
-    public BigDecimal getPriceByWeek() {
-        return priceByWeek;
-    }
-
-    public void setPriceByWeek(BigDecimal priceByWeek) {
-        this.priceByWeek = priceByWeek;
-    }
-
-    public BigDecimal getPriceByMonth() {
-        return priceByMonth;
-    }
-
-    public void setPriceByMonth(BigDecimal priceByMonth) {
-        this.priceByMonth = priceByMonth;
-    }
-
     @Column(length = 64)
     private String images;
 
@@ -93,6 +53,66 @@ public class Rooms extends BasicEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    private BigDecimal total;
+
+    private LocalDateTime lastPaymentDate;
+
+    public LocalDateTime getLastPaymentDate() {
+        return lastPaymentDate;
+    }
+
+    public void setLastPaymentDate(LocalDateTime lastPaymentDate) {
+        this.lastPaymentDate = lastPaymentDate;
+    }
+
+    public BigDecimal getTotal() {
+        return (total == null) ? BigDecimal.ZERO : total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public BigDecimal getPriceByFirstHour() {
+        return (priceByFirstHour == null) ? BigDecimal.ZERO : priceByFirstHour;
+    }
+
+    public void setPriceByFirstHour(BigDecimal priceByFirstHour) {
+        this.priceByFirstHour = priceByFirstHour;
+    }
+
+    public BigDecimal getPriceByNextHour() {
+        return (priceByNextHour == null) ? BigDecimal.ZERO : priceByNextHour;
+    }
+
+    public void setPriceByNextHour(BigDecimal priceByNextHour) {
+        this.priceByNextHour = priceByNextHour;
+    }
+
+    public BigDecimal getPriceByDay() {
+        return (priceByDay == null) ? BigDecimal.ZERO : priceByDay;
+    }
+
+    public void setPriceByDay(BigDecimal priceByDay) {
+        this.priceByDay = priceByDay;
+    }
+
+    public BigDecimal getPriceByWeek() {
+        return (priceByWeek == null) ? BigDecimal.ZERO : priceByWeek;
+    }
+
+    public void setPriceByWeek(BigDecimal priceByWeek) {
+        this.priceByWeek = priceByWeek;
+    }
+
+    public BigDecimal getPriceByMonth() {
+        return (priceByMonth == null) ? BigDecimal.ZERO : priceByMonth;
+    }
+
+    public void setPriceByMonth(BigDecimal priceByMonth) {
+        this.priceByMonth = priceByMonth;
+    }
 
     public LocalDateTime getCreatedDate() {
         return createdDate;

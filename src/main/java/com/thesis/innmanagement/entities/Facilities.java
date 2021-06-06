@@ -1,6 +1,6 @@
 package com.thesis.innmanagement.entities;
 
-import com.thesis.innmanagement.Enum.EQuality;
+import com.thesis.innmanagement.entities.enums.EQuality;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,11 +20,21 @@ public class Facilities extends BasicEntity {
 
     private BigDecimal unitPrice;
 
+    private BigDecimal total;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    public BigDecimal getTotal() {
+        return (total == null) ? BigDecimal.ZERO : total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
 
     public EQuality getQuality() {
         return quality;

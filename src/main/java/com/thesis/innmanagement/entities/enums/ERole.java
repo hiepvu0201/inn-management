@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.Enum;
+package com.thesis.innmanagement.entities.enums;
 
 public enum ERole {
     ROLE_USER,

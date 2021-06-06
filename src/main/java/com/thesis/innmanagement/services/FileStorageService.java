@@ -1,6 +1,6 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.entities.FileStorageProperties;
+import com.thesis.innmanagement.config.FileStorageProperties;
 import com.thesis.innmanagement.exceptions.FileStorageException;
 import com.thesis.innmanagement.exceptions.ImageFileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

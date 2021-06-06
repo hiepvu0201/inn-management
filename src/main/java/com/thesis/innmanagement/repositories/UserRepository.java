@@ -1,6 +1,7 @@
 package com.thesis.innmanagement.repositories;
 
 import com.thesis.innmanagement.entities.Users;
+import com.thesis.innmanagement.entities.enums.ERole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     @Query("select distinct u from Users u inner join Roles i on i.name = :roleName")
-    List<Users> findAllByRoleName(String roleName);
+    List<Users> findAllByRoleName(ERole roleName);
 
     Users findByUserName(String userName);
 

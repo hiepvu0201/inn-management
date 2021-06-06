@@ -44,9 +44,67 @@ public class Rooms extends BasicEntity {
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
+    private BigDecimal priceByFirstHour;
+
+    private BigDecimal priceByNextHour;
+
+    private BigDecimal priceByDay;
+
+    private BigDecimal priceByWeek;
+
+    private BigDecimal priceByMonth;
+
     private BigDecimal total;
 
     private LocalDateTime lastPaymentDate;
+
+    public ERoom getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(ERoom roomType) {
+        this.roomType = roomType;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public BigDecimal getPriceByDay() {
+        return priceByDay;
+    }
+
+    public void setPriceByDay(BigDecimal priceByDay) {
+        this.priceByDay = priceByDay;
+    }
+
+    public BigDecimal getPriceByWeek() {
+        return priceByWeek;
+    }
+
+    public void setPriceByWeek(BigDecimal priceByWeek) {
+        this.priceByWeek = priceByWeek;
+    }
+
+    public BigDecimal getPriceByMonth() {
+        return priceByMonth;
+    }
+
+    public void setPriceByMonth(BigDecimal priceByMonth) {
+        this.priceByMonth = priceByMonth;
+    }
 
     public LocalDateTime getLastPaymentDate() {
         return lastPaymentDate;

@@ -2,6 +2,7 @@ package com.thesis.innmanagement.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thesis.innmanagement.entities.Rooms;
+import com.thesis.innmanagement.entities.enums.ERole;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.payload.PasswordChangeRequest;
@@ -41,7 +42,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found on id: " + id));
     }
 
-    public List<Users> findAllByRoleName(String roleName) {
+    public List<Users> findAllByRoleName(ERole roleName) {
         return userRepository.findAllByRoleName(roleName);
     }
 
@@ -52,7 +53,6 @@ public class UserService {
     public int changePassword(PasswordChangeRequest passwordChangeRequest) {
         String passwordOld = userRepository.findPasswordByUserName(passwordChangeRequest.getUserName());
         if (!encoder.matches(passwordChangeRequest.getOldPassword(), passwordOld)) {
-//            return "";
             return 1;
         }
         if (!passwordChangeRequest.getNewPassword().equals(passwordChangeRequest.getConfirmNewPassword())) {

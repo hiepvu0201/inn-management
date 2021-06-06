@@ -12,7 +12,13 @@ import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
 import com.thesis.innmanagement.repositories.InvoiceRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -36,6 +42,9 @@ public class InvoiceService {
     @Autowired
     private CalculateHelper calculateHelper;
 
+    @Autowired
+    private CSVService csvService;
+
     public List<Invoices> findAll() {
         return invoiceRepository.findAll();
     }
@@ -47,11 +56,10 @@ public class InvoiceService {
     private Invoices update(Invoices invoiceInfo, Long id) throws ResourceNotFoundException {
         Invoices invoice = new Invoices();
         invoice.setUser(invoiceInfo.getUser());
-        invoice.setRoom(invoiceInfo.getRoom());
         invoice.setContract(invoiceInfo.getContract());
         invoice.setElectricityWater(invoiceInfo.getElectricityWater());
         invoice.setTotal(invoiceInfo.getTotal());
-        invoice.setCheckOutDate(invoiceInfo.getCheckOutDate());
+        invoice.setPaymentDate(invoiceInfo.getPaymentDate());
         return invoice;
     }
 
@@ -72,11 +80,10 @@ public class InvoiceService {
 
         Invoices invoice = new Invoices();
         invoice.setUser(user);
-        invoice.setRoom(user.getRoom());
         invoice.setContract(contract);
         invoice.setElectricityWater(electricityWater);
         invoice.setTotal(total);
-        invoice.setCheckOutDate(invoiceRequest.getPaymentDate());
+        invoice.setPaymentDate(invoiceRequest.getPaymentDate());
 
         if (id == null) {
             invoiceRepository.save(invoice);
@@ -94,4 +101,5 @@ public class InvoiceService {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
 }

@@ -15,9 +15,6 @@ public class Invoices extends BasicEntity {
     private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Rooms room;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     private Contracts contract;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,7 +22,7 @@ public class Invoices extends BasicEntity {
 
     private BigDecimal total;
 
-    private LocalDateTime checkOutDate;
+    private LocalDateTime paymentDate;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
@@ -49,14 +46,6 @@ public class Invoices extends BasicEntity {
         this.user = user;
     }
 
-    public Rooms getRoom() {
-        return room;
-    }
-
-    public void setRoom(Rooms room) {
-        this.room = room;
-    }
-
     public Contracts getContract() {
         return contract;
     }
@@ -73,12 +62,12 @@ public class Invoices extends BasicEntity {
         this.electricityWater = electricityWater;
     }
 
-    public LocalDateTime getCheckOutDate() {
-        return checkOutDate;
+    public LocalDateTime getPaymentDate() {
+        return paymentDate;
     }
 
-    public void setCheckOutDate(LocalDateTime checkOutDate) {
-        this.checkOutDate = checkOutDate;
+    public void setPaymentDate(LocalDateTime paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
     public LocalDateTime getCreatedDate() {

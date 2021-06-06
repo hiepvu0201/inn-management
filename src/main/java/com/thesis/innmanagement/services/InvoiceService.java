@@ -65,7 +65,7 @@ public class InvoiceService {
 
     public Invoices createOrUpdate(Long id, InvoiceRequest invoiceRequest) throws ResourceNotFoundException {
         Users user = userRepository.findByUserName(invoiceRequest.getUserName());
-        Contracts contract = contractRepository.findByTenantUserNameAndClosed(invoiceRequest.getUserName(), false);
+        Contracts contract = contractRepository.findByTenantUserName(invoiceRequest.getUserName());
         ElectricityWater electricityWater = electricityWaterRepository.findByRoomId(user.getRoomId());
 
         BigDecimal facilityTotal = calculateHelper.getFacilityTotalPrice(user.getRoom().getFacilities());

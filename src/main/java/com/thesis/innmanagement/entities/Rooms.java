@@ -35,16 +35,6 @@ public class Rooms extends BasicEntity {
 
     private ERoom roomType;
 
-    private BigDecimal priceByFirstHour;
-
-    private BigDecimal priceByNextHour;
-
-    private BigDecimal priceByDay;
-
-    private BigDecimal priceByWeek;
-
-    private BigDecimal priceByMonth;
-
     @Column(length = 64)
     private String images;
 
@@ -88,54 +78,6 @@ public class Rooms extends BasicEntity {
 
     public void setPriceByNextHour(BigDecimal priceByNextHour) {
         this.priceByNextHour = priceByNextHour;
-    }
-
-    public BigDecimal getPriceByDay() {
-        return (priceByDay == null) ? BigDecimal.ZERO : priceByDay;
-    }
-
-    public void setPriceByDay(BigDecimal priceByDay) {
-        this.priceByDay = priceByDay;
-    }
-
-    public BigDecimal getPriceByWeek() {
-        return (priceByWeek == null) ? BigDecimal.ZERO : priceByWeek;
-    }
-
-    public void setPriceByWeek(BigDecimal priceByWeek) {
-        this.priceByWeek = priceByWeek;
-    }
-
-    public BigDecimal getPriceByMonth() {
-        return (priceByMonth == null) ? BigDecimal.ZERO : priceByMonth;
-    }
-
-    public void setPriceByMonth(BigDecimal priceByMonth) {
-        this.priceByMonth = priceByMonth;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public ERoom getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(ERoom roomType) {
-        this.roomType = roomType;
     }
 
     public String getImages() {

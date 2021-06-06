@@ -8,7 +8,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class Contracts extends BasicEntity {
@@ -18,21 +17,23 @@ public class Contracts extends BasicEntity {
 
     private Date signDate;
 
+    private Date endDate;
+
+    private Boolean isClosed;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant")
-    private List<Users> tenant;
+    private Users tenant;
 
-    @ElementCollection
-    private List<Long> tenantIds;
+    private Long tenantId;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner")
-    private List<Users> owner;
+    private Users owner;
 
-    @ElementCollection
-    private List<Long> ownerIds;
+    private Long ownerId;
 
     private int numberOfRooms;
 
@@ -45,6 +46,46 @@ public class Contracts extends BasicEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Boolean getClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(Boolean closed) {
+        isClosed = closed;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public Users getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
 
     public LocalDateTime getCreatedDate() {
         return createdDate;
@@ -62,36 +103,12 @@ public class Contracts extends BasicEntity {
         this.updatedDate = updatedDate;
     }
 
-    public List<Long> getTenantIds() {
-        return tenantIds;
-    }
-
-    public void setTenantIds(List<Long> tenantIds) {
-        this.tenantIds = tenantIds;
-    }
-
-    public List<Long> getOwnerIds() {
-        return ownerIds;
-    }
-
-    public void setOwnerIds(List<Long> ownerIds) {
-        this.ownerIds = ownerIds;
-    }
-
-    public List<Users> getTenant() {
+    public Users getTenant() {
         return tenant;
     }
 
-    public void setTenant(List<Users> tenant) {
+    public void setTenant(Users tenant) {
         this.tenant = tenant;
-    }
-
-    public List<Users> getOwner() {
-        return owner;
-    }
-
-    public void setOwner(List<Users> owner) {
-        this.owner = owner;
     }
 
     public int getNumberOfRooms() {

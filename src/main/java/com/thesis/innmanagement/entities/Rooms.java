@@ -1,7 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thesis.innmanagement.Enum.ERoom;
+import com.thesis.innmanagement.entities.enums.ERoom;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -35,6 +35,15 @@ public class Rooms extends BasicEntity {
 
     private ERoom roomType;
 
+    @Column(length = 64)
+    private String images;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
     private BigDecimal priceByFirstHour;
 
     private BigDecimal priceByNextHour;
@@ -45,20 +54,32 @@ public class Rooms extends BasicEntity {
 
     private BigDecimal priceByMonth;
 
-    public BigDecimal getPriceByFirstHour() {
-        return priceByFirstHour;
+    private BigDecimal total;
+
+    private LocalDateTime lastPaymentDate;
+
+    public ERoom getRoomType() {
+        return roomType;
     }
 
-    public void setPriceByFirstHour(BigDecimal priceByFirstHour) {
-        this.priceByFirstHour = priceByFirstHour;
+    public void setRoomType(ERoom roomType) {
+        this.roomType = roomType;
     }
 
-    public BigDecimal getPriceByNextHour() {
-        return priceByNextHour;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setPriceByNextHour(BigDecimal priceByNextHour) {
-        this.priceByNextHour = priceByNextHour;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public BigDecimal getPriceByDay() {
@@ -85,37 +106,36 @@ public class Rooms extends BasicEntity {
         this.priceByMonth = priceByMonth;
     }
 
-    @Column(length = 64)
-    private String images;
-
-    @CreationTimestamp
-    private LocalDateTime createdDate;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedDate;
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getLastPaymentDate() {
+        return lastPaymentDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setLastPaymentDate(LocalDateTime lastPaymentDate) {
+        this.lastPaymentDate = lastPaymentDate;
     }
 
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
+    public BigDecimal getTotal() {
+        return (total == null) ? BigDecimal.ZERO : total;
     }
 
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
-    public ERoom getRoomType() {
-        return roomType;
+    public BigDecimal getPriceByFirstHour() {
+        return (priceByFirstHour == null) ? BigDecimal.ZERO : priceByFirstHour;
     }
 
-    public void setRoomType(ERoom roomType) {
-        this.roomType = roomType;
+    public void setPriceByFirstHour(BigDecimal priceByFirstHour) {
+        this.priceByFirstHour = priceByFirstHour;
+    }
+
+    public BigDecimal getPriceByNextHour() {
+        return (priceByNextHour == null) ? BigDecimal.ZERO : priceByNextHour;
+    }
+
+    public void setPriceByNextHour(BigDecimal priceByNextHour) {
+        this.priceByNextHour = priceByNextHour;
     }
 
     public String getImages() {

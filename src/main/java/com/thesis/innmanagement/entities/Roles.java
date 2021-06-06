@@ -1,6 +1,6 @@
 package com.thesis.innmanagement.entities;
 
-import com.thesis.innmanagement.Enum.ERole;
+import com.thesis.innmanagement.entities.enums.ERole;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

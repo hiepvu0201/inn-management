@@ -64,7 +64,20 @@ public class UserController {
 
     @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest) {
-        return ResponseEntity.ok().body(userService.changePassword(passwordChangeRequest));
+        int responseId = userService.changePassword(passwordChangeRequest);
+        String response;
+        switch (responseId) {
+            case 1:
+                response = "Sai mật khẩu!";
+                return ResponseEntity.badRequest().body(response);
+
+            case 2:
+                response = "Mật khẩu mới không khớp!";
+                return ResponseEntity.badRequest().body(response);
+            default:
+                response = "Thay đổi mật khẩu thành công!";
+                return ResponseEntity.ok().body(response);
+        }
     }
 
     @GetMapping("/check")

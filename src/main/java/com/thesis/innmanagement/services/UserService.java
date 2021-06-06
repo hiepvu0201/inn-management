@@ -49,17 +49,18 @@ public class UserService {
         return userRepository.findByUserName(userName);
     }
 
-    public String changePassword(PasswordChangeRequest passwordChangeRequest) {
+    public int changePassword(PasswordChangeRequest passwordChangeRequest) {
         String passwordOld = userRepository.findPasswordByUserName(passwordChangeRequest.getUserName());
         if (!encoder.matches(passwordChangeRequest.getOldPassword(), passwordOld)) {
-            return "Sai mật khẩu!";
+//            return "";
+            return 1;
         }
         if (!passwordChangeRequest.getNewPassword().equals(passwordChangeRequest.getConfirmNewPassword())) {
-            return "Mật khẩu mới không khớp!";
+            return 2;
         }
         String newPassword = encoder.encode(passwordChangeRequest.getNewPassword());
         userRepository.updatePassword(passwordChangeRequest.getUserName(), newPassword);
-        return "Thay đổi mật khẩu thành công!";
+        return 3;
     }
 
     public Boolean checkUserNameExisted(String userName) {

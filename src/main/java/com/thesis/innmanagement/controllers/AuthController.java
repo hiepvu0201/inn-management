@@ -1,6 +1,6 @@
 package com.thesis.innmanagement.controllers;
 
-import com.thesis.innmanagement.Enum.ERole;
+import com.thesis.innmanagement.entities.enums.ERole;
 import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.entities.Users;
 import com.thesis.innmanagement.payload.SignInRequest;

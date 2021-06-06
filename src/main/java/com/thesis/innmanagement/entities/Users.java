@@ -33,9 +33,9 @@ public class Users extends BasicEntity {
 
     private String phoneNo;
 
-    private Date checkinDate;
+    private LocalDateTime checkinDate;
 
-    private Date checkoutDate;
+    private LocalDateTime checkoutDate;
 
     @Column(precision = 16, scale = 4)
     private Double downPayment;
@@ -191,19 +191,19 @@ public class Users extends BasicEntity {
         this.phoneNo = phoneNo;
     }
 
-    public Date getCheckinDate() {
+    public LocalDateTime getCheckinDate() {
         return checkinDate;
     }
 
-    public void setCheckinDate(Date checkinDate) {
+    public void setCheckinDate(LocalDateTime checkinDate) {
         this.checkinDate = checkinDate;
     }
 
-    public Date getCheckoutDate() {
+    public LocalDateTime getCheckoutDate() {
         return checkoutDate;
     }
 
-    public void setCheckoutDate(Date checkoutDate) {
+    public void setCheckoutDate(LocalDateTime checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 

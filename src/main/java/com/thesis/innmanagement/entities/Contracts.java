@@ -6,7 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,9 +14,9 @@ public class Contracts extends BasicEntity {
     @Lob
     private String details;
 
-    private Date signDate;
+    private LocalDateTime signDate;
 
-    private Date endDate;
+    private LocalDateTime endDate;
 
     private Boolean isClosed;
 
@@ -47,11 +46,19 @@ public class Contracts extends BasicEntity {
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
-    public Date getEndDate() {
+    public LocalDateTime getSignDate() {
+        return signDate;
+    }
+
+    public void setSignDate(LocalDateTime signDate) {
+        this.signDate = signDate;
+    }
+
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -143,11 +150,4 @@ public class Contracts extends BasicEntity {
         this.details = details;
     }
 
-    public Date getSignDate() {
-        return signDate;
-    }
-
-    public void setSignDate(Date signDate) {
-        this.signDate = signDate;
-    }
 }

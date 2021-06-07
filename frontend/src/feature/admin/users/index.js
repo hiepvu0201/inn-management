@@ -31,7 +31,12 @@ import {
   notification,
   Upload,
 } from "antd";
-import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  UploadOutlined,
+  StopOutlined,
+  TrademarkOutlined,
+} from "@ant-design/icons";
 import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
@@ -48,6 +53,7 @@ function Users(props) {
   //api
   //getAll
   const [usersList, setIsusersList] = useState([]);
+
   const [roleList, setRoleList] = useState([]);
   const [reportList, setreportList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
@@ -63,6 +69,7 @@ function Users(props) {
   const [checkaddimg, setcheck] = useState(false);
 
   const [imgfile, setimgfile] = useState(null);
+  const [nullstate, setNullstate] = useState([]);
 
   const uploadimg = (info) => {
     console.log(">>>>info: ", info);
@@ -118,6 +125,7 @@ function Users(props) {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
       setIsusersList(response.data);
+      setstatesea(response.data);
       // dataTable([...userList, response.data]);
       // console.log("response.data.roleIds[0] >>", response.data[0].roleIds);
       setIsloadingUpdate(false);
@@ -157,7 +165,7 @@ function Users(props) {
     fetchRoomList();
   }, []);
   const { Option } = Select;
-  const propsselect =[];
+  const propsselect = [];
   {
     roleList.map((rolesid) =>
       propsselect.push(
@@ -183,8 +191,12 @@ function Users(props) {
       user: myJSON,
       images: imgfile,
     };
-    if (responsedata.images === null || values.roleIds===undefined || dataCreate.roleIds===[]) {
-      message.warning("Nhập thiếu thông tin xin vui lòng nhập lại")
+    if (
+      responsedata.images === null ||
+      values.roleIds === undefined ||
+      dataCreate.roleIds === []
+    ) {
+      message.warning("Nhập thiếu thông tin xin vui lòng nhập lại");
     } else {
       console.log("dataCreate", responsedata);
       var form_data = new FormData();
@@ -201,8 +213,8 @@ function Users(props) {
           setIsModalVisible(false);
         } catch (error) {
           console.log("failed to fetch user list: ", error);
-          if ((error = 500))
-            message.error("Đã nhập trùng Username. Xin vui lòng nhập lại!!!");
+          // if ((error = 500))
+          //   message.error("Đã nhập trùng Username. Xin vui lòng nhập lại!!!");
         }
       };
       fetchCreateUsers();
@@ -300,6 +312,35 @@ function Users(props) {
       }
     };
     fetchCheckout();
+  };
+  //check username exist
+  const [stateStatus, setstateStatus] = useState(false);
+  const onChangeusername = (e) => {
+    console.log("<<", e.target.value);
+    setstateStatus(e.target.value);
+    //  setstateStatus(e)
+  };
+  const fetchcheckusername = async () => {
+    try {
+      const response = await usersApi.checkusername(stateStatus);
+      console.log("Fetch check existed users successfully", response.data);
+      if (response.data === true) {
+        notification.error({
+          icon: <StopOutlined style={{ color: "#20da9b" }} />,
+          message: `Trùng username xin vui lòng nhập lại`,
+          placement: "topLeft",
+        });
+      } else {
+        notification.success({
+          icon: <CheckOutlined style={{ color: "#f25f52" }} />,
+          message: `Username không trùng`,
+          placement: "topLeft",
+        });
+        setstateStatus(true);
+      }
+    } catch (error) {
+      console.log("Failed to check existed username", error);
+    }
   };
   //select
   function handleChange(value) {
@@ -471,7 +512,31 @@ function Users(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+  const [statesea, setstatesea] = useState([]);
 
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === "") {
+      setIsusersList(statesea);
+    } else {
+      const fetchGetalluserbyUsername = async () => {
+        try {
+          const response = await usersApi.getalluserbyusername(
+            value
+          );
+          console.log(
+            "Fetch userall by username successfully: ",
+            response.data
+          );
+          // setIsstateInput(response.data);
+          setIsusersList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      fetchGetalluserbyUsername();
+    }
+  };
   return (
     <div>
       <Modal
@@ -702,6 +767,30 @@ function Users(props) {
                 <div className="content">QUẢN LÝ KHÁCH TRỌ</div>
               </div>
               <div className="topic-right-user">
+                <div className="element-selectuser">
+                  <Input.Search
+                    allowClear
+                    size="middle"
+                    style={{ width: "200px" }}
+                    // mode="multiple"
+                    onSearch={(value) => onSearch_1(value)}
+                  ></Input.Search>
+                </div>
+                <div className="element2-selectuser">
+                  <Select
+                    allowClear
+                    size="middle"
+                    style={{ width: "200px" }}
+                    // mode="multiple"
+                    onChange={onSearch_1}
+                  >
+                    {roleList.map((branchid) => (
+                      <Select.Option key={branchid.name} value={branchid.name}>
+                        {branchid.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
                 <div className="btn-right-user">
                   <button className="detailed-btn-user" onClick={showModal}>
                     THÊM MỚI
@@ -739,9 +828,20 @@ function Users(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Tài khoản" name="userName">
-                        <Input />
-                      </Form.Item>
+                      <div style={{ display: "flex", width: "100%" }}>
+                        <Form.Item label="Tài khoản" name="userName">
+                          <Input
+                            style={{ width: "250px" }}
+                            onChange={(userName) => onChangeusername(userName)}
+                          />
+                        </Form.Item>
+                        <div style={{ paddingLeft: "20px", width: "20%" }}>
+                          <Button onClick={() => fetchcheckusername()}>
+                            Kiểm tra trùng
+                          </Button>
+                        </div>
+                      </div>
+
                       <Form.Item label="Mật khẩu" name="passwordHash">
                         <Input.Password />
                       </Form.Item>
@@ -800,7 +900,9 @@ function Users(props) {
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default">HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
                         </div>
                       </div>
                     </Form>

@@ -40,6 +40,8 @@ import Cookies from "js-cookie";
 import { PrivateRoute, AuthButton } from "./fakeAuth";
 import Register from './feature/register'
 import { Spin } from "antd";
+import Info from './feature/admin/info'
+import Password from './feature/admin/password'
 function App() {
   const loading = (
     <div className="pt-3 text-center">
@@ -69,6 +71,12 @@ function App() {
        <Switch>
          <Route path="/branches">
            <Branches />
+         </Route>
+         <Route path="/info">
+           <Info />
+         </Route>
+         <Route path="/password">
+           <Password />
          </Route>
          <Route path="/rooms">
            <Room />
@@ -124,25 +132,14 @@ function App() {
           render={(props) => <Login {...props} />}
         />
         {Cookies.get("Bearer") !== undefined ? (
-          Cookies.get("roles") === "ROLE_USER" ? (
-            <Route
-              exact
-              path="/"
-              name="HomeUser"
-              render={(props) => <Room_client {...props} />}
-            />
-          ) : (
-            <Route
-              path="/"
-              name="HomeAdmin"
-              render={(props) => <Homepage_admin {...props} />}
-            />
-          )
+          <Route
+            path="/"
+            name="HomeAdmin"
+            render={(props) => <Adminlayout {...props} />}
+          />
         ) : (
-          ""
+          <PrivateRoute path="/" name="HomeAdmin" component={Adminlayout} />
         )}
-        <PrivateRoute path="/" name="HomeUser" component={Room_client} />
-        <PrivateRoute path="/" name="HomeAdmin" component={Homepage_admin} />
       </Switch>
 
       {/* </Switch>   */}

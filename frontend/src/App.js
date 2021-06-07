@@ -40,6 +40,8 @@ import Cookies from "js-cookie";
 import { PrivateRoute, AuthButton } from "./fakeAuth";
 import Register from './feature/register'
 import { Spin } from "antd";
+import Info from './feature/admin/info'
+import Password from './feature/admin/password'
 function App() {
   const loading = (
     <div className="pt-3 text-center">
@@ -69,6 +71,12 @@ function App() {
        <Switch>
          <Route path="/branches">
            <Branches />
+         </Route>
+         <Route path="/info">
+           <Info />
+         </Route>
+         <Route path="/password">
+           <Password />
          </Route>
          <Route path="/rooms">
            <Room />

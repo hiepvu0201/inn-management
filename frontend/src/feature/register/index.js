@@ -4,6 +4,7 @@ import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from './../../api/authApi'
+import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
 function register() {
    const onFinish = (values) => {
     const register = async () => {
@@ -11,18 +12,46 @@ function register() {
         console.log("value", values);
         const response = await authApi.signup(values);
         console.log("Fetch register user successfully: ", response);
-        notification.success({
-        
-           description:`${response.data}`,
+  
+        notification.success({   
+          message:"Đăng ký thành công",
+          icon:<CheckCircleFilled style={{color:"#20da9b"}}/>,
+          description:`${response.data}`,
           placement: "topRight",
         }
         );
       } catch (error) {
-        console.log("failed to register ưser: ", error);
+        console.log("failed to register ưser: ", error.response);
+        console.log(JSON.parse(error.response.config.data).userName);
+        if(error.response.data==="Lỗi: Người dùng đã tồn tại!"){
+          notification.error({
+            message: `Đăng ký thất bại`,
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Tài khoản ${
+              JSON.parse(error.response.config.data).userName
+            } đã tồn tại`,
+            placement: "topRight",
+          });
+        }
+        else if (error.response.data === "Lỗi: Email đã tồn tại!")
+        {
+           notification.error({
+             message: `Đăng ký thất bại`,
+             icon: <WarningOutlined style={{ color: "#f26051" }} />,
+             description: `Email ${
+               JSON.parse(error.response.config.data).email
+             } đã tồn tại`,
+             placement: "topRight",
+           });
+        }  
       }
     };
     register();
   };
+  // const onchnageinput=(value)=>{
+  //   if(value.include([value-1])) message.info ("Trùng")
+  //   else message.info("Không")
+  // }
   return (
     <div>
       <div className="form-register">
@@ -43,11 +72,11 @@ function register() {
                   paddingBottom: "10px",
                 }}
               >
-                <Form.Item name="userName">
-                  <Input placeholder="Nhập họ và tên" />
+                <Form.Item name="userName" >
+                  <Input placeholder="Nhập họ và tên"/>
                 </Form.Item>
               </div>
-              <div className="username">Email</div>
+              <div className="username" >Email</div>
               <div
                 style={{
                   width: "90%",
@@ -57,7 +86,7 @@ function register() {
                 }}
               >
                 <Form.Item name="email">
-                  <Input placeholder="Nhập email" />
+                  <Input placeholder="Nhập email"/>
                 </Form.Item>
               </div>
               <div className="username">Mật khẩu</div>

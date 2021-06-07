@@ -14,11 +14,12 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
 import branchesApi from "../../../api/branchesApi";
-import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
+import { CheckOutlined, RadiusBottomleftOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Table,
   Popconfirm,
   message,
+  Tag,
   Button,
   Modal,
   Form,
@@ -26,7 +27,7 @@ import {
   Select,
   Spin,
   InputNumber,
-  Upload
+  Upload,
 } from "antd";
 import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
@@ -42,7 +43,7 @@ function Rooms(props) {
   //   console.log(value)
   // }
   //getAll
-  
+
   const [roomList, setRoomList] = useState([]);
   const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
@@ -52,34 +53,39 @@ function Rooms(props) {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
   const [fileList, setfileList] = useState([]);
-    const [imgfile, setimgfile] = useState(null);
+  const [imgfile, setimgfile] = useState(null);
 
- const uploadimg = (info) => {
-   console.log(">>>>info: ", info);
-   console.log(fileList);
- };
- const propsimg = {
-   onChange: uploadimg,
- };
- const [stateimg, setstateimg] = useState({
-   previewVisible: false,
-   previewImage: "",
-   fileList: [],
- });
- const handleChangeimg = (fileList) => {
-   setstateimg(fileList);
-   setimgfile(fileList.file.originFileObj);
-   console.log(">>state", stateimg);
-   console.log(">>fileList", fileList);
-   console.log(">>originFileObj", imgfile);
- };
- const handlePreview = (file) => {
-   setstateimg({
-     ...stateimg,
-     previewImage: file.url || file.thumbUrl,
-     previewVisible: true,
-   });
- };
+  const [firstroom, setFirstroom] = useState(true);
+  const [secondroom, setSecondroom] = useState(true);
+  const [thirdroom, setThirdroom] = useState(true);
+  const [fourthroom, setFourthroom] = useState(true);
+
+  const uploadimg = (info) => {
+    console.log(">>>>info: ", info);
+    console.log(fileList);
+  };
+  const propsimg = {
+    onChange: uploadimg,
+  };
+  const [stateimg, setstateimg] = useState({
+    previewVisible: false,
+    previewImage: "",
+    fileList: [],
+  });
+  const handleChangeimg = (fileList) => {
+    setstateimg(fileList);
+    setimgfile(fileList.file.originFileObj);
+    console.log(">>state", stateimg);
+    console.log(">>fileList", fileList);
+    console.log(">>originFileObj", imgfile);
+  };
+  const handlePreview = (file) => {
+    setstateimg({
+      ...stateimg,
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  };
   const fetchRoomList = async () => {
     try {
       const response = await roomApi.getAll();
@@ -130,17 +136,17 @@ function Rooms(props) {
     // fetchBranchesList();
     // fetchfacilitiesList();
   }, []);
-   const { Option } = Select;
-   const propsselect = [];
-   {
-     facilitiesList.map((facilitiesid) =>
-       propsselect.push(
-         <Option key={facilitiesid.id} value={facilitiesid.id}>
-           {facilitiesid.name}
-         </Option>
-       )
-     );
-   }
+  const { Option } = Select;
+  const propsselect = [];
+  {
+    facilitiesList.map((facilitiesid) =>
+      propsselect.push(
+        <Option key={facilitiesid.id} value={facilitiesid.id}>
+          {facilitiesid.name}
+        </Option>
+      )
+    );
+  }
   //form
   const onFinish = (values) => {
     const dataCreate = {
@@ -149,20 +155,20 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
-     var myJSON = JSON.stringify(dataCreate);
-     console.log("<<<Stringify", myJSON);
-     const responsedata = {
-       room: myJSON,
-       images: imgfile,
-     };
-     console.log("dataCreate", responsedata);
+    var myJSON = JSON.stringify(dataCreate);
+    console.log("<<<Stringify", myJSON);
+    const responsedata = {
+      room: myJSON,
+      images: imgfile,
+    };
+    console.log("dataCreate", responsedata);
 
-     var form_data = new FormData();
+    var form_data = new FormData();
 
-     for (var key in responsedata) {
-       form_data.append(key, responsedata[key]);
-     }
-    
+    for (var key in responsedata) {
+      form_data.append(key, responsedata[key]);
+    }
+
     const fetchCreateRooms = async () => {
       try {
         const response = await roomsApi.createrooms(form_data);
@@ -201,17 +207,17 @@ function Rooms(props) {
       // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
-    var myJSONupdate=JSON.stringify(dataUpdate);
-    console.log("<<<Stringify",myJSONupdate)
-    const responsedata={
-      roomDetail:myJSONupdate,
-      images:imgfile
-    }
+    var myJSONupdate = JSON.stringify(dataUpdate);
+    console.log("<<<Stringify", myJSONupdate);
+    const responsedata = {
+      roomDetail: myJSONupdate,
+      images: imgfile,
+    };
     console.log("dataUpdate", responsedata);
-     var form_data = new FormData();
-      for (var key in responsedata) {
-        form_data.append(key, responsedata[key]);
-      }
+    var form_data = new FormData();
+    for (var key in responsedata) {
+      form_data.append(key, responsedata[key]);
+    }
     const data_update = { id: rowEdit.id, data: form_data };
     fetchUpdateRooms(data_update);
   };
@@ -294,6 +300,72 @@ function Rooms(props) {
       ),
     },
     {
+      title: "Loại phòng",
+      dataIndex: "roomType",
+      key: "roomType",
+      render: (roomType) =>
+        roomType === null ? (
+          <Tag color="magenta">CHƯA CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{roomType}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo giờ đầu",
+      dataIndex: "priceByFirstHour",
+      key: "priceByFirstHour",
+      render: (priceByFirstHour) =>
+        priceByFirstHour === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByFirstHour}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo giờ sau",
+      dataIndex: "priceByFirstHour",
+      key: "priceByNextHour",
+      render: (priceByNextHour) =>
+        priceByNextHour === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByNextHour}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo ngày",
+      dataIndex: "priceByDay",
+      key: "priceByDay",
+      render: (priceByDay) =>
+        priceByDay === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByDay}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo tuần",
+      dataIndex: "priceByWeek",
+      key: "priceByWeek",
+      render: (priceByWeek) =>
+        priceByWeek === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByWeek}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo tháng",
+      dataIndex: "priceByMonth",
+      key: "priceByMonth",
+      render: (priceByMonth) =>
+        priceByMonth === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByMonth}</Tag>
+        ),
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -346,27 +418,59 @@ function Rooms(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-  const [state, setstate] = useState([])
+  const [state, setstate] = useState([]);
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-    if(value==="")
-    {
+    if (value === "") {
       setRoomList(state);
+    } else {
+      const SearchRoombyBranch = async () => {
+        try {
+          const response = await roomApi.searchRoombyBranch(value);
+          console.log("Fetch room by branch successfully: ", response.data);
+          // setIsstateInput(response.data);
+          setRoomList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch room by ranch: ", error);
+        }
+      };
+      SearchRoombyBranch();
     }
-    else{
- const SearchRoombyBranch = async () => {
-   try {
-     const response = await roomApi.searchRoombyBranch(value);
-     console.log("Fetch room by branch successfully: ", response.data);
-     // setIsstateInput(response.data);
-     setRoomList(response.data);
-   } catch (error) {
-     console.log("Failed to fetch room by ranch: ", error);
-   }
- };
- SearchRoombyBranch();
-    };
-  }
+  };
+  const toggleInputbySelect = (value) => {
+    switch (value) {
+      case "0":
+        setFirstroom(false);
+        setSecondroom(true);
+        setThirdroom(true);
+        setFourthroom(true);
+        break;
+      case "1":
+        setFirstroom(true);
+        setSecondroom(false);
+        setThirdroom(true);
+        setFourthroom(true);
+        break;
+      case "2":
+        setFirstroom(true);
+        setSecondroom(true);
+        setThirdroom(false);
+        setFourthroom(true);
+        break;
+      case "3":
+        setFirstroom(true);
+        setSecondroom(true);
+        setThirdroom(true);
+        setFourthroom(false);
+        break;
+   
+    }
+  };
+  const handleChange_roomType = (value) => {
+    console.log(`selected ${value}`);
+   toggleInputbySelect(value);
+  };
+
   return (
     <div>
       <Modal
@@ -522,7 +626,54 @@ function Rooms(props) {
                     <Form.Item label="Vị trí" name="position">
                       <Input />
                     </Form.Item>
-
+                    <Form.Item label="Loại phòng" name="roomType">
+                      <Select
+                        style={{ width: 385 }}
+                        placeholder={rowEdit.month}
+                        onSelect={(value) => handleChange_roomType(value)}
+                      >
+                        <Option value="0">Phòng theo giờ</Option>
+                        <Option value="1">Phòng theo ngày</Option>
+                        <Option value="2">Phòng theo tuần</Option>
+                        <Option value="3">Phòng theo tháng</Option>
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      label="Giá phòng theo giờ 1"
+                      name="priceByFirstHour"
+                    >
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={firstroom}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      label="Giá phòng theo giờ 2"
+                      name="priceByNextHour"
+                    >
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={firstroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo ngày" name="priceByDay">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={secondroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo tuần" name="priceByWeek">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={thirdroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo tháng" name="priceByMonth">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={fourthroom}
+                      />
+                    </Form.Item>
                     <Form.Item label="Chi nhánh" name="branchId">
                       <Select onChange={handleChange}>
                         {branchesList.map((branchesid) => (

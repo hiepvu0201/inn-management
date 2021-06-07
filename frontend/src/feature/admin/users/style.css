@@ -8,10 +8,11 @@
 .topic-left-user{
     float: left;
     display: flex;
-    width: 40%;
+    width: 60%;
 }
 .topic-right-user{
-    width:60%;
+    width:40%;
+    display:flex;
 }
 .content{
     font-size: 20px;
@@ -19,6 +20,12 @@
     color:#007c7e;
     padding-left: 20px;
 
+}
+.element-selectuser{
+        width: 40%;
+}
+.element2-selectuser{
+    width:30%;
 }
 .btn-right-user{
     float:right;

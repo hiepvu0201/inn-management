@@ -18,6 +18,6 @@ public interface ContractRepository extends JpaRepository<Contracts, Long> {
     @Query("select distinct c from Contracts c inner join c.tenant t on t.userName = :tenantName")
     Stream<Contracts> findAllByTenantName(String tenantName);
 
-    @Query("select distinct c from Contracts c inner join c.tenant t on t.userName = :tenantName and c.isClosed = false")
-    Contracts findByTenantUserName(String tenantName);
+    @Query("select distinct c from Contracts c inner join c.tenant t on t.userName = :tenantName and c.year = :year and c.isClosed = false")
+    Contracts findByTenantUserName(String tenantName, int year);
 }

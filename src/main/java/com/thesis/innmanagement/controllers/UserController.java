@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +37,16 @@ public class UserController {
 
     @GetMapping("/checkin")
     public ResponseEntity<String> checkIn(@Param("userName") String userName,
-                                          @Param("roomNo") String roomNo) {
-        String message = userService.checkIn(userName, roomNo);
+                                          @Param("roomNo") String roomNo,
+                                          @Param("checkInDate") LocalDateTime checkInDate) {
+        String message = userService.checkIn(userName, roomNo, checkInDate);
         return ResponseEntity.ok().body(message);
     }
 
     @GetMapping("/checkout")
-    public ResponseEntity<String> checkout(@Param("userName") String userName) {
-        String message = userService.checkOut(userName);
+    public ResponseEntity<String> checkout(@Param("userName") String userName,
+                                           @Param("checkOutDate") LocalDateTime checkOutDate) {
+        String message = userService.checkOut(userName, checkOutDate);
         return ResponseEntity.ok().body(message);
     }
 
@@ -71,7 +74,6 @@ public class UserController {
             case 1:
                 response = "Sai mật khẩu!";
                 return ResponseEntity.badRequest().body(response);
-
             case 2:
                 response = "Mật khẩu mới không khớp!";
                 return ResponseEntity.badRequest().body(response);

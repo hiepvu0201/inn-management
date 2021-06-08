@@ -1,9 +1,6 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.entities.Contracts;
-import com.thesis.innmanagement.entities.ElectricityWater;
-import com.thesis.innmanagement.entities.Invoices;
-import com.thesis.innmanagement.entities.Users;
+import com.thesis.innmanagement.entities.*;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.helpers.CalculateHelper;
 import com.thesis.innmanagement.payload.InvoiceRequest;
@@ -12,13 +9,7 @@ import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
 import com.thesis.innmanagement.repositories.InvoiceRepository;
 import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -43,7 +34,10 @@ public class InvoiceService {
     private CalculateHelper calculateHelper;
 
     @Autowired
-    private CSVService csvService;
+    private MonthlyIncomeService monthlyIncomeService;
+
+    @Autowired
+    private MonthlyPaymentService monthlyPaymentService;
 
     public List<Invoices> findAll() {
         return invoiceRepository.findAll();
@@ -78,6 +72,20 @@ public class InvoiceService {
 
         BigDecimal total = calculateHelper.sumList(listTotal);
 
+        // Monthly incomes
+        MonthlyIncomes incomes = new MonthlyIncomes();
+        incomes.setMonth(invoiceRequest.getPaymentDate().getMonth());
+        incomes.setBranchId(user.getRoom().getBranchId());
+        incomes.setEarn(total);
+        monthlyIncomeService.createOrUpdate(null, incomes);
+
+        // Monthly payments
+        MonthlyPayments payments = new MonthlyPayments();
+        payments.setMonth(invoiceRequest.getPaymentDate().getMonth());
+        payments.setBranch(user.getRoom().getBranch());
+        payments.setCost(facilityTotal.add(electricityTotal).add(waterTotal));
+
+        // Invoices
         Invoices invoice = new Invoices();
         invoice.setUser(user);
         invoice.setContract(contract);

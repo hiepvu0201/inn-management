@@ -6,15 +6,14 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 @Entity
 public class MonthlyIncomes extends BasicEntity {
 
-    private String itemName;
-
-    @Column(precision = 16, scale = 4)
-    private Double earn;
+    private BigDecimal earn;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
@@ -23,11 +22,21 @@ public class MonthlyIncomes extends BasicEntity {
 
     private Long branchId;
 
+    private Month month;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    public Month getMonth() {
+        return month;
+    }
+
+    public void setMonth(Month month) {
+        this.month = month;
+    }
 
     public LocalDateTime getCreatedDate() {
         return createdDate;
@@ -61,19 +70,11 @@ public class MonthlyIncomes extends BasicEntity {
         this.branch = branch;
     }
 
-    public String getItemName() {
-        return itemName;
+    public BigDecimal getEarn() {
+        return (earn == null) ? BigDecimal.ZERO : earn;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public Double getEarn() {
-        return earn;
-    }
-
-    public void setEarn(Double earn) {
+    public void setEarn(BigDecimal earn) {
         this.earn = earn;
     }
 }

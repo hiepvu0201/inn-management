@@ -1,6 +1,7 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jayway.jsonpath.internal.function.numeric.Min;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -40,11 +41,21 @@ public class Contracts extends BasicEntity {
 
     private int voucher;
 
+    private int year;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public LocalDateTime getSignDate() {
         return signDate;

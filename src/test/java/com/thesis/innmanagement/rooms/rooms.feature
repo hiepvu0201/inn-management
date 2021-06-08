@@ -15,7 +15,13 @@ Feature: rooms test
       "roomNo": "E1-001",
       "position": "TP.Thu Duc",
       "facilityIds": [1],
-      "branchId": 1
+      "branchId": 1,
+      "roomType": 0,
+      "priceByFirstHour": 100,
+      "priceByNextHour": 200,
+      "priceByDay": 300,
+      "priceByWeek": 400,
+      "priceByMonth":500
     }
     """
     Given path 'api/v1/rooms/'

@@ -42,7 +42,7 @@ import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
 import { LocalDate, LocalDateTime } from "@js-joda/core";
-import Moment from "react-moment";
+import Moment from "moment";
 const { Option } = Select;
 
 function Users(props) {
@@ -274,12 +274,14 @@ function Users(props) {
   //form_checkin
   const [stateDatecheckin, setDatecheckin] = useState({});
   const onFinish_checkin = (values) => {
-    const datetime = new Date().toISOString();
+    const date = Moment();
+    const datetime = date.parseZone();
+
     // const dt2 = datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
-      checkinDate: values["checkinDate"].format("YYYY-MM-DD HH:mm:ss"),
+      checkinDate: datetime
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -291,7 +293,7 @@ function Users(props) {
         fetchUsersList();
         message.success("Checkin successfully");
       } catch (error) {
-        console.log("Failed to checkin users", error);
+        console.log("Failed to checkin users", error.response);
         setIsloadingUpdate(false);
       }
     };
@@ -582,9 +584,7 @@ function Users(props) {
             <Form.Item label="Ngày checkin" name="checkinDate">
               <DatePicker
                 placeholder={rowEdit.checkinDate}
-                showTime
-                format="YYYY-MM-DD HH:mm:ss"
-                disabled
+                showTime format="YYYY-MM-DD HH:mm:ss"
               />
             </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">

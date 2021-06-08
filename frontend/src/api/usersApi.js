@@ -22,7 +22,7 @@ const usersApi = {
     return axiosClient.delete(url);
   },
   checkin(params){
-    const url = `/api/v1/users/checkin/?roomNo=${params.roomNo}&userName=${params.userName}`;
+    const url = `/api/v1/users/checkin/?roomNo=${params.roomNo}&userName=${params.userName}&checkInDate=${params.checkinDate}`;
     return axiosClient.get(url);
   },
    checkout(params){

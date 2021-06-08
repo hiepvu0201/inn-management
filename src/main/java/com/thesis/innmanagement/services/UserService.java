@@ -1,6 +1,7 @@
 package com.thesis.innmanagement.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thesis.innmanagement.entities.Contracts;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.entities.enums.ERole;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -33,6 +35,9 @@ public class UserService {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    private ContractRepository contractRepository;
 
     public List<Users> findAll() {
         return userRepository.findAll();
@@ -124,21 +129,27 @@ public class UserService {
         return response;
     }
 
-    public String checkIn(String userName, String roomNo) {
+    public String checkIn(String userName, String roomNo, LocalDateTime checkInDate) {
         Users user = userRepository.findByUserName(userName);
         Rooms room = roomRepository.findByRoomNo(roomNo);
         user.setRoom(room);
         user.setRoomId(room.getId());
+        user.setCheckinDate(checkInDate);
         userRepository.save(user);
         return "Check in success! Have a good day!";
     }
 
-    public String checkOut(String userName) {
+    public String checkOut(String userName, LocalDateTime checkOutDate) {
         try {
             Users user = userRepository.findByUserName(userName);
             user.setRoom(null);
             user.setRoomId(null);
+            user.setCheckoutDate(checkOutDate);
             userRepository.save(user);
+
+            Contracts contract = contractRepository.findByTenantUserName(userName, checkOutDate.getYear());
+            contract.setEndDate(checkOutDate);
+            contract.setClosed(true);
             return "Check out success! Have a good day!";
         } catch (Exception e) {
             return "Check out failed! Error: " + e.getMessage();

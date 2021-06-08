@@ -30,6 +30,7 @@ import {
 } from "antd";
 import usersApi from "../../../api/usersApi";
 import contractsApi from "../../../api/contractApi";
+import { LocalDateTime } from "@js-joda/core";
 const { Option } = Select;
 
 function Contract(props) {
@@ -71,11 +72,12 @@ function Contract(props) {
   }, []);
   //form
   const onFinish = (values) => {
+    const dateTime=LocalDateTime.now()
     const dataCreate = {
       ...values,
       // ownerIds: idSelected,
       // tenantIds: idSelected_1,
-      signDate: values["signDate"].format("YYYY-MM-DD HH:mm:ss"),
+      signDate: dateTime,
     };
     console.log("dataCreate", dataCreate);
 
@@ -163,6 +165,11 @@ function Contract(props) {
       dataIndex: "signDate",
       key: "signDate",
       render: (signDate) => <Tag color="cyan">{signDate}</Tag>,
+    },
+    {
+      title: "Số năm",
+      dataIndex: "year",
+      key: "year",
     },
     {
       title: "Số phòng",
@@ -447,6 +454,9 @@ function Contract(props) {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Số lầu" name="numberOfStage">
+                      <Input />
+                    </Form.Item>
+                     <Form.Item label="Số năm" name="year">
                       <Input />
                     </Form.Item>
                     <Form.Item label="Khuyến mãi" name="voucher">

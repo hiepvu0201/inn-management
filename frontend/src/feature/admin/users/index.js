@@ -42,7 +42,7 @@ import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
 import { LocalDate, LocalDateTime } from "@js-joda/core";
-import Moment from "moment";
+import Moment from "react-moment";
 const { Option } = Select;
 
 function Users(props) {
@@ -274,14 +274,13 @@ function Users(props) {
   //form_checkin
   const [stateDatecheckin, setDatecheckin] = useState({});
   const onFinish_checkin = (values) => {
-    const date = Moment();
-    const datetime = date.parseZone();
+    const datetime = LocalDateTime.now();
 
     // const dt2 = datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
-      checkinDate: datetime
+      checkInDate:datetime,
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -301,9 +300,11 @@ function Users(props) {
   };
   //form_checkout
   const onFinish_checkout = (values) => {
+    const datetime__ = LocalDateTime.now();
     const datacheckout = {
       ...values,
       userName: rowEditcheckout.userName,
+      checkOutDate: datetime__,
     };
     const fetchCheckout = async () => {
       console.log("dataCheckin", datacheckout);
@@ -420,6 +421,11 @@ function Users(props) {
       dataIndex: "checkinDate",
       key: "checkinDate",
     },
+      {
+      title: "Ngày checkout",
+      dataIndex: "checkoutDate",
+      key: "checkoutDate",
+    },
     {
       title: "Hình ảnh",
       dataIndex: "images",
@@ -429,10 +435,9 @@ function Users(props) {
     },
     {
       title: "Quyền",
-      dataIndex: "roleIds",
-      key: "roleIds",
-      // render:(roles)=><div>{roles.id}</div>
-      // render: (roles) => <div>{roles.map((us) => us.name) + " "}</div>,
+      dataIndex: "roles",
+      key: "roles",
+      render: (roles) => <div>{roles[0].name}</div>,
       // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
@@ -581,10 +586,10 @@ function Users(props) {
             onFinish={onFinish_checkin}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item label="Ngày checkin" name="checkinDate">
+            <Form.Item label="Ngày checkin" name="checkInDate">
               <DatePicker
-                placeholder={rowEdit.checkinDate}
                 showTime format="YYYY-MM-DD HH:mm:ss"
+                disabled
               />
             </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">
@@ -646,7 +651,11 @@ function Users(props) {
             <Form.Item label="Khách trọ" name="userName" value="userName">
               <Input placeholder={rowEditcheckout.userName} disabled />
             </Form.Item>
-
+            <Form.Item label="Ngày checkout" name="checkOutDate">
+              <DatePicker
+                showTime format="YYYY-MM-DD HH:mm:ss"
+              />
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CẬP NHẬT{" "}
@@ -926,7 +935,7 @@ function Users(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={usersList} />
+              <Table columns={columns} bordered dataSource={usersList} rowKey="id" />
             </div>
           </div>
         </div>

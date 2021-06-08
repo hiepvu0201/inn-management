@@ -22,11 +22,11 @@ const usersApi = {
     return axiosClient.delete(url);
   },
   checkin(params){
-    const url = `/api/v1/users/checkin/?roomNo=${params.roomNo}&userName=${params.userName}&checkInDate=${params.checkinDate}`;
+    const url = `/api/v1/users/checkin/?roomNo=${params.roomNo}&userName=${params.userName}&checkInDate=${params.checkInDate}`;
     return axiosClient.get(url);
   },
    checkout(params){
-    const url = `/api/v1/users/checkout/?userName=${params.userName}`;
+    const url = `/api/v1/users/checkout/?userName=${params.userName}&checkOutDate=${params.checkOutDate}`;
     return axiosClient.get(url);
   },
   getimage(file){

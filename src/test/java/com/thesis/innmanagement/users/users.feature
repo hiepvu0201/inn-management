@@ -38,13 +38,13 @@ Feature: users test
     Given path 'api/v1/users/checkin'
     And param userName = 'user'
     And param roomNo = 'E1-001'
-    And param checkInDate = 2021-01-13T17:09:42.411
+    And param checkInDate = '2021-01-13T17:09:42.411'
     When method GET
     Then status 200
 
   Scenario: check out
     Given path 'api/v1/users/checkout'
     And param userName = 'user'
-    And param checkOutDate = 2021-01-13T17:09:42.411
+    And param checkOutDate = '2021-01-13T17:09:42.411'
     When method GET
     Then status 200

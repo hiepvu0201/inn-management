@@ -74,7 +74,7 @@ public class Contracts extends BasicEntity {
     }
 
     public Boolean getClosed() {
-        return isClosed;
+        return (isClosed == null) ? false : isClosed;
     }
 
     public void setClosed(Boolean closed) {

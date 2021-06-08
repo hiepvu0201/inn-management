@@ -7,6 +7,7 @@ import com.thesis.innmanagement.payload.PasswordChangeRequest;
 import com.thesis.innmanagement.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,14 +39,14 @@ public class UserController {
     @GetMapping("/checkin")
     public ResponseEntity<String> checkIn(@Param("userName") String userName,
                                           @Param("roomNo") String roomNo,
-                                          @Param("checkInDate") LocalDateTime checkInDate) {
+                                          @Param("checkInDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime checkInDate) {
         String message = userService.checkIn(userName, roomNo, checkInDate);
         return ResponseEntity.ok().body(message);
     }
 
     @GetMapping("/checkout")
     public ResponseEntity<String> checkout(@Param("userName") String userName,
-                                           @Param("checkOutDate") LocalDateTime checkOutDate) {
+                                           @Param("checkOutDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime checkOutDate) {
         String message = userService.checkOut(userName, checkOutDate);
         return ResponseEntity.ok().body(message);
     }

@@ -1,7 +1,6 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thesis.innmanagement.entities.enums.EMonth;
 import com.thesis.innmanagement.config.entity.BasicEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -9,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 @Entity
 public class ElectricityWater extends BasicEntity {
@@ -32,7 +32,7 @@ public class ElectricityWater extends BasicEntity {
 
     private boolean isChecked;
 
-    private EMonth month;
+    private Month month;
 
     private Long roomId;
 
@@ -170,11 +170,11 @@ public class ElectricityWater extends BasicEntity {
         isChecked = checked;
     }
 
-    public EMonth getMonth() {
+    public Month getMonth() {
         return month;
     }
 
-    public void setMonth(EMonth month) {
+    public void setMonth(Month month) {
         this.month = month;
     }
 }

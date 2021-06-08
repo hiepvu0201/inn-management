@@ -35,7 +35,6 @@ public class Rooms extends BasicEntity {
 
     private ERoom roomType;
 
-    @Column(length = 64)
     private String images;
 
     @CreationTimestamp

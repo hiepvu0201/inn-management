@@ -73,9 +73,9 @@ function Contract(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      ownerIds: idSelected,
-      tenantIds: idSelected_1,
-      signDate: values["signDate"].format("YYYY-MM-DD"),
+      // ownerIds: idSelected,
+      // tenantIds: idSelected_1,
+      signDate: values["signDate"].format("YYYY-MM-DD HH:mm:ss"),
     };
     console.log("dataCreate", dataCreate);
 
@@ -108,9 +108,7 @@ function Contract(props) {
   const onFinish_edit = (values) => {
     const dataUpdate = {
       ...values,
-      ownerIds: idSelected,
-      tenantIds: idSelected_1,
-      signDate: values["signDate"].format("YYYY-MM-DD"),
+      signDate: values["signDate"].format("YYYY-MM-DD HH:mm:ss"),
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -133,13 +131,13 @@ function Contract(props) {
   //select
   function handleChange(value) {
     console.log(`selected user ADMIN ${value}`);
-    const usersvalue = [value];
-    setidSelected(usersvalue);
+    // const usersvalue = [value];
+    // setidSelected(usersvalue);
   }
   function handleChange_1(value) {
     console.log(`selected user CLIENT ${value}`);
-    const usersvalue = [value];
-    setidSelected_1(usersvalue);
+    // const usersvalue = [value];
+    // setidSelected_1(usersvalue);
   }
   //input_num
   function onChange_inputnum(value) {
@@ -164,6 +162,7 @@ function Contract(props) {
       title: "Ngày ký hợp đồng",
       dataIndex: "signDate",
       key: "signDate",
+      render: (signDate) => <Tag color="cyan">{signDate}</Tag>,
     },
     {
       title: "Số phòng",
@@ -184,13 +183,13 @@ function Contract(props) {
       title: "Chủ trọ",
       dataIndex: "owner",
       key: "owner",
-      render: (owner) => <div>{owner[0].userName}</div>,
+      render: (owner) => <div>{owner.userName}</div>,
     },
     {
       title: "Khách thuê",
       dataIndex: "tenant",
       key: "tenant",
-      render: (tenant) => <div>{tenant[0].userName}</div>,
+      render: (tenant) => <div>{tenant.userName}</div>,
     },
     {
       title: "",
@@ -323,7 +322,7 @@ function Contract(props) {
             <Form.Item label="Khuyến mãi" name="voucher">
               <Input placeholder={rowEdit.voucher} />
             </Form.Item>
-            <Form.Item label="Chủ trọ">
+            <Form.Item label="Chủ trọ" name="ownerId">
               <Select onChange={handleChange}>
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_ADMIN" ? (
@@ -339,7 +338,7 @@ function Contract(props) {
                 )}
               </Select>
             </Form.Item>
-            <Form.Item label="Người thuê">
+            <Form.Item label="Người thuê" name="tenantId">
               <Select onChange={handleChange_1}>
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_USER" ? (
@@ -453,13 +452,13 @@ function Contract(props) {
                     <Form.Item label="Khuyến mãi" name="voucher">
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Chủ trọ">
+                    <Form.Item label="Chủ trọ" name="ownerId">
                       <Select onChange={handleChange}>
                         {usersList.map((ownerid) =>
                           ownerid.roles[0].name === "ROLE_ADMIN" ? (
                             <Select.Option
-                              key={ownerid.userName}
-                              value={ownerid.userName}
+                              key={ownerid.id}
+                              value={ownerid.id}
                             >
                               {ownerid.userName}
                             </Select.Option>
@@ -469,13 +468,13 @@ function Contract(props) {
                         )}
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Người thuê">
+                    <Form.Item label="Người thuê" name="tenantId">
                       <Select onChange={handleChange_1}>
                         {usersList.map((ownerid) =>
                           ownerid.roles[0].name === "ROLE_USER" ? (
                             <Select.Option
-                              key={ownerid.userName}
-                              value={ownerid.userName}
+                              key={ownerid.id}
+                              value={ownerid.id}
                             >
                               {ownerid.userName}
                             </Select.Option>

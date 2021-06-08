@@ -338,17 +338,11 @@ function ElectricityWaters(props) {
             <Form.Item label="Số điện mới" name="numElectricNew">
               <Input placeholder={rowEdit.numElectricNew} />
             </Form.Item>
-            <Form.Item label="Số điện tiêu thụ" name="numElectricConsump">
-              <Input placeholder={rowEdit.numElectricConsump} />
-            </Form.Item>
             <Form.Item label="Số nước cũ" name="numWaterOld">
               <Input placeholder={rowEdit.numWaterOld} />
             </Form.Item>
             <Form.Item label="Số nước mới" name="numWaterNew">
               <Input placeholder={rowEdit.numWaterNew} />
-            </Form.Item>
-            <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
-              <Input placeholder={rowEdit.numWaterConsump} />
             </Form.Item>
             <Form.Item label="Giá điện" name="electricityUnitPrice">
               <Input
@@ -364,7 +358,6 @@ function ElectricityWaters(props) {
             </Form.Item>
             <Form.Item label="Tháng" name="month">
               <Select
-                defaultValue="lucy"
                 style={{ width: 120 }}
                 placeholder={rowEdit.month}
               >
@@ -479,22 +472,11 @@ function ElectricityWaters(props) {
                       <Form.Item label="Số điện mới" name="numElectricNew">
                         <Input />
                       </Form.Item>
-                      <Form.Item
-                        label="Số điện tiêu thụ"
-                        name="numElectricConsump"
-                      >
-                        <Input />
-                      </Form.Item>
+                   
                       <Form.Item label="Số nước cũ" name="numWaterOld">
                         <Input />
                       </Form.Item>
                       <Form.Item label="Số nước mới" name="numWaterNew">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item
-                        label="Số nước tiêu thụ"
-                        name="numWaterConsump"
-                      >
                         <Input />
                       </Form.Item>
                       <Form.Item label="Giá điện" name="electricityUnitPrice">
@@ -510,7 +492,7 @@ function ElectricityWaters(props) {
                         />
                       </Form.Item>
                       <Form.Item label="Tháng" name="month">
-                        <Select defaultValue="lucy" style={{ width: 120 }}>
+                        <Select  style={{ width: 120 }}>
                           <Option value="1">Tháng 1</Option>
                           <Option value="2">Tháng 2</Option>
                           <Option value="3">Tháng 3</Option>

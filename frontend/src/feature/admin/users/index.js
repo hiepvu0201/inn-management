@@ -41,6 +41,8 @@ import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
+import { LocalDate, LocalDateTime } from "@js-joda/core";
+import Moment from "react-moment";
 const { Option } = Select;
 
 function Users(props) {
@@ -270,10 +272,14 @@ function Users(props) {
     fetchUpdateUsers();
   };
   //form_checkin
+  const [stateDatecheckin, setDatecheckin] = useState({});
   const onFinish_checkin = (values) => {
+    const datetime = new Date().toISOString();
+    // const dt2 = datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
+      checkinDate: values["checkinDate"].format("YYYY-MM-DD HH:mm:ss"),
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -408,6 +414,11 @@ function Users(props) {
       key: "job",
     },
     {
+      title: "Ngày checkin",
+      dataIndex: "checkinDate",
+      key: "checkinDate",
+    },
+    {
       title: "Hình ảnh",
       dataIndex: "images",
       key: "images",
@@ -416,9 +427,10 @@ function Users(props) {
     },
     {
       title: "Quyền",
-      dataIndex: "roles",
-      key: "roles",
-      render: (roles) => <div>{roles.map((us) => us.name) + " "}</div>,
+      dataIndex: "roleIds",
+      key: "roleIds",
+      // render:(roles)=><div>{roles.id}</div>
+      // render: (roles) => <div>{roles.map((us) => us.name) + " "}</div>,
       // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
@@ -521,9 +533,7 @@ function Users(props) {
     } else {
       const fetchGetalluserbyUsername = async () => {
         try {
-          const response = await usersApi.getalluserbyusername(
-            value
-          );
+          const response = await usersApi.getalluserbyusername(value);
           console.log(
             "Fetch userall by username successfully: ",
             response.data
@@ -569,14 +579,12 @@ function Users(props) {
             onFinish={onFinish_checkin}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item
-              label="Khách trọ"
-              name="userName"
-              value={rowEditcheck.userName}
-            >
-              <Input
-                placeholder={rowEditcheck.userName}
-                value={rowEditcheck.userName}
+            <Form.Item label="Ngày checkin" name="checkinDate">
+              <DatePicker
+                placeholder={rowEdit.checkinDate}
+                showTime
+                format="YYYY-MM-DD HH:mm:ss"
+                disabled
               />
             </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">
@@ -842,7 +850,7 @@ function Users(props) {
                         </div>
                       </div>
 
-                      <Form.Item label="Mật khẩu" name="passwordHash">
+                      <Form.Item label="Mật khẩu" name="password">
                         <Input.Password />
                       </Form.Item>
                       <Form.Item label="email" name="email">

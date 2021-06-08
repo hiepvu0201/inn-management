@@ -48,7 +48,7 @@ function Facilities(props) {
       console.log("Fetch facilities successfully: ", response.data);
       setFacilitiesList(response.data);
     } catch (error) {
-      console.log("Failed to fetch facilities list: ", error);
+      console.log("Failed to fetch facilities list: ", error.response);
     }
   };
   const fetchBranchesList = async () => {
@@ -165,6 +165,15 @@ function Facilities(props) {
       title: "Chất lượng",
       dataIndex: "quality",
       key: "quality",
+      render: (text) => (
+        <>
+          {text === "NEW" ? (
+            <Tag color="#ffcc00">NEW</Tag>
+          ) : (
+            <Tag color="#45bd04">AVAILABEL</Tag>
+          )}
+        </>
+      ),
     },
     {
       title: "Số lượng",
@@ -278,13 +287,12 @@ function Facilities(props) {
             </Form.Item>
             <Form.Item label="Chất lượng" name="quality">
               <Select
-                defaultValue="lucy"
                 style={{ width: 120 }}
                 onChange={handleChange}
                 placeholder={rowEdit.quality}
               >
-                <Option value="0">New</Option>
-                <Option value="1">Available</Option>
+                <Option value="1">New</Option>
+                <Option value="0">Available</Option>
               </Select>
             </Form.Item>
             <Form.Item label="Số lượng" name="quantity">
@@ -377,12 +385,11 @@ function Facilities(props) {
                       </Form.Item>
                       <Form.Item label="Chất lượng" name="quality">
                         <Select
-                          defaultValue="lucy"
                           style={{ width: 120 }}
                           onChange={handleChange}
                         >
-                          <Option value="0">New</Option>
-                          <Option value="1">Available</Option>
+                          <Option value="1">New</Option>
+                          <Option value="0">Available</Option>
                         </Select>
                       </Form.Item>
                       <Form.Item label="Số lượng" name="quantity">

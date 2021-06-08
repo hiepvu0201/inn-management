@@ -38,6 +38,10 @@ public class CalculateHelper {
                 .multiply(new BigDecimal(electricityWater.getNumElectricConsump()));
     }
 
+    public BigDecimal getTotalFacilityPrice(Facilities facility) {
+        return facility.getUnitPrice().multiply(new BigDecimal(facility.getQuantity()));
+    }
+
     public BigDecimal getRoomTotal(Rooms room, LocalDateTime from, LocalDateTime to) {
         switch (room.getRoomType()) {
             case ROOM_BY_HOUR:

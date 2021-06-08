@@ -13,7 +13,7 @@ Feature: facilities test
     """
     {
       "name": "light",
-      "quality": "new",
+      "quality": "0",
       "quantity": "100",
       "unitPrice": "100"
     }

@@ -514,7 +514,7 @@ function Contract(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={contractList} />
+              <Table columns={columns} bordered dataSource={contractList} rowKey="id" />
             </div>
           </div>
         </div>

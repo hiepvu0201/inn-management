@@ -41,7 +41,7 @@ import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
-import { LocalDate, LocalDateTime } from "@js-joda/core";
+import {  LocalDateTime } from "@js-joda/core";
 import Moment from "react-moment";
 const { Option } = Select;
 
@@ -280,7 +280,7 @@ function Users(props) {
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
-      checkInDate:datetime,
+      checkInDate:LocalDateTime.now(),
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -589,7 +589,7 @@ function Users(props) {
             <Form.Item label="Ngày checkin" name="checkInDate">
               <DatePicker
                 showTime format="YYYY-MM-DD HH:mm:ss"
-                disabled
+                
               />
             </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">

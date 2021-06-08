@@ -323,7 +323,7 @@ function Rooms(props) {
     },
     {
       title: "Giá phòng theo giờ sau",
-      dataIndex: "priceByFirstHour",
+      dataIndex: "priceByNextHour",
       key: "priceByNextHour",
       render: (priceByNextHour) =>
         priceByNextHour === null ? (
@@ -741,7 +741,7 @@ function Rooms(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={roomList} />
+              <Table columns={columns} bordered dataSource={roomList} rowKey="id" />
             </div>
           </div>
         </div>

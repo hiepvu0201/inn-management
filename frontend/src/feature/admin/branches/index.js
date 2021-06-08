@@ -495,7 +495,7 @@ function Branches(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={branchList} />
+              <Table columns={columns} bordered dataSource={branchList} rowKey="id" />
             </div>
           </div>
         </div>

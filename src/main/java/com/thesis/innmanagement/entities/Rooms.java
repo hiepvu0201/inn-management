@@ -82,7 +82,7 @@ public class Rooms extends BasicEntity {
     }
 
     public BigDecimal getPriceByDay() {
-        return priceByDay;
+        return (priceByDay == null) ? BigDecimal.ZERO : priceByDay;
     }
 
     public void setPriceByDay(BigDecimal priceByDay) {
@@ -90,7 +90,7 @@ public class Rooms extends BasicEntity {
     }
 
     public BigDecimal getPriceByWeek() {
-        return priceByWeek;
+        return (priceByWeek == null) ? BigDecimal.ZERO : priceByWeek;
     }
 
     public void setPriceByWeek(BigDecimal priceByWeek) {
@@ -98,7 +98,7 @@ public class Rooms extends BasicEntity {
     }
 
     public BigDecimal getPriceByMonth() {
-        return priceByMonth;
+        return (priceByMonth == null) ? BigDecimal.ZERO : priceByMonth;
     }
 
     public void setPriceByMonth(BigDecimal priceByMonth) {

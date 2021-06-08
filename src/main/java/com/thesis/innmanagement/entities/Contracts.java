@@ -19,6 +19,7 @@ public class Contracts extends BasicEntity {
 
     private LocalDateTime endDate;
 
+    @Column(columnDefinition = "default false")
     private Boolean isClosed;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -74,7 +75,7 @@ public class Contracts extends BasicEntity {
     }
 
     public Boolean getClosed() {
-        return isClosed;
+        return (isClosed == null) ? false : isClosed;
     }
 
     public void setClosed(Boolean closed) {

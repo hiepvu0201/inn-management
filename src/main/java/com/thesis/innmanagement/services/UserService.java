@@ -148,8 +148,10 @@ public class UserService {
             userRepository.save(user);
 
             Contracts contract = contractRepository.findByTenantUserName(userName, checkOutDate.getYear());
-            contract.setEndDate(checkOutDate);
-            contract.setClosed(true);
+            if (contract != null) {
+                contract.setEndDate(checkOutDate);
+                contract.setClosed(true);
+            }
             return "Check out success! Have a good day!";
         } catch (Exception e) {
             return "Check out failed! Error: " + e.getMessage();

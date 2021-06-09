@@ -12,9 +12,9 @@ Feature: monthly-payments test
     And def monthlyPaymentInfo =
     """
     {
-      "itemName": "first quarter",
       "cost": "10000",
-      "branchId": 1
+      "branchId": 1,
+      "month": 1
     }
     """
     Given path 'api/v1/monthly-payments/'

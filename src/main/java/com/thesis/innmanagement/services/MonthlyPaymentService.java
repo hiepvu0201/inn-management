@@ -38,7 +38,7 @@ public class MonthlyPaymentService {
 
     public MonthlyPayments createOrUpdate(Long id, MonthlyPayments monthlyPayment) throws ResourceNotFoundException {
         monthlyPayment.setBranch(branchRepository.findById(monthlyPayment.getBranchId()).orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyPayment.getBranchId())));
-        monthlyPayment.setMonth(monthlyPayment.getCreatedDate().getMonth());
+        monthlyPayment.setMonth(monthlyPayment.getMonth());
         if(id == null) {
             monthlyPaymentRepository.save(monthlyPayment);
             return monthlyPayment;

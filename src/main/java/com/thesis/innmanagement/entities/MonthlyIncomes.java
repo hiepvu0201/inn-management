@@ -22,7 +22,7 @@ public class MonthlyIncomes extends BasicEntity {
 
     private Long branchId;
 
-    private Month month;
+    private int month;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
@@ -30,11 +30,11 @@ public class MonthlyIncomes extends BasicEntity {
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
-    public Month getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(Month month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 

@@ -1,7 +1,5 @@
 package com.thesis.innmanagement.controllers;
 
-import com.thesis.innmanagement.entities.Branches;
-import com.thesis.innmanagement.entities.Contracts;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.MonthlyIncomes;
 import com.thesis.innmanagement.services.MonthlyIncomeService;

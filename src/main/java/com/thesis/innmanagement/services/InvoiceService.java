@@ -74,14 +74,14 @@ public class InvoiceService {
 
         // Monthly incomes
         MonthlyIncomes incomes = new MonthlyIncomes();
-        incomes.setMonth(invoiceRequest.getPaymentDate().getMonth());
+        incomes.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
         incomes.setBranchId(user.getRoom().getBranchId());
         incomes.setEarn(total);
         monthlyIncomeService.createOrUpdate(null, incomes);
 
         // Monthly payments
         MonthlyPayments payments = new MonthlyPayments();
-        payments.setMonth(invoiceRequest.getPaymentDate().getMonth());
+        payments.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
         payments.setBranch(user.getRoom().getBranch());
         payments.setCost(facilityTotal.add(electricityTotal).add(waterTotal));
 

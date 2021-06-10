@@ -1,0 +1,41 @@
+.rectangle {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+.topic-left-faci {
+  float: left;
+  display: flex;
+  width: 40%;
+}
+.topic-right-faci {
+  width: 60%;
+}
+.content {
+  font-size: 20px;
+  font-family: "PT Sans, sans-serif";
+  color: #007c7e;
+  padding-left: 20px;
+}
+.btn-right-faci {
+  float: right;
+  display: flex;
+}
+.detailed-btn-faci {
+  font-size: 15px;
+  font-family: "PT Sans, sans-serif";
+  color: #007c7e;
+  width: 100%;
+  background-color: white;
+  border-color: #007c7e;
+  border-style: solid;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 20px;
+}
+.detailed-btn-faci:hover {
+  background-color: #007c7e;
+  color: white;
+}

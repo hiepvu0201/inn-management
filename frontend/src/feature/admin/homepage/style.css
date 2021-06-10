@@ -1,0 +1,28 @@
+.title{
+     font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+    width:30%;
+    display:flex;
+    padding-left: 30px;
+}
+.title-1{
+     font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#fcdbdb
+}
+.title-2{
+     font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#d0e7e7
+}
+.title-3{
+     font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#f7f7f7
+}
+.title-4{
+     font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#fbedb5;
+}

@@ -1,0 +1,159 @@
+.button-free {
+  width: 75%;
+  height: 80%;
+  border-radius: 15px;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  background-color: #007c7e;
+  font-size: 28px;
+  font-weight: bold;
+}
+.button-free:hover {
+  background-color: #eb2f5b;
+}
+.content {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  padding-top: 10px;
+}
+.container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.topic {
+  font-size: 30px;
+  padding-top: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.circle-topic {
+  width: 3rem;
+  height: 3rem;
+  background-color: #007c7e;
+  left: 25px;
+  bottom: 15px;
+  position: relative;
+  border-radius: 50%;
+}
+.btn-signup-2 {
+  width: 20%;
+  height: 40px;
+  font-size: 14px;
+  font-family: "PT Sans", sans-serif;
+  background-color: #007c7e;
+  border-radius: 10px;
+  color: white;
+}
+.btn-signup-2:hover {
+  background-color: #eb2f5b;
+}
+.content-contact {
+  width: 80%;
+  height: auto;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  padding-bottom: 10px;
+}
+.content-atlast {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5px;
+}
+.box-block {
+  max-width: 250px;
+  height: 250px;
+  background-color: #007c7e;
+  border-radius: 80% 60% 25% 76%;
+  display: flex;
+  justify-content: center;
+  /* padding-top: 5px  !important; */
+  /* padding-top: 70px  !important; */
+}
+.number-topinleft {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: #009c7e;
+  text-align: center;
+  color: #ffff;
+  position: absolute;
+  left: 270px;
+  top: 30px;
+}
+.ti-content-compo {
+  width: 100%;
+  height: auto;
+  font-size: 24px;
+  font-family: 700;
+  color: white;
+  font-family: "PT Sans", sans-serif;
+}
+.num-topic {
+  color: #007c7e;
+  font-size: 42px;
+  line-height: 2;
+  font-weight: 700;
+}
+.topic-black {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "PT Sans", sans-serif;
+  text-align: left;
+  width: 100%;
+}
+.content-gray {
+  color: black;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  opacity: 0.5;
+  width: 100%;
+  height: auto;
+  text-align: left;
+}
+.box-last {
+  width: 80%;
+  height: 210px;
+  background-color: #007c7e;
+  display: "flex";
+  justify-content: center;
+}
+.icon-hover-2 {
+  border-radius: 50%;
+  background-color: white;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-hover-2:hover {
+  background-color: #009c7e;
+}
+.topic-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-family: "PT Sans", sans-serif;
+}
+.content-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 15px;
+  color: white;
+  font-family: "PT Sans", sans-serif;
+}

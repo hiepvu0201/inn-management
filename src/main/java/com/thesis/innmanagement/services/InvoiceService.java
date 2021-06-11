@@ -1,5 +1,8 @@
 package com.thesis.innmanagement.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.thesis.innmanagement.entities.*;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.helpers.CalculateHelper;
@@ -13,7 +16,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class InvoiceService {
@@ -39,6 +45,9 @@ public class InvoiceService {
     @Autowired
     private MonthlyPaymentService monthlyPaymentService;
 
+    @Autowired
+    private RoomService roomService;
+
     public List<Invoices> findAll() {
         return invoiceRepository.findAll();
     }
@@ -46,6 +55,9 @@ public class InvoiceService {
     public Invoices findById(Long id) throws ResourceNotFoundException {
         return invoiceRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invoice not found on id: " + id));
     }
+//    public Invoices findByUserName(String userName) {
+//        return invoiceRepository.findbyUsername(userName);
+//    }
 
     private Invoices update(Invoices invoiceInfo, Long id) throws ResourceNotFoundException {
         Invoices invoice = new Invoices();
@@ -57,7 +69,7 @@ public class InvoiceService {
         return invoice;
     }
 
-    public Invoices createOrUpdate(Long id, InvoiceRequest invoiceRequest) throws ResourceNotFoundException {
+    public Invoices createOrUpdate(Long id, InvoiceRequest invoiceRequest) throws ResourceNotFoundException, JsonProcessingException {
         Users user = userRepository.findByUserName(invoiceRequest.getUserName());
         Contracts contract = contractRepository.findByTenantUserName(invoiceRequest.getUserName(), invoiceRequest.getPaymentDate().getYear());
         ElectricityWater electricityWater = electricityWaterRepository.findByRoomId(user.getRoomId());
@@ -65,8 +77,17 @@ public class InvoiceService {
         BigDecimal facilityTotal = calculateHelper.getFacilityTotalPrice(user.getRoom().getFacilities());
         BigDecimal electricityTotal = calculateHelper.getElectricityTotalPrice(electricityWater);
         BigDecimal waterTotal = calculateHelper.getWaterTotalPrice(electricityWater);
+
+        // Rooms
         LocalDateTime lastPaymentDate = (user.getRoom().getLastPaymentDate() == null) ? user.getCheckinDate() : user.getRoom().getLastPaymentDate();
         BigDecimal roomTotal = calculateHelper.getRoomTotal(user.getRoom(), lastPaymentDate, invoiceRequest.getPaymentDate());
+        Rooms updateInfoRoom = user.getRoom();
+        updateInfoRoom.setLastPaymentDate(lastPaymentDate);
+        updateInfoRoom.setTotal(roomTotal);
+        updateInfoRoom.setBranchId(user.getRoom().getBranchId());
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String jsonRoom = ow.writeValueAsString(updateInfoRoom);
+        roomService.createOrUpdate(user.getRoom().getId(), jsonRoom, null);
 
         List<BigDecimal> listTotal = Arrays.asList(facilityTotal, electricityTotal, waterTotal, roomTotal);
 
@@ -84,6 +105,7 @@ public class InvoiceService {
         payments.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
         payments.setBranch(user.getRoom().getBranch());
         payments.setCost(facilityTotal.add(electricityTotal).add(waterTotal));
+        monthlyPaymentService.createOrUpdate(null, payments);
 
         // Invoices
         Invoices invoice = new Invoices();

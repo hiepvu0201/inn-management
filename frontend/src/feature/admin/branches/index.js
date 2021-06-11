@@ -3,14 +3,11 @@ import "./style.css";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import {
   Table,
@@ -22,7 +19,6 @@ import {
   Input,
   Select,
   Spin,
-  InputNumber,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
@@ -32,11 +28,7 @@ import Cookies from "js-cookie";
 const { Option } = Select;
 
 function Branches(props) {
-  //api
   const [rowEdit, setRowEdit] = useState({});
-
-  const [idSelected, setidSelected] = useState([]);
-
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [nullstate, setNullstate] = useState([])
@@ -44,6 +36,8 @@ function Branches(props) {
   const [branchList, setBranchList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
+  const propsselect = [];
+
   const fetchUserList = async () => {
     try {
       const response = await usersApi.getAll();
@@ -58,6 +52,7 @@ function Branches(props) {
       const response = await branchesApi.getAll();
       console.log("Fetch branch successfully: ", response.data);
       setBranchList(response.data);
+      setfaketable(response.data)
       setNullstate(response.data)
       setIsModalVisible_1(false);
     } catch (error) {
@@ -69,7 +64,6 @@ function Branches(props) {
       const response = await facilitiesApi.getAll();
       console.log("Fetch Facility successfully: ", response.data);
       setFacilitiesList(response.data);
-      // setPropselect(response.data);
     } catch (error) {
       console.log("Failed to fetch Facility list: ", error);
     }
@@ -80,8 +74,6 @@ function Branches(props) {
     fetchBranchList();
   }, []);
   //form
-  const { Option } = Select;
-  const propsselect = [];
   {
     facilitiesList.map((facilitiesid) =>
       propsselect.push(
@@ -91,12 +83,10 @@ function Branches(props) {
       )
     );
   }
-  const [table, setTable] = useState([]);
   const onFinish = (values) => {
     const fetchCreateBranch = async () => {
       const dataCreate = {
         ...values,
-        // facilityIds: idSelected,
       };
       console.log("dataCreate", dataCreate);
       try {
@@ -122,8 +112,7 @@ function Branches(props) {
     }
   };
   const fetchUpdateBranches = async (values) => {
-    // setIsloadingUpdate(true);
-
+    setIsloadingUpdate(true);
     try {
       const response = await branchesApi.updatebranch(values);
       console.log("Fetch update branches successfully", response);
@@ -131,15 +120,13 @@ function Branches(props) {
       fetchBranchList();
     } catch (error) {
       console.log("Failed to update branches", error);
-      // setIsloadingUpdate(false);
+      setIsloadingUpdate(false);
     }
   };
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
     const dataUpdate = {
       ...values,
       userName: rowEdit.userName,
-      // facilityIds: idSelected,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
@@ -148,31 +135,19 @@ function Branches(props) {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
-    // const rolevalue = [value];
-    // setidSelected(rolevalue);
+    
   }
   function handleChange_user(value) {
     console.log(`selected username ${value}`);
-    // const rolevalue = [value];
-    // setidSelected(rolevalue);
-  }
-
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
+    
   }
 
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
     {
@@ -263,7 +238,6 @@ function Branches(props) {
   };
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-
      if (value === undefined) {
        setBranchList(nullstate);
      } else {
@@ -275,16 +249,37 @@ function Branches(props) {
           "Fetch all branches name by username successfully: ",
           response.data
         );
-        // setIsstateInput(response.data);
         setBranchList(response.data);
       } catch (error) {
         console.log("Failed to fetch list: ", error);
       }
     };
     fetchGetallbranchesbyUsername();
-    //  }
   };
 }
+const [faketable, setfaketable] = useState([])
+  const onSearch_2 = (value) => {
+    console.log("<<VALUE", value);
+    if (value === undefined) {
+      setBranchList(nullstate);
+    } else {
+        const newarr = faketable.filter((rs) => rs.location === value);
+        setBranchList(newarr);
+        console.log("<<a", newarr);
+      // const fetchGetallbranchesbyBranchLocation = async () => {
+        // try {
+        //   const response = await branchesApi.getallbranchesbyBranchLocation(value);
+        //   console.log(
+        //     "Fetch all branches name by branchlocation successfully: ",
+        //     response.data
+        //   );
+        // } catch (error) {
+        //   console.log("Failed to fetch by branchlocation list: ", error);
+        // }
+      // };
+      // fetchGetallbranchesbyBranchLocation();
+    }
+  };
   return (
     <div>
       <Modal
@@ -336,7 +331,6 @@ function Branches(props) {
                 allowClear
                 disabled
                 placeholder={rowEdit.userName}
-                // mode="multiple"
               >
                 <Select.Option value={Cookies.get("userName")}>
                   {Cookies.get("userName")}
@@ -387,7 +381,23 @@ function Branches(props) {
                     allowClear
                     size="middle"
                     style={{ width: "200px" }}
-                    // mode="multiple"
+                    onChange={onSearch_2}
+                  >
+                    {branchList.map((branchid) => (
+                      <Select.Option
+                        key={branchid.location}
+                        value={branchid.location}
+                      >
+                        {branchid.location}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
+                <div className="element-select">
+                  <Select
+                    allowClear
+                    size="middle"
+                    style={{ width: "200px" }}
                     onChange={onSearch_1}
                   >
                     {usersList.map((branchid) =>
@@ -404,6 +414,7 @@ function Branches(props) {
                     )}
                   </Select>
                 </div>
+
                 <div className="btn-right-branches">
                   <button className="detailed-btn-branches" onClick={showModal}>
                     THÊM MỚI
@@ -463,11 +474,7 @@ function Branches(props) {
                         </Select>
                       </Form.Item>
                       <Form.Item label="Người dùng" name="userName">
-                        <Select
-                          onChange={handleChange_user}
-                          allowClear
-                          // mode="multiple"
-                        >
+                        <Select onChange={handleChange_user} allowClear>
                           <Select.Option value={Cookies.get("userName")}>
                             {Cookies.get("userName")}
                           </Select.Option>
@@ -495,7 +502,12 @@ function Branches(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={branchList} rowKey="id" />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={branchList}
+                rowKey="id"
+              />
             </div>
           </div>
         </div>

@@ -243,6 +243,7 @@ function Users(props) {
     const dataUpdate = {
       ...values,
       userName: rowEdit.userName,
+      password:rowEdit.password,
     };
     console.log("<<<", dataUpdate);
     var myJSONupdate = JSON.stringify(dataUpdate);
@@ -699,8 +700,8 @@ function Users(props) {
             <Form.Item label="Tài khoản" name="userName" value="userName">
               <Input placeholder={rowEdit.userName} disabled />
             </Form.Item>
-            <Form.Item label="Mật khẩu" name="passwordHash">
-              <Input.Password placeholder={rowEdit.passwordHash} />
+            <Form.Item label="Mật khẩu" name="password">
+              <Input.Password placeholder={rowEdit.password} disabled />
             </Form.Item>
             <Form.Item label="email" name="email">
               <Input placeholder={rowEdit.email} />

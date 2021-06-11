@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from './../../api/authApi'
 import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
-function register() {
+import { Link, Redirect, useHistory } from "react-router-dom";
+
+function Register() {
    const onFinish = (values) => {
     const register = async () => {
       try {
@@ -48,10 +50,6 @@ function register() {
     };
     register();
   };
-  // const onchnageinput=(value)=>{
-  //   if(value.include([value-1])) message.info ("Trùng")
-  //   else message.info("Không")
-  // }
   return (
     <div>
       <div className="form-register">
@@ -72,11 +70,11 @@ function register() {
                   paddingBottom: "10px",
                 }}
               >
-                <Form.Item name="userName" >
-                  <Input placeholder="Nhập họ và tên"/>
+                <Form.Item name="userName">
+                  <Input placeholder="Nhập họ và tên" />
                 </Form.Item>
               </div>
-              <div className="username" >Email</div>
+              <div className="username">Email</div>
               <div
                 style={{
                   width: "90%",
@@ -86,7 +84,7 @@ function register() {
                 }}
               >
                 <Form.Item name="email">
-                  <Input placeholder="Nhập email"/>
+                  <Input placeholder="Nhập email" />
                 </Form.Item>
               </div>
               <div className="username">Mật khẩu</div>
@@ -99,7 +97,7 @@ function register() {
                 }}
               >
                 <Form.Item name="password">
-                  <Input placeholder="Nhập password" />
+                  <Input.Password placeholder="Nhập password" />
                 </Form.Item>
               </div>
               <div
@@ -109,7 +107,7 @@ function register() {
                   display: "flex",
                   justifyContent: "center",
                   paddingTop: "10px",
-                  paddingRight: "10px",
+                  paddingRight: "15px",
                   paddingBottom: "20px",
                 }}
               >
@@ -117,7 +115,7 @@ function register() {
                   type="primary"
                   htmlType="submit"
                   style={{
-                    width: "335px",
+                    width: "90%",
                     height: "auto",
                     fontSize: "15px",
                     backgroundColor: "#0c61f2",
@@ -145,10 +143,16 @@ function register() {
                   fontSize: "18px",
                   color: "white",
                   fontFamily: "Open Sans', sans-serif",
+                  display: "flex",
+                  paddingTop:"10px",
+                  paddingBottom:"10px"
                 }}
               >
-                <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,ĐĂNG KÝ NGAY
+                <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn đã có
+                tài khoản rồi hãy,
+                <Link to="/login">
+                  <div style={{ color: "white",textDecorationLine:"underline",textDecorationThickness:"2px",textDecorationStyle:"solid" }}> đăng nhập ngay</div>
+                </Link>
               </div>
             </div>
           </div>
@@ -158,4 +162,4 @@ function register() {
   );
 }
 
-export default register;
+export default Register;

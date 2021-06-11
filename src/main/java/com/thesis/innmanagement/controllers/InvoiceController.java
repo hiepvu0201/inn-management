@@ -8,6 +8,7 @@ import com.thesis.innmanagement.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,10 @@ public class InvoiceController {
     public ResponseEntity<Invoices> getInvoiceById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(invoiceService.findById(id));
     }
+//    @GetMapping("/userName")
+//    public ResponseEntity<Invoices> findByUserName(@Param("userName") String userName) {
+//        return ResponseEntity.ok().body(invoiceService.findByUserName(userName));
+//    }
 
     @PostMapping("/")
     public Invoices create(@Validated @RequestBody InvoiceRequest invoices) throws Exception {

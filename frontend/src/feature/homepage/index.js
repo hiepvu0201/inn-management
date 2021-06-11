@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { Row, Col, Button } from "antd";
 import { Images } from "./../../config/image";
-import Menu from "../../components/menu";
+import Menu_client from "../../components/menu_client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./demo-files/demo.css";
 import "./ie7/ie7.css";
@@ -33,8 +33,8 @@ import Component8 from "./../../components/component_block_last";
 function Home() {
   return (
     <div>
-      <div style={{ height: "100px" }}>
-        <Menu />
+      <div style={{ height: "150px" }}>
+        <Menu_client />
       </div>
       <Row>
         <Col
@@ -115,9 +115,7 @@ function Home() {
               <img src={Images.ICON} />
             </div>
             <div className="btnfree">
-              <button
-                className="button-free"
-              >
+              <button className="button-free">
                 DÙNG THỬ MIỄN PHÍ <FontAwesomeIcon icon={faChevronRight} />
               </button>
             </div>
@@ -1168,18 +1166,39 @@ function Home() {
                   hàng ngày.
                 </div>
               </div>
-              <Row style={{paddingTop:"20px"}}>
+              <Row style={{ paddingTop: "20px" }}>
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1189,15 +1208,36 @@ function Home() {
                 </Col>
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1207,15 +1247,36 @@ function Home() {
                 </Col>
                 <Col lg={8} md={24}>
                   <div className="box-last">
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"20px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "20px",
+                      }}
+                    >
                       <div className="icon-hover-2">
-                        <div className="ti-comments" style={{Color:"#009c7e"}}></div>
+                        <div
+                          className="ti-comments"
+                          style={{ Color: "#009c7e" }}
+                        ></div>
                       </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="topic-com-4">Hỗ trợ</div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center",paddingTop:"10px"  }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingTop: "10px",
+                      }}
+                    >
                       <div className="content-com-4">
                         Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
                         sẵn sàng phục vụ khách hàng 24/7.
@@ -1228,7 +1289,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
       {/* <div>footer</div> */}
     </div>
   );

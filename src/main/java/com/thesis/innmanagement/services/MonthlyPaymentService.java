@@ -1,14 +1,13 @@
 package com.thesis.innmanagement.services;
 
-import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.MonthlyPayments;
+import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.MonthlyPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +36,10 @@ public class MonthlyPaymentService {
     }
 
     public MonthlyPayments createOrUpdate(Long id, MonthlyPayments monthlyPayment) throws ResourceNotFoundException {
-        monthlyPayment.setBranch(branchRepository.findById(monthlyPayment.getBranchId()).orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyPayment.getBranchId())));
+        if (monthlyPayment.getBranchId() != null) {
+            monthlyPayment.setBranch(branchRepository.findById(monthlyPayment.getBranchId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + monthlyPayment.getBranchId())));
+        }
         monthlyPayment.setMonth(monthlyPayment.getMonth());
         if(id == null) {
             monthlyPaymentRepository.save(monthlyPayment);

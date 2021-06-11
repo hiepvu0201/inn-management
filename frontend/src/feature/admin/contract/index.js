@@ -10,9 +10,8 @@ import {
   faTrash,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSave } from "@fortawesome/free-regular-svg-icons";
+import { faSave, faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
-import roomApi from "../../../api/roomApi";
 import {
   Table,
   Popconfirm,
@@ -31,6 +30,7 @@ import {
 import usersApi from "../../../api/usersApi";
 import contractsApi from "../../../api/contractApi";
 import { LocalDateTime } from "@js-joda/core";
+import roomApi from "../../../api/roomApi";
 const { Option } = Select;
 
 function Contract(props) {
@@ -38,20 +38,23 @@ function Contract(props) {
   //getAll
   const [usersList, setUsersList] = useState([]);
   const [contractList, setContractList] = useState([]);
-
+  const [roomsList, setroomsList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
   const [idSelected_1, setidSelected_1] = useState([]);
 
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
+  const [rowEdit_confirm, setRowEdit_confirm] = useState({});
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+  const [isModalVisible_2, setIsModalVisible_2] = useState(false);
 
   const fetchUserList = async () => {
     try {
       const response = await usersApi.getAll();
-      console.log("Fetch users successfully: ", response.data);
+      console.log("Fetch users iddd successfully: ", response.data);
       setUsersList(response.data);
     } catch (error) {
-      console.log("Failed to fetch users list: ", error);
+      console.log("Failed to fetch users list: ", error.response);
     }
   };
   const fetchContractList = async () => {
@@ -66,18 +69,30 @@ function Contract(props) {
       console.log("Failed to fetch contracts list: ", error);
     }
   };
+  const fetchRoomList = async () => {
+    try {
+      const response = await roomApi.getAll();
+      console.log("Fetch contracts successfully: ", response.data);
+      setroomsList(response.data);
+      setIsloadingUpdate(false);
+      setIsModalVisible_1(false);
+    } catch (error) {
+      console.log("Failed to fetch contracts list: ", error);
+    }
+  };
   useEffect(() => {
     fetchUserList();
     fetchContractList();
+    fetchRoomList();
   }, []);
   //form
   const onFinish = (values) => {
-    const dateTime=LocalDateTime.now()
+    
+    const dateTime = new Date();
     const dataCreate = {
       ...values,
-      // ownerIds: idSelected,
-      // tenantIds: idSelected_1,
-      signDate: dateTime,
+      signDate:dateTime.toISOString(),
+      year: values["year"].format("YYYY"),
     };
     console.log("dataCreate", dataCreate);
 
@@ -108,18 +123,20 @@ function Contract(props) {
     }
   };
   const onFinish_edit = (values) => {
+    var dt = new Date();
+   
+    console.log("<<",dt)
     const dataUpdate = {
       ...values,
-      signDate: values["signDate"].format("YYYY-MM-DD HH:mm:ss"),
+      signDate: dt.toISOString(),
+      ownerId:rowEdit.ownerId,
+      tenantId:rowEdit.tenantId,
     };
     console.log("dataupdate", dataUpdate);
     const data_update = { id: rowEdit.id, data: dataUpdate };
     fetchUpdateContract(data_update);
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-    setIsModalVisible(false);
-  };
+  
   const fetchDeleteContract = async (record) => {
     try {
       const response = await contractsApi.deletecontracts(record.id);
@@ -129,30 +146,19 @@ function Contract(props) {
       console.log("Failed to delete contract list", error);
     }
   };
-
   //select
   function handleChange(value) {
     console.log(`selected user ADMIN ${value}`);
-    // const usersvalue = [value];
-    // setidSelected(usersvalue);
   }
   function handleChange_1(value) {
     console.log(`selected user CLIENT ${value}`);
-    // const usersvalue = [value];
-    // setidSelected_1(usersvalue);
   }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
+  function handleChange_room(value) {
+    console.log(`selected room ${value}`);
   }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
     {
@@ -165,6 +171,20 @@ function Contract(props) {
       dataIndex: "signDate",
       key: "signDate",
       render: (signDate) => <Tag color="cyan">{signDate}</Tag>,
+    },
+    {
+      title: "Ngày kết thúc hợp đồng",
+      dataIndex: "tenant",
+      key: "tenant",
+       render: (tenant) => (
+        <>
+          {tenant.checkoutDate === null ? (
+            <Tag color="#f07728">VẪN CÒN THỜI HẠN HỢP ĐỒNG</Tag>
+          ) : (
+            <Tag color="#26326c">{tenant.checkoutDate}</Tag>
+          )}
+        </>
+      ),
     },
     {
       title: "Số năm",
@@ -221,6 +241,14 @@ function Contract(props) {
           >
             <FontAwesomeIcon icon={faEdit} />
           </div>
+          <div
+            style={{ paddingLeft: "5px", lineHeight: "1px" }}
+            onClick={() => {
+              showModal_2(record);
+            }}
+          >
+            <FontAwesomeIcon icon={faCheckCircle} color="#54b265" />
+          </div>
         </div>
       ),
     },
@@ -237,12 +265,16 @@ function Contract(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
     console.log("values edit:", values);
     setRowEdit(values);
+  };
+  const showModal_2 = (values) => {
+    setIsModalVisible_2(true);
+    console.log("values confirm:", values);
+    setRowEdit_confirm(values);
   };
   const handleOk_1 = () => {
     setIsModalVisible_1(false);
@@ -250,6 +282,9 @@ function Contract(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  };
+  const handleCancel_2 = () => {
+    setIsModalVisible_2(false);
   };
   const [tenantName, settenantName] = useState([]);
   const [state, setstate] = useState([]);
@@ -261,31 +296,34 @@ function Contract(props) {
       const fetchContractbyTenantname = async () => {
         try {
           const response = await contractsApi.getContractbytenantName(value);
-          console.log("Fetch contract by tenant name successfully: ", response.data);
+          console.log(
+            "Fetch contract by tenant name successfully: ",
+            response.data
+          );
           // setIsstateInput(response.data);
           setContractList(response.data);
         } catch (error) {
           console.log("Failed to fetch list: ", error);
         }
       };
-       const fetchContractbyOwnername = async () => {
-         try {
-           const response = await contractsApi.getContractbyownerName(value);
-           console.log(
-             "Fetch contract by owner name successfully: ",
-             response.data
-           );
-           // setIsstateInput(response.data);
-           setContractList(response.data);
-         } catch (error) {
-           console.log("Failed to fetch list: ", error);
-         }
-       };
-       fetchContractbyOwnername();
+      const fetchContractbyOwnername = async () => {
+        try {
+          const response = await contractsApi.getContractbyownerName(value);
+          console.log(
+            "Fetch contract by owner name successfully: ",
+            response.data
+          );
+          // setIsstateInput(response.data);
+          setContractList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      fetchContractbyOwnername();
       fetchContractbyTenantname();
     }
   };
-  
+
   return (
     <div>
       <Modal
@@ -317,8 +355,8 @@ function Contract(props) {
             <Form.Item label="Chi tiết hợp đồng" name="details">
               <Input placeholder={rowEdit.details} />
             </Form.Item>
-            <Form.Item label="Ngày ký" name="signDate">
-              <DatePicker placeholder={rowEdit.signDate} />
+            <Form.Item label="Ngày ký">
+              <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
             </Form.Item>
             <Form.Item label="Số phòng" name="numberOfRooms">
               <Input placeholder={rowEdit.numberOfRooms} />
@@ -330,13 +368,10 @@ function Contract(props) {
               <Input placeholder={rowEdit.voucher} />
             </Form.Item>
             <Form.Item label="Chủ trọ" name="ownerId">
-              <Select onChange={handleChange}>
+              <Select onChange={handleChange} disabled>
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_ADMIN" ? (
-                    <Select.Option
-                      key={ownerid.userName}
-                      value={ownerid.userName}
-                    >
+                    <Select.Option key={ownerid.id} value={ownerid.id}>
                       {ownerid.userName}
                     </Select.Option>
                   ) : (
@@ -346,13 +381,10 @@ function Contract(props) {
               </Select>
             </Form.Item>
             <Form.Item label="Người thuê" name="tenantId">
-              <Select onChange={handleChange_1}>
+              <Select onChange={handleChange_1} disabled>
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_USER" ? (
-                    <Select.Option
-                      key={ownerid.userName}
-                      value={ownerid.userName}
-                    >
+                    <Select.Option key={ownerid.id} value={ownerid.id}>
                       {ownerid.userName}
                     </Select.Option>
                   ) : (
@@ -374,6 +406,7 @@ function Contract(props) {
           </Form>
         </Spin>
       </Modal>
+
       <div
         style={{
           width: "100%",
@@ -448,16 +481,16 @@ function Contract(props) {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Ngày ký" name="signDate">
-                      <DatePicker />
+                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                     </Form.Item>
                     <Form.Item label="Số phòng" name="numberOfRooms">
-                      <Input />
+                     <Input/>
                     </Form.Item>
                     <Form.Item label="Số lầu" name="numberOfStage">
                       <Input />
                     </Form.Item>
-                     <Form.Item label="Số năm" name="year">
-                      <Input />
+                    <Form.Item label="Số năm" name="year">
+                      <DatePicker picker="year" />
                     </Form.Item>
                     <Form.Item label="Khuyến mãi" name="voucher">
                       <Input />
@@ -466,10 +499,7 @@ function Contract(props) {
                       <Select onChange={handleChange}>
                         {usersList.map((ownerid) =>
                           ownerid.roles[0].name === "ROLE_ADMIN" ? (
-                            <Select.Option
-                              key={ownerid.id}
-                              value={ownerid.id}
-                            >
+                            <Select.Option key={ownerid.id} value={ownerid.id}>
                               {ownerid.userName}
                             </Select.Option>
                           ) : (
@@ -482,10 +512,7 @@ function Contract(props) {
                       <Select onChange={handleChange_1}>
                         {usersList.map((ownerid) =>
                           ownerid.roles[0].name === "ROLE_USER" ? (
-                            <Select.Option
-                              key={ownerid.id}
-                              value={ownerid.id}
-                            >
+                            <Select.Option key={ownerid.id} value={ownerid.id}>
                               {ownerid.userName}
                             </Select.Option>
                           ) : (
@@ -514,7 +541,12 @@ function Contract(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={contractList} rowKey="id" />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={contractList}
+                rowKey="id"
+              />
             </div>
           </div>
         </div>

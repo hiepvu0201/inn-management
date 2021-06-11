@@ -3,9 +3,7 @@ import "./style.css";
 import { Images } from "../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
@@ -14,6 +12,7 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
 import { WarningOutlined } from "@ant-design/icons";
+import electricityWaterApi from "../../../api/elctricitywaterApi";
 import {
   Table,
   Popconfirm,
@@ -25,24 +24,21 @@ import {
   Select,
   Spin,
   Tag,
-  InputNumber,
-  DatePicker,
   Radio,
-  notification
+  notification,
 } from "antd";
-import electricityWaterApi from "../../../api/elctricitywaterApi";
-import roomsApi from "../../../api/roomApi";
 const { Option } = Select;
 
 function ElectricityWaters(props) {
-  //api
-  //getAll
+  
   const [roomList, setRoomList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
 
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const fetchRoomList = async () => {
     try {
@@ -68,8 +64,6 @@ function ElectricityWaters(props) {
   useEffect(() => {
     fetchElectricitywaterList();
     fetchRoomList();
-    // fetchBranchesList();
-    // fetchfacilitiesList();
   }, []);
   //form
   const onFinish = (values) => {
@@ -77,7 +71,6 @@ function ElectricityWaters(props) {
       ...values,
     };
     console.log("dataCreate", dataCreate);
-
     const fetchCreateElectricityWater = async () => {
       try {
         const response = await electricityWaterApi.createelectricitywater(
@@ -94,8 +87,6 @@ function ElectricityWaters(props) {
     fetchCreateElectricityWater();
   };
   const fetchUpdateElectricityWater = async (edittv) => {
-    //  const data_update = { id: rowEdit.id, data: dataUpdate };
-    //  console.log("dataupdate", dataUpdate);
     setIsloadingUpdate(true);
     try {
       const response = await electricityWaterApi.updateelectricitywater(edittv);
@@ -109,9 +100,6 @@ function ElectricityWaters(props) {
     }
   };
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
-    // fetchUpdateUsers(data_update);
-
     console.log("dataupdate", values);
     const data_update = { id: rowEdit.id, data: values };
     fetchUpdateElectricityWater(data_update);
@@ -136,21 +124,11 @@ function ElectricityWaters(props) {
   //select
   function handleChange(value) {
     console.log(`selected users ${value}`);
-    // const usersvalue = value
-    // setidSelected(usersvalue);
   }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
+  
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
     {
@@ -196,12 +174,6 @@ function ElectricityWaters(props) {
       render: (month) => <Tag color="cyan">{month}</Tag>,
     },
     {
-      title: "Số phòng",
-      dataIndex: "room",
-      key: "room",
-      render: (room) => <div>{room.roomNo}</div>,
-    },
-    {
       title: "Giá điện",
       dataIndex: "waterUnitPrice",
       key: "waterUnitPrice",
@@ -212,16 +184,14 @@ function ElectricityWaters(props) {
       key: "electricityUnitPrice",
     },
     {
-      title: "Ngày tạo",
-      dataIndex: "createdDate",
-      key: "createdDate",
-      render: (createdDate) => <Tag color="volcano">{createdDate}</Tag>,
+      title: "Tổng giá điện",
+      dataIndex: "totalElectricity",
+      key: "totalElectricity",
     },
     {
-      title: "Ngày cập nhật",
-      dataIndex: "updatedDate",
-      key: "updatedDate",
-      render: (updatedDate) => <Tag color="#2db7f5">{updatedDate}</Tag>,
+      title: "Tổng giá nước",
+      dataIndex: "totalWater",
+      key: "totalWater",
     },
     {
       title: "Kiểm tra",
@@ -264,7 +234,6 @@ function ElectricityWaters(props) {
       ),
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -276,7 +245,6 @@ function ElectricityWaters(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -288,7 +256,7 @@ function ElectricityWaters(props) {
   };
   const check = (e) => {
     console.log("<<<", e.target.value);
-    e.target.value >= 5000 ? (
+    e.target.value >= 500 ? (
       <></>
     ) : (
       notification.warning({
@@ -301,9 +269,9 @@ function ElectricityWaters(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-  const handleCancelCreate=()=>{
-    setIsModalVisible(false)
-  }
+  const handleCancelCreate = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div>
       <Modal
@@ -357,10 +325,7 @@ function ElectricityWaters(props) {
               />
             </Form.Item>
             <Form.Item label="Tháng" name="month">
-              <Select
-                style={{ width: 120 }}
-                placeholder={rowEdit.month}
-              >
+              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
                 <Option value="1">Tháng 1</Option>
                 <Option value="2">Tháng 2</Option>
                 <Option value="3">Tháng 3</Option>
@@ -472,7 +437,7 @@ function ElectricityWaters(props) {
                       <Form.Item label="Số điện mới" name="numElectricNew">
                         <Input />
                       </Form.Item>
-                   
+
                       <Form.Item label="Số nước cũ" name="numWaterOld">
                         <Input />
                       </Form.Item>
@@ -492,7 +457,7 @@ function ElectricityWaters(props) {
                         />
                       </Form.Item>
                       <Form.Item label="Tháng" name="month">
-                        <Select  style={{ width: 120 }}>
+                        <Select style={{ width: 120 }}>
                           <Option value="1">Tháng 1</Option>
                           <Option value="2">Tháng 2</Option>
                           <Option value="3">Tháng 3</Option>

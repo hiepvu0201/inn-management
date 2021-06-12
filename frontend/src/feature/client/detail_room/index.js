@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col,Input,Form } from "antd";
+import { Row, Col, Input, Form,Carousel } from "antd";
 import Menu_client from "./../../../components/menu_client";
 import Footer_client from "./../../../components/footer_client";
 import { useLocation, useParams } from "react-router-dom";
@@ -8,21 +8,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import Room_tag from "./../../../components/room_tag";
 import roomApi from "./../../../api/roomApi";
-
+import branchesApi from "./../../../api/branchesApi";
+import Rest from "./../../../components/restproductbybranch";
 function Detail_room() {
   //   let location = useLocation();
   let location = useLocation();
   const [roomList, setIsRoomList] = useState([]);
+  const [branchesList, setIsBranchesList] = useState([]);
+  let arrpush={}
+  const fetchRoomList = async () => {
+    try {
+      const response = await roomApi.getAll();
+      console.log("Fetch room successfully: ", response.data);
+      setIsRoomList(response.data);
+      getAllRoomsByBranches(response.data)
+    } catch (error) {
+      console.log("Failed to fetch ROOM list: ", error);
+    }
+  };
+  const [statedetailed, setstatedetailed] = useState([]);
+   const getAllRoomsByBranches = (room) => {
+     console.log("branchid",location.state.branchId)
+     
+    const newarr = room.filter(
+      (rs) =>
+        rs.branchId === location.state.branchId &&
+        rs.roomNo !== location.state.roomNo
+    );
+    let arr=[];
+   
+     setstatedetailed(newarr);
+     console.log("abcd", newarr);
+    ;
+   };
+
   useEffect(() => {
-    const fetchRoomList = async () => {
-      try {
-        const response = await roomApi.getAll();
-        console.log("Fetch room successfully: ", response.data);
-        setIsRoomList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch ROOM list: ", error);
-      }
-    };
     fetchRoomList();
   }, []);
   return (
@@ -31,6 +51,18 @@ function Detail_room() {
         <Menu_client />
       </div>
       <div>
+        <div
+          style={{
+            width: "80%",
+            height: "auto",
+            fontSize: "30px",
+            fontWeight: "bold",
+            textAlign: "left",
+            paddingLeft: "220px",
+          }}
+        >
+          Chi tiết phòng {location.state.branches}
+        </div>
         <Row style={{ height: "auto" }}>
           <Col
             lg={18}
@@ -43,6 +75,8 @@ function Detail_room() {
                 height: "auto",
                 backgroundColor: "white",
                 borderRadius: "8px",
+                paddingBottom:"15px",
+                paddingTop:"15px"
               }}
             >
               <Row>
@@ -110,7 +144,42 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "18%",
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Chi nhánh:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.branches}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        paddingTop: "20px",
+
+                        textAlign: "left",
+                        display: "flex",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
@@ -119,7 +188,7 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "76%",
+                          width: "52%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
@@ -144,7 +213,7 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "10%",
+                          width: "40%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
@@ -153,7 +222,7 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "84%",
+                          width: "52%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
@@ -178,7 +247,7 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "15%",
+                          width: "40%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
@@ -187,12 +256,216 @@ function Detail_room() {
                       </div>
                       <div
                         style={{
-                          width: "79%",
+                          width: "52%",
                           fontFamily: "PT Sans, sans-serif",
                           fontSize: "20px",
                         }}
                       >
                         {location.state.facilities}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Loại phòng:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.roomType}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Giá phòng theo giờ đầu:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.price1}đ
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Giá phòng theo giờ thứ hai:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.price2}đ
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Giá phòng theo ngày:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.price3}đ
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Giá phòng theo tuần:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.price4}đ
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        display: "flex",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <div style={{ width: "6%" }}>
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          color="#63d417"
+                          size="1x"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "40%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Giá phòng theo tháng:
+                      </div>
+                      <div
+                        style={{
+                          width: "52%",
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                        }}
+                      >
+                        {location.state.price5}đ
                       </div>
                     </div>
                   </div>
@@ -224,14 +497,14 @@ function Detail_room() {
                   fontWeight: "bold",
                   paddingLeft: "10px",
                   marginBottom: "20px",
-                  paddingTop:"10px"
+                  paddingTop: "10px",
                 }}
               >
                 LIÊN LẠC VỚI CHỦ TRỌ
               </div>
               <div>
                 <Form>
-                  <div style={{paddingBottom:"10px"}}>
+                  <div style={{ paddingBottom: "10px" }}>
                     <Form.Item
                       label="Họ và tên"
                       name="name"
@@ -244,21 +517,21 @@ function Detail_room() {
                       name="phoneNo"
                       style={{ paddingLeft: "10px" }}
                     >
-                      <Input style={{ width: "95%", paddingRight: "10px" }} />
+                      <Input style={{ width: "94%", paddingRight: "10px" }} />
                     </Form.Item>
                     <Form.Item
                       label="Email"
                       name="email"
                       style={{ paddingLeft: "10px" }}
                     >
-                      <Input style={{ width: "95%", paddingRight: "10px" }} />
+                      <Input style={{ width: "92%", paddingRight: "10px" }} />
                     </Form.Item>
                     <Form.Item
                       label="Ghi chú"
                       name="note"
                       style={{ paddingLeft: "10px" }}
                     >
-                      <Input style={{ width: "95%", paddingRight: "10px" }} />
+                      <Input style={{ width: "94%", paddingRight: "10px" }} />
                     </Form.Item>
                   </div>
                 </Form>
@@ -266,6 +539,64 @@ function Detail_room() {
             </div>
           </Col>
         </Row>
+
+        <div
+          style={{
+            width: "100%",
+            height: "auto",
+            fontSize: "30px",
+            textAlign: "left",
+            paddingLeft: "220px",
+            paddingTop: "20px",
+          }}
+        >
+          Tin đăng tương tự
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ width: "80%", height: "auto" }}>
+            <Row
+              style={{
+                paddingLeft: "10px",
+                display: "flex",
+                width: "100%",
+                paddingTop: "10px",
+              }}
+            >
+              {statedetailed.map((detailid) => (
+                <Col
+                  lg={8}
+                  md={24}
+                  key={detailid.id}
+                  span={6}
+                  style={{ paddingTop: "25px" }}
+                >
+                  {" "}
+                  <Rest
+                    id={detailid.id}
+                    branches={detailid.branch.location}
+                    facilities={detailid.facilities.map((us) => us.name) + " "}
+                    roomNo={detailid.roomNo}
+                    position={detailid.position}
+                    roomType={detailid.roomType}
+                    images={detailid.images}
+                    price1={detailid.priceByFirstHour}
+                    price2={detailid.priceByNextHour}
+                    price3={detailid.priceByDay}
+                    price4={detailid.priceByWeek}
+                    price5={detailid.priceByMonth}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </div>
+        </div>
       </div>
       <div style={{ paddingTop: "50px" }}>
         <Footer_client />

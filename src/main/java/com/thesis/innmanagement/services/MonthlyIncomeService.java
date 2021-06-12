@@ -37,7 +37,10 @@ public class MonthlyIncomeService {
     }
 
     public MonthlyIncomes createOrUpdate(Long id, MonthlyIncomes monthlyIncomes) throws ResourceNotFoundException {
-        monthlyIncomes.setBranch(branchRepository.findById(monthlyIncomes.getBranchId()).orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyIncomes.getBranchId())));
+        if (monthlyIncomes.getBranchId() != null) {
+            monthlyIncomes.setBranch(branchRepository.findById(monthlyIncomes.getBranchId())
+                    .orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyIncomes.getBranchId())));
+        }
         monthlyIncomes.setMonth(monthlyIncomes.getMonth());
         if (id == null) {
             monthlyIncomeRepository.save(monthlyIncomes);

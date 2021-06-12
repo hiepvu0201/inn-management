@@ -31,6 +31,7 @@ public class FacilityService {
 
     public Facilities createOrUpdate(Long id, Facilities facility) throws ResourceNotFoundException {
         BigDecimal total = calculateHelper.getTotalFacilityPrice(facility);
+        facility.setUnitPrice(facility.getUnitPrice());
         facility.setTotal(total);
         if (id == null) {
             facilityRepository.save(facility);

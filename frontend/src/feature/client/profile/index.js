@@ -16,12 +16,15 @@ import {
   Upload,
   Button,
   Radio,
+  Tag,
 } from "antd";
 import { Images } from "./../../../config/image";
 import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import usersApi from "./../../../api/usersApi";
 import rolesApi from "./../../../api/roleApi";
 const { TabPane } = Tabs;
+import Cookies from "js-cookie";
+
 function Profile() {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [isModalVisible_1, setIsModalVisible_1] = useState(false);
@@ -58,6 +61,8 @@ function Profile() {
     const dataUpdate = {
       ...values,
       userName: userList.userName,
+      password: userList.password,
+      roleIds: [userList.roles[0].id],
     };
     console.log("<<<", dataUpdate);
     var myJSONupdate = JSON.stringify(dataUpdate);
@@ -72,7 +77,8 @@ function Profile() {
       form_data.append(key, responsedata[key]);
     }
     const fetchUpdateUsers = async () => {
-      const data_update = { id: userList.id, data: form_data };
+      const id_user = Cookies.get("id");
+      const data_update = { id: id_user, data: form_data };
       setIsloadingUpdate(true);
       try {
         const response = await usersApi.updateusers(data_update);
@@ -87,7 +93,7 @@ function Profile() {
     };
     fetchUpdateUsers();
   };
-  const [userList, setuserList] = useState({roles:[{name:""}]});
+  const [userList, setuserList] = useState({ roles: [{ name: "" }] });
   const [roleList, setRoleList] = useState([]);
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -112,7 +118,9 @@ function Profile() {
   }
   const fetchUseridList = async () => {
     try {
-      const response = await usersApi.getuserid();
+      const id = Cookies.get("id");
+      console.log("<<", id);
+      const response = await usersApi.getuserid(id);
       console.log("Fetch USER ID successfully: ", response.data);
       setuserList(response.data);
       setIsloadingUpdate(false);
@@ -152,7 +160,7 @@ function Profile() {
         <div className="outline">
           <div className="container">
             <div className="rowAll">
-              <div className="rowFirst">
+              <div className="rowFirstabc">
                 <div className="iconUser">
                   <FontAwesomeIcon icon={faUser} size="1Sx" color="#007c7e" />
                 </div>
@@ -207,8 +215,7 @@ function Profile() {
                       <div className="rowfirst-right">
                         <div className="label">Quyền người dùng:</div>
                         <div className="contentname">
-                          {userList.roles[0].name}
-                          {/* {userList.roles.name} */}
+                          <Tag color="#108ee9">{userList.roles[0].name}</Tag>{" "}
                         </div>
                       </div>
                       <div
@@ -267,9 +274,6 @@ function Profile() {
                                   disabled
                                 />
                               </Form.Item>
-                              <Form.Item label="Mật khẩu" name="passwordHash">
-                                <Input.Password />
-                              </Form.Item>
                               <Form.Item label="email" name="email">
                                 <Input placeholder={userList.email} />
                               </Form.Item>
@@ -281,8 +285,8 @@ function Profile() {
                               </Form.Item>
                               <Form.Item label="Giới tính" name="sex">
                                 <Radio.Group>
-                                  <Radio value="female">Female</Radio>
-                                  <Radio value="male">Male</Radio>
+                                  <Radio value="Nữ">Nữ</Radio>
+                                  <Radio value="Nam">Nam</Radio>
                                 </Radio.Group>
                               </Form.Item>
                               <Form.Item label="Công việc" name="job">
@@ -296,13 +300,14 @@ function Profile() {
                               </Form.Item>
                               <Form.Item label="Quyền" name="roleIds">
                                 <Select
-                                  onChange={handleChange}
-                                  allowClear
-                                  mode="multiple"
-                                  //   placeholder={userList.roles[0].name}
-                                >
-                                  {propsselect}
-                                </Select>
+                                    onChange={handleChange}
+                                    allowClear
+                                    mode="multiple"
+                                    disabled
+                                    placeholder={userList.roles[0].name}
+                                  >
+                                    {propsselect}
+                                  </Select>
                               </Form.Item>
                               <Form.Item>
                                 <Upload

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Images } from "../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
@@ -13,7 +10,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import branchesApi from "./../../../api/branchesApi";
-
+import monthlyincomesApi from "../../../api/monthlyincomeApi";
 import {
   Table,
   Popconfirm,
@@ -23,18 +20,17 @@ import {
   Form,
   Input,
   Select,
-  InputNumber,
+  DatePicker,
   Spin,
 } from "antd";
-import monthlyincomesApi from "../../../api/monthlyincomeApi";
 const { Option } = Select;
 
 function Monthlyincome(props) {
   const [branchList, setBranchList] = useState([]);
-
-  //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   //api
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
   const [monthlyincomeList, setMonthlyincomeList] = useState([]);
   const fetchMonthlyincomeList = async () => {
@@ -93,7 +89,6 @@ function Monthlyincome(props) {
   const onFinish = (values) => {
     const fetchCreateMonthlyincomes = async () => {
       try {
-        // values["id"]=values.id;
         const response = await monthlyincomesApi.createmonthlyincome(values);
         console.log("Fetch create monthlyincomes succesSfully: ", response);
         setMonthlyincomeList([...monthlyincomeList, response.data]);
@@ -120,29 +115,20 @@ function Monthlyincome(props) {
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
-    {
-      title: "Tên",
-      dataIndex: "itemName",
-      key: "itemName",
-    },
     {
       title: "Số tiền thu",
       dataIndex: "earn",
       key: "earn",
+    },
+    {
+      title: "Tháng",
+      dataIndex: "month",
+      key: "month",
     },
     {
       title: "Chi nhánh",
@@ -177,7 +163,6 @@ function Monthlyincome(props) {
       ),
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -189,7 +174,6 @@ function Monthlyincome(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -217,7 +201,6 @@ function Monthlyincome(props) {
              "Fetch income by branch name successfully: ",
              response.data
            );
-           // setIsstateInput(response.data);
            setMonthlyincomeList(response.data);
          } catch (error) {
            console.log("Failed to fetch list: ", error);
@@ -254,8 +237,21 @@ function Monthlyincome(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên" name="itemName">
-              <Input placeholder={rowEdit.itemName} />
+            <Form.Item label="Tháng" name="month">
+              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
+                <Option value="1">Tháng 1</Option>
+                <Option value="2">Tháng 2</Option>
+                <Option value="3">Tháng 3</Option>
+                <Option value="4">Tháng 4</Option>
+                <Option value="5">Tháng 5</Option>
+                <Option value="6">Tháng 6</Option>
+                <Option value="7">Tháng 7</Option>
+                <Option value="8">Tháng 8</Option>
+                <Option value="9">Tháng 9</Option>
+                <Option value="10">Tháng 10</Option>
+                <Option value="11">Tháng 11</Option>
+                <Option value="12">Tháng 12</Option>
+              </Select>
             </Form.Item>
             <Form.Item label="Số tiền thu" name="earn">
               <Input placeholder={rowEdit.earn} />
@@ -274,7 +270,7 @@ function Monthlyincome(props) {
                 CHỈNH SỬA{" "}
               </Button>
               <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
+                <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
@@ -307,81 +303,91 @@ function Monthlyincome(props) {
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="content">QUẢN LÝ NGUỒN THU NHÀ TRỌ</div>
               </div>
-                <div className="btn-right-income">
-                  <div style={{ paddingRight: "10px", width: "60%" }}>
-                    <Input.Search
-                      placeholder="Tìm kiếm"
-                      allowClear
-                      onSearch={onSearch_1}
-                    />
-                  </div>
-                  <button className="detailed-btn-income" onClick={showModal}>
-                    THÊM MỚI
-                  </button>
-                  <Modal
-                    title={
-                      <div style={{ display: "flex" }}>
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          size="1x"
-                          color="#007c7e"
-                        />{" "}
-                        <div
-                          style={{
-                            fontFamily: "PT Sans, sans-serif",
-                            fontSize: "20px",
-                            color: "#007c7e",
-                            paddingLeft: "10px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Thêm mới
-                        </div>
-                      </div>
-                    }
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                    visible={isModalVisible}
-                    okText="THÊM MỚI"
-                    cancelText="HỦY BỎ"
-                    footer={null}
-                  >
-                    <Form
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                    >
-                      <Form.Item label="Tên" name="itemName">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số tiền thu" name="earn">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Chi nhánh" name="branchId">
-                        <Select>
-                          {branchList.map((branchid) => (
-                            <Select.Option
-                              key={branchid.id}
-                              value={branchid.id}
-                            >
-                              {branchid.location}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                      <div style={{ display: "flex" }}>
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel}>
-                            HỦY BỎ
-                          </Button>
-                        </div>
-                      </div>
-                    </Form>
-                  </Modal>
+              <div className="btn-right-income">
+                <div style={{ paddingRight: "10px", width: "60%" }}>
+                  <Input.Search
+                    placeholder="Tìm kiếm"
+                    allowClear
+                    onSearch={onSearch_1}
+                  />
                 </div>
+                <button className="detailed-btn-income" onClick={showModal}>
+                  THÊM MỚI
+                </button>
+                <Modal
+                  title={
+                    <div style={{ display: "flex" }}>
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        size="1x"
+                        color="#007c7e"
+                      />{" "}
+                      <div
+                        style={{
+                          fontFamily: "PT Sans, sans-serif",
+                          fontSize: "20px",
+                          color: "#007c7e",
+                          paddingLeft: "10px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Thêm mới
+                      </div>
+                    </div>
+                  }
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                  visible={isModalVisible}
+                  okText="THÊM MỚI"
+                  cancelText="HỦY BỎ"
+                  footer={null}
+                >
+                  <Form
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                  >
+                    <Form.Item label="Tháng" name="month">
+                      <Select style={{ width: 120 }}>
+                        <Option value="1">Tháng 1</Option>
+                        <Option value="2">Tháng 2</Option>
+                        <Option value="3">Tháng 3</Option>
+                        <Option value="4">Tháng 4</Option>
+                        <Option value="5">Tháng 5</Option>
+                        <Option value="6">Tháng 6</Option>
+                        <Option value="7">Tháng 7</Option>
+                        <Option value="8">Tháng 8</Option>
+                        <Option value="9">Tháng 9</Option>
+                        <Option value="10">Tháng 10</Option>
+                        <Option value="11">Tháng 11</Option>
+                        <Option value="12">Tháng 12</Option>
+                      </Select>
+                    </Form.Item>
+                    <Form.Item label="Số tiền thu" name="earn">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Chi nhánh" name="branchId">
+                      <Select>
+                        {branchList.map((branchid) => (
+                          <Select.Option key={branchid.id} value={branchid.id}>
+                            {branchid.location}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <div style={{ display: "flex" }}>
+                      <Button type="primary" htmlType="submit">
+                        THÊM MỚI
+                      </Button>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <Button type="default" onClick={handleCancel}>
+                          HỦY BỎ
+                        </Button>
+                      </div>
+                    </div>
+                  </Form>
+                </Modal>
+              </div>
             </div>
 
             <div

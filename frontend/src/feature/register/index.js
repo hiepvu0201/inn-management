@@ -1,29 +1,38 @@
 import React from "react";
-import { Input,  Form, Button,message,notification } from "antd";
+import {
+  Input,
+  Form,
+  Button,
+  message,
+  notification,
+  Radio,
+  Select,
+  Checkbox,
+} from "antd";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import authApi from './../../api/authApi'
-import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
+import authApi from "./../../api/authApi";
+import { WarningOutlined, CheckCircleFilled } from "@ant-design/icons";
+import {Link} from "react-router-dom"
 function register() {
-   const onFinish = (values) => {
+  const onFinish = (values) => {
     const register = async () => {
       try {
         console.log("value", values);
         const response = await authApi.signup(values);
         console.log("Fetch register user successfully: ", response);
-  
-        notification.success({   
-          message:"Đăng ký thành công",
-          icon:<CheckCircleFilled style={{color:"#20da9b"}}/>,
-          description:`${response.data}`,
+
+        notification.success({
+          message: "Đăng ký thành công",
+          icon: <CheckCircleFilled style={{ color: "#20da9b" }} />,
+          description: `${response.data}`,
           placement: "topRight",
-        }
-        );
+        });
       } catch (error) {
         console.log("failed to register ưser: ", error.response);
         console.log(JSON.parse(error.response.config.data).userName);
-        if(error.response.data==="Lỗi: Người dùng đã tồn tại!"){
+        if (error.response.data === "Lỗi: Người dùng đã tồn tại!") {
           notification.error({
             message: `Đăng ký thất bại`,
             icon: <WarningOutlined style={{ color: "#f26051" }} />,
@@ -32,257 +41,62 @@ function register() {
             } đã tồn tại`,
             placement: "topRight",
           });
+        } else if (error.response.data === "Lỗi: Email đã tồn tại!") {
+          notification.error({
+            message: `Đăng ký thất bại`,
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Email ${
+              JSON.parse(error.response.config.data).email
+            } đã tồn tại`,
+            placement: "topRight",
+          });
         }
-        else if (error.response.data === "Lỗi: Email đã tồn tại!")
-        {
-           notification.error({
-             message: `Đăng ký thất bại`,
-             icon: <WarningOutlined style={{ color: "#f26051" }} />,
-             description: `Email ${
-               JSON.parse(error.response.config.data).email
-             } đã tồn tại`,
-             placement: "topRight",
-           });
-        }  
       }
     };
     register();
   };
-  // const onchnageinput=(value)=>{
-  //   if(value.include([value-1])) message.info ("Trùng")
-  //   else message.info("Không")
-  // }
+
   return (
     <div>
       <div className="form-register">
-        <div className="form-box">
-          <div style={{ width: "100%",height:"auto", display: "block" }}>
+        <div className="form-boxres">
+          <div style={{ width: "100%", height: "auto", display: "block" }}>
             <div className="sign-up">ĐĂNG KÝ</div>
-<<<<<<< HEAD
-            <div className="username">Username</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập username" />
-            </div>
-            <div className="username">Mật khẩu</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input.Password placeholder="Nhập mật khẩu" />
-            </div>
-            <div className="username">Email</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập email" />
-            </div>
-            <div className="username">Họ và tên</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập họ và tên" />
-            </div>
-            <div className="username">CMND</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập CMND" />
-            </div>
-            <div className="username">Giới tính</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-                textAlign: "left",
-              }}
-            >
-              <Radio.Group onChange={onChange} value={value}>
-                <Radio value={1}>Nam</Radio>
-                <Radio value={2}>Nữ</Radio>
-              </Radio.Group>
-            </div>
-            <div className="username">Số điện thoại</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập số điện thoại" />
-            </div>
-            <div className="username">Nghề ngiệp</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Input placeholder="Nhập nghề nghiệp" />
-            </div>
-            <div className="username">Địa chỉ</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-                textAlign: "left",
-              }}
-            >
-              <Input placeholder="Nhập địa chỉ" />
-            </div>
-            <div className="username">Quyền</div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "10px",
-              }}
-            >
-              <Select style={{width:"100%"}} placeholder="Quyền người dùng" />
-            </div>
-            <div
-              style={{
-                width: "90%",
-                paddingLeft: "20px",
-                paddingTop: "5px",
-                paddingBottom: "30px",
-                textAlign: "left",
-              }}
-            >
-              <Checkbox onChange={onChange}>
-                Đồng ý với điều khoản sử dụng
-              </Checkbox>
-            </div>
-            <div
-              // style={{
-              //   width: "100%",
-              //   height: "auto",
-              //   display: "flex",
-              //   justifyContent: "center",
-              //   paddingTop: "10px",
-              //   paddingRight: "10px",
-              //   paddingBottom: "20px",
-              // }}
-              className="btnbtn"
-            >
-              <Button
-                className="detailed-btn"
-                // style={{
-                //   width: "335px",
-                //   height: "auto",
-                //   fontSize: "15px",
-                //   backgroundColor: "#0c61f2",
-                //   color: "white",
-                //   fontFamily: "'Open Sans', sans-serif",
-                // }}
-=======
             <Form
-              onFinish={onFinish}
               name="basic"
               initialValues={{ remember: true }}
+              onFinish={onFinish}
             >
               <div className="username">Username</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Form.Item name="userName" >
-                  <Input placeholder="Nhập họ và tên"/>
+              <div className="input-username">
+                <Form.Item name="userName">
+                  <Input placeholder="Nhập username" />
                 </Form.Item>
               </div>
-              <div className="username" >Email</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
-              >
+              <div className="username">Email</div>
+              <div className="input-username">
                 <Form.Item name="email">
-                  <Input placeholder="Nhập email"/>
+                  <Input placeholder="Nhập email" />
                 </Form.Item>
               </div>
               <div className="username">Mật khẩu</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Form.Item name="password">
-                  <Input placeholder="Nhập password" />
+              <div className="inputpw">
+                <Form.Item name="password" className="abc">
+                  <Input.Password placeholder="Nhập mật khẩu" />
                 </Form.Item>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "flex",
-                  justifyContent: "center",
-                  paddingTop: "10px",
-                  paddingRight: "10px",
-                  paddingBottom: "20px",
-                }}
->>>>>>> master
-              >
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{
-                    width: "335px",
-                    height: "auto",
-                    fontSize: "15px",
-                    backgroundColor: "#0c61f2",
-                    color: "white",
-                    fontFamily: "'Open Sans', sans-serif",
-                  }}
-                >
-                  ĐĂNG KÝ
-                </Button>
+              <div className="btn-register">
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                  className="detailed-btn-register"
+                  >
+                    ĐĂNG KÝ
+                  </Button>
+                </Form.Item>
               </div>
             </Form>
-
             <div
               style={{
                 width: "100%",
@@ -294,23 +108,28 @@ function register() {
               }}
             >
               <div
-<<<<<<< HEAD
-                className="btn-btn"
-                // style={{
-                //   fontSize: "18px",
-                //   color: "white",
-                //   fontFamily: "Open Sans', sans-serif",
-                // }}
-=======
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   color: "white",
-                  fontFamily: "Open Sans', sans-serif",
+                  fontFamily: "'Source Sans Pro', sans-serif",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
->>>>>>> master
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,ĐĂNG KÝ NGAY
+                tài khoản,
+                <Link to="/login">
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "white",
+                      fontFamily: "'Source Sans Pro', sans-serif",
+                    }}
+                  >
+                    ĐĂNG NHẬP NGAY
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

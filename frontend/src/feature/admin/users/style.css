@@ -9,12 +9,9 @@
 .topic-left-user{
     float: left;
     display: flex;
-<<<<<<< HEAD
-    width: 40%;
+    /* width: 40%; */
     padding-left: 15px;
-=======
     width: 60%;
->>>>>>> master
 }
 .topic-right-user{
     width:40%;

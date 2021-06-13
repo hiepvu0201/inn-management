@@ -1,12 +1,12 @@
 .form-register {
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fafafa;
 }
-.form-box {
+.form-boxres {
   width: 25%;
   height: auto;
   display: flex;
@@ -35,40 +35,93 @@
   padding-top: 10px;
   font-family: "Open Sans", sans-serif;
 }
-.detailed-btn{
-    width:335px;
-    height: auto;
-    font-size: 15px;
-    background-color: #0c61f2;
-    color:white;
-    font-family: "'Open Sans', sans-serif" ;
+.detailed-btn {
+  width: 335px;
+  height: auto;
+  font-size: 15px;
+  background-color: #0c61f2;
+  color: white;
+  font-family: "'Open Sans', sans-serif";
 }
-.btnbtn{
+.btnbtn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+.btn-btn {
+  font-size: 18px;
+  color: white;
+  font-family: "Open Sans', sans-serif";
+}
+.input-username {
+  width: 90%;
+  height: 40px;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.inputpw {
+  width: 90%;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.btn-register {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+.detailed-btn-register {
+  width: 100%;
+  height: auto;
+  font-size: 15px;
+  background-color: rgb(68, 133, 188);
+  color: white;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+@media only screen and (  max-width: 1026px) {
+.abc{
+    padding-left: 18px;
+  }
+  .form-boxres {
     width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-}
-.btn-btn{
-    font-size: 18px;
-    color:white;
-    font-family: "Open Sans', sans-serif" ;
-}
-@media only screen and (max-width: 1026px) {
-  .form-box{
-      width:80%;
   }
-  .detailed-btn{
-      width: 90%;
+  .detailed-btn {
+    width: 90%;
   }
-  .btnbtn{
-      padding-right: initial;
-      padding-left: 20px;
+  .btnbtn {
+    padding-right: initial;
+    padding-left: 20px;
   }
-  .btn-btn{
-      font-size:15px;
+  .ant-row{
+        width: 100%;
+    padding-left: 10px;
+  }
+  .btn-btn {
+    font-size: 15px;
+  }
+  .input-username {
+  }
+  .inputpw {
+    width: 100%;
+    padding-left: 46px;
+    height: 50px;
+  }
+  .btn-register {
+    padding-left: 50px;
+  }
+  .detailed-btn-register {
+    width: 100%;
+  }
+  .form-register{
+    height:auto
   }
 }

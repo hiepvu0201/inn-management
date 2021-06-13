@@ -11,32 +11,32 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 
 function Login(props) {
   const [loginstate, setloginstate] = useState([]);
-    const [Directstate, setDirectstate] = useState({
-      redirectToReferrer: false,
-    });
-const onFinish = (values) => {
-  const login = async () => {
-    try {
-      console.log("value", values);
-      const response = await authApi.signin(values);
-      console.log("Fetch login user successfully: ", response);
-      fakeAuth.authenticate(() => {
-        setDirectstate(() => ({
-          redirectToReferrer: true,
-        }));
-      });
-      console.log("<<", response.data.accessToken);
-      Cookies.set("Bearer", response.data.accessToken);
-      Cookies.set("id",response.data.id)
-      Cookies.set("userName", response.data.username);
-      Cookies.set("roles",response.data.roles[0])
-    } catch (error) {
-      console.log("failed to login ưser: ", error.response);
-    }
-  };
+  const [Directstate, setDirectstate] = useState({
+    redirectToReferrer: false,
+  });
+  const onFinish = (values) => {
+    const login = async () => {
+      try {
+        console.log("value", values);
+        const response = await authApi.signin(values);
+        console.log("Fetch login user successfully: ", response);
+        fakeAuth.authenticate(() => {
+          setDirectstate(() => ({
+            redirectToReferrer: true,
+          }));
+        });
+        console.log("<<", response.data.accessToken);
+        Cookies.set("Bearer", response.data.accessToken);
+        Cookies.set("id", response.data.id);
+        Cookies.set("userName", response.data.username);
+        Cookies.set("roles", response.data.roles[0]);
+      } catch (error) {
+        console.log("failed to login ưser: ", error.response);
+      }
+    };
 
-  login();
-};
+    login();
+  };
   const { from } = props.location.state || { from: { pathname: "/" } };
   const { redirectToReferrer } = Directstate;
   if (redirectToReferrer === true) {
@@ -53,93 +53,24 @@ const onFinish = (values) => {
               name="basic"
               initialValues={{ remember: true }}
             >
-<<<<<<< HEAD
-              <Input placeholder="Nhập mật khẩu" />
-            </div>
-            <div className="forgetPW">Quên mật khẩu</div>
-            <div
-              className="box-btn"
-              // style={{
-              //   width: "100%",
-              //   height: "auto",
-              //   display: "flex",
-              //   justifyContent: "center",
-              //   paddingTop: "10px",
-              //   paddingRight: "10px",
-              //   paddingBottom: "20px",
-              // }}
-            >
-              <Button
-                className="btn-detailed"
-                // style={{
-                //   width: "335px",
-                //   height: "auto",
-                //   fontSize: "15px",
-                //   backgroundColor: "#4485bc",
-                //   color: "white",
-                //   fontFamily: "Noto Sans JP, sans-serif",
-                // }}
-=======
-              <div className="username">Tên đăng nhập</div>
-              <Form.Item
-                name="userName"
-                rules={[
-                  { required: true, message: "Xin vui lòng nhập userName!" },
-                ]}
-              >
-                <div
-                  style={{
-                    width: "90%",
-                    paddingLeft: "20px",
-                    paddingTop: "10px",
-                  }}
-                >
+              <div className="usernamelog">Username</div>
+              <div className="input-usernamelogin">
+                <Form.Item name="userName">
                   <Input placeholder="Nhập username" />
-                </div>
-              </Form.Item>
+                </Form.Item>
+              </div>
               <div className="username">Mật khẩu</div>
-              <Form.Item
-                name="password"
-                rules={[
-                  { required: true, message: "Xin vui lòng nhập mật khẩu!" },
-                ]}
-              >
-                <div
-                  style={{
-                    width: "90%",
-                    paddingLeft: "20px",
-                    paddingTop: "10px",
-                  }}
-                >
+              <div className="inputpw-log">
+                <Form.Item name="password">
                   <Input.Password placeholder="Nhập mật khẩu" />
-                </div>
-              </Form.Item>
-
-              <div className="forgetPW">Quên mật khẩu</div>
-              <div
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "flex",
-                  justifyContent: "center",
-                  paddingTop: "10px",
-                  paddingRight: "10px",
-                  paddingBottom: "20px",
-                }}
->>>>>>> master
-              >
+                </Form.Item>
+              </div>
+              <div className="btn-registerab">
                 <Form.Item>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{
-                      width: "335px",
-                      height: "auto",
-                      fontSize: "15px",
-                      backgroundColor: "#4485bc",
-                      color: "white",
-                      fontFamily: "Noto Sans JP, sans-serif",
-                    }}
+                    className="detailed-btn-registerab"
                   >
                     ĐĂNG NHẬP
                   </Button>
@@ -162,10 +93,24 @@ const onFinish = (values) => {
                   fontSize: "15px",
                   color: "white",
                   fontFamily: "'Source Sans Pro', sans-serif",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,ĐĂNG KÝ NGAY
+                tài khoản,
+                <Link to="/register">
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "white",
+                      fontFamily: "'Source Sans Pro', sans-serif",
+                    }}
+                  >
+                    ĐĂNG KÝ NGAY
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

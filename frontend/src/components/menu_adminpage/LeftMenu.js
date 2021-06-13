@@ -14,23 +14,12 @@ import Branches from "./../../feature/admin/branches";
 import { faHandshake,faQuestionCircle,faChartBar } from "@fortawesome/free-regular-svg-icons";
 import { faPaypal } from "@fortawesome/free-brands-svg-icons";
 import { Link, Router } from "react-router-dom";
-<<<<<<< HEAD
-const LeftMenu_admin = () => {
-  const { md } = useBreakpoint();
-  return (
-    <Menu mode={md ? "horizontal" : "inline"}>
-      <Menu.Item key="home" className="homecss">
-        <FontAwesomeIcon icon={faChartBar} color="#efefef" size="1x" />{" "}
-        <Link className="linktomainpate" to="/">
-          Trang chủ
-        </Link>
-=======
 
 const { useBreakpoint } = Grid;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-const LeftMenu = () => {
+const LeftMenu_admin = () => {
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
@@ -49,7 +38,6 @@ const LeftMenu = () => {
           style={{ marginRight: "10px" }}
         />{" "}
         <Link to="/home">Trang chủ</Link>
->>>>>>> master
       </Menu.Item>
       <SubMenu
         key="menu-2"

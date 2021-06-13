@@ -1,9 +1,11 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import LeftMenu_admin from './LeftMenu'
 import './style.css'
-import { Drawer, Button } from 'antd';
 import {Images} from '../../config/image'
+import { Link, Router } from "react-router-dom";
+import { Drawer, Button, Menu, Dropdown } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserShield,faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 class Navbar_admin extends Component {
 	state = {
 		current: 'mail',
@@ -14,18 +16,8 @@ class Navbar_admin extends Component {
 			visible: true,
 		});
 	};
-=======
-import React, { Component } from "react";
-import LeftMenu from "./LeftMenu";
-import "./style.css";
-import { Link, Router } from "react-router-dom";
->>>>>>> master
 
-import { Drawer, Button, Menu, Dropdown } from "antd";
-import { Images } from "../../config/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserShield,faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
-const menu = (
+  menu = (
   <Menu style={{ backgroundColor: "rgb(83, 100, 112)" }}>
     <Menu.Item>
       <div style={{ width: "100%", height: "auto", display: "flex" }}>
@@ -46,26 +38,6 @@ const menu = (
         </div>
       </div>
     </Menu.Item>
-
-<<<<<<< HEAD
-	render() {
-		return (
-      <nav className="menuBaradmin">
-        <div className="logoadmin">
-          <img
-            src={Images.LOGIN}
-            style={{ width: "auto", height: "70px", paddingTop: "10px" }}
-          />
-        </div>
-        <div className="menuConadmin">
-          <div className="leftMenu">
-            <LeftMenu_admin />
-          </div>
-          <div className="rightMenu">
-            <img src={Images.ICON_RIGHT} />
-          </div>
-
-=======
     <Menu.Item>
       <div style={{ width: "100%", height: "auto", display: "flex" }}>
         <FontAwesomeIcon size="2x" color="#1890ff" icon={faUnlockAlt} />
@@ -86,44 +58,23 @@ const menu = (
       </div>
     </Menu.Item>
   </Menu>
-);
-class Navbar extends Component {
-  state = {
-    current: "mail",
-    visible: false,
-  };
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-   
-  render() {
-    return (
-      <nav className="menuBar">
-        <div className="logo">
+)
+	render() {
+		return (
+      <nav className="menuBaradmin">
+        <div className="logoadmin">
           <img
             src={Images.LOGIN}
-            style={{ width: "100%", paddingTop: "10px" }}
+            style={{ width: "auto", height: "70px", paddingTop: "10px" }}
           />
         </div>
-        <div className="menuCon">
+        <div className="menuConadmin">
           <div className="leftMenu">
-            <LeftMenu />
+            <LeftMenu_admin />
           </div>
           <div className="rightMenu">
-            <Dropdown overlay={menu}>
-              <img src={Images.ICON_RIGHT} />
-            </Dropdown>
+            <img src={Images.ICON_RIGHT} />
           </div>
-
->>>>>>> master
           <Button className="barsMenu" type="primary" onClick={this.showDrawer}>
             <span className="barsBtn"></span>
           </Button>
@@ -134,20 +85,12 @@ class Navbar extends Component {
             onClose={this.onClose}
             visible={this.state.visible}
           >
-<<<<<<< HEAD
             <LeftMenu_admin />
-=======
-            <LeftMenu />
->>>>>>> master
           </Drawer>
         </div>
       </nav>
     );
-<<<<<<< HEAD
 	}
-=======
-  }
->>>>>>> master
 }
 
 export default Navbar_admin;

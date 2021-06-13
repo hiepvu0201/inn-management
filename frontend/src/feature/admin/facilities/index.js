@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Images } from "./../../../config/image";
-import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
   faSitemap,
@@ -32,7 +32,7 @@ import {
 import branchesApi from "./../../../api/branchesApi";
 import { text } from "@fortawesome/fontawesome-svg-core";
 const { Option } = Select;
-import {WarningOutlined} from "@ant-design/icons";
+import { WarningOutlined } from "@ant-design/icons";
 function Facilities(props) {
   //api
   //getAll
@@ -124,8 +124,8 @@ function Facilities(props) {
       console.log("Failed to delete facilities list", error);
     }
   };
-  const check = (e)=>{
-    console.log("<<<",e.target.value)
+  const check = (e) => {
+    console.log("<<<", e.target.value);
     e.target.value >= 5000 ? (
       <></>
     ) : (
@@ -135,7 +135,7 @@ function Facilities(props) {
         placement: "topLeft",
       })
     );
-  }
+  };
   //select
   function handleChange(value) {
     console.log(`selected branches id ${value}`);
@@ -240,7 +240,7 @@ function Facilities(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
-  }; 
+  };
   const handleCancelCreate = () => {
     setIsModalVisible(false);
   };
@@ -391,19 +391,20 @@ function Facilities(props) {
                       <Form.Item label="Số lượng" name="quantity">
                         <Input />
                       </Form.Item>
-<<<<<<< HEAD
                       <div className="btnbtncreatefaci">
-=======
-                      <Form.Item label="Đơn giá" name="unitPrice">
-                        <Input onChange={(unitPrice)=>check(unitPrice)} />
-                      </Form.Item>
-                      <div style={{ display: "flex" }}>
->>>>>>> master
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }} onClick={handleCancelCreate}>
-                          <Button type="default">HỦY BỎ</Button>
+                        <Form.Item label="Đơn giá" name="unitPrice">
+                          <Input onChange={(unitPrice) => check(unitPrice)} />
+                        </Form.Item>
+                        <div style={{ display: "flex" }}>
+                          <Button type="primary" htmlType="submit">
+                            THÊM MỚI
+                          </Button>
+                          <div
+                            style={{ paddingLeft: "10px" }}
+                            onClick={handleCancelCreate}
+                          >
+                            <Button type="default">HỦY BỎ</Button>
+                          </div>
                         </div>
                       </div>
                     </Form>

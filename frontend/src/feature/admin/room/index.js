@@ -48,20 +48,15 @@ function Rooms(props) {
   const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
-
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
   const [fileList, setfileList] = useState([]);
   const [imgfile, setimgfile] = useState(null);
-<<<<<<< HEAD
-=======
-
   const [firstroom, setFirstroom] = useState(true);
   const [secondroom, setSecondroom] = useState(true);
   const [thirdroom, setThirdroom] = useState(true);
   const [fourthroom, setFourthroom] = useState(true);
->>>>>>> master
 
   const uploadimg = (info) => {
     console.log(">>>>info: ", info);
@@ -165,19 +160,10 @@ function Rooms(props) {
       images: imgfile,
     };
     console.log("dataCreate", responsedata);
-<<<<<<< HEAD
-
     var form_data = new FormData();
-
-=======
-
-    var form_data = new FormData();
-
->>>>>>> master
     for (var key in responsedata) {
       form_data.append(key, responsedata[key]);
     }
-
     const fetchCreateRooms = async () => {
       try {
         const response = await roomsApi.createrooms(form_data);
@@ -446,8 +432,6 @@ function Rooms(props) {
       SearchRoombyBranch();
     }
   };
-<<<<<<< HEAD
-=======
   const toggleInputbySelect = (value) => {
     switch (value) {
       case "0":
@@ -482,7 +466,6 @@ function Rooms(props) {
    toggleInputbySelect(value);
   };
 
->>>>>>> master
   return (
     <div>
       <Modal

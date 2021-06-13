@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { Row, Col, Button } from "antd";
 import { Images } from "./../../config/image";
-import Menu from "../../components/menu";
+import Menu_client from "../../components/menu_client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./demo-files/demo.css";
 import "./ie7/ie7.css";
@@ -33,8 +33,8 @@ import Component8 from "./../../components/component_block_last";
 function Home() {
   return (
     <div>
-      <div style={{ height: "100px" }}>
-        <Menu />
+      <div style={{ height: "150px" }}>
+        <Menu_client />
       </div>
       <Row>
         <Col
@@ -1261,10 +1261,14 @@ function Home() {
                   hàng ngày.
                 </div>
               </div>
+<<<<<<< HEAD
               <Row 
               // style={{ paddingTop: "20px" }} 
                 className="row-XIII-col"
               >
+=======
+              <Row style={{ paddingTop: "20px" }}>
+>>>>>>> master
                 <Col lg={8} md={24}>
                   <div className="box-last">
                     <div

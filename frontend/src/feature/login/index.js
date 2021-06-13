@@ -3,7 +3,7 @@ import "./style.css";
 import { Images } from "../../config/image";
 import { Input, Button, Form } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faLeaf, faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from "./../../api/authApi";
 import Cookies from "js-cookie";
 import { fakeAuth } from "../../fakeAuth";
@@ -63,14 +63,41 @@ function Login(props) {
               <div className="inputpw-log">
                 <Form.Item name="password">
                   <Input.Password placeholder="Nhập mật khẩu" />
+<<<<<<< HEAD
                 </Form.Item>
               </div>
               <div className="btn-registerab">
+=======
+                </div>
+              </Form.Item>
+
+              <div className="forgetPW">Quên mật khẩu</div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  paddingTop: "10px",
+                  paddingRight: "10px",
+                  paddingBottom: "20px",
+                }}
+              >
+>>>>>>> master
                 <Form.Item>
                   <Button
                     type="primary"
                     htmlType="submit"
+<<<<<<< HEAD
                     className="detailed-btn-registerab"
+=======
+                    style={{
+                      width: "90%",
+                      height: "auto",
+                      fontSize: "15px",
+                      backgroundColor: "#0c61f2",
+                      color: "white",
+                      fontFamily: "Noto Sans JP, sans-serif",
+                    }}
+>>>>>>> master
                   >
                     ĐĂNG NHẬP
                   </Button>
@@ -90,12 +117,19 @@ function Login(props) {
             >
               <div
                 style={{
-                  fontSize: "15px",
+                  fontSize: "18px",
                   color: "white",
+<<<<<<< HEAD
                   fontFamily: "'Source Sans Pro', sans-serif",
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
+=======
+                  fontFamily: "'Open Sans', sans-serif",
+                  display: "flex",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+>>>>>>> master
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
@@ -103,9 +137,16 @@ function Login(props) {
                 <Link to="/register">
                   <div
                     style={{
+<<<<<<< HEAD
                       fontSize: "15px",
                       color: "white",
                       fontFamily: "'Source Sans Pro', sans-serif",
+=======
+                      color: "white",
+                      textDecorationLine: "underline",
+                      textDecorationThickness: "2px",
+                      textDecorationStyle: "solid",
+>>>>>>> master
                     }}
                   >
                     ĐĂNG KÝ NGAY

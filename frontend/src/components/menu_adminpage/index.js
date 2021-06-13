@@ -68,9 +68,15 @@ class Navbar_admin extends Component {
             style={{ width: "auto", height: "70px", paddingTop: "10px" }}
           />
         </div>
+<<<<<<< HEAD
         <div className="menuConadmin">
           <div className="leftMenu">
             <LeftMenu_admin />
+=======
+        <div className="menuConAdmin">
+          <div className="leftMenuad">
+            <LeftMenu />
+>>>>>>> master
           </div>
           <div className="rightMenu">
             <img src={Images.ICON_RIGHT} />

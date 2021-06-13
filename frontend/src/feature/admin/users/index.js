@@ -41,6 +41,8 @@ import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
+import {  LocalDateTime } from "@js-joda/core";
+import Moment from "react-moment";
 const { Option } = Select;
 
 function Users(props) {
@@ -241,6 +243,7 @@ function Users(props) {
     const dataUpdate = {
       ...values,
       userName: rowEdit.userName,
+      password:rowEdit.password,
     };
     console.log("<<<", dataUpdate);
     var myJSONupdate = JSON.stringify(dataUpdate);
@@ -270,10 +273,15 @@ function Users(props) {
     fetchUpdateUsers();
   };
   //form_checkin
+  const [stateDatecheckin, setDatecheckin] = useState({});
   const onFinish_checkin = (values) => {
+    const datetime = LocalDateTime.now();
+
+    // const dt2 = datetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
+      checkInDate:LocalDateTime.now(),
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -285,7 +293,7 @@ function Users(props) {
         fetchUsersList();
         message.success("Checkin successfully");
       } catch (error) {
-        console.log("Failed to checkin users", error);
+        console.log("Failed to checkin users", error.response);
         setIsloadingUpdate(false);
       }
     };
@@ -293,9 +301,11 @@ function Users(props) {
   };
   //form_checkout
   const onFinish_checkout = (values) => {
+    const datetime__ = LocalDateTime.now();
     const datacheckout = {
       ...values,
       userName: rowEditcheckout.userName,
+      checkOutDate: datetime__,
     };
     const fetchCheckout = async () => {
       console.log("dataCheckin", datacheckout);
@@ -408,6 +418,16 @@ function Users(props) {
       key: "job",
     },
     {
+      title: "Ngày checkin",
+      dataIndex: "checkinDate",
+      key: "checkinDate",
+    },
+      {
+      title: "Ngày checkout",
+      dataIndex: "checkoutDate",
+      key: "checkoutDate",
+    },
+    {
       title: "Hình ảnh",
       dataIndex: "images",
       key: "images",
@@ -418,7 +438,7 @@ function Users(props) {
       title: "Quyền",
       dataIndex: "roles",
       key: "roles",
-      render: (roles) => <div>{roles.map((us) => us.name) + " "}</div>,
+      render: (roles) => <div>{roles[0].name}</div>,
       // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
@@ -521,9 +541,7 @@ function Users(props) {
     } else {
       const fetchGetalluserbyUsername = async () => {
         try {
-          const response = await usersApi.getalluserbyusername(
-            value
-          );
+          const response = await usersApi.getalluserbyusername(value);
           console.log(
             "Fetch userall by username successfully: ",
             response.data
@@ -569,14 +587,10 @@ function Users(props) {
             onFinish={onFinish_checkin}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item
-              label="Khách trọ"
-              name="userName"
-              value={rowEditcheck.userName}
-            >
-              <Input
-                placeholder={rowEditcheck.userName}
-                value={rowEditcheck.userName}
+            <Form.Item label="Ngày checkin" name="checkInDate">
+              <DatePicker
+                showTime format="YYYY-MM-DD HH:mm:ss"
+                
               />
             </Form.Item>
             <Form.Item label="Khách trọ" name="userName" value="userName">
@@ -638,7 +652,11 @@ function Users(props) {
             <Form.Item label="Khách trọ" name="userName" value="userName">
               <Input placeholder={rowEditcheckout.userName} disabled />
             </Form.Item>
-
+            <Form.Item label="Ngày checkout" name="checkOutDate">
+              <DatePicker
+                showTime format="YYYY-MM-DD HH:mm:ss"
+              />
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CẬP NHẬT{" "}
@@ -682,8 +700,8 @@ function Users(props) {
             <Form.Item label="Tài khoản" name="userName" value="userName">
               <Input placeholder={rowEdit.userName} disabled />
             </Form.Item>
-            <Form.Item label="Mật khẩu" name="passwordHash">
-              <Input.Password placeholder={rowEdit.passwordHash} />
+            <Form.Item label="Mật khẩu" name="password">
+              <Input.Password placeholder={rowEdit.password} disabled />
             </Form.Item>
             <Form.Item label="email" name="email">
               <Input placeholder={rowEdit.email} />
@@ -838,7 +856,7 @@ function Users(props) {
                         </div>
                       </div>
 
-                      <Form.Item label="Mật khẩu" name="passwordHash">
+                      <Form.Item label="Mật khẩu" name="password">
                         <Input.Password />
                       </Form.Item>
                       <Form.Item label="email" name="email">
@@ -915,7 +933,7 @@ function Users(props) {
                 paddingBottom: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={usersList} />
+              <Table columns={columns} bordered dataSource={usersList} rowKey="id" />
             </div>
           </div>
         </div>

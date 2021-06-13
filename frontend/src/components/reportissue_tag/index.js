@@ -11,8 +11,10 @@ function Reportissues_tag(props) {
             backgroundColor: "white",
             boxShadow: "2px 5px gray",
             paddingLeft: "15px",
-            paddingTop:"10px",
-            paddingBottom:"10px"
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            borderRadius: "8px",
+            boxShadow: "0 1px 10px 0 rgb(0 0 0 / 12%)",
           }}
         >
           <div style={{ width: "100%", display: "flex" }}>
@@ -33,6 +35,7 @@ function Reportissues_tag(props) {
                 fontFamily: "PT Sans, sans-serif",
                 fontSize: "15px",
                 textAlign: "left",
+                paddingLeft:"87px"
               }}
             >
               {/* Phòng trừ Covid */}
@@ -57,7 +60,7 @@ function Reportissues_tag(props) {
                 fontFamily: "PT Sans, sans-serif",
                 fontSize: "15px",
                 textAlign: "left",
-                paddingRight: "15px",
+                paddingLeft: "100px",
               }}
             >
               {props.description}
@@ -81,36 +84,13 @@ function Reportissues_tag(props) {
                 fontFamily: "PT Sans, sans-serif",
                 fontSize: "15px",
                 textAlign: "left",
-                paddingRight: "15px",
+                paddingLeft: "62px",
               }}
             >
               {props.status}
             </div>
           </div>
-          <div style={{ width: "100%", display: "flex" }}>
-            <div
-              style={{
-                width: "7%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
-            >
-              Ngày tạo:
-            </div>
-            <div
-              style={{
-                width: "93%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingRight: "15px",
-              }}
-            >
-              {props.createdDate}
-            </div>
-          </div>
+         
           <div style={{ width: "100%", display: "flex" }}>
             <div
               style={{
@@ -121,7 +101,7 @@ function Reportissues_tag(props) {
                 textAlign: "left",
               }}
             >
-              Ngày giải quyết:
+              Tên người tạo báo cáo:
             </div>
             <div
               style={{
@@ -129,31 +109,7 @@ function Reportissues_tag(props) {
                 fontFamily: "PT Sans, sans-serif",
                 fontSize: "15px",
                 textAlign: "left",
-                paddingRight: "15px",
-              }}
-            >
-              {props.solvedDate}
-            </div>
-          </div>
-          <div style={{ width: "100%", display: "flex" }}>
-            <div
-              style={{
-                width: "18%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
-            >
-              Tên người tạo báo cáo:
-            </div>
-            <div
-              style={{
-                width: "82%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingRight: "15px",
+                paddingLeft: "5px",
               }}
             >
               {props.reporter}

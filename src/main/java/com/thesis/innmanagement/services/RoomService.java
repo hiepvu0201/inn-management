@@ -47,16 +47,29 @@ public class RoomService {
         ObjectMapper objectMapper = new ObjectMapper();
         room = objectMapper.readValue(roomReq, Rooms.class);
 
-        String fileName = fileStorageService.storeFile(images);
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/v1/downloadFile/")
-                .path(fileName)
-                .toUriString();
+        if (images != null) {
+            String fileName = fileStorageService.storeFile(images);
+            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/api/v1/downloadFile/")
+                    .path(fileName)
+                    .toUriString();
 
-        room.setImages(fileDownloadUri);
-        room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
-        Rooms finalRoom = room;
-        room.setBranch(branchRepository.findById(room.getBranchId()).orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + finalRoom.getBranchId())));
+            room.setImages(fileDownloadUri);
+        }
+        if (room.getFacilityIds() != null) {
+            room.setFacilities(facilityRepository.findAllById(room.getFacilityIds()));
+        }
+        if (room.getBranchId() != null) {
+            long branchId = room.getBranchId();
+            room.setBranch(branchRepository.findById(room.getBranchId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + branchId)));
+        }
+        room.setPriceByFirstHour(room.getPriceByFirstHour());
+        room.setPriceByNextHour(room.getPriceByNextHour());
+        room.setPriceByDay(room.getPriceByDay());
+        room.setPriceByWeek(room.getPriceByWeek());
+        room.setPriceByMonth(room.getPriceByMonth());
+        room.setTotal(room.getTotal());
         if (id == null) {
             roomRepository.save(room);
             return room;
@@ -75,6 +88,7 @@ public class RoomService {
             roomUpdate.setPriceByDay(room.getPriceByDay());
             roomUpdate.setPriceByWeek(room.getPriceByWeek());
             roomUpdate.setPriceByMonth(room.getPriceByMonth());
+            roomUpdate.setTotal(room.getTotal());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

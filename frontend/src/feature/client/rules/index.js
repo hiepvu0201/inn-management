@@ -21,7 +21,7 @@ function Rules_client() {
   return (
     <div>
       <div
-        style={{ width: "100%", height: "100vh", backgroundColor: "#f2f6fa" }}
+        style={{ width: "100%", height: "auto", backgroundColor: "#f2f6fa" }}
       >
         <div style={{ height: "100px" }}>
           <Menu_client />
@@ -52,7 +52,7 @@ function Rules_client() {
             ))}
           </Row>
         </div>
-        <div style={{ paddingTop: "20px" }}>
+        <div style={{ paddingTop: "70px" }}>
           <Footer_client />
         </div>
       </div>

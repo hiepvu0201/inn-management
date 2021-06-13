@@ -9,7 +9,12 @@ function Rules_tag(props) {
           height: "auto",
           display: "block",
           backgroundColor: "white",
-          boxShadow: "2px 5px gray",
+          // boxShadow: "2px 5px gray",
+          paddingLeft: "10px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          borderRadius: "8px",
+          boxShadow: "0 1px 10px 0 rgb(0 0 0 / 12%)",
         }}
       >
         <div style={{ width: "100%", display: "flex" }}>
@@ -30,6 +35,7 @@ function Rules_tag(props) {
               fontFamily: "PT Sans, sans-serif",
               fontSize: "15px",
               textAlign: "left",
+              paddingLeft:"15px"
             }}
           >
             {props.name}

@@ -129,11 +129,6 @@ function Notification(props) {
       key: "description",
     },
     {
-      title: "Ngày đăng thông báo",
-      dataIndex: "createdDate",
-      key: "createdDate",
-    },
-    {
       title: "",
       dataIndex: "",
       key: "x",

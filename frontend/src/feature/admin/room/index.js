@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Images } from "../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
 import branchesApi from "../../../api/branchesApi";
-import { CheckOutlined, RadiusBottomleftOutlined, UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined, WarningOutlined } from "@ant-design/icons";
 import {
   Table,
   Popconfirm,
@@ -28,6 +24,7 @@ import {
   Spin,
   InputNumber,
   Upload,
+  notification,
 } from "antd";
 import facilitiesApi from "../../../api/facilitiesApi";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
@@ -36,19 +33,14 @@ const { Option } = Select;
 const { Search } = Input;
 
 function Rooms(props) {
-  //api
-  //search
-
-  // const onSearch_1=(value)=>{
-  //   console.log(value)
-  // }
-  //getAll
-
   const [roomList, setRoomList] = useState([]);
   const [branchesList, setBranchesList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
+<<<<<<< HEAD
   const [electricitywatersList, setElectricitywaterList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
+=======
+>>>>>>> master
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
   const [fileList, setfileList] = useState([]);
@@ -57,6 +49,11 @@ function Rooms(props) {
   const [secondroom, setSecondroom] = useState(true);
   const [thirdroom, setThirdroom] = useState(true);
   const [fourthroom, setFourthroom] = useState(true);
+  const [stateInput, setIsstateInput] = useState([]);
+  const propsselect = [];
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+  const [state, setstate] = useState([]);
 
   const uploadimg = (info) => {
     console.log(">>>>info: ", info);
@@ -115,27 +112,12 @@ function Rooms(props) {
       console.log("Failed to fetch facilities list: ", error);
     }
   };
-  const fetchElectricitywaterList = async (userName) => {
-    try {
-      const response = await electricityWaterApi.getAll(userName);
-      console.log("Fetch electricities successfully: ", response.data);
-      setElectricitywaterList(response.data);
-    } catch (error) {
-      console.log("Failed to fetch electricities list: ", error);
-    }
-  };
-  const [stateInput, setIsstateInput] = useState([]);
 
   useEffect(() => {
-    fetchElectricitywaterList();
     fetchFacilitiesList();
     fetchBranchesList();
     fetchRoomList();
-    // fetchBranchesList();
-    // fetchfacilitiesList();
   }, []);
-  const { Option } = Select;
-  const propsselect = [];
   {
     facilitiesList.map((facilitiesid) =>
       propsselect.push(
@@ -149,8 +131,6 @@ function Rooms(props) {
   const onFinish = (values) => {
     const dataCreate = {
       ...values,
-      // facilityIds: selected_1,
-      // electricityWaterIds: selected_2,
     };
     console.log("dataCreate", dataCreate);
     var myJSON = JSON.stringify(dataCreate);
@@ -178,8 +158,6 @@ function Rooms(props) {
     fetchCreateRooms();
   };
   const fetchUpdateRooms = async (edittv) => {
-    //  const data_update = { id: rowEdit.id, data: dataUpdate };
-    //  console.log("dataupdate", dataUpdate);
     setIsloadingUpdate(true);
     try {
       const response = await roomApi.updaterooms(edittv);
@@ -193,13 +171,8 @@ function Rooms(props) {
     }
   };
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
-    // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
-      // userIds: idSelected,
-      // facilityIds: selected_1,
-      // electricityWaterIds: selected_2,
     };
     console.log("dataupdate", dataUpdate);
     var myJSONupdate = JSON.stringify(dataUpdate);
@@ -232,34 +205,29 @@ function Rooms(props) {
   //select
   function handleChange(value) {
     console.log(`selected users ${value}`);
-    // const usersvalue = [value];
-    // setidSelected(usersvalue);
   }
   const [selected_1, setIdselected_1] = useState([]);
   function handleChange_1(value) {
     console.log(`selected facilities id ${value}`);
-    // const facilitiesvalue = [value];
-    // setIdselected_1(facilitiesvalue);
   }
-  const [selected_2, setIdselected_2] = useState([]);
-  function handleChange_2(value) {
-    console.log(`selected electricity id ${value}`);
-    const electricitiesvalue = [value];
-    setIdselected_2(electricitiesvalue);
-  }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
+  const check_price = (e) => {
+    console.log("<<<", e.target.value);
+    e.target.value >= 1000 ? (
+      <></>
+    ) : (
+      notification.warning({
+        message: `Xin vui lòng nhập lại`,
+        icon: <WarningOutlined style={{ color: "#FF0000" }} />,
+        placement: "topLeft",
+      })
+    );
+  };
 
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
+
   const columns = [
     {
       title: "Hình",
@@ -282,14 +250,12 @@ function Rooms(props) {
       title: "Chi nhánh",
       dataIndex: "branch",
       key: "branch",
-      // render: (users) => <div>{users[0].userName}</div>,
       render: (branch) => <div>{branch.location}</div>,
     },
     {
       title: "Thiết bị",
       dataIndex: "facilities",
       key: "facilities",
-      // render: (facilities) => <div>{facilities[0].name}</div>,
       render: (facilities) => (
         <div>{facilities.map((us) => us.name) + " "}</div>
       ),
@@ -300,7 +266,7 @@ function Rooms(props) {
       key: "roomType",
       render: (roomType) =>
         roomType === null ? (
-          <Tag color="magenta">CHƯA CÓ</Tag>
+          <Tag color="magenta">{roomType}</Tag>
         ) : (
           <Tag color="geekblue">{roomType}</Tag>
         ),
@@ -310,19 +276,19 @@ function Rooms(props) {
       dataIndex: "priceByFirstHour",
       key: "priceByFirstHour",
       render: (priceByFirstHour) =>
-        priceByFirstHour === null ? (
-          <Tag color="magenta">KHÔNG CÓ</Tag>
+        priceByFirstHour === 0 ? (
+          <Tag color="magenta">{priceByFirstHour}</Tag>
         ) : (
           <Tag color="geekblue">{priceByFirstHour}</Tag>
         ),
     },
     {
       title: "Giá phòng theo giờ sau",
-      dataIndex: "priceByFirstHour",
+      dataIndex: "priceByNextHour",
       key: "priceByNextHour",
       render: (priceByNextHour) =>
-        priceByNextHour === null ? (
-          <Tag color="magenta">KHÔNG CÓ</Tag>
+        priceByNextHour === 0 ? (
+          <Tag color="magenta">{priceByNextHour}</Tag>
         ) : (
           <Tag color="geekblue">{priceByNextHour}</Tag>
         ),
@@ -332,8 +298,8 @@ function Rooms(props) {
       dataIndex: "priceByDay",
       key: "priceByDay",
       render: (priceByDay) =>
-        priceByDay === null ? (
-          <Tag color="magenta">KHÔNG CÓ</Tag>
+        priceByDay === 0 ? (
+          <Tag color="magenta">{priceByDay}</Tag>
         ) : (
           <Tag color="geekblue">{priceByDay}</Tag>
         ),
@@ -343,8 +309,8 @@ function Rooms(props) {
       dataIndex: "priceByWeek",
       key: "priceByWeek",
       render: (priceByWeek) =>
-        priceByWeek === null ? (
-          <Tag color="magenta">KHÔNG CÓ</Tag>
+        priceByWeek === 0 ? (
+          <Tag color="magenta">{priceByWeek}</Tag>
         ) : (
           <Tag color="geekblue">{priceByWeek}</Tag>
         ),
@@ -354,8 +320,8 @@ function Rooms(props) {
       dataIndex: "priceByMonth",
       key: "priceByMonth",
       render: (priceByMonth) =>
-        priceByMonth === null ? (
-          <Tag color="magenta">KHÔNG CÓ</Tag>
+        priceByMonth === 0 ? (
+          <Tag color="magenta">{priceByMonth}</Tag>
         ) : (
           <Tag color="geekblue">{priceByMonth}</Tag>
         ),
@@ -387,7 +353,6 @@ function Rooms(props) {
       ),
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -399,7 +364,6 @@ function Rooms(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -413,7 +377,6 @@ function Rooms(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-  const [state, setstate] = useState([]);
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
     if (value === "") {
@@ -458,14 +421,16 @@ function Rooms(props) {
         setThirdroom(true);
         setFourthroom(false);
         break;
-   
     }
   };
   const handleChange_roomType = (value) => {
     console.log(`selected ${value}`);
-   toggleInputbySelect(value);
+    toggleInputbySelect(value);
   };
-
+ const handleChange_roomType1 = (value) => {
+    console.log(`selected ${value}`);
+    toggleInputbySelect(value);
+  };
   return (
     <div>
       <Modal
@@ -500,7 +465,33 @@ function Rooms(props) {
             <Form.Item label="Vị trí" name="position">
               <Input placeholder={rowEdit.position} />
             </Form.Item>
-
+            <Form.Item label="Loại phòng" name="roomType">
+              <Select
+                style={{ width: 385 }}
+                placeholder={rowEdit.month}
+                onSelect={(value) => handleChange_roomType1(value)}
+              >
+                <Option value="0">Phòng theo giờ</Option>
+                <Option value="1">Phòng theo ngày</Option>
+                <Option value="2">Phòng theo tuần</Option>
+                <Option value="3">Phòng theo tháng</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item label="Giá phòng theo giờ 1" name="priceByFirstHour">
+              <InputNumber style={{ width: 320 }} disabled={firstroom} />
+            </Form.Item>
+            <Form.Item label="Giá phòng theo giờ 2" name="priceByNextHour">
+              <InputNumber style={{ width: 320 }} disabled={firstroom} />
+            </Form.Item>
+            <Form.Item label="Giá phòng theo ngày" name="priceByDay">
+              <InputNumber style={{ width: 320 }} disabled={secondroom} />
+            </Form.Item>
+            <Form.Item label="Giá phòng theo tuần" name="priceByWeek">
+              <InputNumber style={{ width: 320 }} disabled={thirdroom} />
+            </Form.Item>
+            <Form.Item label="Giá phòng theo tháng" name="priceByMonth">
+              <InputNumber style={{ width: 320 }} disabled={fourthroom} />
+            </Form.Item>
             <Form.Item label="Chi nhánh" name="branchId">
               <Select onChange={handleChange}>
                 {branchesList.map((branchesid) => (
@@ -638,7 +629,10 @@ function Rooms(props) {
                       label="Giá phòng theo giờ 1"
                       name="priceByFirstHour"
                     >
-                      <InputNumber
+                      <Input
+                        onChange={(priceByFirstHour) =>
+                          check_price(priceByFirstHour)
+                        }
                         style={{ width: 320 }}
                         disabled={firstroom}
                       />
@@ -647,27 +641,33 @@ function Rooms(props) {
                       label="Giá phòng theo giờ 2"
                       name="priceByNextHour"
                     >
-                      <InputNumber
+                      <Input
                         style={{ width: 320 }}
                         disabled={firstroom}
+                        onChange={(priceByNextHour) =>
+                          check_price(priceByNextHour)
+                        }
                       />
                     </Form.Item>
                     <Form.Item label="Giá phòng theo ngày" name="priceByDay">
-                      <InputNumber
+                      <Input
                         style={{ width: 320 }}
                         disabled={secondroom}
+                        onChange={(priceByDay) => check_price(priceByDay)}
                       />
                     </Form.Item>
                     <Form.Item label="Giá phòng theo tuần" name="priceByWeek">
-                      <InputNumber
+                      <Input
                         style={{ width: 320 }}
                         disabled={thirdroom}
+                        onChange={(priceByWeek) => check_price(priceByWeek)}
                       />
                     </Form.Item>
                     <Form.Item label="Giá phòng theo tháng" name="priceByMonth">
-                      <InputNumber
+                      <Input
                         style={{ width: 320 }}
                         disabled={fourthroom}
+                        onChange={(priceByMonth) => check_price(priceByMonth)}
                       />
                     </Form.Item>
                     <Form.Item label="Chi nhánh" name="branchId">
@@ -713,23 +713,15 @@ function Rooms(props) {
                         THÊM MỚI
                       </Button>
                       <div style={{ paddingLeft: "10px" }}>
-                        <Button type="default">HỦY BỎ</Button>
+                        <Button type="default" onClick={handleCancel}>
+                          HỦY BỎ
+                        </Button>
                       </div>
                     </div>
                   </Form>
                 </Modal>
-                {/* <Popconfirm
-                  title="BẠN CÓ CHẮC MUỐN XÓA DỮ LIỆU KHÔNG?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Có"
-                  cancelText="Không"
-                >
-                  <button className="detailed-btn">XÓA NHIỀU</button>
-                </Popconfirm> */}
               </div>
             </div>
-
             <div
               style={{
                 paddingTop: "30px",
@@ -738,7 +730,12 @@ function Rooms(props) {
                 paddingBottom: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={roomList} />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={roomList}
+                rowKey="id"
+              />
             </div>
           </div>
         </div>

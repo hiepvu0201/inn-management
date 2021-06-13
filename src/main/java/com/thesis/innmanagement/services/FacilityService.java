@@ -2,10 +2,12 @@ package com.thesis.innmanagement.services;
 
 import com.thesis.innmanagement.entities.Facilities;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
+import com.thesis.innmanagement.helpers.CalculateHelper;
 import com.thesis.innmanagement.repositories.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,9 @@ public class FacilityService {
     @Autowired
     private FacilityRepository facilityRepository;
 
+    @Autowired
+    private CalculateHelper calculateHelper;
+
     public List<Facilities> findAll() {
         return facilityRepository.findAll();
     }
@@ -25,6 +30,8 @@ public class FacilityService {
     }
 
     public Facilities createOrUpdate(Long id, Facilities facility) throws ResourceNotFoundException {
+        BigDecimal total = calculateHelper.getTotalFacilityPrice(facility);
+        facility.setTotal(total);
         if (id == null) {
             facilityRepository.save(facility);
             return facility;
@@ -34,6 +41,8 @@ public class FacilityService {
             facilityUpdate.setName(facility.getName());
             facilityUpdate.setQuality(facility.getQuality());
             facilityUpdate.setQuantity(facility.getQuantity());
+            facilityUpdate.setUnitPrice(facility.getUnitPrice());
+            facilityUpdate.setTotal(facility.getTotal());
             facilityRepository.save(facilityUpdate);
             return facilityUpdate;
         }

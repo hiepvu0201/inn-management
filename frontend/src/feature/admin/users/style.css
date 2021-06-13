@@ -9,11 +9,16 @@
 .topic-left-user{
     float: left;
     display: flex;
+<<<<<<< HEAD
     width: 40%;
     padding-left: 15px;
+=======
+    width: 60%;
+>>>>>>> master
 }
 .topic-right-user{
-    width:60%;
+    width:40%;
+    display:flex;
 }
 .contentusers{
     font-size: 20px;
@@ -24,6 +29,12 @@
     padding-top: 5px;
     text-align: left;
 
+}
+.element-selectuser{
+        width: 40%;
+}
+.element2-selectuser{
+    width:30%;
 }
 .btn-right-user{
     float:right;

@@ -2,16 +2,18 @@ package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 @Entity
 public class MonthlyPayments extends BasicEntity {
 
-    private String itemName;
-
-    @Column(precision = 16, scale = 4)
-    private Double cost;
+    private BigDecimal cost;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
@@ -19,6 +21,38 @@ public class MonthlyPayments extends BasicEntity {
     private Branches branch;
 
     private Long branchId;
+
+    private int month;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public Long getBranchId() {
         return branchId;
@@ -36,19 +70,11 @@ public class MonthlyPayments extends BasicEntity {
         this.branch = branch;
     }
 
-    public String getItemName() {
-        return itemName;
+    public BigDecimal getCost() {
+        return (cost == null) ? BigDecimal.ZERO : cost;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 }

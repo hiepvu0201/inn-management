@@ -5,14 +5,17 @@
   border-bottom: solid 1px #e8e8e8;
   /* overflow: auto; */
   box-shadow: 0 0 30px #f3f1f1;
+<<<<<<< HEAD
   display:flex;
   width: 100%;
+=======
+  display: "flex";
+>>>>>>> master
 }
 
 .logoadmin {
   width:5%;
   float: left;
-  
 }
 
 .logoadmin a {
@@ -97,12 +100,12 @@
   padding: 0;
 }
 
-.barsMenu>span {
+.barsMenu > span {
   display: block;
 }
 
-.ant-drawer-body .ant-menu-horizontal>.ant-menu-item,
-.ant-drawer-body .ant-menu-horizontal>.ant-menu-submenu {
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
   display: inline-block;
   width: 100%;
 }
@@ -111,9 +114,10 @@
   border-bottom: none;
 }
 
-.ant-drawer-body .ant-menu-horizontal>.ant-menu-item:hover {
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
   border-bottom-color: transparent;
 }
+<<<<<<< HEAD
 .homecss{
   margin-right: 10px;
   background-color: #007c7e;
@@ -137,6 +141,16 @@
   color: white;
     font-size: 15px;
     font-family: "PT Sans", sans-serif;
+=======
+.hovercc {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding-top: 5px;
+}
+.hovercc:hover {
+  color: #337ab7;
+>>>>>>> master
 }
 @media (max-width: 767px) {
   .barsMenu {
@@ -160,11 +174,11 @@
   .logoadmin a {
     padding: 10px 20px;
   }
-  .rightMenu{
-
+  .rightMenu {
   }
-  .padding{
+  .padding {
   }
+<<<<<<< HEAD
   .homecss{
     padding-left:30px;
   }
@@ -188,3 +202,6 @@ padding-left: 19px;
     padding-left: 19px;
   }
 }
+=======
+}
+>>>>>>> master

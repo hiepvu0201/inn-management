@@ -38,16 +38,17 @@ public class MonthlyIncomeService {
 
     public MonthlyIncomes createOrUpdate(Long id, MonthlyIncomes monthlyIncomes) throws ResourceNotFoundException {
         monthlyIncomes.setBranch(branchRepository.findById(monthlyIncomes.getBranchId()).orElseThrow(() -> new ResolutionException("Branch not found on id: " + monthlyIncomes.getBranchId())));
+        monthlyIncomes.setMonth(monthlyIncomes.getMonth());
         if (id == null) {
             monthlyIncomeRepository.save(monthlyIncomes);
             return monthlyIncomes;
         } else {
             MonthlyIncomes monthlyIncomeUpdate = monthlyIncomeRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This monthly income not found on:" + id));
-            monthlyIncomeUpdate.setItemName(monthlyIncomes.getItemName());
             monthlyIncomeUpdate.setEarn(monthlyIncomes.getEarn());
             monthlyIncomeUpdate.setBranchId(monthlyIncomes.getBranchId());
             monthlyIncomeUpdate.setBranch(monthlyIncomes.getBranch());
+            monthlyIncomeUpdate.setMonth(monthlyIncomes.getMonth());
             monthlyIncomeRepository.save(monthlyIncomeUpdate);
             return monthlyIncomeUpdate;
         }

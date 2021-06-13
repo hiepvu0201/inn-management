@@ -13,12 +13,14 @@ Feature: contract test
     """
     {
       "details": "This is the details of the contract",
-      "signDate": "",
-      "tenantIds": [2],
-      "ownerIds": [1],
-      "numberOfRooms": "",
-      "numberOfStage": "",
+      "signDate": "2021-01-13T17:09:42.411",
+      "endDate": "2021-05-13T17:09:42.411",
+      "tenantId": 2,
+      "ownerId": 1,
+      "numberOfRooms": "10",
+      "numberOfStage": "3",
       "voucher": "",
+      "year": "2021"
     }
     """
     Given path 'api/v1/contracts/'

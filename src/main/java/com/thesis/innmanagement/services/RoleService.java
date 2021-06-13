@@ -3,7 +3,6 @@ package com.thesis.innmanagement.services;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Roles;
 import com.thesis.innmanagement.repositories.RoleRepository;
-import com.thesis.innmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

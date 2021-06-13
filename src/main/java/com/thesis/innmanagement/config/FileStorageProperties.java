@@ -1,4 +1,4 @@
-package com.thesis.innmanagement.entities;
+package com.thesis.innmanagement.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,9 +1,6 @@
 import React from "react";
 import { Menu, Grid } from "antd";
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 import { Images } from "./../../config/image";
-const { useBreakpoint } = Grid;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
@@ -16,8 +13,8 @@ import {
 import Branches from "./../../feature/admin/branches";
 import { faHandshake,faQuestionCircle,faChartBar } from "@fortawesome/free-regular-svg-icons";
 import { faPaypal } from "@fortawesome/free-brands-svg-icons";
-
 import { Link, Router } from "react-router-dom";
+<<<<<<< HEAD
 const LeftMenu_admin = () => {
   const { md } = useBreakpoint();
   return (
@@ -27,6 +24,32 @@ const LeftMenu_admin = () => {
         <Link className="linktomainpate" to="/">
           Trang chủ
         </Link>
+=======
+
+const { useBreakpoint } = Grid;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+const LeftMenu = () => {
+  const { md } = useBreakpoint();
+  return (
+    <Menu mode={md ? "horizontal" : "inline"}>
+      <Menu.Item
+        key="home"
+        style={{
+          backgroundColor: "#007c7e",
+          paddingLeft: "10px",
+          color: "white",
+        }}
+      >
+        <FontAwesomeIcon
+          icon={faChartBar}
+          color="#efefef"
+          size="1x"
+          style={{ marginRight: "10px" }}
+        />{" "}
+        <Link to="/home">Trang chủ</Link>
+>>>>>>> master
       </Menu.Item>
       <SubMenu
         key="menu-2"

@@ -1,11 +1,13 @@
 package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jayway.jsonpath.internal.function.numeric.Min;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 public class Contracts extends BasicEntity {
@@ -13,23 +15,26 @@ public class Contracts extends BasicEntity {
     @Lob
     private String details;
 
-    private Date signDate;
+    private LocalDateTime signDate;
+
+    private LocalDateTime endDate;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isClosed;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant")
-    private List<Users> tenant;
+    private Users tenant;
 
-    @ElementCollection
-    private List<Long> tenantIds;
+    private Long tenantId;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner")
-    private List<Users> owner;
+    private Users owner;
 
-    @ElementCollection
-    private List<Long> ownerIds;
+    private Long ownerId;
 
     private int numberOfRooms;
 
@@ -37,36 +42,92 @@ public class Contracts extends BasicEntity {
 
     private int voucher;
 
-    public List<Long> getTenantIds() {
-        return tenantIds;
+    private int year;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
+    public int getYear() {
+        return year;
     }
 
-    public void setTenantIds(List<Long> tenantIds) {
-        this.tenantIds = tenantIds;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public List<Long> getOwnerIds() {
-        return ownerIds;
+    public LocalDateTime getSignDate() {
+        return signDate;
     }
 
-    public void setOwnerIds(List<Long> ownerIds) {
-        this.ownerIds = ownerIds;
+    public void setSignDate(LocalDateTime signDate) {
+        this.signDate = signDate;
     }
 
-    public List<Users> getTenant() {
-        return tenant;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public void setTenant(List<Users> tenant) {
-        this.tenant = tenant;
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
-    public List<Users> getOwner() {
+    public Boolean getClosed() {
+        return (isClosed == null) ? false : isClosed;
+    }
+
+    public void setClosed(Boolean closed) {
+        isClosed = closed;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public Users getOwner() {
         return owner;
     }
 
-    public void setOwner(List<Users> owner) {
+    public void setOwner(Users owner) {
         this.owner = owner;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public Users getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Users tenant) {
+        this.tenant = tenant;
     }
 
     public int getNumberOfRooms() {
@@ -101,11 +162,4 @@ public class Contracts extends BasicEntity {
         this.details = details;
     }
 
-    public Date getSignDate() {
-        return signDate;
-    }
-
-    public void setSignDate(Date signDate) {
-        this.signDate = signDate;
-    }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .rectanglebranches {
   width: 98%;
   height: auto;
@@ -64,6 +65,45 @@
     padding-top: 10px;
   }
   .btncreatebranches{
+=======
+.rectangle{
+    width:100%;
+    height:auto;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.topic-left-branches{
+    float: left;
+    display: flex;
+    width:70%;
+}
+.topic-right-branches{
+    width:30%;
+    height:auto;
+    display: flex;
+}
+.content{
+    font-size: 20px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+    padding-left: 20px;
+
+}
+.element-select{
+        width: 40%;
+    padding-right: 10px;
+}
+.btn-right-branches{
+    float:right;
+    display: flex;
+    width:50%;
+}
+.detailed-btn-branches{
+    font-size: 15px;
+    font-family: "PT Sans, sans-serif";
+    color:#007c7e;
+>>>>>>> master
     width:100%;
     padding-left: 170px;
   }

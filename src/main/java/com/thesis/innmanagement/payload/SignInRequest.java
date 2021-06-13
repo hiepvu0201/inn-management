@@ -1,6 +1,6 @@
-package com.thesis.innmanagement.entities;
+package com.thesis.innmanagement.payload;
 
-public class AuthRequest {
+public class SignInRequest {
 
     private String userName;
 

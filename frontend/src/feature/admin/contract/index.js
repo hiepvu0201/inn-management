@@ -279,6 +279,7 @@ function Contract(props) {
       fetchContractbyTenantname();
     }
   };
+  
   return (
     <div>
       <Modal
@@ -324,20 +325,34 @@ function Contract(props) {
             </Form.Item>
             <Form.Item label="Chủ trọ">
               <Select onChange={handleChange}>
-                {usersList.map((owner) => (
-                  <Select.Option key={owner.id} value={owner.id}>
-                    {owner.fullName}
-                  </Select.Option>
-                ))}
+                {usersList.map((ownerid) =>
+                  ownerid.roles[0].name === "ROLE_ADMIN" ? (
+                    <Select.Option
+                      key={ownerid.userName}
+                      value={ownerid.userName}
+                    >
+                      {ownerid.userName}
+                    </Select.Option>
+                  ) : (
+                    <>Null</>
+                  )
+                )}
               </Select>
             </Form.Item>
             <Form.Item label="Người thuê">
               <Select onChange={handleChange_1}>
-                {usersList.map((tenantid) => (
-                  <Select.Option key={tenantid.id} value={tenantid.id}>
-                    {tenantid.fullName}
-                  </Select.Option>
-                ))}
+                {usersList.map((ownerid) =>
+                  ownerid.roles[0].name === "ROLE_USER" ? (
+                    <Select.Option
+                      key={ownerid.userName}
+                      value={ownerid.userName}
+                    >
+                      {ownerid.userName}
+                    </Select.Option>
+                  ) : (
+                    <>Null</>
+                  )
+                )}
               </Select>
             </Form.Item>
             <div style={{ display: "flex" }}>
@@ -429,20 +444,34 @@ function Contract(props) {
                     </Form.Item>
                     <Form.Item label="Chủ trọ">
                       <Select onChange={handleChange}>
-                        {usersList.map((ownerid) => (
-                          <Select.Option key={ownerid.id} value={ownerid.id}>
-                            {ownerid.fullName}
-                          </Select.Option>
-                        ))}
+                        {usersList.map((ownerid) =>
+                          ownerid.roles[0].name === "ROLE_ADMIN" ? (
+                            <Select.Option
+                              key={ownerid.userName}
+                              value={ownerid.userName}
+                            >
+                              {ownerid.userName}
+                            </Select.Option>
+                          ) : (
+                            <>Null</>
+                          )
+                        )}
                       </Select>
                     </Form.Item>
                     <Form.Item label="Người thuê">
                       <Select onChange={handleChange_1}>
-                        {usersList.map((tenantid) => (
-                          <Select.Option key={tenantid.id} value={tenantid.id}>
-                            {tenantid.fullName}
-                          </Select.Option>
-                        ))}
+                        {usersList.map((ownerid) =>
+                          ownerid.roles[0].name === "ROLE_USER" ? (
+                            <Select.Option
+                              key={ownerid.userName}
+                              value={ownerid.userName}
+                            >
+                              {ownerid.userName}
+                            </Select.Option>
+                          ) : (
+                            <>Null</>
+                          )
+                        )}
                       </Select>
                     </Form.Item>
                     <div className="btbtncreate">

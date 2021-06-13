@@ -33,9 +33,23 @@ const usersApi = {
     const url=`/downloadFile/${file}`;
     return axiosClient.get(url);
   },
-  getuserid(){
-    const url=`/api/v1/users/${26}`;
+  getuserid(param){
+    const url=`/api/v1/users/${param}`;
     return axiosClient.get(url);
-  }
+  },
+  changepassword(params){
+    const url = `/api/v1/users/change-password`;
+    return axiosClient.post(url,params);
+  },
+  checkusername(params){
+    const url=`/api/v1/users/check/?userName=${params}`;
+    return axiosClient.get(url);
+  },
+  getalluserbyusername(params){
+    const url = `/api/v1/users/userName/?userName=${params}`;
+    return axiosClient.get(url);
+  },
+  
+  
 };
 export default usersApi;

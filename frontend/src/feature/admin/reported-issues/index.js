@@ -266,7 +266,7 @@ function Reportedissues(props) {
               <Select>
                 {usersList.map((reporterid) => (
                   <Select.Option key={reporterid.id} value={reporterid.id}>
-                    {reporterid.fullName}
+                    {reporterid.userName}
                   </Select.Option>
                 ))}
               </Select>
@@ -366,7 +366,7 @@ function Reportedissues(props) {
                               key={reporterid.id}
                               value={reporterid.id}
                             >
-                              {reporterid.fullName}
+                              {reporterid.userName}
                             </Select.Option>
                           ))}
                         </Select>

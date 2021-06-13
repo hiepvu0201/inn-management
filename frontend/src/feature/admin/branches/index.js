@@ -27,6 +27,7 @@ import {
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
 import usersApi from "../../../api/usersApi";
+import Cookies from "js-cookie";
 
 const { Option } = Select;
 
@@ -38,7 +39,7 @@ function Branches(props) {
 
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
-
+  const [nullstate, setNullstate] = useState([])
   //getAll
   const [branchList, setBranchList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
@@ -57,6 +58,7 @@ function Branches(props) {
       const response = await branchesApi.getAll();
       console.log("Fetch branch successfully: ", response.data);
       setBranchList(response.data);
+      setNullstate(response.data)
       setIsModalVisible_1(false);
     } catch (error) {
       console.log("Failed to fetch branch list: ", error);
@@ -136,6 +138,7 @@ function Branches(props) {
     // console.log("Success", values);
     const dataUpdate = {
       ...values,
+      userName: rowEdit.userName,
       // facilityIds: idSelected,
     };
     console.log("dataupdate", dataUpdate);
@@ -149,6 +152,11 @@ function Branches(props) {
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
+    // const rolevalue = [value];
+    // setidSelected(rolevalue);
+  }
+  function handleChange_user(value) {
+    console.log(`selected username ${value}`);
     // const rolevalue = [value];
     // setidSelected(rolevalue);
   }
@@ -194,6 +202,11 @@ function Branches(props) {
       render: (facilities) => (
         <div>{facilities.map((us) => us.name) + " "}</div>
       ),
+    },
+    {
+      title: "Quản trị viên",
+      dataIndex: "userName",
+      // render:(userName) => <div>{userName}</div>
     },
     {
       title: "",
@@ -248,6 +261,30 @@ function Branches(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+  const onSearch_1 = (value) => {
+    console.log("<<VALUE", value);
+
+     if (value === undefined) {
+       setBranchList(nullstate);
+     } else {
+    const fetchGetallbranchesbyUsername = async () => {
+      try {
+        const response = await branchesApi.getallbranchesbyusername(value);
+        console.log("<<<", response);
+        console.log(
+          "Fetch all branches name by username successfully: ",
+          response.data
+        );
+        // setIsstateInput(response.data);
+        setBranchList(response.data);
+      } catch (error) {
+        console.log("Failed to fetch list: ", error);
+      }
+    };
+    fetchGetallbranchesbyUsername();
+    //  }
+  };
+}
   return (
     <div>
       <Modal
@@ -293,6 +330,19 @@ function Branches(props) {
                 {propsselect}
               </Select>
             </Form.Item>
+            <Form.Item label="Người dùng" name="userName">
+              <Select
+                onChange={handleChange_user}
+                allowClear
+                disabled
+                placeholder={rowEdit.userName}
+                // mode="multiple"
+              >
+                <Select.Option value={Cookies.get("userName")}>
+                  {Cookies.get("userName")}
+                </Select.Option>
+              </Select>
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -332,6 +382,28 @@ function Branches(props) {
                 <div className="contentbranches">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
               </div>
               <div className="topic-right-branches">
+                <div className="element-select">
+                  <Select
+                    allowClear
+                    size="middle"
+                    style={{ width: "200px" }}
+                    // mode="multiple"
+                    onChange={onSearch_1}
+                  >
+                    {usersList.map((branchid) =>
+                      branchid.roles[0].name === "ROLE_ADMIN" ? (
+                        <Select.Option
+                          key={branchid.userName}
+                          value={branchid.userName}
+                        >
+                          {branchid.userName}
+                        </Select.Option>
+                      ) : (
+                        <>Null</>
+                      )
+                    )}
+                  </Select>
+                </div>
                 <div className="btn-right-branches">
                   <button className="detailed-btn-branches" onClick={showModal}>
                     THÊM MỚI
@@ -390,6 +462,17 @@ function Branches(props) {
                           {propsselect}
                         </Select>
                       </Form.Item>
+                      <Form.Item label="Người dùng" name="userName">
+                        <Select
+                          onChange={handleChange_user}
+                          allowClear
+                          // mode="multiple"
+                        >
+                          <Select.Option value={Cookies.get("userName")}>
+                            {Cookies.get("userName")}
+                          </Select.Option>
+                        </Select>
+                      </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btncreatebranches">
                         <Button type="primary" htmlType="submit">
@@ -421,4 +504,4 @@ function Branches(props) {
     </div>
   );
 }
-export default Branches;
+export default Branches

@@ -1,29 +1,64 @@
 import React from "react";
-import { Input, Radio, Select,Checkbox,Button } from "antd";
+import { Input,  Form, Button,message,notification } from "antd";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import authApi from './../../api/authApi'
+import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
 function register() {
-  const [value, setValue] = React.useState(1);
-
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+   const onFinish = (values) => {
+    const register = async () => {
+      try {
+        console.log("value", values);
+        const response = await authApi.signup(values);
+        console.log("Fetch register user successfully: ", response);
+  
+        notification.success({   
+          message:"Đăng ký thành công",
+          icon:<CheckCircleFilled style={{color:"#20da9b"}}/>,
+          description:`${response.data}`,
+          placement: "topRight",
+        }
+        );
+      } catch (error) {
+        console.log("failed to register ưser: ", error.response);
+        console.log(JSON.parse(error.response.config.data).userName);
+        if(error.response.data==="Lỗi: Người dùng đã tồn tại!"){
+          notification.error({
+            message: `Đăng ký thất bại`,
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Tài khoản ${
+              JSON.parse(error.response.config.data).userName
+            } đã tồn tại`,
+            placement: "topRight",
+          });
+        }
+        else if (error.response.data === "Lỗi: Email đã tồn tại!")
+        {
+           notification.error({
+             message: `Đăng ký thất bại`,
+             icon: <WarningOutlined style={{ color: "#f26051" }} />,
+             description: `Email ${
+               JSON.parse(error.response.config.data).email
+             } đã tồn tại`,
+             placement: "topRight",
+           });
+        }  
+      }
+    };
+    register();
   };
-  const { Option } = Select;
-
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-  function onChange_accept(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
+  // const onchnageinput=(value)=>{
+  //   if(value.include([value-1])) message.info ("Trùng")
+  //   else message.info("Không")
+  // }
   return (
     <div>
       <div className="form-register">
         <div className="form-box">
           <div style={{ width: "100%",height:"auto", display: "block" }}>
             <div className="sign-up">ĐĂNG KÝ</div>
+<<<<<<< HEAD
             <div className="username">Username</div>
             <div
               style={{
@@ -174,10 +209,80 @@ function register() {
                 //   color: "white",
                 //   fontFamily: "'Open Sans', sans-serif",
                 // }}
+=======
+            <Form
+              onFinish={onFinish}
+              name="basic"
+              initialValues={{ remember: true }}
+            >
+              <div className="username">Username</div>
+              <div
+                style={{
+                  width: "90%",
+                  paddingLeft: "20px",
+                  paddingTop: "5px",
+                  paddingBottom: "10px",
+                }}
               >
-                ĐĂNG KÝ
-              </Button>
-            </div>
+                <Form.Item name="userName" >
+                  <Input placeholder="Nhập họ và tên"/>
+                </Form.Item>
+              </div>
+              <div className="username" >Email</div>
+              <div
+                style={{
+                  width: "90%",
+                  paddingLeft: "20px",
+                  paddingTop: "5px",
+                  paddingBottom: "10px",
+                }}
+              >
+                <Form.Item name="email">
+                  <Input placeholder="Nhập email"/>
+                </Form.Item>
+              </div>
+              <div className="username">Mật khẩu</div>
+              <div
+                style={{
+                  width: "90%",
+                  paddingLeft: "20px",
+                  paddingTop: "5px",
+                  paddingBottom: "10px",
+                }}
+              >
+                <Form.Item name="password">
+                  <Input placeholder="Nhập password" />
+                </Form.Item>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "10px",
+                  paddingRight: "10px",
+                  paddingBottom: "20px",
+                }}
+>>>>>>> master
+              >
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    width: "335px",
+                    height: "auto",
+                    fontSize: "15px",
+                    backgroundColor: "#0c61f2",
+                    color: "white",
+                    fontFamily: "'Open Sans', sans-serif",
+                  }}
+                >
+                  ĐĂNG KÝ
+                </Button>
+              </div>
+            </Form>
+
             <div
               style={{
                 width: "100%",
@@ -189,12 +294,20 @@ function register() {
               }}
             >
               <div
+<<<<<<< HEAD
                 className="btn-btn"
                 // style={{
                 //   fontSize: "18px",
                 //   color: "white",
                 //   fontFamily: "Open Sans', sans-serif",
                 // }}
+=======
+                style={{
+                  fontSize: "18px",
+                  color: "white",
+                  fontFamily: "Open Sans', sans-serif",
+                }}
+>>>>>>> master
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
                 tài khoản,ĐĂNG KÝ NGAY

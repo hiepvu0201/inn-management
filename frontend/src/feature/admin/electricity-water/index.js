@@ -13,6 +13,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
+import { WarningOutlined } from "@ant-design/icons";
 import {
   Table,
   Popconfirm,
@@ -27,6 +28,7 @@ import {
   InputNumber,
   DatePicker,
   Radio,
+  notification
 } from "antd";
 import electricityWaterApi from "../../../api/elctricitywaterApi";
 import roomsApi from "../../../api/roomApi";
@@ -191,6 +193,35 @@ function ElectricityWaters(props) {
       title: "Tháng",
       dataIndex: "month",
       key: "month",
+      render: (month) => <Tag color="cyan">{month}</Tag>,
+    },
+    {
+      title: "Số phòng",
+      dataIndex: "room",
+      key: "room",
+      render: (room) => <div>{room.roomNo}</div>,
+    },
+    {
+      title: "Giá điện",
+      dataIndex: "waterUnitPrice",
+      key: "waterUnitPrice",
+    },
+    {
+      title: "Giá nước",
+      dataIndex: "electricityUnitPrice",
+      key: "electricityUnitPrice",
+    },
+    {
+      title: "Ngày tạo",
+      dataIndex: "createdDate",
+      key: "createdDate",
+      render: (createdDate) => <Tag color="volcano">{createdDate}</Tag>,
+    },
+    {
+      title: "Ngày cập nhật",
+      dataIndex: "updatedDate",
+      key: "updatedDate",
+      render: (updatedDate) => <Tag color="#2db7f5">{updatedDate}</Tag>,
     },
     {
       title: "Kiểm tra",
@@ -255,10 +286,24 @@ function ElectricityWaters(props) {
   const handleOk_1 = () => {
     setIsModalVisible_1(false);
   };
-
+  const check = (e) => {
+    console.log("<<<", e.target.value);
+    e.target.value >= 5000 ? (
+      <></>
+    ) : (
+      notification.warning({
+        message: `Xin vui lòng nhập lại`,
+        icon: <WarningOutlined style={{ color: "#FF0000" }} />,
+        placement: "topLeft",
+      })
+    );
+  };
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
+  const handleCancelCreate=()=>{
+    setIsModalVisible(false)
+  }
   return (
     <div>
       <Modal
@@ -305,8 +350,37 @@ function ElectricityWaters(props) {
             <Form.Item label="Số nước tiêu thụ" name="numWaterConsump">
               <Input placeholder={rowEdit.numWaterConsump} />
             </Form.Item>
+            <Form.Item label="Giá điện" name="electricityUnitPrice">
+              <Input
+                placeholder={rowEdit.electricityUnitPrice}
+                onChange={(electricityUnitPrice) => check(electricityUnitPrice)}
+              />
+            </Form.Item>
+            <Form.Item label="Giá nước" name="waterUnitPrice">
+              <Input
+                placeholder={rowEdit.waterUnitPrice}
+                onChange={(waterUnitPrice) => check(waterUnitPrice)}
+              />
+            </Form.Item>
             <Form.Item label="Tháng" name="month">
-              <InputNumber placeholder={rowEdit.month} />
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                placeholder={rowEdit.month}
+              >
+                <Option value="1">Tháng 1</Option>
+                <Option value="2">Tháng 2</Option>
+                <Option value="3">Tháng 3</Option>
+                <Option value="4">Tháng 4</Option>
+                <Option value="5">Tháng 5</Option>
+                <Option value="6">Tháng 6</Option>
+                <Option value="7">Tháng 7</Option>
+                <Option value="8">Tháng 8</Option>
+                <Option value="9">Tháng 9</Option>
+                <Option value="10">Tháng 10</Option>
+                <Option value="11">Tháng 11</Option>
+                <Option value="12">Tháng 12</Option>
+              </Select>
             </Form.Item>
             <Form.Item label="Kiểm tra" name="checked">
               <Radio.Group placeholder={rowEdit.checked}>
@@ -423,8 +497,33 @@ function ElectricityWaters(props) {
                       >
                         <Input />
                       </Form.Item>
+                      <Form.Item label="Giá điện" name="electricityUnitPrice">
+                        <Input
+                          onChange={(electricityUnitPrice) =>
+                            check(electricityUnitPrice)
+                          }
+                        />
+                      </Form.Item>
+                      <Form.Item label="Giá nước" name="waterUnitPrice">
+                        <Input
+                          onChange={(waterUnitPrice) => check(waterUnitPrice)}
+                        />
+                      </Form.Item>
                       <Form.Item label="Tháng" name="month">
-                        <InputNumber />
+                        <Select defaultValue="lucy" style={{ width: 120 }}>
+                          <Option value="1">Tháng 1</Option>
+                          <Option value="2">Tháng 2</Option>
+                          <Option value="3">Tháng 3</Option>
+                          <Option value="4">Tháng 4</Option>
+                          <Option value="5">Tháng 5</Option>
+                          <Option value="6">Tháng 6</Option>
+                          <Option value="7">Tháng 7</Option>
+                          <Option value="8">Tháng 8</Option>
+                          <Option value="9">Tháng 9</Option>
+                          <Option value="10">Tháng 10</Option>
+                          <Option value="11">Tháng 11</Option>
+                          <Option value="12">Tháng 12</Option>
+                        </Select>
                       </Form.Item>
                       <Form.Item label="Kiểm tra" name="checked">
                         <Radio.Group>
@@ -447,7 +546,9 @@ function ElectricityWaters(props) {
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default">HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancelCreate}>
+                            HỦY BỎ
+                          </Button>
                         </div>
                       </div>
                     </Form>
@@ -467,6 +568,7 @@ function ElectricityWaters(props) {
                 columns={columns}
                 bordered
                 dataSource={electricitywatersList}
+                rowKey="id"
               />
             </div>
           </div>

@@ -18,17 +18,21 @@ import {
   Table,
   Popconfirm,
   message,
+  Tooltip,
   Button,
   Modal,
   Form,
   Input,
   Select,
   Spin,
+  Tag,
+  notification,
   InputNumber,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
+import { text } from "@fortawesome/fontawesome-svg-core";
 const { Option } = Select;
-
+import {WarningOutlined} from "@ant-design/icons";
 function Facilities(props) {
   //api
   //getAll
@@ -120,7 +124,18 @@ function Facilities(props) {
       console.log("Failed to delete facilities list", error);
     }
   };
-
+  const check = (e)=>{
+    console.log("<<<",e.target.value)
+    e.target.value >= 5000 ? (
+      <></>
+    ) : (
+      notification.warning({
+        message: `Xin vui lòng nhập lại`,
+        icon: <WarningOutlined style={{ color: "#FF0000" }} />,
+        placement: "topLeft",
+      })
+    );
+  }
   //select
   function handleChange(value) {
     console.log(`selected branches id ${value}`);
@@ -155,6 +170,23 @@ function Facilities(props) {
       title: "Số lượng",
       dataIndex: "quantity",
       key: "quantity",
+    },
+    {
+      title: "Đơn giá",
+      dataIndex: "unitPrice",
+      key: "unitPrice",
+    },
+    {
+      title: "Ngày tạo",
+      dataIndex: "createdDate",
+      key: "createdDate",
+      render: (createdDate) => <Tag color="#87d068">{createdDate}</Tag>,
+    },
+    {
+      title: "Ngày cập nhật",
+      dataIndex: "updatedDate",
+      key: "updatedDate",
+      render: (updatedDate) => <Tag color="#2db7f5">{updatedDate}</Tag>,
     },
     {
       title: "",
@@ -208,7 +240,11 @@ function Facilities(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
+  }; 
+  const handleCancelCreate = () => {
+    setIsModalVisible(false);
   };
+  // const onchange_price = (value) => console.log(e.value);
   return (
     <div>
       <Modal
@@ -241,10 +277,24 @@ function Facilities(props) {
               <Input placeholder={rowEdit.name} />
             </Form.Item>
             <Form.Item label="Chất lượng" name="quality">
-              <Input placeholder={rowEdit.quality} />
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                onChange={handleChange}
+                placeholder={rowEdit.quality}
+              >
+                <Option value="0">New</Option>
+                <Option value="1">Available</Option>
+              </Select>
             </Form.Item>
             <Form.Item label="Số lượng" name="quantity">
               <Input placeholder={rowEdit.quantity} />
+            </Form.Item>
+            <Form.Item label="Đơn giá" name="unitPrice">
+              <Input
+                placeholder={rowEdit.unitPrice}
+                onChange={(unitPrice) => check(unitPrice)}
+              />
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -329,16 +379,30 @@ function Facilities(props) {
                         <Input />
                       </Form.Item>
                       <Form.Item label="Chất lượng" name="quality">
-                        <Input />
+                        <Select
+                          defaultValue="lucy"
+                          style={{ width: 120 }}
+                          onChange={handleChange}
+                        >
+                          <Option value="0">New</Option>
+                          <Option value="1">Available</Option>
+                        </Select>
                       </Form.Item>
                       <Form.Item label="Số lượng" name="quantity">
                         <Input />
                       </Form.Item>
+<<<<<<< HEAD
                       <div className="btnbtncreatefaci">
+=======
+                      <Form.Item label="Đơn giá" name="unitPrice">
+                        <Input onChange={(unitPrice)=>check(unitPrice)} />
+                      </Form.Item>
+                      <div style={{ display: "flex" }}>
+>>>>>>> master
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
-                        <div style={{ paddingLeft: "10px" }}>
+                        <div style={{ paddingLeft: "10px" }} onClick={handleCancelCreate}>
                           <Button type="default">HỦY BỎ</Button>
                         </div>
                       </div>

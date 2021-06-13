@@ -14,11 +14,12 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import roomApi from "../../../api/roomApi";
 import branchesApi from "../../../api/branchesApi";
-import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
+import { CheckOutlined, RadiusBottomleftOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Table,
   Popconfirm,
   message,
+  Tag,
   Button,
   Modal,
   Form,
@@ -53,6 +54,14 @@ function Rooms(props) {
   const [rowEdit, setRowEdit] = useState({});
   const [fileList, setfileList] = useState([]);
   const [imgfile, setimgfile] = useState(null);
+<<<<<<< HEAD
+=======
+
+  const [firstroom, setFirstroom] = useState(true);
+  const [secondroom, setSecondroom] = useState(true);
+  const [thirdroom, setThirdroom] = useState(true);
+  const [fourthroom, setFourthroom] = useState(true);
+>>>>>>> master
 
   const uploadimg = (info) => {
     console.log(">>>>info: ", info);
@@ -156,9 +165,15 @@ function Rooms(props) {
       images: imgfile,
     };
     console.log("dataCreate", responsedata);
+<<<<<<< HEAD
 
     var form_data = new FormData();
 
+=======
+
+    var form_data = new FormData();
+
+>>>>>>> master
     for (var key in responsedata) {
       form_data.append(key, responsedata[key]);
     }
@@ -294,6 +309,72 @@ function Rooms(props) {
       ),
     },
     {
+      title: "Loại phòng",
+      dataIndex: "roomType",
+      key: "roomType",
+      render: (roomType) =>
+        roomType === null ? (
+          <Tag color="magenta">CHƯA CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{roomType}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo giờ đầu",
+      dataIndex: "priceByFirstHour",
+      key: "priceByFirstHour",
+      render: (priceByFirstHour) =>
+        priceByFirstHour === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByFirstHour}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo giờ sau",
+      dataIndex: "priceByFirstHour",
+      key: "priceByNextHour",
+      render: (priceByNextHour) =>
+        priceByNextHour === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByNextHour}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo ngày",
+      dataIndex: "priceByDay",
+      key: "priceByDay",
+      render: (priceByDay) =>
+        priceByDay === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByDay}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo tuần",
+      dataIndex: "priceByWeek",
+      key: "priceByWeek",
+      render: (priceByWeek) =>
+        priceByWeek === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByWeek}</Tag>
+        ),
+    },
+    {
+      title: "Giá phòng theo tháng",
+      dataIndex: "priceByMonth",
+      key: "priceByMonth",
+      render: (priceByMonth) =>
+        priceByMonth === null ? (
+          <Tag color="magenta">KHÔNG CÓ</Tag>
+        ) : (
+          <Tag color="geekblue">{priceByMonth}</Tag>
+        ),
+    },
+    {
       title: "",
       dataIndex: "",
       key: "x",
@@ -365,6 +446,43 @@ function Rooms(props) {
       SearchRoombyBranch();
     }
   };
+<<<<<<< HEAD
+=======
+  const toggleInputbySelect = (value) => {
+    switch (value) {
+      case "0":
+        setFirstroom(false);
+        setSecondroom(true);
+        setThirdroom(true);
+        setFourthroom(true);
+        break;
+      case "1":
+        setFirstroom(true);
+        setSecondroom(false);
+        setThirdroom(true);
+        setFourthroom(true);
+        break;
+      case "2":
+        setFirstroom(true);
+        setSecondroom(true);
+        setThirdroom(false);
+        setFourthroom(true);
+        break;
+      case "3":
+        setFirstroom(true);
+        setSecondroom(true);
+        setThirdroom(true);
+        setFourthroom(false);
+        break;
+   
+    }
+  };
+  const handleChange_roomType = (value) => {
+    console.log(`selected ${value}`);
+   toggleInputbySelect(value);
+  };
+
+>>>>>>> master
   return (
     <div>
       <Modal
@@ -521,7 +639,54 @@ function Rooms(props) {
                     <Form.Item label="Vị trí" name="position">
                       <Input />
                     </Form.Item>
-
+                    <Form.Item label="Loại phòng" name="roomType">
+                      <Select
+                        style={{ width: 385 }}
+                        placeholder={rowEdit.month}
+                        onSelect={(value) => handleChange_roomType(value)}
+                      >
+                        <Option value="0">Phòng theo giờ</Option>
+                        <Option value="1">Phòng theo ngày</Option>
+                        <Option value="2">Phòng theo tuần</Option>
+                        <Option value="3">Phòng theo tháng</Option>
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      label="Giá phòng theo giờ 1"
+                      name="priceByFirstHour"
+                    >
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={firstroom}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      label="Giá phòng theo giờ 2"
+                      name="priceByNextHour"
+                    >
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={firstroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo ngày" name="priceByDay">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={secondroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo tuần" name="priceByWeek">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={thirdroom}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Giá phòng theo tháng" name="priceByMonth">
+                      <InputNumber
+                        style={{ width: 320 }}
+                        disabled={fourthroom}
+                      />
+                    </Form.Item>
                     <Form.Item label="Chi nhánh" name="branchId">
                       <Select onChange={handleChange}>
                         {branchesList.map((branchesid) => (

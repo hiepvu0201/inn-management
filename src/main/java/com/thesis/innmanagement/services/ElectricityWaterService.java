@@ -3,6 +3,7 @@ package com.thesis.innmanagement.services;
 import com.thesis.innmanagement.entities.ElectricityWater;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
+import com.thesis.innmanagement.helpers.CalculateHelper;
 import com.thesis.innmanagement.repositories.ElectricityWaterRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ElectricityWaterService {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private CalculateHelper calculateHelper;
+
     public List<ElectricityWater> findAll() {
         return electricityWaterRepository.findAll();
     }
@@ -32,6 +36,10 @@ public class ElectricityWaterService {
     public ElectricityWater createOrUpdate(Long id, ElectricityWater electricityWater) throws ResourceNotFoundException {
         Rooms room = roomRepository.findById(electricityWater.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found with id " + electricityWater.getRoomId()));
         electricityWater.setRoom(room);
+        electricityWater.setNumWaterConsump(electricityWater.getNumWaterNew()-electricityWater.getNumWaterOld());
+        electricityWater.setTotalWater(calculateHelper.getWaterTotalPrice(electricityWater));
+        electricityWater.setNumElectricConsump(electricityWater.getNumElectricNew()-electricityWater.getNumElectricOld());
+        electricityWater.setTotalElectricity(calculateHelper.getElectricityTotalPrice(electricityWater));
         if (id == null) {
             electricityWaterRepository.save(electricityWater);
             return electricityWater;
@@ -47,6 +55,10 @@ public class ElectricityWaterService {
             electricityWaterUpdate.setNumWaterConsump(electricityWater.getNumWaterConsump());
             electricityWaterUpdate.setChecked(electricityWater.isChecked());
             electricityWaterUpdate.setMonth(electricityWater.getMonth());
+            electricityWaterUpdate.setElectricityUnitPrice(electricityWater.getElectricityUnitPrice());
+            electricityWaterUpdate.setWaterUnitPrice(electricityWater.getWaterUnitPrice());
+            electricityWaterUpdate.setTotalElectricity(electricityWater.getTotalElectricity());
+            electricityWaterUpdate.setTotalWater(electricityWater.getTotalWater());
             electricityWaterRepository.save(electricityWaterUpdate);
             return electricityWaterUpdate;
         }

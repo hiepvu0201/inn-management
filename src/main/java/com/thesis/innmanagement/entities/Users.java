@@ -2,8 +2,11 @@ package com.thesis.innmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;;
 
@@ -15,6 +18,7 @@ public class Users extends BasicEntity {
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     private String fullName;
@@ -29,9 +33,9 @@ public class Users extends BasicEntity {
 
     private String phoneNo;
 
-    private Date checkinDate;
+    private LocalDateTime checkinDate;
 
-    private Date checkoutDate;
+    private LocalDateTime checkoutDate;
 
     @Column(precision = 16, scale = 4)
     private Double downPayment;
@@ -52,6 +56,28 @@ public class Users extends BasicEntity {
     private Long roomId;
 
     private String images;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public String getImages() {
         return images;
@@ -165,19 +191,19 @@ public class Users extends BasicEntity {
         this.phoneNo = phoneNo;
     }
 
-    public Date getCheckinDate() {
+    public LocalDateTime getCheckinDate() {
         return checkinDate;
     }
 
-    public void setCheckinDate(Date checkinDate) {
+    public void setCheckinDate(LocalDateTime checkinDate) {
         this.checkinDate = checkinDate;
     }
 
-    public Date getCheckoutDate() {
+    public LocalDateTime getCheckoutDate() {
         return checkoutDate;
     }
 
-    public void setCheckoutDate(Date checkoutDate) {
+    public void setCheckoutDate(LocalDateTime checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 

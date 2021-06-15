@@ -26,7 +26,7 @@ import {
   DatePicker,
 } from "antd";
 import usersApi from "../../../api/usersApi";
-
+import {Link} from 'react-router-dom'
 import ReportedissuesApi from "../../../api/reportedissuesApi";
 const { Option } = Select;
 
@@ -241,26 +241,54 @@ function Reportedissues(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tiêu đề" name="title">
-              <Input placeholder={rowEdit.title} />
+            <Form.Item
+              label="Tiêu đề"
+              name="title"
+              className="form-item-report"
+              placeholder={rowEdit.title}
+            >
+              <div style={{ width: "90%" }}>
+                <Input className="input-item-report" />
+              </div>
             </Form.Item>
-            <Form.Item label="Mô tả" name="description">
-              <Input placeholder={rowEdit.description} />
+            <Form.Item
+              label="Mô tả"
+              name="description"
+              className="form-description-report"
+              placeholder={rowEdit.description}
+            >
+              <div style={{ width: "90%" }}>
+                <Input className="input-description-report" />
+              </div>
             </Form.Item>
-            <Form.Item label="Tình trạng" name="status">
-              <Select placeholder={rowEdit.status} style={{ width: 385 }}>
-                <Option value="Vẫn còn">Vẫn còn</Option>
-                <Option value="Hoàn thành">Đã hoàn thành</Option>
-              </Select>
+            <Form.Item
+              label="Tình trạng"
+              name="status"
+              className="form-status-report"
+              placeholder={rowEdit.status}
+            >
+              <div style={{ width: "90%" }}>
+                <Select style={{ width: 295 }} className="select-status-report">
+                  <Option value="Vẫn còn">Vẫn còn</Option>
+                  <Option value="Hoàn thành">Đã hoàn thành</Option>
+                </Select>
+              </div>
             </Form.Item>
-            <Form.Item label="Người báo cáo" name="reporterId">
-              <Select>
-                {usersList.map((reporterid) => (
-                  <Select.Option key={reporterid.id} value={reporterid.id}>
-                    {reporterid.userName}
-                  </Select.Option>
-                ))}
-              </Select>
+
+            <Form.Item
+              label="Người báo cáo"
+              name="reporterId"
+              className="name-report-issue"
+            >
+              <div style={{ width: "90%" }}>
+                <Select className="select-report-issue">
+                  {usersList.map((reporterid) => (
+                    <Select.Option key={reporterid.id} value={reporterid.id}>
+                      {reporterid.userName}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -278,7 +306,7 @@ function Reportedissues(props) {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
@@ -340,30 +368,57 @@ function Reportedissues(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Tiêu đê" name="title">
-                        <Input />
+                      <Form.Item
+                        label="Tiêu đề"
+                        name="title"
+                        className="form-item-report"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-item-report" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Mô tả" name="description">
-                        <Input />
+                      <Form.Item
+                        label="Mô tả"
+                        name="description"
+                        className="form-description-report"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-description-report" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Tình trạng" name="status">
-                        <Select style={{ width: 385 }}>
-                          <Option value="Vẫn còn">Vẫn còn</Option>
-                          <Option value="Hoàn thành">Đã hoàn thành</Option>
-                        </Select>
+                      <Form.Item
+                        label="Tình trạng"
+                        name="status"
+                        className="form-status-report"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select
+                            style={{ width: 295 }}
+                            className="select-status-report"
+                          >
+                            <Option value="Vẫn còn">Vẫn còn</Option>
+                            <Option value="Hoàn thành">Đã hoàn thành</Option>
+                          </Select>
+                        </div>
                       </Form.Item>
 
-                      <Form.Item label="Người báo cáo" name="reporterId">
-                        <Select>
-                          {usersList.map((reporterid) => (
-                            <Select.Option
-                              key={reporterid.id}
-                              value={reporterid.id}
-                            >
-                              {reporterid.userName}
-                            </Select.Option>
-                          ))}
-                        </Select>
+                      <Form.Item
+                        label="Người báo cáo"
+                        name="reporterId"
+                        className="name-report-issue"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select className="select-report-issue">
+                            {usersList.map((reporterid) => (
+                              <Select.Option
+                                key={reporterid.id}
+                                value={reporterid.id}
+                              >
+                                {reporterid.userName}
+                              </Select.Option>
+                            ))}
+                          </Select>
+                        </div>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btnbtncreatereport">
@@ -371,7 +426,7 @@ function Reportedissues(props) {
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default">HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancel}>HỦY BỎ</Button>
                         </div>
                       </div>
                     </Form>
@@ -391,6 +446,35 @@ function Reportedissues(props) {
               <Table columns={columns} bordered dataSource={reportedList} />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const { useBreakpoint } = Grid;
 const LeftMenu = () => {
   const { md } = useBreakpoint()
   return (
-    <Menu mode={md ? "horizontal" : "inline"} style={{paddingTop:"10px"}}>
+    <Menu mode={md ? "horizontal" : "inline"} style={{ paddingTop: "10px" }}>
       {/* <Menu.Item key="home">
         <a
           style={{
@@ -24,6 +24,18 @@ const LeftMenu = () => {
           </Link>
         </a>
       </Menu.Item> */}
+      <Menu.Item key="home">
+        <a
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
+          href=""
+        >
+          <Link to="/">Trang chủ</Link>
+        </a>
+      </Menu.Item>
       <Menu.Item key="room">
         <a
           style={{
@@ -33,7 +45,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/room">Phòng trọ</Link>
+          <Link to="/roomUsers">Phòng trọ</Link>
         </a>
       </Menu.Item>
       <Menu.Item key="rules">
@@ -45,7 +57,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/ruleus">Nội quy</Link>
+          <Link to="/ruleUsers">Nội quy</Link>
         </a>
       </Menu.Item>
       <Menu.Item key="report">
@@ -57,7 +69,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/reportus">Báo cáo đề mục</Link>
+          <Link to="/report-issueUsers">Báo cáo đề mục</Link>
         </a>
       </Menu.Item>
     </Menu>

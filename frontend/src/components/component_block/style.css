@@ -33,9 +33,16 @@
     padding-top: 20px;
     padding-left: 30px;
 }
+
 @media only screen and (max-width: 1026px) {
   .row-block{
       display: block;
-      padding-left: 70px;
+      padding-left: 90px;
+  }
+  .box-block{
+      margin-left: 110px
+  }
+  .number-topinleft{
+          left: 310px;
   }
 }

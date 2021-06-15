@@ -16,11 +16,22 @@ import {
   faUserTimes,
   faUsers,
   faRecycle,
+  faUser,
+  faChartLine,
+  faRss,
+  faPrint,
+  faPlug,
+  faTicketAlt,
+  faBuilding,
+  faMobileAlt,
+  faUserPlus,
+  faPhoneAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoneyBillAlt,
   faHandshake,
   faHospital,
+  faEnvelopeOpen
 } from "@fortawesome/free-regular-svg-icons";
 import Component1 from "./../../components/component_ngangxanh";
 import Component2 from "./../../components/component_docxanh";
@@ -33,116 +44,109 @@ import Component8 from "./../../components/component_block_last";
 function Home() {
   return (
     <div>
-      <div style={{ height: "150px" }}>
+      <div className="height-open">
         <Menu_client />
       </div>
-      <Row>
-        <Col
-          span={13}
-          //  style={{ backgroundColor: "blue" }}
-        >
-          <div style={{ display: "flex", paddingTop: "150px" }}>
-            {/* <div style={{ position: "relative", left: "90px" }} className="element1"> */}
-            <div className="element1">
-              {/* <img src={Images.DESKTOP} style={{ width: "320px" }} className="element1-img" /> */}
-              <img
-                src={Images.DESKTOP}
-                // style={{ width: "320px" }}
-                className="element1-img"
-              />
-            </div>
-            <div
-              className="element2"
-              // style={{ position: "absolute", bottom: "10px", left: "250px" }}
-            >
-              {" "}
-              <img
-                className="element2-img"
-                src={Images.MONITOR}
-                // style={{ width: "480px", height: "350px" }}
-              />
-            </div>
-            <div
-              // style={{ position: "absolute", left: "640px", bottom: "10px" }}
-              className="position-element4"
-            >
-              <img src={Images.TABLET} className="element4" />
-            </div>
-            <div
-              // style={{ position: "absolute", left: "615px", bottom: "15px" }}
-              className="position-element5"
-            >
-              <img
-                src={Images.PHONE}
-                // style={{ width: "75px" }}
-                className="element5"
-              />
-            </div>
-          </div>
-        </Col>
-        <Col span={8}>
-          <div
-            // style={{ display: "block", paddingTop: "10px" }}
-            className="element3-outer"
+      <div className="partII">
+        <Row>
+          <Col
+            lg={12}
+            md={24}
+            //  style={{ backgroundColor: "blue" }}
           >
-            <div
-              // style={{
-              //   fontSize: "30px",
-              //   color: "#007c7e",
-              //   fontFamily: "'Open Sans', sans-serif",
-              //   fontWeight: "bold",
-              // }}
-              className="element3"
-            >
-              KHUNHATRO - CHUOICANHO
+            <div style={{ display: "flex", paddingTop: "150px" }}>
+              {/* <div style={{ position: "relative", left: "90px" }} className="element1"> */}
+              <div className="element1">
+                {/* <img src={Images.DESKTOP} style={{ width: "320px" }} className="element1-img" /> */}
+                <img
+                  src={Images.DESKTOP}
+                  // style={{ width: "320px" }}
+                  className="element1-img"
+                />
+              </div>
+              <div
+                className="element2"
+                // style={{ position: "absolute", bottom: "10px", left: "250px" }}
+              >
+                {" "}
+                <img
+                  className="element2-img"
+                  src={Images.MONITOR}
+                  // style={{ width: "480px", height: "350px" }}
+                />
+              </div>
+              <div
+                // style={{ position: "absolute", left: "640px", bottom: "10px" }}
+                className="position-element4"
+              >
+                <img src={Images.TABLET} className="element4" />
+              </div>
+              <div
+                // style={{ position: "absolute", left: "615px", bottom: "15px" }}
+                className="position-element5"
+              >
+                <img
+                  src={Images.PHONE}
+                  // style={{ width: "75px" }}
+                  className="element5"
+                />
+              </div>
             </div>
+          </Col>
+          <Col lg={12} md={24}>
             <div
-              // style={{
-              //   fontSize: "30px",
-              //   color: "#007c7e",
-              //   fontFamily: "'Open Sans', sans-serif",
-              //   fontWeight: "bold",
-              // }}
-              className="element3"
+              // style={{ display: "block", paddingTop: "10px" }}
+              className="element3-outer"
             >
-              PHẦN MỀM QUẢN LÝ
-            </div>
-            <div
-              className="element3"
-              // style={{
-              //   fontSize: "30px",
-              //   color: "#007c7e",
-              //   fontFamily: "'Open Sans', sans-serif",
-              //   fontWeight: "bold",
-              // }}
-            >
-              NHÀ TRỌ CĂN HỘ DỊCH VỤ
-            </div>
-            {/* <div style={{ paddingTop: "10px" }}>
+              <div className="element3">KHUNHATRO - CHUOICANHO</div>
+              <div
+                // style={{
+                //   fontSize: "30px",
+                //   color: "#007c7e",
+                //   fontFamily: "'Open Sans', sans-serif",
+                //   fontWeight: "bold",
+                // }}
+                className="element3-2"
+              >
+                PHẦN MỀM QUẢN LÝ
+              </div>
+              <div
+                className="element3-1"
+                // style={{
+                //   fontSize: "30px",
+                //   color: "#007c7e",
+                //   fontFamily: "'Open Sans', sans-serif",
+                //   fontWeight: "bold",
+                // }}
+              >
+                NHÀ TRỌ CĂN HỘ DỊCH VỤ
+              </div>
+              {/* <div style={{ paddingTop: "10px" }}>
               <img src={Images.NO1} className="img-ele3" />
             </div> */}
-            <div
-              // style={{
-              //   fontFamily: "'Open Sans', sans-serif",
-              //   color: "#007c7e",
-              //   fontSize: "16px",
-              //   fontWeight: "bold",
-              // }}
-              className="element4"
-            >
-              Thiết kế đơn giản, dễ dàng sử dụng và tiết kiệm tối đa chi phí
+              <div
+                // style={{
+                //   fontFamily: "'Open Sans', sans-serif",
+                //   color: "#007c7e",
+                //   fontSize: "16px",
+                //   fontWeight: "bold",
+                // }}
+                className="element4"
+              >
+                Thiết kế đơn giản, dễ dàng sử dụng và tiết kiệm tối đa chi phí
+              </div>
+              <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
+                <img src={Images.ICON} className="img-ele3" />
+              </div>
+              <div className="btnfree">
+                <button className="button-free">
+                  DÙNG THỬ MIỄN PHÍ <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+              </div>
             </div>
-            <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-              <img src={Images.ICON} className="img-ele3" />
-            </div>
-            <div className="btnfree">
-              <button className="button-free">
-                DÙNG THỬ MIỄN PHÍ <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
       <div
         className="partIII"
         // style={{
@@ -202,8 +206,8 @@ function Home() {
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faHourglassEnd}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
@@ -215,26 +219,26 @@ function Home() {
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faMoneyBillAlt}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Thời gian"
-                    content="Bạn tốn nhiều thời gian cho việc giám sát, quản lý cơ sở, khách thuê, chi phí."
+                    topic="Chi phí"
+                    content="Bạn đau đầu vì có quá nhiều chi phí phát sinh trong quá trình kinh doanh."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faUser}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Thời gian"
-                    content="Bạn tốn nhiều thời gian cho việc giám sát, quản lý cơ sở, khách thuê, chi phí."
+                    topic="Công tác quản lý"
+                    content="Bạn đau đầu khi suốt ngày phải đi xử lý sự cố, hợp đồng, các thủ tục pháp lý, hóa đơn."
                   />
                 </Col>
               </Row>
@@ -246,39 +250,39 @@ function Home() {
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faHandshake}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Thời gian"
-                    content="Bạn tốn nhiều thời gian cho việc giám sát, quản lý cơ sở, khách thuê, chi phí."
+                    topic="Rủi ro Quản lý"
+                    content="Tình trạng khó khăn trong việc quản lý các khoản hóa đơn, có thể thất thoát tiền bạc trong việc tính toán."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faPuzzlePiece}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Thời gian"
-                    content="Bạn tốn nhiều thời gian cho việc giám sát, quản lý cơ sở, khách thuê, chi phí."
+                    topic="Khách thuê"
+                    content="Bạn cần có một quy trình quản lý khách thuê chuyên nghiệp, hiệu quả để tạo mối quan hệ lâu dài với họ."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component1
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faUserTimes}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Thời gian"
-                    content="Bạn tốn nhiều thời gian cho việc giám sát, quản lý cơ sở, khách thuê, chi phí."
+                    topic="Hiệu quả kinh doanh"
+                    content="Công việc quản lý đảm bảo tính chính xác, hiệu quả để đảm bảo quyền lợi cả hai bên và tối ưu hóa được doanh thu."
                   />
                 </Col>
               </Row>
@@ -286,24 +290,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <div
-        className="partIV"
-        // style={{
-        //   width: "100%",
-        //   height: "430px",
-        //   backgroundColor: "#efefef",
-        //   display: "flex",
-        //   justifyContent: "center",
-        // }}
-      >
-        <div
-          style={{
-            width: "80%",
-            height: "auto",
-            // display: "flex",
-            // justifyContent: "center",
-          }}
-        >
+      <div className="partIV">
+        <div className="box-iv-all">
           <div style={{ display: "block" }}>
             <div
               style={{
@@ -314,7 +302,7 @@ function Home() {
             >
               <div className="topic">
                 <div className="circle-topic"></div>
-                <div style={{ position: "relative" }}>
+                <div className="host" style={{ position: "relative" }}>
                   88% chủ trọ, căn hộ rơi vào tình trạng
                 </div>
               </div>
@@ -329,20 +317,14 @@ function Home() {
               hiệu quả của các chuỗi nhà trọ, căn hộ. Nhưng để quản lý hiệu quả
               không phải chuyện đơn giản.
             </div>
-            <Row
-              // style={{ paddingLeft: "40px", paddingTop: "20px" }}
-              className="paddingrow"
-            >
-              <div
-                // style={{ display: "flex", justifyContent: "center" }}
-                className="positionrow-partIV"
-              >
+            <Row className="paddingrow">
+              <div className="positionrow-partIV">
                 <Col lg={6} md={24}>
                   <Component2
                     icon={
                       <FontAwesomeIcon
                         icon={faHospital}
-                        size="3x"
+                        size="2x"
                         color="#007c7e"
                       />
                     }
@@ -354,39 +336,39 @@ function Home() {
                   <Component2
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faHandshake}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Cơ sở vật chất"
-                    content="Với quy mô các tòa nhà, số phòng lớn bạn cần quá nhiều thời gian công sức để quản lý lưu trữ cũng như tìm kiếm thông tin dữ liệu."
+                    topic="Hợp đồng"
+                    content="Quy trình làm việc rời rạc với từng khách thuê, đặc biệt khi có thay đổi về thông tin khá phức tạp và mất thời gian trong việc quản lý."
                   />
                 </Col>
                 <Col lg={6} md={24}>
                   <Component2
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faMoneyBillAlt}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Cơ sở vật chất"
-                    content="Với quy mô các tòa nhà, số phòng lớn bạn cần quá nhiều thời gian công sức để quản lý lưu trữ cũng như tìm kiếm thông tin dữ liệu."
+                    topic="Hóa đơn"
+                    content="Việc triển khai in, xuất và gửi thanh toán hóa đơn thanh toán mất nhiều quỹ thời gian tính toán, xử lý và truy thu, sai sót và thất thoát."
                   />
                 </Col>
                 <Col lg={6} md={24}>
                   <Component2
                     icon={
                       <FontAwesomeIcon
-                        icon={faHospital}
-                        size="3x"
+                        icon={faChartLine}
+                        size="2x"
                         color="#007c7e"
                       />
                     }
-                    topic="Cơ sở vật chất"
-                    content="Với quy mô các tòa nhà, số phòng lớn bạn cần quá nhiều thời gian công sức để quản lý lưu trữ cũng như tìm kiếm thông tin dữ liệu."
+                    topic="Theo dõi báo cáo"
+                    content="Chưa theo dõi một cách tổng quan về tình hình kinh doanh, thống kê thu chi và lịch sử khách thuê, hợp đồng, hóa đơn."
                   />
                 </Col>
               </div>
@@ -438,7 +420,7 @@ function Home() {
                 cùng việc quản lý nhà trọ của bạn.
               </div>
             </div>
-            <Row style={{ paddingLeft: "70px", paddingTop: "20px" }}>
+            <Row className="row-com-3">
               <Col lg={6} md={24}>
                 <Component3
                   images={Images.USERS}
@@ -448,23 +430,23 @@ function Home() {
               </Col>
               <Col lg={6} md={24}>
                 <Component3
-                  images={Images.USERS}
-                  number="4356 +"
-                  content="Chủ trọ sử dụng"
+                  images={Images.REVIEW}
+                  number="90% +"
+                  content="Chủ trọ hài lòng"
                 />
               </Col>
               <Col lg={6} md={24}>
                 <Component3
-                  images={Images.USERS}
-                  number="4356 +"
-                  content="Chủ trọ sử dụng"
+                  images={Images.ADS}
+                  number="15 +"
+                  content="Đăng ký mới mỗi ngày"
                 />
               </Col>
               <Col lg={6} md={24}>
                 <Component3
-                  images={Images.USERS}
-                  number="4356 +"
-                  content="Chủ trọ sử dụng"
+                  images={Images.OFFICE}
+                  number="56 +"
+                  content="Tỉnh thành có mặt"
                 />
               </Col>
             </Row>
@@ -509,17 +491,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <div
-          className="partVI"
-          // style={{
-          //   width: "100%",
-          //   height: "430px",
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   paddingTop: "20px",
-          //   backgroundColor: "#efefef",
-          // }}
-        >
+        <div className="partVI">
           <div
             style={{
               width: "80%",
@@ -527,12 +499,10 @@ function Home() {
             }}
           >
             <div style={{ display: "block" }}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="civ-civ">
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div style={{ position: "relative", bottom: "10px" }}>
-                    Tại sao chủ trọ thích KHUTRO?
-                  </div>
+                  <div className="why-room">Tại sao chủ trọ thích KHUTRO?</div>
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -563,23 +533,23 @@ function Home() {
                 </Col>
                 <Col lg={6} md={24} style={{ paddingLeft: "10px" }}>
                   <Component4
-                    img={Images.BAR_CHART}
-                    topic="Quản lý mọi lúc, mọi nơi"
-                    content="Chủ trọ có thể quản lý nhà trọ mọi lúc mọi nơi, dữ liệu được quản lý tập trung, bảo mật, và an toàn tuyệt đối."
+                    img={Images.ANALYSIS}
+                    topic="Đơn giản & Dễ dùng"
+                    content="Giao diện đơn giản, thân thiện, thông minh giúp chủ trọ triển khai quản lý nhà trọ thật dễ dàng và nhanh chóng."
                   />
                 </Col>
                 <Col lg={6} md={24} style={{ paddingLeft: "10px" }}>
                   <Component4
-                    img={Images.BAR_CHART}
-                    topic="Quản lý mọi lúc, mọi nơi"
-                    content="Chủ trọ có thể quản lý nhà trọ mọi lúc mọi nơi, dữ liệu được quản lý tập trung, bảo mật, và an toàn tuyệt đối."
+                    img={Images.BUSINESS_PLAN}
+                    topic="Phù hợp nhiều mô hình"
+                    content="Chúng tôi nghiên cứu thiết kế phần mềm phù hợp với nhiều mô hình nhà trọ, chung cư mini, căn hộ dịch vụ."
                   />
                 </Col>
                 <Col lg={6} md={24} style={{ paddingLeft: "10px" }}>
                   <Component4
-                    img={Images.BAR_CHART}
-                    topic="Quản lý mọi lúc, mọi nơi"
-                    content="Chủ trọ có thể quản lý nhà trọ mọi lúc mọi nơi, dữ liệu được quản lý tập trung, bảo mật, và an toàn tuyệt đối."
+                    img={Images.PIGGY}
+                    topic="Tiết kiệm chi phí tối đa"
+                    content="Chỉ với 4.000 đồng/phòng, chủ trọ đã có thể áp dụng công nghệ tiên tiến vào quản lý nhà trọ, căn hộ của mình."
                   />
                 </Col>
               </Row>
@@ -588,16 +558,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <div
-          className="partVII"
-          // style={{
-          //   width: "100%",
-          //   height: "680px",
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   paddingTop: "20px",
-          // }}
-        >
+        <div className="partVII">
           <div
             style={{
               width: "80%",
@@ -627,10 +588,7 @@ function Home() {
                   mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
                 </div>
               </div>
-              <Row
-                // style={{ paddingTop: "10px" }}
-                className="detailedrow-partVI"
-              >
+              <Row className="detailedrow-partVI">
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
@@ -648,26 +606,22 @@ function Home() {
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faUsers}
+                        icon={faHandshake}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Quản lý khách thuê"
-                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                    topic1="Quản lý hợp đồng"
+                    content1="Chức năng quản lý thông tin hợp đồng thuê nhà, gồm phòng, khách thuê, dịch vụ, tiền đặt cọc."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
-                      <FontAwesomeIcon
-                        icon={faUsers}
-                        size="2x"
-                        color="#eb2f5b"
-                      />
+                      <FontAwesomeIcon icon={faRss} size="2x" color="#eb2f5b" />
                     }
-                    topic1="Quản lý khách thuê"
-                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                    topic1="Quản lý dịch vụ"
+                    content1="Chức năng quản lý thông tin hợp đồng thuê nhà, gồm phòng, khách thuê, dịch vụ, tiền đặt cọc …"
                   />
                 </Col>
               </Row>
@@ -680,42 +634,90 @@ function Home() {
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faUsers}
+                        icon={faMoneyBillAlt}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Quản lý khách thuê"
-                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                    topic1="Quản lý hóa đơn"
+                    content1="Chức năng quản lý hóa đơn thu tiền hằng tháng, gồm các chi phí như điện, nước, dịch vụ."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faUsers}
+                        icon={faPrint}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Quản lý khách thuê"
-                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                    topic1="Xuất, in H.đồng, hóa đơn"
+                    content1="Tự động biên soạn in xuất hợp đồng, hóa đơn hàng tháng một cách nhanh chóng và tiện lợi."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faUsers}
+                        icon={faPlug}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Quản lý khách thuê"
-                    content1="Chức năng quản lý thông tin khách thuê, gồm các thông tin cá nhân,thông tin liên hệ."
+                    topic1="Quản lý số điện/nước"
+                    content1="Chức năng quản lý số điện nước của từng phòng theo từng tháng, tự động tính toán tiền phải trả."
                   />
                 </Col>
               </Row>
+              <Row className="detailedrow-partVI">
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faTicketAlt}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý phiếu chi"
+                    content1="Chức năng quản lý các khoản chi của phần mềm quản lý nhà trọ tổng hợp báo cáo thu chi của toàn bộ khu trọ, nhà trọ."
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faBuilding}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý phòng, thiết bị"
+                    content1="Chức năng quản lý thông tin phòng theo từng khu, tiền phòng, thiết bị trong phòng của phần mềm quản lý nhà trọ."
+                  />
+                </Col>
+                <Col lg={8} md={24}>
+                  <Component5
+                    icon={
+                      <FontAwesomeIcon
+                        icon={faChartLine}
+                        size="2x"
+                        color="#eb2f5b"
+                      />
+                    }
+                    topic1="Quản lý cấu hình, báo cáo"
+                    content1="Chức năng cấu hình các thông tin liên quan tới nhà trọ, căn hộ, tổng hợp các báo cáo theo các tiêu chí khác nhau."
+                  />
+                </Col>
+              </Row>
+            </div>
+            <div className="option-other">Và nhiều tính năng khác</div>
+            <div className="option-2">
+              Được dùng thử miễn phí, hướng dẫn như thật, tại sao không?
+            </div>
+            <div className="abcd">
+              <button className="btn-option-2"> DÙNG THỬ MIỄN PHÍ</button>
             </div>
           </div>
         </div>
@@ -757,23 +759,13 @@ function Home() {
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <div
-                  // style={{
-                  //   fontFamily: " PT Sans, sans-serif",
-                  //   fontSize: "15px",
-                  //   width: "80%",
-                  // }}
-                  className="content2-partVIII"
-                >
+                <div className="content2-partVIII">
                   Cùng với các chuyên gia IT dày kinh nghiệm, chúng tôi nghiên
                   cứu thiết kế phần mềm quản lý nhà trọ tối ưu phù hợp với nhiều
                   mô hình quản lý khác nhau, với nhiều tính năng nổi bật.
                 </div>
               </div>
-              <Row
-                className="row-partVIII"
-                // style={{ paddingTop: "5px" }}
-              >
+              <Row className="row-partVIII">
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
@@ -791,26 +783,26 @@ function Home() {
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faRecycle}
+                        icon={faUserPlus}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Dùng thử miễn phí"
-                    content1="Dùng thử miễn phí, hướng dẫn như thật cùng chuyên viên tận tâm. Bảo hành trọn đời, hỗ trợ liên tục 24/7."
+                    topic1="Xuất, in H.đồng, hóa đơn"
+                    content1="Tự động biên soạn in xuất hợp đồng, hóa đơn hàng tháng gửi cho khách thuê một cách nhanh chóng và tiện lợi."
                   />
                 </Col>
                 <Col lg={8} md={24}>
                   <Component5
                     icon={
                       <FontAwesomeIcon
-                        icon={faRecycle}
+                        icon={faMobileAlt}
                         size="2x"
                         color="#eb2f5b"
                       />
                     }
-                    topic1="Dùng thử miễn phí"
-                    content1="Dùng thử miễn phí, hướng dẫn như thật cùng chuyên viên tận tâm. Bảo hành trọn đời, hỗ trợ liên tục 24/7."
+                    topic1="Hỗ trợ đa nền tảng"
+                    content1="Hỗ trợ ĐA NỀN TẢNG: Máy tính bàn, máy tính bảng, và thiết bị di động. Với sự linh hoạt trên từng nền tảng."
                   />
                 </Col>
               </Row>
@@ -848,15 +840,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <div
-          // style={{
-          //   width: "100%",
-          //   height: "450px",
-          //   display: "flex",
-          //   justifyContent: "center",
-          // }}
-          className="partIX"
-        >
+        <div className="partIX">
           <div
             style={{
               width: "80%",
@@ -889,14 +873,6 @@ function Home() {
                   Dưới đây là các bước để tiến hành mua , KHUTRO – Phần mềm Quản
                   lý Nhà trọ.
                 </div>
-                {/* <strong
-                  style={{
-                    fontSize: "15px",
-                    paddingRight: "10px",
-                    paddingLeft: "10px",
-                  }}
-                ></strong>
-                <div style={{ fontSize: "15px" }}></div> */}
               </div>
               <Component6 />
             </div>
@@ -1152,8 +1128,8 @@ function Home() {
                 <div className="topic">
                   <div className="circle-topic"></div>
                   <div
-                  className="content-circle"
-                  //  style={{ position: "relative", bottom: "10px" }}
+                    className="content-circle"
+                    //  style={{ position: "relative", bottom: "10px" }}
                   >
                     Khách hàng nói về KHUTRO
                   </div>
@@ -1176,9 +1152,10 @@ function Home() {
                   phản hồi đó.
                 </div>
               </div>
-              <Row 
-              // style={{ paddingLeft: "50px" }} 
-              className="row-row">
+              <Row
+                // style={{ paddingLeft: "50px" }}
+                className="row-row"
+              >
                 <Col lg={8} md={24} className="col-row">
                   <Component8
                     img={Images.FACE_1}
@@ -1234,9 +1211,9 @@ function Home() {
               >
                 <div className="topic">
                   <div className="circle-topic"></div>
-                  <div 
-                  className="content-circle-XIII"
-                  // style={{ position: "relative", bottom: "10px" }}
+                  <div
+                    className="content-circle-XIII"
+                    // style={{ position: "relative", bottom: "10px" }}
                   >
                     Đồng hành 24/7 cùng công việc quản lý nhà trọ, căn hộ của
                     bạn
@@ -1261,14 +1238,7 @@ function Home() {
                   hàng ngày.
                 </div>
               </div>
-<<<<<<< HEAD
-              <Row 
-              // style={{ paddingTop: "20px" }} 
-                className="row-XIII-col"
-              >
-=======
               <Row style={{ paddingTop: "20px" }}>
->>>>>>> master
                 <Col lg={8} md={24}>
                   <div className="box-last">
                     <div
@@ -1318,10 +1288,11 @@ function Home() {
                       }}
                     >
                       <div className="icon-hover-2">
-                        <div
-                          className="ti-comments"
-                          style={{ Color: "#009c7e" }}
-                        ></div>
+                        <FontAwesomeIcon
+                          icon={faPhoneAlt}
+                          size="2x"
+                          color="#009c7e"
+                        />
                       </div>
                     </div>
                     <div
@@ -1331,7 +1302,7 @@ function Home() {
                         paddingTop: "10px",
                       }}
                     >
-                      <div className="topic-com-4">Hỗ trợ</div>
+                      <div className="topic-com-4">Hotline: 056.372.3333</div>
                     </div>
                     <div
                       style={{
@@ -1341,8 +1312,8 @@ function Home() {
                       }}
                     >
                       <div className="content-com-4">
-                        Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
-                        sẵn sàng phục vụ khách hàng 24/7.
+                        Tổng đài tư vấn miễn phí dành cho khách hàng. Hãy gọi
+                        cho chúng tôi ngay khi lúc nào bạn cần.
                       </div>
                     </div>
                   </div>
@@ -1357,10 +1328,11 @@ function Home() {
                       }}
                     >
                       <div className="icon-hover-2">
-                        <div
-                          className="ti-comments"
-                          style={{ Color: "#009c7e" }}
-                        ></div>
+                        <FontAwesomeIcon
+                          icon={faEnvelopeOpen}
+                          size="2x"
+                          color="#009c7e"
+                        />
                       </div>
                     </div>
                     <div
@@ -1370,7 +1342,9 @@ function Home() {
                         paddingTop: "10px",
                       }}
                     >
-                      <div className="topic-com-4">Hỗ trợ</div>
+                      <div className="topic-com-4">
+                        Email: official.khutro@gmail.com
+                      </div>
                     </div>
                     <div
                       style={{
@@ -1380,8 +1354,8 @@ function Home() {
                       }}
                     >
                       <div className="content-com-4">
-                        Đội ngũ hỗ trợ chuyên nghiệp, nhiệt tình, sáng tạo luôn
-                        sẵn sàng phục vụ khách hàng 24/7.
+                        Mọi yêu cầu của khách hàng gửi về email, đều được giải
+                        quyết và trả lời một cách nhanh nhất.
                       </div>
                     </div>
                   </div>
@@ -1392,7 +1366,6 @@ function Home() {
         </div>
       </div>
       <Footer />
-      {/* <div>footer</div> */}
     </div>
   );
 }

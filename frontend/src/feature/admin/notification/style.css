@@ -47,6 +47,9 @@
 .btnbtnnotifi{
         display: flex;
 }
+.input-name-info{
+    margin-left: 10px;
+}
 @media only screen and (max-width: 1026px) {
   .topic-left-noti{
       width:70%;
@@ -68,6 +71,17 @@
   }
   .btnbtnnotifi{
       width:100%;
-      padding-left: 170px;
+      padding-left: 10px;
   }
+  .form-name-info{
+      padding-left: 15px;
+  }
+  .input-name-info{
+      position:relative;
+        left:-5px;
+    }
+    .form-description-info{
+        padding-left:15px;
+    }
+
 }

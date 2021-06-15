@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Menu_client from "./../../../components/menu_client";
-import Footer_client from "./../../../components/footer_client";
+import Footer from "./../../../components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
@@ -17,6 +17,7 @@ import {
   Modal,
   Tag,
   Popconfirm,
+  message,
 } from "antd";
 import invoicesApi from "./../../../api/invoicesApi";
 import usersApi from "./../../../api/usersApi";
@@ -148,7 +149,7 @@ function Invoiceone() {
             </Select>
           </Form.Item>
           <Form.Item label="Khách trọ" name="paymentDate">
-            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss"  />
+            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
           </Form.Item>
           <div style={{ display: "flex" }}>
             <Button type="primary" htmlType="submit">
@@ -190,30 +191,32 @@ function Invoiceone() {
 
         {state === false ? (
           <div>
-            <div style={{ width: "100%", height: "auto", display: "block" }}>
+            <div style={{ paddingBottom: "17vh" }}>
+              <div style={{ width: "100%", height: "auto", display: "block" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    fontFamily: "PT Sans, sans-serif",
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                    paddingTop: "30px",
+                  }}
+                >
+                  Vui lòng nhấn vào nút Thêm mới hóa đơn
+                </div>
+              </div>
               <div
                 style={{
                   width: "100%",
-                  fontFamily: "PT Sans, sans-serif",
-                  fontSize: "30px",
-                  fontWeight: "bold",
-                  paddingTop: "30px",
+                  paddingLeft: "640px",
+                  display: "flex",
+                  paddingTop: "25px",
                 }}
               >
-                Vui lòng nhấn vào nút Thêm mới hóa đơn
+                <Button type="primary" className="btnbtn" onClick={showModal}>
+                  Thêm mới hóa đơn
+                </Button>
               </div>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                paddingLeft: "640px",
-                display: "flex",
-                paddingTop: "25px",
-              }}
-            >
-              <Button type="primary" className="btnbtn" onClick={showModal}>
-                Thêm mới hóa đơn
-              </Button>
             </div>
           </div>
         ) : (
@@ -308,7 +311,7 @@ function Invoiceone() {
                         <div style={{ width: "60%" }}>
                           <Popconfirm
                             title="BẠN CÓ CHẮC MUỐN TẢI HÓA ĐƠN NÀY VỀ MÁY KHÔNG?"
-                            onConfirm={ downloadSingleFiles}
+                            onConfirm={downloadSingleFiles}
                             onCancel={cancel}
                             okText="Có"
                             cancelText="Không"
@@ -1210,7 +1213,7 @@ function Invoiceone() {
                         width: "25%",
                         height: "auto",
                         backgroundColor: "#2d353c",
-                        borderRadius:"8px"
+                        borderRadius: "8px",
                       }}
                     >
                       {" "}
@@ -1259,8 +1262,8 @@ function Invoiceone() {
           </>
         )}
       </div>
-      <div style={{ paddingTop: "10px" }}>
-        <Footer_client />
+      <div >
+        <Footer />
       </div>
     </div>
   );

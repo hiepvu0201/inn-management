@@ -12,20 +12,12 @@ import {
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-<<<<<<< HEAD
-import authApi from "./../../api/authApi";
-import { WarningOutlined, CheckCircleFilled } from "@ant-design/icons";
-import {Link} from "react-router-dom"
-function register() {
-  const onFinish = (values) => {
-=======
 import authApi from './../../api/authApi'
 import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
 import { Link, Redirect, useHistory } from "react-router-dom";
 
 function Register() {
    const onFinish = (values) => {
->>>>>>> master
     const register = async () => {
       try {
         console.log("value", values);
@@ -64,10 +56,6 @@ function Register() {
     };
     register();
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   return (
     <div>
       <div className="form-register">
@@ -80,15 +68,6 @@ function Register() {
               onFinish={onFinish}
             >
               <div className="username">Username</div>
-<<<<<<< HEAD
-              <div className="input-username">
-                <Form.Item name="userName">
-                  <Input placeholder="Nhập username" />
-                </Form.Item>
-              </div>
-              <div className="username">Email</div>
-              <div className="input-username">
-=======
               <div
                 style={{
                   width: "90%",
@@ -110,29 +89,11 @@ function Register() {
                   paddingBottom: "10px",
                 }}
               >
->>>>>>> master
                 <Form.Item name="email">
                   <Input placeholder="Nhập email" />
                 </Form.Item>
               </div>
               <div className="username">Mật khẩu</div>
-<<<<<<< HEAD
-              <div className="inputpw">
-                <Form.Item name="password" className="abc">
-                  <Input.Password placeholder="Nhập mật khẩu" />
-                </Form.Item>
-              </div>
-              <div className="btn-register">
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                  className="detailed-btn-register"
-                  >
-                    ĐĂNG KÝ
-                  </Button>
-                </Form.Item>
-=======
               <div
                 style={{
                   width: "90%",
@@ -170,7 +131,6 @@ function Register() {
                 >
                   ĐĂNG KÝ
                 </Button>
->>>>>>> master
               </div>
             </Form>
             <div
@@ -187,26 +147,6 @@ function Register() {
                 style={{
                   fontSize: "15px",
                   color: "white",
-<<<<<<< HEAD
-                  fontFamily: "'Source Sans Pro', sans-serif",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,
-                <Link to="/login">
-                  <div
-                    style={{
-                      fontSize: "15px",
-                      color: "white",
-                      fontFamily: "'Source Sans Pro', sans-serif",
-                    }}
-                  >
-                    ĐĂNG NHẬP NGAY
-                  </div>
-=======
                   fontFamily: "Open Sans', sans-serif",
                   display: "flex",
                   paddingTop:"10px",
@@ -217,7 +157,6 @@ function Register() {
                 tài khoản rồi hãy,
                 <Link to="/login">
                   <div style={{ color: "white",textDecorationLine:"underline",textDecorationThickness:"2px",textDecorationStyle:"solid" }}> đăng nhập ngay</div>
->>>>>>> master
                 </Link>
               </div>
             </div>

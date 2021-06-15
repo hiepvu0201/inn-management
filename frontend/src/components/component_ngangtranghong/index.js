@@ -6,19 +6,19 @@ function Component_NgangTrangHong(props) {
   return (
     <div>
       <div className="content11">
-        <div style={{ display: "block" }}>
+        <div className="display-content11">
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div className="icon-hover-11">
               {props.icon}
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div className="topic">
+            <div className="topicabc">
             {props.topic1}
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div className="content">
+            <div className="contentnth">
               {props.content1}
             </div>
           </div>

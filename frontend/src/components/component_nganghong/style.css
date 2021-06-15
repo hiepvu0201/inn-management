@@ -9,7 +9,7 @@
   font-size: 12px;
   font-family: "PT Sans", sans-serif;
   font-weight: bold;
-  padding-top: 10px;
+  padding-top: 5px;
   color: black;
 }
 
@@ -23,5 +23,8 @@
 @media only screen and (max-width: 1026px) {
   .topic-com-2{
     width:100%;
+  }
+  .box-3{
+    padding-left: 50px
   }
 }

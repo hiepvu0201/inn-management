@@ -24,9 +24,9 @@ import {
   InputNumber,
   Spin,
 } from "antd";
+import { Link } from "react-router-dom";
 import notificationApi from "../../../api/notifiactionApi";
 const { Option } = Select;
-
 function Notification(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -233,7 +233,7 @@ function Notification(props) {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
@@ -295,11 +295,23 @@ function Notification(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Tên" name="name">
-                        <Input />
+                      <Form.Item
+                        label="Tên"
+                        name="name"
+                        className="form-name-info"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-name-info" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Mô tả" name="description">
-                        <Input />
+                      <Form.Item
+                        label="Mô tả"
+                        name="description"
+                        className="form-description-info"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-description-info" />
+                        </div>
                       </Form.Item>
 
                       <div className="btnbtnnotifi">
@@ -333,6 +345,35 @@ function Notification(props) {
               />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

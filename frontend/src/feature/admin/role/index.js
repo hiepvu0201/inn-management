@@ -200,7 +200,11 @@ function Role(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên phân quyền người dùng" name="name">
+            <Form.Item
+              label="Tên chức năng người dùng"
+              name="name"
+              className="roles-us2"
+            >
               <Input placeholder={rowEdit.name} />
             </Form.Item>
             <div style={{ display: "flex" }}>
@@ -242,7 +246,7 @@ function Role(props) {
                 <div className="content">PHÂN QUYỀN NGƯỜI DÙNG</div>
               </div>
               <div className="btn-right">
-                <button className="detailed-btn" onClick={showModal}>
+                <button className="detailed-btn-role" onClick={showModal}>
                   THÊM MỚI
                 </button>
                 <Modal
@@ -278,8 +282,14 @@ function Role(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tên chức năng người dùng" name="name">
-                      <Input />
+                    <Form.Item
+                      label="Tên chức năng người dùng"
+                      name="name"
+                      className="roles-us2"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Input className="input-role" />
+                      </div>
                     </Form.Item>
 
                     {/* <Form.Item></Form.Item> */}

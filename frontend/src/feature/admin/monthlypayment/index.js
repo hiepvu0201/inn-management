@@ -20,10 +20,10 @@ import {
   Select,
   Spin,
 } from "antd";
+import {Link} from 'react-router-dom'
 import monthlypaymentsApi from "../../../api/monthlypaymentApi";
 import branchesApi from "./../../../api/branchesApi";
 const { Option } = Select;
-
 function Monthlypayment(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -243,7 +243,70 @@ function Monthlypayment(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tháng" name="month">
+            <Form.Item label="Tháng" name="month" className="form-monthPayment">
+              <div style={{ width: "90%" }}>
+                <Select
+                  style={{ width: 120 }}
+                  className="select-monthPay"
+                  placeholder={rowEdit.month}
+                >
+                  <Option value="1">Tháng 1</Option>
+                  <Option value="2">Tháng 2</Option>
+                  <Option value="3">Tháng 3</Option>
+                  <Option value="4">Tháng 4</Option>
+                  <Option value="5">Tháng 5</Option>
+                  <Option value="6">Tháng 6</Option>
+                  <Option value="7">Tháng 7</Option>
+                  <Option value="8">Tháng 8</Option>
+                  <Option value="9">Tháng 9</Option>
+                  <Option value="10">Tháng 10</Option>
+                  <Option value="11">Tháng 11</Option>
+                  <Option value="12">Tháng 12</Option>
+                </Select>
+              </div>
+            </Form.Item>
+            <Form.Item label="Số tiền chi" name="cost" className="form-cost">
+              <div style={{ width: "90%" }}>
+                <Input className="input-cost" placeholder={rowEdit.cost} />
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Chi nhánh"
+              name="branchId"
+              className="form-branchId"
+            >
+              <div style={{ width: "90%" }}>
+                <Select className="select-branch-id">
+                  {branchList.map((branchid) => (
+                    <Select.Option key={branchid.id} value={branchid.id}>
+                      {branchid.location}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+            </Form.Item>
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA{" "}
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_1}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>{" "}
+            
+            {/* <div className="btncreatepayment">
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div> */}
+            {/* <Form.Item label="Tháng" name="month">
               <Select style={{ width: 120 }} placeholder={rowEdit.month}>
                 <Option value="1">Tháng 1</Option>
                 <Option value="2">Tháng 2</Option>
@@ -280,7 +343,7 @@ function Monthlypayment(props) {
                   HỦY BỎ
                 </Button>
               </div>
-            </div>
+            </div> */}
           </Form>
         </Spin>
       </Modal>
@@ -350,33 +413,57 @@ function Monthlypayment(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tháng" name="month">
-                      <Select style={{ width: 120 }}>
-                        <Option value="1">Tháng 1</Option>
-                        <Option value="2">Tháng 2</Option>
-                        <Option value="3">Tháng 3</Option>
-                        <Option value="4">Tháng 4</Option>
-                        <Option value="5">Tháng 5</Option>
-                        <Option value="6">Tháng 6</Option>
-                        <Option value="7">Tháng 7</Option>
-                        <Option value="8">Tháng 8</Option>
-                        <Option value="9">Tháng 9</Option>
-                        <Option value="10">Tháng 10</Option>
-                        <Option value="11">Tháng 11</Option>
-                        <Option value="12">Tháng 12</Option>
-                      </Select>
+                    <Form.Item
+                      label="Tháng"
+                      name="month"
+                      className="form-monthPayment"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Select
+                          style={{ width: 120 }}
+                          className="select-monthPay"
+                        >
+                          <Option value="1">Tháng 1</Option>
+                          <Option value="2">Tháng 2</Option>
+                          <Option value="3">Tháng 3</Option>
+                          <Option value="4">Tháng 4</Option>
+                          <Option value="5">Tháng 5</Option>
+                          <Option value="6">Tháng 6</Option>
+                          <Option value="7">Tháng 7</Option>
+                          <Option value="8">Tháng 8</Option>
+                          <Option value="9">Tháng 9</Option>
+                          <Option value="10">Tháng 10</Option>
+                          <Option value="11">Tháng 11</Option>
+                          <Option value="12">Tháng 12</Option>
+                        </Select>
+                      </div>
                     </Form.Item>
-                    <Form.Item label="Số tiền chi" name="cost">
-                      <Input />
+                    <Form.Item
+                      label="Số tiền chi"
+                      name="cost"
+                      className="form-cost"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Input className="input-cost" />
+                      </div>
                     </Form.Item>
-                    <Form.Item label="Chi nhánh" name="branchId">
-                      <Select>
-                        {branchList.map((branchid) => (
-                          <Select.Option key={branchid.id} value={branchid.id}>
-                            {branchid.location}
-                          </Select.Option>
-                        ))}
-                      </Select>
+                    <Form.Item
+                      label="Chi nhánh"
+                      name="branchId"
+                      className="form-branchId"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Select className="select-branch-id">
+                          {branchList.map((branchid) => (
+                            <Select.Option
+                              key={branchid.id}
+                              value={branchid.id}
+                            >
+                              {branchid.location}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </div>
                     </Form.Item>
                     <div className="btncreatepayment">
                       <Button type="primary" htmlType="submit">
@@ -409,6 +496,35 @@ function Monthlypayment(props) {
               />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

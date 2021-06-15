@@ -25,8 +25,8 @@ import {
   Spin,
 } from "antd";
 import rulesApi from "../../../api/rulesApi";
+import {Link} from 'react-router-dom'
 const { Option } = Select;
-
 function Rules(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -207,19 +207,32 @@ function Rules(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên" name="name">
+            {/* <Form.Item label="Tên" name="name">
               <Input placeholder={rowEdit.name} />
             </Form.Item>
             <Form.Item label="Mô tả" name="description">
               <Input placeholder={rowEdit.description} />
-            </Form.Item>
-
+            </Form.Item> */}
+            <Form.Item label="Tên" name="name" className="name-rules">
+                        <div style={{ width: "90%" }}>
+                          <Input placeholder={rowEdit.name} className="rules-input-name" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Mô tả"
+                        name="description"
+                        className="name-description-rules"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-description-rules" placeholder={rowEdit.description} />
+                        </div>
+                      </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
               </Button>
               <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
+                <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
@@ -227,7 +240,7 @@ function Rules(props) {
           </Form>
         </Spin>
       </Modal>
-      <div className="containercontainerussers">
+      <div className="containercontainerrules">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
@@ -284,11 +297,19 @@ function Rules(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Tên" name="name">
-                        <Input />
+                      <Form.Item label="Tên" name="name" className="name-rules">
+                        <div style={{ width: "90%" }}>
+                          <Input className="rules-input-name" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Mô tả" name="description">
-                        <Input />
+                      <Form.Item
+                        label="Mô tả"
+                        name="description"
+                        className="name-description-rules"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-description-rules" />
+                        </div>
                       </Form.Item>
 
                       <div className="btncreaterules">
@@ -323,6 +344,35 @@ function Rules(props) {
               />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

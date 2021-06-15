@@ -42,4 +42,7 @@
  .row-rectangle{
          padding-left: 20px;
  }
+ .rectangle-box{
+     width:90%;
+ }
 }

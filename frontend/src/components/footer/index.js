@@ -73,7 +73,7 @@ function Footer() {
               </div>
             </Col>
             <Col lg={8} md={24}>
-              <div style={{ display: "block" }}>
+              <div className="display-col-2">
                 <div className="topic-title">
                   <div className="char"></div>
                   <div className="content-title">Liên hệ</div>
@@ -182,7 +182,7 @@ function Footer() {
               </div>
             </Col>
             <Col lg={8} md={24} className="col">
-              <div style={{ display: "block" }}>
+              <div className="display-col-2">
                 <div className="topic-title2">
                   <div className="char"></div>
                   <div className="content-title2">Liên kết</div>

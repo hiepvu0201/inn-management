@@ -23,7 +23,7 @@
   height: auto;
   padding-top: 5px;
 }
-.btn-right-electric {
+.btn-right-elec {
   float: right;
   display: flex;
 }
@@ -46,7 +46,94 @@
 .btnbtncreateelectricitywater {
   display: flex;
 }
+.input-numElectricOld {
+  margin-left: 20px;
+}
+.input-numElectricNew {
+  margin-left: 12px;
+}
+.input-numWaterOld {
+  margin-left: 13px;
+}
+.input-numWaterNew {
+  margin-left: 4px;
+}
+.input-electricityUnitPrice{
+  margin-left: 33px;
+}
+.input-waterUnit-Price{
+  margin-left: 27px;
+}
+.select-month{
+  margin-left: 45px;
+}
+.radio-checked
+{
+  margin-left: 30px;
+}
+.select-roomid{
+  margin-left: 43px;
+}
 @media only screen and (max-width: 1026px) {
+  .form-numElectricNew{
+    padding-left: 15px;
+  }
+  .form-numWaterNew{
+    padding-left: 19px;
+  }
+  .form-electricityUnitPrice{
+    padding-left: 20px;
+  }
+  .form-waterUnitPrice{
+    padding-left: 20px;
+  }
+  .form-month{
+    padding-left: 20px;
+  }
+  .form-checked{
+    padding-left:25px;
+  }
+  .radio-checked{
+    position:relative;
+    left:-25px;
+  }
+  .form-roomid{
+    padding-left: 20px;
+  } 
+  .select-roomid{
+    position:relative;
+    left:-40px;
+  }
+  .select-month{
+    position:relative;
+    left:-38px;
+  }
+  .input-waterUnit-Price{
+    position: relative;
+    left:-20px;
+  }
+  .input-electricityUnitPrice{
+    position: relative;
+    left:-28px;
+  }
+  .form-numWaterOld{
+    padding-left: 18px;
+  }
+  .input-numWaterOld{
+    position: relative;
+    left: -10px;
+  }
+  .input-numElectricOld{
+    position: relative;
+    left:-18px;
+  }
+  .form-numElectricOld{
+    padding-left: 15px;
+  }
+  .input-numElectricOld{
+    position:relative;
+    left:-13px;
+  }
   .contentelectricwater {
     font-size: 12px;
   }
@@ -69,4 +156,7 @@
     width: 100%;
     padding-left: 170px;
   }
+  /* .ant-table {
+    font-size: 2px;
+} */
 }

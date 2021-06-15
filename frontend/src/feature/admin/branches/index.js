@@ -19,25 +19,26 @@ import {
   Input,
   Select,
   Spin,
+  InputNumber
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
 import usersApi from "../../../api/usersApi";
 import Cookies from "js-cookie";
-
+import { Link } from "react-router-dom";
 const { Option } = Select;
 
 function Branches(props) {
   const [rowEdit, setRowEdit] = useState({});
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
-  const [nullstate, setNullstate] = useState([])
+  const [nullstate, setNullstate] = useState([]);
   //getAll
   const [branchList, setBranchList] = useState([]);
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const propsselect = [];
-
+  const [idselected,setidSelected]=useState([])
   const fetchUserList = async () => {
     try {
       const response = await usersApi.getAll();
@@ -52,8 +53,8 @@ function Branches(props) {
       const response = await branchesApi.getAll();
       console.log("Fetch branch successfully: ", response.data);
       setBranchList(response.data);
-      setfaketable(response.data)
-      setNullstate(response.data)
+      setfaketable(response.data);
+      setNullstate(response.data);
       setIsModalVisible_1(false);
     } catch (error) {
       console.log("Failed to fetch branch list: ", error);
@@ -87,6 +88,8 @@ function Branches(props) {
     const fetchCreateBranch = async () => {
       const dataCreate = {
         ...values,
+        userName: Cookies.get("userName"),
+        facilityIds: idselected,
       };
       console.log("dataCreate", dataCreate);
       try {
@@ -138,11 +141,11 @@ function Branches(props) {
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
-    
+    const branchvalue = [value];
+    setidSelected(branchvalue);
   }
   function handleChange_user(value) {
     console.log(`selected username ${value}`);
-    
   }
 
   function cancel(e) {
@@ -238,44 +241,44 @@ function Branches(props) {
   };
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-     if (value === undefined) {
-       setBranchList(nullstate);
-     } else {
-    const fetchGetallbranchesbyUsername = async () => {
-      try {
-        const response = await branchesApi.getallbranchesbyusername(value);
-        console.log("<<<", response);
-        console.log(
-          "Fetch all branches name by username successfully: ",
-          response.data
-        );
-        setBranchList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch list: ", error);
-      }
-    };
-    fetchGetallbranchesbyUsername();
+    if (value === undefined) {
+      setBranchList(nullstate);
+    } else {
+      const fetchGetallbranchesbyUsername = async () => {
+        try {
+          const response = await branchesApi.getallbranchesbyusername(value);
+          console.log("<<<", response);
+          console.log(
+            "Fetch all branches name by username successfully: ",
+            response.data
+          );
+          setBranchList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      fetchGetallbranchesbyUsername();
+    }
   };
-}
-const [faketable, setfaketable] = useState([])
+  const [faketable, setfaketable] = useState([]);
   const onSearch_2 = (value) => {
     console.log("<<VALUE", value);
     if (value === undefined) {
       setBranchList(nullstate);
     } else {
-        const newarr = faketable.filter((rs) => rs.location === value);
-        setBranchList(newarr);
-        console.log("<<a", newarr);
+      const newarr = faketable.filter((rs) => rs.location === value);
+      setBranchList(newarr);
+      console.log("<<a", newarr);
       // const fetchGetallbranchesbyBranchLocation = async () => {
-        // try {
-        //   const response = await branchesApi.getallbranchesbyBranchLocation(value);
-        //   console.log(
-        //     "Fetch all branches name by branchlocation successfully: ",
-        //     response.data
-        //   );
-        // } catch (error) {
-        //   console.log("Failed to fetch by branchlocation list: ", error);
-        // }
+      // try {
+      //   const response = await branchesApi.getallbranchesbyBranchLocation(value);
+      //   console.log(
+      //     "Fetch all branches name by branchlocation successfully: ",
+      //     response.data
+      //   );
+      // } catch (error) {
+      //   console.log("Failed to fetch by branchlocation list: ", error);
+      // }
       // };
       // fetchGetallbranchesbyBranchLocation();
     }
@@ -308,7 +311,97 @@ const [faketable, setfaketable] = useState([])
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Vị trí" name="location">
+            <Form.Item label="Vị trí" name="location" className="form-location">
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-location-branches"
+                  placeholder={rowEdit.location}
+                />
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Tên chi nhánh"
+              name="description"
+              className="form-description"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-description"
+                  placeholder={rowEdit.description}
+                />
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Số lầu"
+              name="numberOfStages"
+              className="form-stages"
+            >
+              {" "}
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-floor"
+                  // placeholder={rowEdit.numberOfStages}
+                />
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Số phòng"
+              name="numberOfRooms"
+              className="form-rooms"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-room"
+                  placeholder={rowEdit.numberOfRooms}
+                />
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Thiết bị"
+              name="facilityIds"
+              className="form-id-facility"
+            >
+              <div style={{ width: "80%" }}>
+                <Select
+                  onChange={handleChange}
+                  allowClear
+                  mode="multiple"
+                  className="input-facility2"
+                >
+                  {propsselect}
+                </Select>
+              </div>
+            </Form.Item>
+            <Form.Item
+              label="Người dùng"
+              name="userName"
+              className="form-user-2"
+            >
+              <div style={{ width: "90%" }}>
+                <Select
+                  onChange={handleChange_user}
+                  allowClear
+                  className="input-user"
+                  placeholder={rowEdit.userName}
+                >
+                  <Select.Option value={Cookies.get("userName")}>
+                    {Cookies.get("userName")}
+                  </Select.Option>
+                </Select>
+              </div>
+            </Form.Item>
+            {/* <Form.Item></Form.Item> */}
+            <div className="btncreatebranches">
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_1}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+            {/* <Form.Item label="Vị trí" name="location">
               <Input placeholder={rowEdit.location} />
             </Form.Item>
             <Form.Item label="Miêu tả" name="description">
@@ -346,14 +439,14 @@ const [faketable, setfaketable] = useState([])
                   HỦY BỎ
                 </Button>
               </div>
-            </div>
+            </div> */}
           </Form>
         </Spin>
       </Modal>
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
@@ -362,15 +455,7 @@ const [faketable, setfaketable] = useState([])
         </div>
         <div className="rectanglebranches">
           <div style={{ display: "block", width: "100%" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
-            >
+            <div className="cover-col">
               <div className="topic-left-branches">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
                 <div className="contentbranches">QUẢN LÝ CHI NHÁNH NHÀ TRỌ</div>
@@ -393,7 +478,7 @@ const [faketable, setfaketable] = useState([])
                     ))}
                   </Select>
                 </div>
-                <div className="element-select">
+                <div className="element-select1">
                   <Select
                     allowClear
                     size="middle"
@@ -452,33 +537,80 @@ const [faketable, setfaketable] = useState([])
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Vị trí" name="location">
-                        <Input />
+                      <Form.Item
+                        label="Vị trí"
+                        name="location"
+                        className="form-location"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-location-branches" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Tên chi nhánh" name="description">
-                        <Input />
+                      <Form.Item
+                        label="Tên chi nhánh"
+                        name="description"
+                        className="form-description"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-description" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Số lầu" name="numberOfStages">
-                        <Input />
+                    
+                      <Form.Item
+                        label="Số lầu"
+                        name="numberOfStages"
+                        className="form-stages"
+                      >
+                        {" "}
+                        <div style={{ width: "90%" }}>
+                          <InputNumber className="input-floor" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Số phòng" name="numberOfRooms">
-                        <Input />
+                      <Form.Item
+                        label="Số phòng"
+                        name="numberOfRooms"
+                        className="form-rooms"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-room" />
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Thiết bị" name="facilityIds">
-                        <Select
-                          onChange={handleChange}
-                          allowClear
-                          mode="multiple"
-                        >
-                          {propsselect}
-                        </Select>
+                      <Form.Item
+                        label="Thiết bị"
+                        name="facilityIds"
+                        className="form-id-facility"
+                      >
+                        <div style={{ width: "80%" }}>
+                          <Select
+                            onChange={handleChange}
+                            allowClear
+                            mode="multiple"
+                              className="input-facility2"
+                          >
+                            {propsselect}
+                            
+                          </Select>
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Người dùng" name="userName">
-                        <Select onChange={handleChange_user} allowClear>
-                          <Select.Option value={Cookies.get("userName")}>
-                            {Cookies.get("userName")}
-                          </Select.Option>
-                        </Select>
+                      <Form.Item
+                        label="Người dùng"
+                        name="userName"
+                        className="form-user-2"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select
+                            onChange={handleChange_user}
+                            allowClear
+                            className="input-user"
+                          >
+                            <Select.Option
+                              key={Cookies.get("userName")}
+                              value={Cookies.get("userName")}
+                            >
+                              {Cookies.get("userName")}
+                            </Select.Option>
+                          </Select>
+                        </div>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btncreatebranches">
@@ -486,7 +618,9 @@ const [faketable, setfaketable] = useState([])
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default">HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
                         </div>
                       </div>
                     </Form>
@@ -512,8 +646,37 @@ const [faketable, setfaketable] = useState([])
             </div>
           </div>
         </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "60px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "180px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
-export default Branches
+export default Branches;

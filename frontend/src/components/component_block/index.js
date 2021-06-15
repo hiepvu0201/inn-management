@@ -8,27 +8,27 @@ function Component_Block() {
   return (
     <div>
       <Row
-      //  style={{paddingTop:"20px",paddingLeft:"30px"}}
-       className="row-block"
-       >
-        <Col lg={6} md={24}>
-          {" "}
-          <div className="box-block">
-            <div className="number-topinleft">01</div>
-            <div>
-              <div
-                className="ti-comments"
-                style={{
-                  paddingTop: "80px",
-                  fontSize: "62px",
-                  color: "white",
-                  fontWeight: "200",
-                }}
-              ></div>
-              <div className="ti-content-compo">Tìm hiểu</div>
+        //  style={{paddingTop:"20px",paddingLeft:"30px"}}
+        className="row-block"
+      >
+          <Col lg={6} md={24}>
+            {" "}
+            <div className="box-block">
+              <div className="number-topinleft">01</div>
+              <div>
+                <div
+                  className="ti-comments"
+                  style={{
+                    paddingTop: "80px",
+                    fontSize: "62px",
+                    color: "white",
+                    fontWeight: "200",
+                  }}
+                ></div>
+                <div className="ti-content-compo">Tìm hiểu</div>
+              </div>
             </div>
-          </div>
-        </Col>
+          </Col>
         <Col lg={6} md={24}>
           {" "}
           <div className="box-block">

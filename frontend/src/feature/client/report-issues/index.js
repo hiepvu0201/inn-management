@@ -3,7 +3,7 @@ import Reportissues_tag from "../../../components/reportissue_tag";
 import Menu_client from "../../../components/menu_client";
 import { Row, Col, Button, Modal, Form, Input, Select } from "antd";
 import reportedissuesApi from "../../../api/reportedissuesApi";
-import Footer_client from "../../../components/footer_client";
+import Footer from "../../../components/footer";
 import usersApi from "./../../../api/usersApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +15,7 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
+import './style.css'
 function Reportissues_client() {
   const [reportIssuesList, setIsReportIssuesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
@@ -86,34 +87,9 @@ function Reportissues_client() {
           <Menu_client />
         </div>
         <div style={{ width: "100%", height: "auto", display: "flex" }}>
-          <div
-            style={{
-              fontFamily: "PT Sans, sans-serif",
-              fontSize: "30px",
-              fontWeight: "bold",
-              textAlign: "left",
-              width: "60%",
-              paddingLeft: "310px",
-              paddingTop:"20px"
-            }}
-          >
-            BÁO CÁO ĐỀ MỤC
-          </div>
-          <div style={{ textAlign: "right", width: "30%" }}>
-            <Button
-              type="primary"
-              style={{
-                width: "40%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "25px",
-                marginBottom: "10px",
-                fontWeight:"bold",
-                backgroundColor:"#007c7e",
-                color:"white"
-              }}
-              onClick={showModal}
-            >
+          <div className="textac">BÁO CÁO ĐỀ MỤC</div>
+          <div className="num-1">
+            <Button type="primary" className="primary-btn" onClick={showModal}>
               Thêm mới
             </Button>
             <Modal
@@ -145,14 +121,29 @@ function Reportissues_client() {
                 onFinish={onFinish}
                 // onFinishFailed={onFinishFailed}
               >
-                <Form.Item label="Tiêu đê" name="title">
-                  <Input />
+                <Form.Item
+                  label="Tiêu đề"
+                  name="title"
+                  // className="item-title"
+                  // style={{ paddingLeft: "45px" }}
+                >
+                  <Input  className="item-title" />
                 </Form.Item>
-                <Form.Item label="Mô tả" name="description">
-                  <Input />
+                <Form.Item
+                  label="Mô tả"
+                  name="description"
+                  // className="item-description"
+                  // style={{ paddingLeft: "58px" }}
+                >
+                  <Input className="item-description"/>
                 </Form.Item>
-                <Form.Item label="Tình trạng" name="status">
-                  <Input />
+                <Form.Item
+                  label="Tình trạng"
+                  name="status"
+                  // className="item-status"
+                  // style={{ paddingLeft: "30px" }}
+                >
+                  <Input className="item-status"  />
                 </Form.Item>
                 <Form.Item label="Người báo cáo" name="reporterId">
                   <Select>
@@ -178,20 +169,7 @@ function Reportissues_client() {
         </div>
         <Row>
           {reportIssuesList.map((reportissuesid) => (
-            <Col
-              lg={22}
-              md={24}
-              style={{
-                width: "100%",
-                height: "auto",
-                // backgroundColor: "white",
-                display: "flex",
-                justifyContent: "center",
-                paddingLeft: "240px",
-                paddingTop: "20px",
-              }}
-              key={reportissuesid.id}
-            >
+            <Col lg={22} md={24} className="recad" key={reportissuesid.id}>
               <div style={{ width: "90%", height: "auto" }}>
                 <Reportissues_tag
                   title={reportissuesid.title}
@@ -206,7 +184,7 @@ function Reportissues_client() {
           ))}
         </Row>
         <div style={{ paddingTop: "40px" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

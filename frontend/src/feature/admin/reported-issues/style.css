@@ -47,6 +47,15 @@
 .btnbtncreatereport {
   display: flex;
 }
+.input-item-report{
+  margin-left:44px;
+}
+.input-description-report{
+  margin-left:55px;
+}
+.select-status-report{
+  margin-left:25px
+}
 @media only screen and (max-width: 1026px) {
   .rectanglereportissue {
     width: 94%;
@@ -68,6 +77,30 @@
   }
   .btnbtncreatereport{
       width:100%;
-      padding-left: 170px;
+      padding-left: 10px;
+  }
+  .form-item-report{
+    padding-left:15px
+  }
+  .input-item-report{
+    position:relative;
+    left:-40px;
+  }
+  .form-description-report{
+    padding-left:20px;
+  }
+  .input-description-report{
+    position:relative;
+    left:-55px;
+  }
+  .form-status-report{
+    padding-left:20px
+  }
+  .select-status-report{
+    position: relative;
+    left:-20px;
+  }
+  .name-report-issue{
+    padding-left:25px;
   }
 }

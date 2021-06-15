@@ -45,16 +45,22 @@
     background-color: #007c7e;
     color:white;
 }
-.containercontainerussers{
+.containercontainerrules{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-color: rgb(239, 239, 239);
 }
 .btncreaterules{
     display: flex;
 }
+.rules-input-name{
+    margin-left:20px;
+}
+.input-description-rules{
+    margin-left: 10px;
+}
 @media only screen and (max-width: 1026px) {
-  .containercontainerussers{
+  .containercontainerrules{
   }
   .rectanglerules{
       width:94%;
@@ -70,6 +76,20 @@
   }
   .btncreaterules{
       width:100%;
-      padding-left: 160px;
+      padding-left: 10px;
+  }
+  .name-rules{
+      padding-left:10px;
+  }
+  .rules-input-name{
+      position:relative;
+      left:-15px;
+  }
+  .name-description-rules{
+      padding-left:10px;
+  }
+  .input-description-rules{
+      position:relative;
+      left:-10px;
   }
 }

@@ -10,11 +10,13 @@
 .topic-left-branches {
   float: left;
   display: flex;
-  width: 40%;
+  width: 60%;
   padding-left: 15px;
 }
 .topic-right-branches {
-  width: 60%;
+  width: 40%;
+  display: flex;
+  /* padding-left: 230px; */
 }
 .contentbranches {
   font-size: 25px;
@@ -24,8 +26,8 @@
   padding-top: 5px;
 }
 .btn-right-branches {
-  float: right;
-  display: flex;
+  width: 20%;
+  height: auto;
 }
 .detailed-btn-branches {
   font-size: 15px;
@@ -46,23 +48,109 @@
 .btncreatebranches {
   display: flex;
 }
+.element-select1 {
+  width: 40%;
+  height: auto;
+}
+.cover-col {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+}
+.input-description{
+  
+}
+.input-location-branches{
+  margin-left:60px;
+  width:60%;
+}
+.input-floor{
+  margin-left:48px;
+}
+.input-room{
+  margin-left: 30px;
+}
+.input-facility2{
+  margin-left:45px;
+}
+.input-user{
+  margin-left: 20px;
+}
 @media only screen and (max-width: 1026px) {
+  .form-location{
+    padding-left: 15px;
+  }
+  .input-location{
+    position:relative;
+    left:-60px
+  }
+  .form-description{
+    padding-left: 15px;
+  }
+  .input-description{
+    position: relative;
+    left:5px
+  }
+  .form-stages{
+    padding-left:18px;
+  }
+  .input-floor{
+    position:relative;
+    left:-45px;
+  }
+  .form-rooms{
+    padding-left: 20px;
+  }
+  .input-room{
+    position:relative;
+    left:-30px;
+  }
+  .form-id-facility{
+    padding-left:20px
+  }
+  .input-facility2{
+    position: relative;
+    left:-40px;
+  }
+  .form-user-2{
+    padding-left:25px;
+  }
+  .input-user{
+    position: relative;
+    left:-20px;
+  }
+
+
+
   .svg-inline--fa.fa-w-20 {
     width: 1.05em;
   }
+  .rectanglebranches{
+    width:96%;
+  }
+  .cover-col{
+    display: block;
+  }
+  .element-select1 {
+    width: 40%;
+    height: auto;
+  }
   .topic-right-branches {
-    width: 30%;
+    width: 100%;
+    display: flex;
+    height: auto;
+    padding-left: 0px;
   }
   .topic-left-branches {
-    width: 70%;
+    width: 74%;
   }
   .contentbranches {
     font-size: 12px;
     padding-top: 10px;
   }
-  .btn-right-branches {
-    padding-top: 10px;
-  }
+ 
   .btncreatebranches {
   }
   .rectangle {
@@ -77,11 +165,6 @@
     display: flex;
     width: 70%;
   }
-  .topic-right-branches {
-    width: 30%;
-    height: auto;
-    display: flex;
-  }
   .content {
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
@@ -90,18 +173,16 @@
   }
   .element-select {
     width: 40%;
-    padding-right: 10px;
   }
+
   .btn-right-branches {
-    float: right;
-    display: flex;
-    width: 50%;
+  
   }
   .detailed-btn-branches {
     font-size: 15px;
     font-family: "PT Sans, sans-serif";
     color: #007c7e;
     width: 100%;
-    padding-left: 170px;
+    padding-left: 0px;
   }
 }

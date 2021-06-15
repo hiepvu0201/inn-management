@@ -5,19 +5,16 @@
   border-bottom: solid 1px #e8e8e8;
   /* overflow: auto; */
   box-shadow: 0 0 30px #f3f1f1;
-<<<<<<< HEAD
-  display:flex;
-  width: 100%;
-  display: "flex";
-=======
   display: flex;
   background-color: white;
->>>>>>> master
+  width: 100%;
+}
+.menuone1{
+  background-color: #007c7e;
 }
 
 .logoadmin {
-  width:5%;
-  float: left;
+  width: 15%;
 }
 
 .logoadmin a {
@@ -27,33 +24,14 @@
   text-transform: capitalize;
 }
 
-<<<<<<< HEAD
-.menuConadmin {
-=======
 .menuConAdmin {
->>>>>>> master
   /* width: calc(100% - 150px); */
-  width: 93%;
+  width: 85%;
+  display: flex;
   margin-top: 10px;
   margin-right: 20px;
 }
 
-<<<<<<< HEAD
-.menuConadmin .ant-menu-item {
-  padding: 0px 5px;
-}
-
-.menuConadmin .ant-menu-submenu-title {
-  padding: 5px 10px;
-}
-
-.menuConadmin .ant-menu-item a,
-.menuConadmin .ant-menu-submenu-title a {
-  padding: 10px 5px;
-}
-
-.menuConadmin .ant-menu-horizontal {
-=======
 .menuConAdmin .ant-menu-item {
   padding: 0px 5px;
 }
@@ -68,33 +46,22 @@
 }
 
 .menuConAdmin .ant-menu-horizontal {
->>>>>>> master
   border-bottom: none;
   /* background-color: #efefef; */
 }
 
-<<<<<<< HEAD
-.menuConadmin .leftMenu {
-=======
 .menuConAdmin .leftMenuad {
->>>>>>> master
-  float: left;
-  padding-left: 160px;
-  width: 83%;
+  width: 90%;
+  height: auto;
 }
 
-<<<<<<< HEAD
-.menuConadmin .rightMenu {
-=======
-.menuConAdmin .rightMenu {
->>>>>>> master
+.menuConAdmin .rightMenuad {
   float: right;
   padding-bottom: 10px;
-  width: 15%;
-    padding-left: 250px;
+  width: 10%;
 }
 
-.barsMenu {
+.barsMenuabc {
   float: right;
   height: 32px;
   padding: 6px;
@@ -103,7 +70,7 @@
   background: none;
 }
 
-.barsBtn {
+.barsBtnabc {
   display: block;
   width: 20px;
   height: 2px;
@@ -111,8 +78,8 @@
   position: relative;
 }
 
-.barsBtn:after,
-.barsBtn:before {
+.barsBtnabc:after,
+.barsBtnablockquote {
   content: attr(x);
   width: 20px;
   position: absolute;
@@ -122,7 +89,7 @@
   background: #1890ff;
 }
 
-.barsBtn:after {
+.barsBtnabc:after {
   top: auto;
   bottom: -6px;
 }
@@ -131,7 +98,7 @@
   padding: 0;
 }
 
-.barsMenu > span {
+.barsMenuabc > span {
   display: block;
 }
 
@@ -148,29 +115,49 @@
 .ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
   border-bottom-color: transparent;
 }
-.homecss{
+.homecss {
   margin-right: 10px;
   background-color: #007c7e;
 }
-.roomcss{
+.roomcss {
+  background-color: #007c7e;
+  padding-left: 10px;
+  width: 10%;
+}
+.contractcss {
+  background-color: #007c7e;
+  /* padding-left: 5px; */
+  width: 11%;
+  padding-left: 10px;
+}
+.notifi {
+  background-color: #007c7e;
+  /* padding-left: 5px; */
+  width: 19%;
+  padding-left: 17px;
+}
+.contentroomcss {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 15px;
+}
+.contentnotify {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 15px;
+}
+.moneycss {
   background-color: #007c7e;
   padding-left: 5px;
+  width: 11%;
+  padding-left: 10px;
 }
-.contentroomcss{
+.contentmoneycss {
   color: white;
-    font-size: 15px;
-    font-family: "PT Sans", sans-serif;
-    padding-left: 15px;
-    
-}
-.moneycss{
-  background-color: #007c7e;
-  padding-left: 5px;
-}
-.contentmoneycss{
-  color: white;
-    font-size: 15px;
-    font-family: "PT Sans", sans-serif;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
 }
 .hovercc {
   width: 100%;
@@ -181,57 +168,141 @@
 .hovercc:hover {
   color: #337ab7;
 }
-@media (max-width: 767px) {
-  .barsMenu {
+.menuone {
+  background-color: #007c7e;
+  padding-left: 10px;
+  color: white;
+  width: 100%;
+}
+.contentcontract {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+}
+.inv {
+  padding-left: 5px;
+}
+.report {
+  color: rgb(0, 124, 126);
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 48px;
+}
+.detailed-report {
+  padding-left: 12px;
+}
+.middle-img{
+  width: 100%;
+  height: auto;
+}
+.roomdetailed{
+      padding-left: 3px;
+}
+.acvd{
+  width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+}
+@media (max-width: 1210px) {
+  .contentcontract {
+    padding-left: 20px;
+  }
+  .middle-img{
+    padding-left: 220px;
+  }
+  .logoadmin{
+    width:2%;
+  }
+  .report {
+    padding-left: 50px;
+  }
+  .detailed-report {
+    padding-left: 10px;
+  }
+  .inv {
+    padding-left: 5px;
+  }
+  .menuone {
+    color: white;
+    /* padding-left: 27px; */
+  }
+  .barsMenuabc {
     display: inline-block;
   }
-
-  .leftMenu,
-  .rightMenu {
+  .faci {
+    padding-left: 20px;
+    color: black;
+  }
+  .menuConAdmin .leftMenuad {
     display: none;
   }
 
+  /* .leftMenu,
+  .rightMenu {
+    display: none;
+  } */
+  
+  .leftMenuad{
+    display: none;
+  }
   .logoadmin a {
     margin-left: -20px;
   }
 
-<<<<<<< HEAD
-  .menuConadmin .ant-menu-item,
-  .menuConadmin .ant-menu-submenu-title {
-=======
   .menuConAdmin .ant-menu-item,
   .menuConAdmin .ant-menu-submenu-title {
->>>>>>> master
     padding: 1px 20px;
   }
 
   .logoadmin a {
     padding: 10px 20px;
   }
-  .rightMenu {
+  .rightMenuad {
+    float: right;
   }
   .padding {
   }
-  .homecss{
-    padding-left:30px;
+  .homecss {
+    padding-left: 30px;
   }
-  .roomcss{
-    padding-left: 18px;
-  }
-  .contentroomcss{
+  .roomcss {
     padding-left: 18px;
     width: 100%;
   }
-  .roomdetailed{
-    padding-left: 4px;
+  .barsMenuabc{
+    left:90%
+  }
+  .contractcss {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .notifi {
+    padding-left: 18px;
+    width:100%;
+  }
+  .contentroomcss {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .contentnotify {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .roomdetailed {
+    padding-left: 12px;
   }
   .ant-menu-inline .ant-menu-item:not(:last-child) {
     padding-left: 40px;
   }
-  .moneycss{
-padding-left: 19px;
-  }
-  .contentmoneycss{
+  .moneycss {
     padding-left: 19px;
+    width:100%;
+  }
+  .contentmoneycss {
+    padding-left: 19px;
+  }
+  .hostmenu{
+    width:100vw;
+    background-color: #007c7e;
   }
 }

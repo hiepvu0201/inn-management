@@ -12,22 +12,22 @@ function Room_tag(props) {
           height: "100%",
           display: "flex",
           justifyContent: "center",
-          backgroundColor: " #e6e6e6",
         }}
       >
         <div
           style={{
-            width: "100%",
+            width: "97%",
             height: "auto",
-            display: "flex",
-            justifyContent: "center",
+            backgroundColor: " white",
+            borderRadius: "8px",
+            boxShadow: "0 1px 10px 0 rgb(0 0 0 / 12%)",
           }}
         >
           <div style={{ display: "block" }}>
-            <div style={{ paddingTop: "10px" }}>
+            <div>
               <img
                 src={`${props.images}`}
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "100%", height: "auto", borderRadius: "8px" }}
               />
             </div>
             <div
@@ -36,23 +36,25 @@ function Room_tag(props) {
                 height: "auto",
                 display: "flex",
                 textAlign: "left",
+                paddingTop: "10px",
               }}
             >
               <div
                 style={{
-                  width: "40%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
+                  paddingLeft: "10px",
                 }}
               >
                 Số phòng:
               </div>
               <div
                 style={{
-                  width: "100%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
@@ -69,23 +71,24 @@ function Room_tag(props) {
             >
               <div
                 style={{
-                  width: "45%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
+                  paddingLeft: "10px",
                 }}
               >
                 Chi nhánh:
               </div>
               <div
                 style={{
-                  width: "100%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
-                {props.location}
+                {props.branches}
               </div>
             </div>
             <div
@@ -98,19 +101,20 @@ function Room_tag(props) {
             >
               <div
                 style={{
-                  width: "20%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
+                  paddingLeft: "10px",
                 }}
               >
                 Vị trí:
               </div>
               <div
                 style={{
-                  width: "100%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
@@ -127,19 +131,20 @@ function Room_tag(props) {
             >
               <div
                 style={{
-                  width: "40%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
+                  paddingLeft: "10px",
                 }}
               >
                 Thiết bị:
               </div>
               <div
                 style={{
-                  width: "100%",
-                  fontSize: "15px",
+                  width: "50%",
+                  fontSize: "17px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -147,7 +152,199 @@ function Room_tag(props) {
                 {props.facilities}
               </div>
             </div>
-            <div style={{ textAlign: "center", paddingTop: "10px" }}>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Loại phòng:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.roomType}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá theo giờ đầu:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.price1}đ
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá theo giờ sau:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.price2}đ
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá theo ngày:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.price3}đ
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá theo tuần:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.price4}đ
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  fontWeight: "bold",
+                  color: "#3fcc68",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá theo tháng:
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  fontSize: "17px",
+                  fontFamily: "PT Sans, sans-serif",
+                  paddingRight: "10px",
+                }}
+              >
+                {props.price5}đ
+              </div>
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            >
               <Link
                 to={{
                   pathname: `detailroom/${props.id}`,
@@ -156,8 +353,15 @@ function Room_tag(props) {
                     roomNo: props.roomNo,
                     position: props.position,
                     facilities: props.facilities,
-                    location:props.location,
+                    branches: props.branches,
                     images: props.images,
+                    branchId:props.branchId,
+                    roomType:props.roomType,
+                    price1:props.price1,
+                    price2:props.price2,
+                    price3:props.price3,
+                    price4:props.price4,
+                    price5:props.price5,
                   },
                 }}
               >

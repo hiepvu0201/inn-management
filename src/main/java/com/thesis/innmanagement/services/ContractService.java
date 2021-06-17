@@ -44,12 +44,19 @@ public class ContractService {
         Users tenant = userRepository.findById(contracts.getTenantId())
                 .orElseThrow(()->new ResourceNotFoundException("Tenant not found on id: " + contracts.getTenantId()));
         contracts.setTenant(tenant);
-
         Users owner = userRepository.findById(contracts.getOwnerId())
                 .orElseThrow(()->new ResourceNotFoundException("Owner not found on id: " + contracts.getOwnerId()));
         contracts.setOwner(owner);
+        contracts.setClosed(contracts.getClosed());
 
         if (id == null) {
+            // check existed contracts
+            Contracts checkExist = contractRepository.findByTenantUserName(contracts.getTenant().getUserName(), contracts.getYear());
+            if (checkExist != null) {
+                if (checkExist.getTenantId() == tenant.getId() && checkExist.getOwnerId() == owner.getId() && contracts.getYear() == checkExist.getYear()) {
+                    return null;
+                }
+            }
             contractRepository.save(contracts);
             return contracts;
         } else {
@@ -57,13 +64,10 @@ public class ContractService {
                     .orElseThrow(() -> new ResourceNotFoundException("This contract not found on:" + id));
             contractUpdate.setDetails(contracts.getDetails());
             contractUpdate.setSignDate(contracts.getSignDate());
-            contractUpdate.setTenant(contracts.getTenant());
-            contractUpdate.setOwner(contracts.getOwner());
             contractUpdate.setNumberOfRooms(contracts.getNumberOfRooms());
             contractUpdate.setNumberOfStage(contracts.getNumberOfStage());
             contractUpdate.setVoucher(contracts.getVoucher());
-            contractUpdate.setOwnerId(contracts.getOwnerId());
-            contractUpdate.setTenantId(contracts.getTenantId());
+            contractUpdate.setClosed(contracts.getClosed());
             contractRepository.save(contractUpdate);
             return contractUpdate;
         }

@@ -41,8 +41,10 @@ public class ContractController {
     }
 
     @PostMapping("/")
-    public Contracts create(@Validated @RequestBody Contracts contract) throws Exception {
-        return contractService.createOrUpdate(null, contract);
+    public ResponseEntity<Contracts> create(@Validated @RequestBody Contracts contract) throws Exception {
+        Contracts contractCreate = contractService.createOrUpdate(null, contract);
+        if (contractCreate == null) return ResponseEntity.badRequest().body(null);
+        return ResponseEntity.ok().body(contractCreate);
     }
 
     @PutMapping("/{id}")

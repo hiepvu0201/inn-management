@@ -1,11 +1,15 @@
 package com.thesis.innmanagement.entities;
 
-import com.thesis.innmanagement.entities.enums.EQuality;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.thesis.innmanagement.config.entity.BasicEntity;
+import com.thesis.innmanagement.entities.enums.EQuality;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -22,9 +26,13 @@ public class Facilities extends BasicEntity {
 
     private BigDecimal total;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @CreationTimestamp
     private LocalDateTime createdDate;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 

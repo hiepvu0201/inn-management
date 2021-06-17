@@ -1,0 +1,15 @@
+.btnbtn {
+  font-size: 35px;
+  font-family: "PT Sans, sans-serif";
+  padding-left: 10px;
+  padding-top: 5px;
+  height: auto;
+  border-radius: 8px;
+  background-color: #007c7e;
+  color: white;
+  cursor: pointer;
+}
+.btbtn:hover{
+    background-color: white;
+    color:#007c7e
+}

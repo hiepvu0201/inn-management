@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Menu_client from "./../../../components/menu_client";
-import { Input, Button, Card, Popover, Form, Row, Col, Select } from "antd";
+import {
+  Input,
+  Button,
+  Card,
+  Popover,
+  Form,
+  Row,
+  Col,
+  Radio,
+  Select,
+  Space,
+} from "antd";
 import Room_tag from "./../../../components/room_tag";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +24,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 const { Search } = Input;
 function Room_client() {
+  const [value, setValue] = React.useState(1);
+  const [fakedataa, setfakedata] = useState([])
   const [roomList, setIsRoomList] = useState([]);
   useEffect(() => {
     const fetchRoomList = async () => {
@@ -21,6 +34,7 @@ function Room_client() {
         console.log("Fetch room successfully: ", response.data);
         setIsRoomList(response.data);
         setstate(response.data);
+        setfakedata(response.data);
       } catch (error) {
         console.log("Failed to fetch ROOM list: ", error);
       }
@@ -45,6 +59,51 @@ function Room_client() {
       SearchRoombyBranch();
     }
   };
+  const onChange = (e) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+    if (e.target.value === "Tất cả") {
+      setIsRoomList(state);
+    } else {
+      const SearchRoombyBranch_ = async () => {
+        try {
+          const response = await roomApi.searchRoombyBranch(e.target.value);
+          console.log("Fetch room by branch successfully: ", response.data);
+          setIsRoomList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch room by ranch: ", error);
+        }
+      };
+      SearchRoombyBranch_();
+    }
+  };
+  //  const getAllRoomsByBranches = (room) => {
+  //    console.log("branchid", location.state.branches);
+
+  //    const newarr = room.filter(
+  //      (rs) =>
+  //        rs.roomType === location.state.branches &&
+    
+  //    );
+  //    let arr = [];
+
+  //    setstatedetailed(newarr);
+  //    console.log("abcd", newarr);
+  //  };
+
+  const onChange_1=(e)=>{
+    console.log("radio checked",e.target.value);
+     if (e.target.value === "Tất cả 2") {
+       setIsRoomList(state);
+     }
+     else{
+        const newarr = fakedataa.filter((rs) => rs.roomType === e.target.value);
+        setIsRoomList(newarr);
+        console.log("<<a", newarr);
+
+     }
+   
+  }
   return (
     <div>
       <div
@@ -123,7 +182,7 @@ function Room_client() {
                       </div>
                     </div>
                     <div>
-                      <Row>
+                      <Row style={{ paddingTop: "10px" }}>
                         {roomList.map((roomId) => (
                           <Col
                             lg={8}
@@ -132,15 +191,25 @@ function Room_client() {
                               width: "100%",
                               height: "auto",
                               paddingLeft: "15px",
+                              paddingBottom: "35px",
                             }}
                           >
                             <Room_tag
                               id={roomId.id}
                               roomNo={roomId.roomNo}
                               position={roomId.position}
-                              facilities={roomId.facilities[0].name}
+                              facilities={
+                                roomId.facilities.map((us) => us.name) + " "
+                              }
                               images={roomId.images}
-                              location={roomId.branch.location}
+                              branches={roomId.branch.location}
+                              branchId={roomId.branchId}
+                              roomType={roomId.roomType}
+                              price1={roomId.priceByFirstHour}
+                              price2={roomId.priceByNextHour}
+                              price3={roomId.priceByDay}
+                              price4={roomId.priceByWeek}
+                              price5={roomId.priceByMonth}
                             />
                           </Col>
                         ))}
@@ -164,48 +233,67 @@ function Room_client() {
                       height: "auto",
                       //   backgroundColor: "purple",
                       display: "block",
+                      textAlign: "left",
+                      paddingTop: "70px",
                     }}
                   >
-                    <Card
-                      title="Tìm kiếm theo chi nhánh"
+                    <div
                       style={{
-                        width: "300",
-                        textAlign: "left",
-                        backgroundColor: "white",
+                        width: "100%",
                         height: "auto",
+                        fontSize: "30px",
+                        fontWeight: "bold",
                       }}
                     >
-                      <p>Chi nhánh 1</p>
-                      <p>Chi nhánh 1</p>
-                      <p>Chi nhánh 1</p>
-                      <p>Chi nhánh 1</p>
-                    </Card>
-                    <div style={{ paddingTop: "10px" }}>
-                      <Card
-                        title="Tìm kiếm theo giá phòng"
-                        style={{
-                          width: "300",
-                          textAlign: "left",
-                          backgroundColor: "white",
-                          height: "auto",
-                        }}
-                      >
-                        <p>Chi nhánh 1</p>
-                        <p>Chi nhánh 1</p>
-                        <p>Chi nhánh 1</p>
-                        <p>Chi nhánh 1</p>
-                      </Card>
+                      Tìm kiếm theo chi nhánh
                     </div>
-                    {/* <div>
-                      <img
-                        src={Images.IMG_ROOM}
-                        style={{
-                          height: "auto",
-                          width: "100%",
-                          paddingTop: "20px",
-                        }}
-                      />
-                    </div> */}
+                    <Radio.Group
+                      name="abc"
+                      onChange={onChange}
+                      value={value}
+                      style={{
+                        display: "block",
+                        paddingTop: "10px",
+                        fontSize: "50px",
+                      }}
+                      size="medium"
+                    >
+                      <Space direction="vertical">
+                        <Radio value={"Quận 1"}>Quận 1</Radio>
+                        <Radio value={"Quận 3"}>Quận 3</Radio>
+                        <Radio value={"Tất cả"}>Tất cả</Radio>
+                      </Space>
+                    </Radio.Group>
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        paddingTop: "15px",
+                      }}
+                    >
+                      Tìm kiếm theo loại phòng
+                    </div>
+                    <Radio.Group
+                      name="abc2"
+                      value={value}
+                      style={{
+                        display: "block",
+                        paddingTop: "10px",
+                        fontSize: "50px",
+                      }}
+                      size="medium"
+                      onChange={onChange_1}
+                    >
+                      <Space direction="vertical">
+                        <Radio value={"ROOM_BY_WEEK"}>ROOM_BY_WEEK</Radio>
+                        <Radio value={"ROOM_BY_HOUR"}>ROOM_BY_HOUR</Radio>
+                         <Radio value={"ROOM_BY_DAY"}>ROOM_BY_DAY</Radio>
+                        <Radio value={"ROOM_BY_MONTH"}>ROOM_BY_MONTH</Radio>
+                        <Radio value={"Tất cả 2"}>Tất cả</Radio>
+                      </Space>
+                    </Radio.Group>
                     <div>
                       <img
                         src={Images.IMG_ROOM_1}

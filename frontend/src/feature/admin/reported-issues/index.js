@@ -150,16 +150,6 @@ function Reportedissues(props) {
       key: "description",
     },
     {
-      title: "Ngày tạo",
-      dataIndex: "createdDate",
-      key: "createdDate",
-    },
-    {
-      title: "Ngày hoàn thành",
-      dataIndex: "solvedDate",
-      key: "solvedDate",
-    },
-    {
       title: "Tình trạng",
       dataIndex: "status",
       key: "status",
@@ -168,9 +158,7 @@ function Reportedissues(props) {
       title: "Người báo cáo",
       dataIndex: "reporter",
       key: "reporter",
-      // render: (owner) => <div>{owner[0].fullName}</div>,
-
-      render: (reporter) => <div>{reporter.fullName}</div>,
+      render: (reporter) => <div>{reporter.userName}</div>,
     },
     {
       title: "",
@@ -260,7 +248,10 @@ function Reportedissues(props) {
               <Input placeholder={rowEdit.description} />
             </Form.Item>
             <Form.Item label="Tình trạng" name="status">
-              <Input placeholder={rowEdit.status} />
+              <Select placeholder={rowEdit.status} style={{ width: 385 }}>
+                <Option value="Vẫn còn">Vẫn còn</Option>
+                <Option value="Hoàn thành">Đã hoàn thành</Option>
+              </Select>
             </Form.Item>
             <Form.Item label="Người báo cáo" name="reporterId">
               <Select>
@@ -356,7 +347,10 @@ function Reportedissues(props) {
                         <Input />
                       </Form.Item>
                       <Form.Item label="Tình trạng" name="status">
-                        <Input />
+                        <Select style={{ width: 385 }}>
+                          <Option value="Vẫn còn">Vẫn còn</Option>
+                          <Option value="Hoàn thành">Đã hoàn thành</Option>
+                        </Select>
                       </Form.Item>
 
                       <Form.Item label="Người báo cáo" name="reporterId">

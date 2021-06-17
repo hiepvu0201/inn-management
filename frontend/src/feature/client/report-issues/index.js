@@ -91,9 +91,10 @@ function Reportissues_client() {
               fontFamily: "PT Sans, sans-serif",
               fontSize: "30px",
               fontWeight: "bold",
-              textAlign: "center",
-              width: "50%",
-              paddingLeft: "80px",
+              textAlign: "left",
+              width: "60%",
+              paddingLeft: "310px",
+              paddingTop:"20px"
             }}
           >
             BÁO CÁO ĐỀ MỤC
@@ -103,10 +104,13 @@ function Reportissues_client() {
               type="primary"
               style={{
                 width: "40%",
-                height: "atuo",
+                height: "auto",
                 fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
+                fontSize: "25px",
                 marginBottom: "10px",
+                fontWeight:"bold",
+                backgroundColor:"#007c7e",
+                color:"white"
               }}
               onClick={showModal}
             >
@@ -175,7 +179,7 @@ function Reportissues_client() {
         <Row>
           {reportIssuesList.map((reportissuesid) => (
             <Col
-              lg={20}
+              lg={22}
               md={24}
               style={{
                 width: "100%",
@@ -195,13 +199,13 @@ function Reportissues_client() {
                   status={reportissuesid.status}
                   createdDate={reportissuesid.createdDate}
                   solvedDate={reportissuesid.solvedDate}
-                  reporter={reportissuesid.reporter.username}
+                  reporter={reportissuesid.reporter.userName}
                 />
               </div>
             </Col>
           ))}
         </Row>
-        <div style={{ paddingTop: "20px" }}>
+        <div style={{ paddingTop: "40px" }}>
           <Footer_client />
         </div>
       </div>

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
@@ -13,12 +10,10 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
 import facilitiesApi from "./../../../api/facilitiesApi";
-import branchéApi from "./../../../api/branchesApi";
 import {
   Table,
   Popconfirm,
   message,
-  Tooltip,
   Button,
   Modal,
   Form,
@@ -27,7 +22,6 @@ import {
   Spin,
   Tag,
   notification,
-  InputNumber,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
 import { text } from "@fortawesome/fontawesome-svg-core";
@@ -37,10 +31,11 @@ function Facilities(props) {
   //api
   //getAll
   const [facilitiesList, setFacilitiesList] = useState([]);
-  const [branchesList, setBranchesList] = useState([]);
   const [idSelected, setidSelected] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [rowEdit, setRowEdit] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const fetchfacilitiesList = async () => {
     try {
@@ -48,20 +43,10 @@ function Facilities(props) {
       console.log("Fetch facilities successfully: ", response.data);
       setFacilitiesList(response.data);
     } catch (error) {
-      console.log("Failed to fetch facilities list: ", error);
-    }
-  };
-  const fetchBranchesList = async () => {
-    try {
-      const response = await branchesApi.getAll();
-      console.log("Fetch branches successfully: ", response.data);
-      setBranchesList(response.data);
-    } catch (error) {
-      console.log("Failed to fetch branches list: ", error);
+      console.log("Failed to fetch facilities list: ", error.response);
     }
   };
   useEffect(() => {
-    fetchBranchesList();
     fetchfacilitiesList();
   }, []);
   //form
@@ -86,9 +71,7 @@ function Facilities(props) {
     fetchCreateFacilities();
   };
   const fetchUpdateFacilities = async (edittv) => {
-    //  const data_update = { id: rowEdit.id, data: dataUpdate };
-    //  console.log("dataupdate", dataUpdate);
-    // setIsloadingUpdate(true);
+    setIsloadingUpdate(true);
     try {
       const response = await facilitiesApi.updatefacilities(edittv);
       console.log("Fetch update facilities successfully", response);
@@ -97,18 +80,15 @@ function Facilities(props) {
       setIsModalVisible_1(false);
     } catch (error) {
       console.log("Failed to update facilities", error);
-      // setIsloadingUpdate(false);
+      setIsloadingUpdate(false);
     }
   };
   const onFinish_edit = (values) => {
-    // console.log("Success", values);
-    // fetchUpdateUsers(data_update);
     const dataUpdate = {
       ...values,
       branchIds: idSelected,
     };
     console.log("dataupdate", dataUpdate);
-
     const data_update = { id: rowEdit.id, data: dataUpdate };
     fetchUpdateFacilities(data_update);
   };
@@ -124,9 +104,9 @@ function Facilities(props) {
       console.log("Failed to delete facilities list", error);
     }
   };
-  const check = (e)=>{
-    console.log("<<<",e.target.value)
-    e.target.value >= 5000 ? (
+  const check = (e) => {
+    console.log("<<<", e.target.value);
+    e.target.value >= 500 ? (
       <></>
     ) : (
       notification.warning({
@@ -135,25 +115,16 @@ function Facilities(props) {
         placement: "topLeft",
       })
     );
-  }
+  };
   //select
   function handleChange(value) {
     console.log(`selected branches id ${value}`);
     const branchesvalue = [value];
     setidSelected(branchesvalue);
   }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
     {
@@ -165,6 +136,15 @@ function Facilities(props) {
       title: "Chất lượng",
       dataIndex: "quality",
       key: "quality",
+      render: (text) => (
+        <>
+          {text === "NEW" ? (
+            <Tag color="#ffcc00">NEW</Tag>
+          ) : (
+            <Tag color="#45bd04">AVAILABEL</Tag>
+          )}
+        </>
+      ),
     },
     {
       title: "Số lượng",
@@ -177,16 +157,9 @@ function Facilities(props) {
       key: "unitPrice",
     },
     {
-      title: "Ngày tạo",
-      dataIndex: "createdDate",
-      key: "createdDate",
-      render: (createdDate) => <Tag color="#87d068">{createdDate}</Tag>,
-    },
-    {
-      title: "Ngày cập nhật",
-      dataIndex: "updatedDate",
-      key: "updatedDate",
-      render: (updatedDate) => <Tag color="#2db7f5">{updatedDate}</Tag>,
+      title: "Tổng giá",
+      dataIndex: "total",
+      key: "total",
     },
     {
       title: "",
@@ -215,7 +188,6 @@ function Facilities(props) {
       ),
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -227,7 +199,6 @@ function Facilities(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -240,11 +211,10 @@ function Facilities(props) {
 
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
-  }; 
+  };
   const handleCancelCreate = () => {
     setIsModalVisible(false);
   };
-  // const onchange_price = (value) => console.log(e.value);
   return (
     <div>
       <Modal
@@ -278,13 +248,12 @@ function Facilities(props) {
             </Form.Item>
             <Form.Item label="Chất lượng" name="quality">
               <Select
-                defaultValue="lucy"
                 style={{ width: 120 }}
                 onChange={handleChange}
                 placeholder={rowEdit.quality}
               >
-                <Option value="0">New</Option>
-                <Option value="1">Available</Option>
+                <Option value="1">New</Option>
+                <Option value="0">Available</Option>
               </Select>
             </Form.Item>
             <Form.Item label="Số lượng" name="quantity">
@@ -376,26 +345,25 @@ function Facilities(props) {
                         <Input />
                       </Form.Item>
                       <Form.Item label="Chất lượng" name="quality">
-                        <Select
-                          defaultValue="lucy"
-                          style={{ width: 120 }}
-                          onChange={handleChange}
-                        >
-                          <Option value="0">New</Option>
-                          <Option value="1">Available</Option>
+                        <Select style={{ width: 120 }} onChange={handleChange}>
+                          <Option value="1">New</Option>
+                          <Option value="0">Available</Option>
                         </Select>
                       </Form.Item>
                       <Form.Item label="Số lượng" name="quantity">
                         <Input />
                       </Form.Item>
                       <Form.Item label="Đơn giá" name="unitPrice">
-                        <Input onChange={(unitPrice)=>check(unitPrice)} />
+                        <Input onChange={(unitPrice) => check(unitPrice)} />
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
-                        <div style={{ paddingLeft: "10px" }} onClick={handleCancelCreate}>
+                        <div
+                          style={{ paddingLeft: "10px" }}
+                          onClick={handleCancelCreate}
+                        >
                           <Button type="default">HỦY BỎ</Button>
                         </div>
                       </div>
@@ -412,7 +380,7 @@ function Facilities(props) {
                 paddingRight: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={facilitiesList} />
+              <Table columns={columns} bordered dataSource={facilitiesList} rowKey="id" />
             </div>
           </div>
         </div>

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Images } from "../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTachometerAlt,
   faSitemap,
-  faPlu,
   faPlus,
   faTrash,
   faEdit,
@@ -21,18 +18,21 @@ import {
   Form,
   Input,
   Select,
-  InputNumber,
   Spin,
 } from "antd";
 import monthlypaymentsApi from "../../../api/monthlypaymentApi";
 import branchesApi from "./../../../api/branchesApi";
-
 const { Option } = Select;
 
 function Monthlypayment(props) {
   //loading update
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
   const [branchList, setBranchList] = useState([]);
+  const [rowEdit, setRowEdit] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
+  const [state, setstate] = useState([]);
+  const [monthlypaymentList, setMonthlypaymentList] = useState([]);
   const fetchBranchList = async () => {
     try {
       const response = await branchesApi.getAll();
@@ -44,8 +44,7 @@ function Monthlypayment(props) {
     }
   };
   //api
-  const [rowEdit, setRowEdit] = useState({});
-  const [monthlypaymentList, setMonthlypaymentList] = useState([]);
+
   const fetchMonthlypaymentList = async () => {
     try {
       const response = await monthlypaymentsApi.getAll();
@@ -94,7 +93,6 @@ function Monthlypayment(props) {
   const onFinish = (values) => {
     const fetchCreateMonthlypayments = async () => {
       try {
-        // values["id"]=values.id;
         const response = await monthlypaymentsApi.createmonthlypayments(values);
         console.log("Fetch create monthlypayments succesSfully: ", response);
         setMonthlypaymentList([...monthlypaymentList, response.data]);
@@ -121,24 +119,15 @@ function Monthlypayment(props) {
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
-  //input_num
-  function onChange_inputnum(value) {
-    console.log("changed", value);
-  }
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Không xóa");
   }
   const columns = [
     {
-      title: "Tên",
-      dataIndex: "itemName",
-      key: "itemName",
+      title: "Tháng",
+      dataIndex: "month",
+      key: "month",
     },
     {
       title: "Số tiền chi",
@@ -178,7 +167,6 @@ function Monthlypayment(props) {
       ),
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -190,7 +178,6 @@ function Monthlypayment(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const [isModalVisible_1, setIsModalVisible_1] = useState(false);
 
   const showModal_1 = (values) => {
     setIsModalVisible_1(true);
@@ -204,7 +191,6 @@ function Monthlypayment(props) {
   const handleCancel_1 = () => {
     setIsModalVisible_1(false);
   };
-      const [state, setstate] = useState([]);
 
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
@@ -213,7 +199,9 @@ function Monthlypayment(props) {
     } else {
       const fetchSearchPaymentbyBranch = async () => {
         try {
-          const response = await monthlypaymentsApi.searchpaymentsbybranch(value);
+          const response = await monthlypaymentsApi.searchpaymentsbybranch(
+            value
+          );
           console.log(
             "Fetch monthlypayment by branch name successfully: ",
             response.data
@@ -255,8 +243,21 @@ function Monthlypayment(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên" name="itemName">
-              <Input placeholder={rowEdit.itemName} />
+            <Form.Item label="Tháng" name="month">
+              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
+                <Option value="1">Tháng 1</Option>
+                <Option value="2">Tháng 2</Option>
+                <Option value="3">Tháng 3</Option>
+                <Option value="4">Tháng 4</Option>
+                <Option value="5">Tháng 5</Option>
+                <Option value="6">Tháng 6</Option>
+                <Option value="7">Tháng 7</Option>
+                <Option value="8">Tháng 8</Option>
+                <Option value="9">Tháng 9</Option>
+                <Option value="10">Tháng 10</Option>
+                <Option value="11">Tháng 11</Option>
+                <Option value="12">Tháng 12</Option>
+              </Select>
             </Form.Item>
             <Form.Item label="Số tiền chi" name="cost">
               <Input placeholder={rowEdit.cost} />
@@ -275,7 +276,7 @@ function Monthlypayment(props) {
                 CHỈNH SỬA{" "}
               </Button>
               <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
+                <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
@@ -352,8 +353,21 @@ function Monthlypayment(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tên" name="itemName">
-                      <Input />
+                    <Form.Item label="Tháng" name="month">
+                      <Select style={{ width: 120 }}>
+                        <Option value="1">Tháng 1</Option>
+                        <Option value="2">Tháng 2</Option>
+                        <Option value="3">Tháng 3</Option>
+                        <Option value="4">Tháng 4</Option>
+                        <Option value="5">Tháng 5</Option>
+                        <Option value="6">Tháng 6</Option>
+                        <Option value="7">Tháng 7</Option>
+                        <Option value="8">Tháng 8</Option>
+                        <Option value="9">Tháng 9</Option>
+                        <Option value="10">Tháng 10</Option>
+                        <Option value="11">Tháng 11</Option>
+                        <Option value="12">Tháng 12</Option>
+                      </Select>
                     </Form.Item>
                     <Form.Item label="Số tiền chi" name="cost">
                       <Input />

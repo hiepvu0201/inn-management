@@ -42,8 +42,9 @@ import {
   Col,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
-const { Option } = Select;
 import { Link } from "react-router-dom";
+const { Option } = Select;
+
 function Homepage_admin(props) {
   const columns = [
     {

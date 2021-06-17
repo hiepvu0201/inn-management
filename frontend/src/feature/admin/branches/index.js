@@ -141,8 +141,7 @@ function Branches(props) {
   //select
   function handleChange(value) {
     console.log(`selected facilitiesid ${value}`);
-    const branchvalue = [value];
-    setidSelected(branchvalue);
+    setidSelected(value);
   }
   function handleChange_user(value) {
     console.log(`selected username ${value}`);
@@ -555,15 +554,9 @@ function Branches(props) {
                           <Input className="input-description" />
                         </div>
                       </Form.Item>
-                    
-                      <Form.Item
-                        label="Số lầu"
-                        name="numberOfStages"
-                        className="form-stages"
-                      >
-                        {" "}
+                      <Form.Item label="Số lầu" name="numberOfStages" className="form-stages">
                         <div style={{ width: "90%" }}>
-                          <InputNumber className="input-floor" />
+                          <Input className="input-floor" />
                         </div>
                       </Form.Item>
                       <Form.Item
@@ -577,7 +570,7 @@ function Branches(props) {
                       </Form.Item>
                       <Form.Item
                         label="Thiết bị"
-                        name="facilityIds"
+                        // name="facilityIds"
                         className="form-id-facility"
                       >
                         <div style={{ width: "80%" }}>
@@ -587,8 +580,17 @@ function Branches(props) {
                             mode="multiple"
                               className="input-facility2"
                           >
-                            {propsselect}
+                           
+                            {/* {propsselect} */}
+                            {
+                              facilitiesList.map((br)=>(
+                                
+                                  <Option key={br.id} value={br.id}>
+                                      {br.name}
+                                  </Option>
                             
+                              ))
+                            }
                           </Select>
                         </div>
                       </Form.Item>

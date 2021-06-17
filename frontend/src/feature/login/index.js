@@ -137,7 +137,8 @@ const onFinish = (values) => {
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,ĐĂNG KÝ NGAY
+                tài khoản,
+                <Link  to="/register">ĐĂNG KÝ NGAY</Link>
               </div>
             </div>
           </div>

@@ -785,7 +785,7 @@ function Rooms(props) {
                       name="roomType"
                       className="form-roomType"
                     >
-                      <div style={{ width: "50%" }}>
+                      {/* <div style={{ width: "50%" }}> */}
                         <Select
                           style={{ width: 300 }}
                           placeholder={rowEdit.month}
@@ -797,7 +797,7 @@ function Rooms(props) {
                           <Option value="2">Phòng theo tuần</Option>
                           <Option value="3">Phòng theo tháng</Option>
                         </Select>
-                      </div>
+                      {/* </div> */}
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo giờ 1"
@@ -878,7 +878,7 @@ function Rooms(props) {
                       name="branchId"
                       className="form-branches"
                     >
-                      <div style={{ width: "70%" }}>
+                      {/* <div > */}
                         <Select
                           onChange={handleChange}
                           className="select-branches"
@@ -892,14 +892,14 @@ function Rooms(props) {
                             </Select.Option>
                           ))}
                         </Select>
-                      </div>
+                      {/* </div> */}
                     </Form.Item>
                     <Form.Item
                       label="Thiết bị"
                       name="facilityIds"
                       className="form-facilityids"
                     >
-                      <div style={{ width: "80%" }}>
+                      {/* <div style={{ width: "80%" }}> */}
                         <Select
                           onChange={handleChange}
                           allowClear
@@ -908,7 +908,7 @@ function Rooms(props) {
                         >
                           {propsselect}
                         </Select>
-                      </div>
+                      {/* </div> */}
                     </Form.Item>
                     <Form.Item label="Hình" className="form-imageroom">
                       <Upload

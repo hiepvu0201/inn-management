@@ -395,14 +395,14 @@ function Facilities(props) {
                         className="form-quality"
                       >
                         <div style={{ width: "90%" }}>
-                          <Radio.Group
+                          <Select
                             style={{ width: 320 }}
                             onChange={handleChange}
                             className="select-quality"
                           >
-                            <Radio value={1}>NEW</Radio>
-                            <Radio value={0}>AVAILABLE</Radio>
-                          </Radio.Group>
+                            <Option value={1}>NEW</Option>
+                            <Option value={0}>AVAILABLE</Option>
+                          </Select>
                           {/* <Input/> */}
                         </div>
                       </Form.Item>

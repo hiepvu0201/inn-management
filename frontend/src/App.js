@@ -139,6 +139,12 @@ function App() {
   return (
     <div className="App">
       <Switch>
+      <Route
+          exact
+          path="/register"
+          name="Register Page"
+          render={(props) => <Register {...props} />}
+        />
         <Route
           exact
           path="/login"

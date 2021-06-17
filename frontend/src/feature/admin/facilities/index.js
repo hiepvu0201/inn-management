@@ -31,8 +31,8 @@ import {
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
 import { text } from "@fortawesome/fontawesome-svg-core";
+import { WarningOutlined } from "@ant-design/icons";
 const { Option } = Select;
-import {WarningOutlined} from "@ant-design/icons";
 function Facilities(props) {
   //api
   //getAll

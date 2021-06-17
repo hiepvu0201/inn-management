@@ -22,8 +22,8 @@ import { Images } from "./../../../config/image";
 import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import usersApi from "./../../../api/usersApi";
 import rolesApi from "./../../../api/roleApi";
-const { TabPane } = Tabs;
 import Cookies from "js-cookie";
+const { TabPane } = Tabs;
 
 function Profile() {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);

@@ -27,8 +27,8 @@ import {
 import branchesApi from "./../../../api/branchesApi";
 import { WarningOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { text } from "@fortawesome/fontawesome-svg-core";
 const { Option } = Select;
-
 function Facilities(props) {
   //api
   //getAll

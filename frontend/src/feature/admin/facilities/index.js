@@ -24,8 +24,9 @@ import {
   notification,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
-const { Option } = Select;
+import { text } from "@fortawesome/fontawesome-svg-core";
 import { WarningOutlined } from "@ant-design/icons";
+const { Option } = Select;
 function Facilities(props) {
   //api
   //getAll

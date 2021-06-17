@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+    postgres:
+        image: 'postgres:13.3-alpine'
+        container_name: postgres
+        environment:
+            - POSTGRES_USER=compose-postgres
+            - POSTGRES_PASSWORD=compose-postgres
+
+    app-server:
+        image: 'inn-management-server:latest'
+        build:
+            context: .
+        container_name: app-server
+        ports:
+            - "8443:8080"
+        depends_on:
+            - postgres
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/compose-postgres
+            - SPRING_DATASOURCE_USERNAME=compose-postgres
+            - SPRING_DATASOURCE_PASSWORD=compose-postgres
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+    app-client:
+        image: 'inn-management-client:latest'
+        stdin_open: true
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                REACT_APP_API_BASE_URL: http://127.0.0.1:8080
+        ports:
+            - "8444:3000"
+        depends_on:
+            - app-server
+volumes:
+    inn-management:

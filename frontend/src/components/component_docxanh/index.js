@@ -5,8 +5,8 @@ import { faHospital } from "@fortawesome/free-regular-svg-icons";
 function Component_DocXanh(props) {
   return (
     <div>
-      <div className="box-1">
-        <div style={{ display: "block" }}>
+      <div className="box-1-docxanh">
+        <div className="box-1-block">
           <div style={{ display: "flex", justifyContent: "center",paddingTop:"15px" }}>
             <div className="icon-hover-1">
               {props.icon}

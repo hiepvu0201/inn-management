@@ -27,7 +27,7 @@ import {
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import { CheckOutlined, UploadOutlined,WarningOutlined } from "@ant-design/icons";
 import Menu_client from "./../../../components/menu_client";
-import Footer_client from "./../../../components/footer_client";
+import Footer from "./../../../components/footer";
 import usersApi from "../../../api/usersApi";
 import rolesApi from "../../../api/roleApi";
 import Cookies from "js-cookie";
@@ -136,8 +136,8 @@ function PasswordUs() {
       <div
         style={{
           width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
+          height: "auto",
+          backgroundColor: "#f2f6fa",
         }}
       >
         <div style={{ height: "120px" }}>
@@ -173,13 +173,14 @@ function PasswordUs() {
                         >
                           <div className="topi2c">THAY ĐỔI MẬT KHẨU</div>
                           <div className="rowfirst-rightPW">
-                            <div className="labelPW">Username:</div>
-                            <div className="contentnamePW">
+                            <div className="labelPWUS">Username:</div>
+                            <div className="contentnamePWUS">
                               <Form.Item>
                                 <Input
                                   bordered={false}
                                   value={statepww.userName}
                                   disabled
+                                  className="input-us"
                                 >
                                   {/* {userList.fullName} */}
                                 </Input>
@@ -187,8 +188,8 @@ function PasswordUs() {
                             </div>
                           </div>
                           <div className="rowfirst-rightPW-2">
-                            <div className="labelPW">Mật khẩu cũ:</div>
-                            <div className="contentnamePW">
+                            <div className="labelPWUS">Mật khẩu cũ:</div>
+                            <div className="contentnamePWUS">
                               <Form.Item name="oldPassword">
                                 <Input.Password
                                   placeholder={statepww.oldPassword}
@@ -198,8 +199,8 @@ function PasswordUs() {
                             </div>
                           </div>
                           <div className="rowfirst-rightPW-2">
-                            <div className="labelPW">Mật khẩu mới:</div>
-                            <div className="contentnamePW">
+                            <div className="labelPWUS">Mật khẩu mới:</div>
+                            <div className="contentnamePWUS">
                               <Form.Item name="newPassword">
                                 <Input.Password
                                   placeholder={statepww.newPassword}
@@ -209,8 +210,8 @@ function PasswordUs() {
                             </div>
                           </div>
                           <div className="rowfirst-rightPW-2">
-                            <div className="labelPW">Xác nhận:</div>
-                            <div className="contentnamePW">
+                            <div className="labelPWUS">Xác nhận:</div>
+                            <div className="contentnamePWUS">
                               <Form.Item name="confirmNewPassword">
                                 <Input.Password
                                   bordered={false}
@@ -229,7 +230,7 @@ function PasswordUs() {
                             }}
                           >
                             <Button
-                              className="btnupdatePW"
+                              className="btnupdatePWUS"
                               type="primary"
                               htmlType="submit"
                             >
@@ -249,7 +250,7 @@ function PasswordUs() {
           </div>
         </div>
         <div style={{ paddingTop: "80px" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

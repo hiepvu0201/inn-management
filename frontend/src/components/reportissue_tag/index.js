@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './style.css'
 function Reportissues_tag(props) {
     return (
       <div>
@@ -19,24 +19,12 @@ function Reportissues_tag(props) {
         >
           <div style={{ width: "100%", display: "flex" }}>
             <div
-              style={{
-                width: "6%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
+              className="title2"
             >
               Tiêu đề:
             </div>
             <div
-              style={{
-                width: "94%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingLeft:"87px"
-              }}
+              className="prop-title"
             >
               {/* Phòng trừ Covid */}
               {props.title}
@@ -44,48 +32,24 @@ function Reportissues_tag(props) {
           </div>
           <div style={{ width: "100%", display: "flex" }}>
             <div
-              style={{
-                width: "5%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
+              className="description"
             >
               Mô tả:
             </div>
             <div
-              style={{
-                width: "95%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingLeft: "100px",
-              }}
+              className="prop-description"
             >
               {props.description}
             </div>
           </div>
           <div style={{ width: "100%", display: "flex" }}>
             <div
-              style={{
-                width: "8%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
+              className="status"
             >
               Tình trạng:
             </div>
             <div
-              style={{
-                width: "92%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingLeft: "62px",
-              }}
+             className="prop-status"
             >
               {props.status}
             </div>
@@ -93,24 +57,13 @@ function Reportissues_tag(props) {
          
           <div style={{ width: "100%", display: "flex" }}>
             <div
-              style={{
-                width: "12%",
-                fontFamily: "PT Sans, sans-serif",
-                fontWeight: "bold",
-                fontSize: "15px",
-                textAlign: "left",
-              }}
+              className="admin"
             >
               Tên người tạo báo cáo:
             </div>
             <div
-              style={{
-                width: "88%",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "15px",
-                textAlign: "left",
-                paddingLeft: "5px",
-              }}
+             
+             className="prop-admin"
             >
               {props.reporter}
             </div>

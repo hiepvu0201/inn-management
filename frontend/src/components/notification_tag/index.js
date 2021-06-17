@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './style.css'
 function Notification_tag(props) {
     return (
       <div>
@@ -16,51 +16,30 @@ function Notification_tag(props) {
             borderRadius: "8px",
             paddingTop: "15px",
             paddingBottom: "15px",
+            paddingRight:"15px"
           }}
         >
          
           <div style={{ width: "100%", height: "auto", display: "flex" }}>
             <div
-              style={{
-                width: "7%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
+             className="part-title"
             >
               Tiêu đề:
             </div>
             <div
-              style={{
-                width: "93%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
-              }}
+             className="part-description"
             >
               {props.name}
             </div>
           </div>
           <div style={{ width: "100%", height: "auto", display: "flex" }}>
             <div
-              style={{
-                width: "7%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
+              className="part-title"
             >
               Mô tả:
             </div>
             <div
-              style={{
-                width: "93%",
-                height: "auto",
-                fontFamily: "PT Sans, sans-serif",
-                fontSize: "20px",
-              }}
+             className="part-description"
             >
               {props.description}
             </div>

@@ -1,5 +1,14 @@
 import React from "react";
-import { Input,  Form, Button,message,notification } from "antd";
+import {
+  Input,
+  Form,
+  Button,
+  message,
+  notification,
+  Radio,
+  Select,
+  Checkbox,
+} from "antd";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
@@ -14,18 +23,17 @@ function Register() {
         console.log("value", values);
         const response = await authApi.signup(values);
         console.log("Fetch register user successfully: ", response);
-  
-        notification.success({   
-          message:"Đăng ký thành công",
-          icon:<CheckCircleFilled style={{color:"#20da9b"}}/>,
-          description:`${response.data}`,
+
+        notification.success({
+          message: "Đăng ký thành công",
+          icon: <CheckCircleFilled style={{ color: "#20da9b" }} />,
+          description: `${response.data}`,
           placement: "topRight",
-        }
-        );
+        });
       } catch (error) {
         console.log("failed to register ưser: ", error.response);
         console.log(JSON.parse(error.response.config.data).userName);
-        if(error.response.data==="Lỗi: Người dùng đã tồn tại!"){
+        if (error.response.data === "Lỗi: Người dùng đã tồn tại!") {
           notification.error({
             message: `Đăng ký thất bại`,
             icon: <WarningOutlined style={{ color: "#f26051" }} />,
@@ -34,18 +42,16 @@ function Register() {
             } đã tồn tại`,
             placement: "topRight",
           });
+        } else if (error.response.data === "Lỗi: Email đã tồn tại!") {
+          notification.error({
+            message: `Đăng ký thất bại`,
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Email ${
+              JSON.parse(error.response.config.data).email
+            } đã tồn tại`,
+            placement: "topRight",
+          });
         }
-        else if (error.response.data === "Lỗi: Email đã tồn tại!")
-        {
-           notification.error({
-             message: `Đăng ký thất bại`,
-             icon: <WarningOutlined style={{ color: "#f26051" }} />,
-             description: `Email ${
-               JSON.parse(error.response.config.data).email
-             } đã tồn tại`,
-             placement: "topRight",
-           });
-        }  
       }
     };
     register();
@@ -53,13 +59,13 @@ function Register() {
   return (
     <div>
       <div className="form-register">
-        <div className="form-box">
-          <div style={{ width: "100%", display: "block" }}>
+        <div className="form-boxres">
+          <div style={{ width: "100%", height: "auto", display: "block" }}>
             <div className="sign-up">ĐĂNG KÝ</div>
             <Form
-              onFinish={onFinish}
               name="basic"
               initialValues={{ remember: true }}
+              onFinish={onFinish}
             >
               <div className="username">Username</div>
               <div
@@ -127,7 +133,6 @@ function Register() {
                 </Button>
               </div>
             </Form>
-
             <div
               style={{
                 width: "100%",
@@ -140,7 +145,7 @@ function Register() {
             >
               <div
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   color: "white",
                   fontFamily: "Open Sans', sans-serif",
                   display: "flex",

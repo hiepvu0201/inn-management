@@ -21,11 +21,13 @@ import {
   Select,
   Spin,
   Tag,
+  Radio,
   notification,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
-import { text } from "@fortawesome/fontawesome-svg-core";
 import { WarningOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { text } from "@fortawesome/fontawesome-svg-core";
 const { Option } = Select;
 function Facilities(props) {
   //api
@@ -64,6 +66,7 @@ function Facilities(props) {
         setFacilitiesList([...facilitiesList, response.data]);
         console.log("DATA: ", response);
         setIsModalVisible(false);
+        setIsloadingUpdate(false);
       } catch (error) {
         console.log("failed to create facilities list: ", error);
       }
@@ -71,7 +74,7 @@ function Facilities(props) {
     fetchCreateFacilities();
   };
   const fetchUpdateFacilities = async (edittv) => {
-    setIsloadingUpdate(true);
+    // setIsloadingUpdate(true);
     try {
       const response = await facilitiesApi.updatefacilities(edittv);
       console.log("Fetch update facilities successfully", response);
@@ -80,7 +83,7 @@ function Facilities(props) {
       setIsModalVisible_1(false);
     } catch (error) {
       console.log("Failed to update facilities", error);
-      setIsloadingUpdate(false);
+      // setIsloadingUpdate(false);
     }
   };
   const onFinish_edit = (values) => {
@@ -136,12 +139,12 @@ function Facilities(props) {
       title: "Chất lượng",
       dataIndex: "quality",
       key: "quality",
-      render: (text) => (
+      render: (quality) => (
         <>
-          {text === "NEW" ? (
+          {quality === "NEW" ? (
             <Tag color="#ffcc00">NEW</Tag>
           ) : (
-            <Tag color="#45bd04">AVAILABEL</Tag>
+            <Tag color="#45bd04">AVAILABLE</Tag>
           )}
         </>
       ),
@@ -243,27 +246,60 @@ function Facilities(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên vật dụng" name="name">
-              <Input placeholder={rowEdit.name} />
+            <Form.Item
+              label="Tên vật dụng"
+              name="name"
+              className="form-name-facility"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.name}
+                  className="input-name-facility"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Chất lượng" name="quality">
-              <Select
-                style={{ width: 120 }}
-                onChange={handleChange}
-                placeholder={rowEdit.quality}
-              >
-                <Option value="1">New</Option>
-                <Option value="0">Available</Option>
-              </Select>
+            <Form.Item
+              label="Chất lượng"
+              name="quality"
+              className="form-quality"
+            >
+              <div style={{ width: "90%" }}>
+                <Radio.Group
+                  style={{ width: 320 }}
+                  onChange={handleChange}
+                  placeholder={rowEdit.quality}
+                  className="select-quality"
+                >
+                  <Radio value={1}>New</Radio>
+                  <Radio value={0}>Available</Radio>
+                </Radio.Group>
+                {/* <Input/> */}
+              </div>
             </Form.Item>
-            <Form.Item label="Số lượng" name="quantity">
-              <Input placeholder={rowEdit.quantity} />
+            <Form.Item
+              label="Số lượng"
+              name="quantity"
+              className="form-quantity"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.quantity}
+                  className="input-quantity"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Đơn giá" name="unitPrice">
-              <Input
-                placeholder={rowEdit.unitPrice}
-                onChange={(unitPrice) => check(unitPrice)}
-              />
+            <Form.Item
+              label="Đơn giá"
+              name="unitPrice"
+              className="form-unitPrice"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-unitPrice"
+                  placeholder={rowEdit.unitPrice}
+                  onChange={(unitPrice) => check(unitPrice)}
+                />
+              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -279,16 +315,17 @@ function Facilities(props) {
         </Spin>
       </Modal>
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
+        className="boxfacilities"
+        // style={{
+        //   width: "100%",
+        //   height: "100vh",
+        //   backgroundColor: "#efefef",
+        // }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglefacilities">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -301,7 +338,9 @@ function Facilities(props) {
             >
               <div className="topic-left-faci">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ THIẾT BỊ NHÀ TRỌ</div>
+                <div className="contentfacilities">
+                  QUẢN LÝ THIẾT BỊ NHÀ TRỌ
+                </div>
               </div>
               <div className="topic-right-faci">
                 <div className="btn-right-faci">
@@ -341,7 +380,64 @@ function Facilities(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Tên vật liệu" name="name">
+                      <Form.Item
+                        label="Tên vật dụng"
+                        name="name"
+                        className="form-name-facility"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-name-facility" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Chất lượng"
+                        name="quality"
+                        className="form-quality"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Radio.Group
+                            style={{ width: 320 }}
+                            onChange={handleChange}
+                            className="select-quality"
+                          >
+                            <Radio value={1}>NEW</Radio>
+                            <Radio value={0}>AVAILABLE</Radio>
+                          </Radio.Group>
+                          {/* <Input/> */}
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Số lượng"
+                        name="quantity"
+                        className="form-quantity"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-quantity" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Đơn giá"
+                        name="unitPrice"
+                        className="form-unitPrice"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-unitPrice"
+                            onChange={(unitPrice) => check(unitPrice)}
+                          />
+                        </div>
+                      </Form.Item>
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI{" "}
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
+                        </div>
+                      </div>
+                      {/* <Form.Item label="Tên vật liệu" name="name">
                         <Input />
                       </Form.Item>
                       <Form.Item label="Chất lượng" name="quality">
@@ -366,7 +462,7 @@ function Facilities(props) {
                         >
                           <Button type="default">HỦY BỎ</Button>
                         </div>
-                      </div>
+                      </div> */}
                     </Form>
                   </Modal>
                 </div>
@@ -378,11 +474,46 @@ function Facilities(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={facilitiesList} rowKey="id" />
+              <Table
+                columns={columns}
+                bordered
+                dataSource={facilitiesList}
+                rowKey="id"
+              />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

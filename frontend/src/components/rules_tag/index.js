@@ -1,5 +1,5 @@
 import React from "react";
-
+import './style.css'
 function Rules_tag(props) {
   return (
     <div>
@@ -18,49 +18,21 @@ function Rules_tag(props) {
         }}
       >
         <div style={{ width: "100%", display: "flex" }}>
+          <div className="col-1-1">Tên nội quy:</div>
           <div
-            style={{
-              width: "9%",
-              fontFamily: "PT Sans, sans-serif",
-              fontWeight: "bold",
-              fontSize: "15px",
-              textAlign: "left",
-            }}
-          >
-            Tên nội quy:
-          </div>
-          <div
-            style={{
-              width: "91%",
-              fontFamily: "PT Sans, sans-serif",
-              fontSize: "15px",
-              textAlign: "left",
-              paddingLeft:"15px"
-            }}
+            className="col-1-2"
           >
             {props.name}
           </div>
         </div>
         <div style={{ width: "100%", display: "flex" }}>
           <div
-            style={{
-              width: "10%",
-              fontFamily: "PT Sans, sans-serif",
-              fontWeight: "bold",
-              fontSize: "15px",
-              textAlign: "left",
-            }}
+            className="col-2-1"
           >
             Mô tả chi tiết:
           </div>
           <div
-            style={{
-              width: "90%",
-              fontFamily: "PT Sans, sans-serif",
-              fontSize: "15px",
-              textAlign: "left",
-              paddingRight: "15px",
-            }}
+           className="col-2-2"
           >
             {props.description}
           </div>

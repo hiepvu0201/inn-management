@@ -1,30 +1,38 @@
-.rectangle{
-    width:100%;
+.rectangleinvoices{
+    width:98%;
+    margin-left: 15px;
     height:auto;
     background-color: white;
     display: flex;
     justify-content: space-between;
 }
-.topic-left{
+.topic-left-invoice{
     float: left;
     display: flex;
-    width:40%;
+    width:70%;
+    padding-left: 15px;
+    height: auto;
 }
-.topic-right{
-    width:60%;
+.topic-right-invoice{
+    width:30%;
+    height:auto
 }
-.content{
+.contentinvoices{
     font-size: 20px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;
     padding-left: 20px;
+    height:auto;
+    text-align: left;
+    padding-top: 5px;
 
 }
-.btn-right{
+.btn-right-invoice{
+    width: 80%;
     float:right;
     display: flex;
 }
-.detailed-btn{
+.detailed-btn-invoices{
     font-size: 15px;
     font-family: "PT Sans, sans-serif";
     color:#007c7e;
@@ -54,7 +62,41 @@
     background-color: #007c7e;
     color:white;
 }
-.detailed-btn:hover{
+.detailed-btn-invoices:hover{
     background-color: #007c7e;
     color:white;
+}
+.input-location{
+    margin-left:90px;
+}
+@media only screen and (max-width: 1026px) {
+  .topic-right-invoice
+  {
+      width: 60%;
+  }
+  .topic-left-invoice{
+      width: 40%;
+  }
+  .contentinvoices{
+      font-size: 12px;
+  }
+  .rectangleinvoices{
+      width:94%;
+  }
+  .btn-right-invoice{
+      width:100%;
+  }
+  .item-us-invoices{
+      padding-left:15px;
+  }
+  .item-paymentDate{
+      padding-left:15px;
+  }
+  .detailed-btn-invoices{
+      width:40%;
+  }
+  .input-location{
+      position:relative;
+      left:-80px
+  }
 }

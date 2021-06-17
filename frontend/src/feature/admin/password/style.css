@@ -18,7 +18,8 @@
   display: flex;
   text-align: left;
   padding-left: 2%;
-  padding-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-bottom: 1px solid #eef1f5;
 }
 .rowSecond {
@@ -40,6 +41,7 @@
 }
 .imgAva {
   width: 100%;
+  padding-top: 15%;
 }
 .innercolLeft {
   width: 95%;
@@ -81,8 +83,7 @@
   font-size: 20px;
   color: #32c5d2;
   font-family: "PT Sans, sans-serif";
-    padding-top: 2%;
-
+  padding-top: 2%;
 }
 .detailedimg {
   width: 40%;
@@ -93,8 +94,8 @@
   height: auto;
   display: flex;
 }
-.rowfirst-rightPW-2{
-    width: 100%;
+.rowfirst-rightPW-2 {
+  width: 100%;
   height: auto;
   display: flex;
   padding-top: 20px;
@@ -128,24 +129,54 @@
   padding-bottom: 10px;
 }
 .btnupdatePW {
-  width: 15%;
+  width: 20%;
   height: auto;
   font-family: "PT Sans, sans-serif";
   color: #007c7e;
-    font-size:20px;
-    background-color: #fff;
-    display:flex;
+  font-size: 20px;
+  background-color: #fff;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+}
+.btnupdatePW:hover {
+  background-color: #007c7e;
+  color: #fff;
+}
+.fontawesome {
+  width: 20%;
+}
+.contentbtn {
+  width: 80%;
+  text-align: left;
+}
+.cover-btn{
+  width: 100%;
     text-align: center;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
 }
-.btnupdatePW:hover{
-    background-color: #007c7e;
-    color:#fff;
-}
-.fontawesome{
-    width:20%;
-}
-.contentbtn{
-    width:80%;
-    text-align: left;
+@media only screen and (max-width: 1026px) {
+  .colLeft {
+    padding-top: 15px;
+  }
+  .imgAva {
+    padding-top: initial;
+  }
+  .telephone {
+    padding-bottom: 10%;
+  }
+  .labelPW{
+    width:30%
+  }
+  .contentnamePW{
+    width:70%;
+  }
+  .btnupdatePW{
+    width:35%;
+  }
+  .cover-btn{
+    padding-bottom:20px
+  }
 }

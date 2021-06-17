@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Menu_client from "./../../../components/menu_client";
-import Footer_client from "./../../../components/footer_client";
+import Footer from "./../../../components/footer";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSave, faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -22,8 +22,8 @@ import { Images } from "./../../../config/image";
 import { CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import usersApi from "./../../../api/usersApi";
 import rolesApi from "./../../../api/roleApi";
-const { TabPane } = Tabs;
 import Cookies from "js-cookie";
+const { TabPane } = Tabs;
 
 function Profile() {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -219,12 +219,7 @@ function Profile() {
                         </div>
                       </div>
                       <div
-                        style={{
-                          width: "100%",
-                          textAlign: "center",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
+                       className="element-sax"
                       >
                         <button className="btnupdate">
                           <div className="fontawesome">
@@ -268,66 +263,135 @@ function Profile() {
                                 label="Tài khoản"
                                 name="userName"
                                 value="userName"
+                                className="form-user"
                               >
-                                <Input
-                                  placeholder={userList.userName}
-                                  disabled
-                                />
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.userName}
+                                    disabled
+                                    className="row-user"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="email" name="email">
-                                <Input placeholder={userList.email} />
+                              <Form.Item
+                                label="email"
+                                name="email"
+                                className="form-email"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.email}
+                                    className="row-email"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="Họ và tên" name="fullName">
-                                <Input placeholder={userList.fullName} />
+                              <Form.Item
+                                label="Họ và tên"
+                                name="fullName"
+                                className="form-fullname"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.fullName}
+                                    className="row-full"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="CMND" name="idNo">
-                                <Input placeholder={userList.idNo} />
+                              <Form.Item
+                                label="CMND"
+                                name="idNo"
+                                className="form-id"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.idNo}
+                                    className="row-id"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="Giới tính" name="sex">
-                                <Radio.Group>
+                              <Form.Item
+                                label="Giới tính"
+                                name="sex"
+                                className="form-sex"
+                              >
+                                <Radio.Group className="row-sex">
                                   <Radio value="Nữ">Nữ</Radio>
                                   <Radio value="Nam">Nam</Radio>
                                 </Radio.Group>
                               </Form.Item>
-                              <Form.Item label="Công việc" name="job">
-                                <Input placeholder={userList.job} />
+                              <Form.Item
+                                label="Công việc"
+                                name="job"
+                                className="form-job"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.job}
+                                    className="row-job"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="Địa chỉ" name="address">
-                                <Input placeholder={userList.address} />
+                              <Form.Item
+                                label="Địa chỉ"
+                                name="address"
+                                className="form-address"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.address}
+                                    className="row-address"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="Số điện thoại" name="phoneNo">
-                                <Input placeholder={userList.phoneNo} />
+                              <Form.Item
+                                label="Số điện thoại"
+                                name="phoneNo"
+                                className="form-phone"
+                              >
+                                <div style={{ width: "90%" }}>
+                                  <Input
+                                    placeholder={userList.phoneNo}
+                                    className="row-phone"
+                                  />
+                                </div>
                               </Form.Item>
-                              <Form.Item label="Quyền" name="roleIds">
-                                <Select
+                              <Form.Item label="Quyền" name="roleIds" className="form-select">
+                                <div style={{ width: "90%" }}>
+                                  <Select
                                     onChange={handleChange}
                                     allowClear
                                     mode="multiple"
                                     disabled
                                     placeholder={userList.roles[0].name}
+                                    className="row-select"
                                   >
                                     {propsselect}
                                   </Select>
+                                </div>
                               </Form.Item>
-                              <Form.Item>
-                                <Upload
-                                  {...propsimg}
-                                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                  listType="picture"
-                                  defaultFileList={[...fileList]}
-                                  onPreview={handlePreview}
-                                  onChange={handleChangeimg}
-                                  fileList={state.fileList}
-                                >
-                                  {state?.fileList.length < 1 && (
-                                    <Button
-                                      onClick={uploadimg}
-                                      icon={<UploadOutlined />}
-                                    >
-                                      Upload
-                                    </Button>
-                                  )}
-                                </Upload>
+                              <Form.Item label="Hình" className="form-img">
+                                <div style={{ width: "90%" }}>
+                                  <Upload
+                                    {...propsimg}
+                                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                    listType="picture"
+                                    defaultFileList={[...fileList]}
+                                    onPreview={handlePreview}
+                                    onChange={handleChangeimg}
+                                    fileList={state.fileList}
+                                  >
+                                    {state?.fileList.length < 1 && (
+                                      <Button
+                                        onClick={uploadimg}
+                                        icon={<UploadOutlined />}
+                                        style={{ marginLeft: "54px",width:"90%",borderRadius:"8px" }}
+                                        className="row-img"
+                                      >
+                                        Upload
+                                      </Button>
+                                    )}
+                                  </Upload>
+                                </div>
                               </Form.Item>
                               <div style={{ display: "flex" }}>
                                 <Button type="primary" htmlType="submit">
@@ -351,7 +415,7 @@ function Profile() {
           </div>
         </div>
         <div style={{ paddingTop: "5%" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

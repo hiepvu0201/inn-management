@@ -7,7 +7,7 @@ function Component_Ngang(props) {
             <div className="box-ngang">
                 <img style={{height:"60px", width:"auto"}} src={props.img}/>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                <div className="topic">
+                <div className="topicabc">
                 {props.topic}
                 </div>
                 </div>

@@ -25,8 +25,8 @@ import {
   DatePicker,
 } from "antd";
 import {  LocalDateTime } from "@js-joda/core";
+import { Link } from "react-router-dom";
 const { Option } = Select;
-
 function Invoices() {
   //api
   //getAll
@@ -36,6 +36,7 @@ function Invoices() {
   const [isModalVisible_2, setIsModalVisible_2] = useState(false);
   const [downsingle, setdownsingle] = useState([]);
   const [usersList, setIsusersList] = useState([]);
+  const [rowEdit, setRowEdit] = useState([]);
   const fetchInvoicesList = async () => {
     try {
       const response = await invoicesApi.getAll();
@@ -86,7 +87,7 @@ function Invoices() {
   const downloadSingleFiles = async (value) => {
     try {
       const data = {
-        id: rowDown.id,
+        id: rowEdit.id,
       };
       console.log("<<<id", data);
       const urldown = `http://localhost:8080/api/v1/invoices/${data.id}/download/`;
@@ -251,18 +252,17 @@ function Invoices() {
   };
   return (
     <div>
-    
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleinvoices">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -273,13 +273,13 @@ function Invoices() {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left">
+              <div className="topic-left-invoice">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ HÓA ĐƠN</div>
+                <div className="contentinvoices">QUẢN LÝ HÓA ĐƠN</div>
               </div>
-              <div className="topic-right">
-                <div className="btn-right">
-                  <button className="detailed-btn" onClick={showModal}>
+              <div className="topic-right-invoice">
+                <div className="btn-right-invoice">
+                  <button className="detailed-btn-invoices" onClick={showModal}>
                     THÊM MỚI
                   </button>
                   <button
@@ -324,31 +324,39 @@ function Invoices() {
                       onFinish={onFinish}
                       // onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Khách trọ" name="userName">
-                        <Select onChange={handleChange}>
-                          {usersList.map((ownerid) =>
-                            ownerid.roles[0].name === "ROLE_USER" ? (
-                              <Select.Option
-                                key={ownerid.userName}
-                                value={ownerid.userName}
-                              >
-                                {ownerid.userName}
-                              </Select.Option>
-                            ) : (
-                              <>Null</>
-                            )
-                          )}
-                        </Select>
+                      <Form.Item label="Khách trọ" name="userName" className="item-us-invoices">
+                        <div style={{ width: "90%" }}>
+                          <Select onChange={handleChange} className="select-us-invoices">
+                            {usersList.map((ownerid) =>
+                              ownerid.roles[0].name === "ROLE_USER" ? (
+                                <Select.Option
+                                  key={ownerid.userName}
+                                  value={ownerid.userName}
+                                >
+                                  {ownerid.userName}
+                                </Select.Option>
+                              ) : (
+                                <>Null</>
+                              )
+                            )}
+                          </Select>
+                        </div>
                       </Form.Item>
-                      <Form.Item label="Khách trọ" name="paymentDate">
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" disabled />
+                      <Form.Item label="Khách trọ" name="paymentDate" className="item-paymentDate">
+                        <DatePicker
+                          showTime
+                          format="YYYY-MM-DD HH:mm:ss"
+                          disabled
+                        />
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel}>HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
                         </div>
                       </div>
                     </Form>
@@ -361,12 +369,46 @@ function Invoices() {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
-              <Table columns={columns} bordered dataSource={invoicesList} rowKey="id"/>
+              <Table
+                columns={columns}
+                bordered
+                dataSource={invoicesList}
+                rowKey="id"
+              />
             </div>
-        
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@ import { CheckOutlined, UploadOutlined,WarningOutlined } from "@ant-design/icons
 import Menu_adminpage from "../../../components/menu_adminpage";
 import usersApi from "./../../../api/usersApi";
 import rolesApi from "./../../../api/roleApi";
+import {Link} from 'react-router-dom'
 import Cookies from "js-cookie";
 function Password() {
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -207,7 +208,7 @@ function Password() {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
@@ -290,15 +291,7 @@ function Password() {
                               </Form.Item>
                             </div>
                           </div>
-                          <div
-                            style={{
-                              width: "100%",
-                              textAlign: "center",
-                              display: "flex",
-                              justifyContent: "center",
-                              paddingTop: "35px",
-                            }}
-                          >
+                          <div className="cover-btn">
                             <Button
                               className="btnupdatePW"
                               type="primary"
@@ -319,8 +312,36 @@ function Password() {
             </div>
           </div>
         </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "90px",
+            textAlign: "left",
+            paddingLeft: "70px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
+        </div>
       </div>
-      ;
     </div>
   );
 }

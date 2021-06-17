@@ -109,11 +109,13 @@
   border-bottom-color: transparent;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1026px) {
   .barsMenu {
     display: inline-block;
   }
-
+  .menuBar{
+    display: flex;
+  }
   .leftMenu,
   .rightMenu {
     display: none;

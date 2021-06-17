@@ -41,10 +41,10 @@ import usersApi from "../../../api/usersApi";
 import roleApi from "../../../api/roleApi";
 import reportedissueApi from "../../../api/reportedissuesApi";
 import roomApi from "../../../api/roomApi";
-import {  LocalDateTime } from "@js-joda/core";
+import { LocalDateTime } from "@js-joda/core";
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 const { Option } = Select;
-
 function Users(props) {
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -243,7 +243,7 @@ function Users(props) {
     const dataUpdate = {
       ...values,
       userName: rowEdit.userName,
-      password:rowEdit.password,
+      password: rowEdit.password,
     };
     console.log("<<<", dataUpdate);
     var myJSONupdate = JSON.stringify(dataUpdate);
@@ -281,7 +281,7 @@ function Users(props) {
     const datacheckin = {
       ...values,
       userName: rowEditcheck.userName,
-      checkInDate:LocalDateTime.now(),
+      checkInDate: LocalDateTime.now(),
     };
     const fetchCheckin = async () => {
       console.log("dataCheckin", datacheckin);
@@ -387,42 +387,42 @@ function Users(props) {
       dataIndex: "userName",
       key: "userName",
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Họ và tên",
-      dataIndex: "fullName",
-      key: "fullName",
-    },
-    {
-      title: "Số điện thoại",
-      dataIndex: "phoneNo",
-      key: "phoneNo",
-    },
-    {
-      title: "Giới tính",
-      dataIndex: "sex",
-      key: "sex",
-    },
-    {
-      title: "Địa chỉ",
-      dataIndex: "address",
-      key: "address",
-    },
-    {
-      title: "Công việc",
-      dataIndex: "job",
-      key: "job",
-    },
+    // {
+    //   title: "Email",
+    //   dataIndex: "email",
+    //   key: "email",
+    // },
+    // {
+    //   title: "Họ và tên",
+    //   dataIndex: "fullName",
+    //   key: "fullName",
+    // },
+    // {
+    //   title: "Số điện thoại",
+    //   dataIndex: "phoneNo",
+    //   key: "phoneNo",
+    // },
+    // {
+    //   title: "Giới tính",
+    //   dataIndex: "sex",
+    //   key: "sex",
+    // },
+    // {
+    //   title: "Địa chỉ",
+    //   dataIndex: "address",
+    //   key: "address",
+    // },
+    // {
+    //   title: "Công việc",
+    //   dataIndex: "job",
+    //   key: "job",
+    // },
     {
       title: "Ngày checkin",
       dataIndex: "checkinDate",
       key: "checkinDate",
     },
-      {
+    {
       title: "Ngày checkout",
       dataIndex: "checkoutDate",
       key: "checkoutDate",
@@ -448,7 +448,7 @@ function Users(props) {
       render: (room) => (
         <>
           {room === null ? (
-            <Tag color="#5a7197">NULL</Tag>
+            <div>NULL</div>
           ) : (
             <div>{room.roomNo}</div>
           )}
@@ -587,23 +587,43 @@ function Users(props) {
             onFinish={onFinish_checkin}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item label="Ngày checkin" name="checkInDate">
-              <DatePicker
-                showTime format="YYYY-MM-DD HH:mm:ss"
-                
-              />
+            <Form.Item
+              label="Ngày checkin"
+              name="checkInDate"
+              className="form-checkindate"
+            >
+              <div style={{ width: "90%" }}>
+                <DatePicker
+                  showTime
+                  format="YYYY-MM-DD HH:mm:ss"
+                  className="datepicker-checkindate"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Khách trọ" name="userName" value="userName">
-              <Input placeholder={rowEditcheck.userName} disabled />
+            <Form.Item
+              label="Khách trọ"
+              name="userName"
+              value="userName"
+              className="form-userName-2"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEditcheck.userName}
+                  disabled
+                  className="input-username-2"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Phòng" name="roomNo">
-              <Select>
-                {roomList.map((roomid) => (
-                  <Select.Option key={roomid.roomNo} value={roomid.roomNo}>
-                    {roomid.roomNo}
-                  </Select.Option>
-                ))}
-              </Select>
+            <Form.Item label="Phòng" name="roomNo" className="form-roomnous2">
+              <div style={{ width: "90%" }}>
+                <Select className="select-roomNo">
+                  {roomList.map((roomid) => (
+                    <Select.Option key={roomid.roomNo} value={roomid.roomNo}>
+                      {roomid.roomNo}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -649,13 +669,32 @@ function Users(props) {
             onFinish={onFinish_checkout}
             onFinishFailed={handleCancel_Checkin}
           >
-            <Form.Item label="Khách trọ" name="userName" value="userName">
-              <Input placeholder={rowEditcheckout.userName} disabled />
+            <Form.Item
+              label="Khách trọ"
+              name="userName"
+              value="userName"
+              className="form-userName-2"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-username-2"
+                  placeholder={rowEditcheckout.userName}
+                  disabled
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Ngày checkout" name="checkOutDate">
-              <DatePicker
-                showTime format="YYYY-MM-DD HH:mm:ss"
-              />
+            <Form.Item
+              className="form-checkoutdate"
+              label="Ngày checkout"
+              name="checkOutDate"
+            >
+              <div style={{ width: "90%" }}>
+                <DatePicker
+                  className="datepicker-checkoutdate"
+                  showTime
+                  format="YYYY-MM-DD HH:mm:ss"
+                />
+              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -697,39 +736,106 @@ function Users(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tài khoản" name="userName" value="userName">
-              <Input placeholder={rowEdit.userName} disabled />
+            <div style={{ display: "flex", width: "100%" }}>
+              <Form.Item
+                label="Tài khoản"
+                name="userName"
+                value="userName"
+                className="form-userName"
+              >
+                <div style={{ width: "90%" }}>
+                  <Input
+                    className="input-userName"
+                    placeholder={rowEdit.userName}
+                    disabled
+                  />
+                </div>
+              </Form.Item>
+              <div style={{ paddingLeft: "20px", width: "20%" }}>
+                <Button
+                  className="btn-existed"
+                  onClick={() => fetchcheckusername()}
+                >
+                  Kiểm tra trùng
+                </Button>
+              </div>
+            </div>
+            <Form.Item
+              label="Mật khẩu"
+              name="password"
+              className="form-password"
+            >
+              <div style={{ width: "90%" }}>
+                <Input.Password
+                  placeholder={rowEdit.password}
+                  disabled
+                  className="input-password"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Mật khẩu" name="password">
-              <Input.Password placeholder={rowEdit.password} disabled />
+            <Form.Item label="Email" name="email" className="form-email">
+              <div style={{ width: "90%" }}>
+                <Input placeholder={rowEdit.email} className="input-email" />
+              </div>
             </Form.Item>
-            <Form.Item label="email" name="email">
-              <Input placeholder={rowEdit.email} />
+            <Form.Item
+              label="Họ và tên"
+              name="fullName"
+              className="form-fullName"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.fullName}
+                  className="input-fullName"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Họ và tên" name="fullName">
-              <Input placeholder={rowEdit.fullName} />
+            <Form.Item label="Giới tính" name="sex" className="form1-sex1">
+              <div style={{ width: "90%" }}>
+                <Radio.Group className="radio-sex">
+                  <Radio value="female">Female</Radio>
+                  <Radio value="male">Male</Radio>
+                </Radio.Group>
+              </div>
             </Form.Item>
-            <Form.Item label="Giới tính" name="sex">
-              <Radio.Group>
-                <Radio value="female">Female</Radio>
-                <Radio value="male">Male</Radio>
-              </Radio.Group>
+            <Form.Item label="Công việc" name="job" className="form-job">
+              <div style={{ width: "90%" }}>
+                <Input placeholder={rowEdit.job} className="input-job" />
+              </div>
             </Form.Item>
-            <Form.Item label="Công việc" name="job">
-              <Input placeholder={rowEdit.job} />
+            <Form.Item label="Địa chỉ" name="address" className="form-address">
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.address}
+                  className="input-address"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Địa chỉ" name="address">
-              <Input placeholder={rowEdit.address} />
+            <Form.Item
+              label="Số điện thoại"
+              name="phoneNo"
+              className="form-phoneno"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.phoneNo}
+                  className="input-phoneno"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Số điện thoại" name="phoneNo">
-              <Input placeholder={rowEdit.phoneNo} />
+            <Form.Item label="Quyền" name="roleIds" className="form-roleid">
+              <div style={{ width: "90%" }}>
+                <Select
+                  onChange={handleChange}
+                  allowClear
+                  mode="multiple"
+                  className="select-roleid"
+                >
+                  {propsselect}
+                </Select>
+              </div>
             </Form.Item>
-            <Form.Item label="Quyền" name="roleIds">
-              <Select onChange={handleChange} allowClear mode="multiple">
-                {propsselect}
-              </Select>
-            </Form.Item>
-            <Form.Item>
+            <Form.Item label="Hình" className="form-img-us">
               <Upload
                 {...propsimg}
                 action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -740,7 +846,11 @@ function Users(props) {
                 fileList={state.fileList}
               >
                 {state?.fileList.length < 1 && (
-                  <Button onClick={uploadimg} icon={<UploadOutlined />}>
+                  <Button
+                    className="btn-updae-us"
+                    onClick={uploadimg}
+                    icon={<UploadOutlined />}
+                  >
                     Upload
                   </Button>
                 )}
@@ -759,30 +869,16 @@ function Users(props) {
           </Form>
         </Spin>
       </Modal>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
-      >
+      <div className="sumusser">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleusers">
           <div style={{ display: "block", width: "100%" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
-            >
+            <div className="row-1">
               <div className="topic-left-user">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ KHÁCH TRỌ</div>
+                <div className="contentusers">QUẢN LÝ KHÁCH TRỌ</div>
               </div>
               <div className="topic-right-user">
                 <div className="element-selectuser">
@@ -847,6 +943,139 @@ function Users(props) {
                       onFinishFailed={onFinishFailed}
                     >
                       <div style={{ display: "flex", width: "100%" }}>
+                        <Form.Item
+                          label="Tài khoản"
+                          name="userName"
+                          value="userName"
+                          className="form-userName"
+                        >
+                          <div style={{ width: "90%" }}>
+                            <Input className="input-userName" />
+                          </div>
+                        </Form.Item>
+                        <div style={{ paddingLeft: "20px", width: "20%" }}>
+                          <Button
+                            className="btn-existed"
+                            onClick={() => fetchcheckusername()}
+                          >
+                            Kiểm tra trùng
+                          </Button>
+                        </div>
+                      </div>
+                      <Form.Item
+                        label="Mật khẩu"
+                        name="password"
+                        className="form-password"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input.Password disabled className="input-password" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Email"
+                        name="email"
+                        className="form-email"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-email" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Họ và tên"
+                        name="fullName"
+                        className="form-fullName"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-fullName" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Giới tính"
+                        name="sex"
+                        className="form1-sex1"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Radio.Group className="radio-sex">
+                            <Radio value="female">Female</Radio>
+                            <Radio value="male">Male</Radio>
+                          </Radio.Group>
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Công việc"
+                        name="job"
+                        className="form-job"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-job" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Địa chỉ"
+                        name="address"
+                        className="form-address"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-address" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Số điện thoại"
+                        name="phoneNo"
+                        className="form-phoneno"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input className="input-phoneno" />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Quyền"
+                        name="roleIds"
+                        className="form-roleid"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select
+                            onChange={handleChange}
+                            allowClear
+                            mode="multiple"
+                            className="select-roleid"
+                          >
+                            {propsselect}
+                          </Select>
+                        </div>
+                      </Form.Item>
+                      <Form.Item label="Hình" className="form-img-us">
+                        <Upload
+                          {...propsimg}
+                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                          listType="picture"
+                          defaultFileList={[...fileList]}
+                          onPreview={handlePreview}
+                          onChange={handleChangeimg}
+                          fileList={state.fileList}
+                        >
+                          {state?.fileList.length < 1 && (
+                            <Button
+                              className="btn-updae-us"
+                              onClick={uploadimg}
+                              icon={<UploadOutlined />}
+                            >
+                              Upload
+                            </Button>
+                          )}
+                        </Upload>
+                      </Form.Item>
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          CHỈNH SỬA{" "}
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default" onClick={handleCancel_1}>
+                            HỦY BỎ
+                          </Button>
+                        </div>
+                      </div>
+                      {/* <div style={{ display: "flex", width: "100%" }}>
                         <Form.Item label="Tài khoản" name="userName">
                           <Input
                             style={{ width: "250px" }}
@@ -913,7 +1142,7 @@ function Users(props) {
                           )}
                         </Upload>
                       </Form.Item>
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtnussers">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -922,23 +1151,51 @@ function Users(props) {
                             HỦY BỎ
                           </Button>
                         </div>
-                      </div>
+                      </div> */}
                     </Form>
                   </Modal>
                 </div>
               </div>
             </div>
 
-            <div
-              style={{
-                paddingTop: "30px",
-                paddingLeft: "15px",
-                paddingRight: "15px",
-              }}
-            >
-              <Table columns={columns} bordered dataSource={usersList} rowKey="id" />
+            <div className="padding-table">
+              <Table
+                columns={columns}
+                bordered
+                dataSource={usersList}
+                rowKey="id"
+              />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

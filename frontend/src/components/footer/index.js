@@ -19,9 +19,11 @@ function Footer() {
     <div>
       <div className="box-foot">
         <div className="middle-foot">
-          <Row style={{paddingTop:"10px"}}>
-            <Col lg={8} md={24} style={{paddingRight:"40px"}}>
-              <div style={{ display: "block", textAlign: "left",width:"100%" }}>
+          <Row style={{ paddingTop: "10px" }}>
+            <Col lg={8} md={24} style={{ paddingRight: "40px" }}>
+              <div
+                style={{ display: "block", textAlign: "left", width: "100%" }}
+              >
                 <div>
                   <img src={Images.LOGIN} className="img-icon" />
                 </div>
@@ -30,38 +32,38 @@ function Footer() {
                   trong những đơn vị tiên phong trong lĩnh vực phát triển phần
                   mềm quản lý bất động sản cho thuê số 1 thị trường hiện nay.
                 </div>
-                <div className="icon-social" style={{ paddingTop: "10px" }}>
-                  <div style={{ width: "10%", height: "auto" }}>
+                <div className="icon-social" >
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faFacebook} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faTwitter} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faInstagram} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faPinterest} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faGooglePlusG} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faYoutube} />
                     </div>
                   </div>
-                  <div style={{ width: "10%", height: "auto" }}>
+                  <div className="icon">
                     {" "}
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <FontAwesomeIcon icon={faLinkedinIn} />
@@ -71,7 +73,7 @@ function Footer() {
               </div>
             </Col>
             <Col lg={8} md={24}>
-              <div style={{ display: "block" }}>
+              <div className="display-col-2">
                 <div className="topic-title">
                   <div className="char"></div>
                   <div className="content-title">Liên hệ</div>
@@ -115,9 +117,7 @@ function Footer() {
                   >
                     Hotline:
                   </strong>
-                  <div style={{ color: "#007c7e", paddingRight: "20px" }}>
-                    0901.632.176
-                  </div>
+                  <div className="hotline">0901.632.176</div>
                 </div>
                 <div
                   style={{
@@ -137,9 +137,7 @@ function Footer() {
                   >
                     Email:
                   </strong>
-                  <div style={{ color: "#007c7e", paddingRight: "20px" }}>
-                    official.khutro@gmail.com
-                  </div>
+                  <div className="email">official.khutro@gmail.com</div>
                 </div>
                 <div
                   style={{
@@ -159,9 +157,7 @@ function Footer() {
                   >
                     Website:
                   </strong>
-                  <div style={{ color: "#007c7e", paddingRight: "20px" }}>
-                    khutro.com
-                  </div>
+                  <div className="email">khutro.com</div>
                 </div>
                 <div
                   style={{
@@ -180,23 +176,16 @@ function Footer() {
                   >
                     Giờ làm việc:
                   </strong>
-                  <div
-                    style={{
-                      color: "#007c7e",
-                      paddingRight: "20px",
-                      width: "95%",
-                    }}
-                  >
+                  
                     Từ 8h – 18h từ Thứ 2 đến Thứ 6 và Sáng Thứ 7{" "}
-                  </div>
                 </div>
               </div>
             </Col>
-            <Col lg={8} md={24} style={{paddingLeft:"120px"}}>
-              <div style={{ display: "block" }}>
-                <div className="topic-title">
+            <Col lg={8} md={24} className="col">
+              <div className="display-col-2">
+                <div className="topic-title2">
                   <div className="char"></div>
-                  <div className="content-title">Liên kết</div>
+                  <div className="content-title2">Liên kết</div>
                 </div>
                 <div className="href-page">Trang Chủ</div>
                 <div className="href-page">Hợp Tác</div>

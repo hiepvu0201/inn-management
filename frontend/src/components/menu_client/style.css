@@ -117,11 +117,13 @@
     display: inline-block;
   }
 
-  .leftMenu,
-  .rightMenu {
+  .leftMenuUS,
+  .rightMenuUS {
     display: none;
   }
-
+  .menuConUser{
+    display: initial;
+  }
   .logo a {
     margin-left: -20px;
   }

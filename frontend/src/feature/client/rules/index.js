@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Menu_client from "./../../../components/menu_client";
-import Footer_client from "./../../../components/footer_client";
+import Footer from "./../../../components/footer";
 import Rules_tag from "./../../../components/rules_tag";
 import { Row, Col } from "antd";
 import rulesApi from "./../../../api/rulesApi";
+import './style.css'
 function Rules_client() {
   const [rulesList, setrulesList] = useState([]);
   useEffect(() => {
@@ -27,7 +28,10 @@ function Rules_client() {
           <Menu_client />
         </div>
         <div>
-          <div style={{ fontFamily: "PT Sans, sans-serif", fontSize: "30px",fontWeight:"bold" ,textAlign:"left",width:"70%",paddingLeft:"250px"}}>
+          <div 
+          className="col-11"
+          // style={{ fontFamily: "PT Sans, sans-serif", fontSize: "30px",fontWeight:"bold" ,textAlign:"left",width:"70%",paddingLeft:"250px"}}
+          >
             NỘI QUY NHÀ TRỌ
           </div>
           <Row>
@@ -35,13 +39,7 @@ function Rules_client() {
               <Col
                 lg={20}
                 md={24}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  // backgroundColor: "white",
-                  paddingTop: "20px",
-                  paddingLeft: "250px",
-                }}
+                className="col-13"
                 key={rulesid.id}
               >
                 <Rules_tag
@@ -53,7 +51,7 @@ function Rules_client() {
           </Row>
         </div>
         <div style={{ paddingTop: "70px" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

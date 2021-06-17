@@ -17,6 +17,7 @@ import Menu_adminpage from "../../../components/menu_adminpage";
 import usersApi from "./../../../api/usersApi";
 import rolesApi from "./../../../api/roleApi";
 import Cookies from 'js-cookie';
+import {Link} from "react-router-dom"
 function Info() {
      const [isloadingUpdate, setIsloadingUpdate] = useState(false);
      const [isModalVisible_1, setIsModalVisible_1] = useState(false);
@@ -143,7 +144,7 @@ function Info() {
         <div
           style={{
             width: "100%",
-            height: "100vh",
+            height: "auto",
             backgroundColor: "#efefef",
           }}
         >
@@ -160,7 +161,7 @@ function Info() {
                   <div className="titleUser">THÔNG TIN NGƯỜI DÙNG</div>
                 </div>
                 <div className="rowSecond">
-                  <Row style={{ paddingBottom: "3%" }}>
+                  <Row className="row-all">
                     <Col lg={8} md={24} className="colLeft">
                       <div className="innercolLeft">
                         <div className="imgAva">
@@ -206,20 +207,13 @@ function Info() {
                           <div className="contentname">{userList.phoneNo}</div>
                         </div>
                         <div className="rowfirst-right">
-                          <div className="label">Quyền người dùng:</div>
+                          <div className="label">Quyền:</div>
                           <div className="contentname">
                             <Tag color="#f50">{userList.roles[0].name}</Tag>
                             {/* {userList.roles.name} */}
                           </div>
                         </div>
-                        <div
-                          style={{
-                            width: "100%",
-                            textAlign: "center",
-                            display: "flex",
-                            justifyContent: "center",
-                          }}
-                        >
+                        <div className="cover-btn">
                           <button className="btnupdate">
                             <div className="fontawesome">
                               <FontAwesomeIcon icon={faSave} size="1x" />
@@ -355,8 +349,36 @@ function Info() {
               </div>
             </div>
           </div>
+          <div
+            style={{
+              color: "#33404c",
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              marginTop: "90px",
+              textAlign: "left",
+              paddingLeft: "70px",
+              paddingBottom: "40px",
+            }}
+          >
+            © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+            SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+            <Link
+              to="/"
+              style={{
+                width: "100%",
+                height: "auto",
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "12px",
+                color: "#33404c",
+                paddingLeft: "10px",
+              }}
+            >
+              NHÀ TRỌ CỦA CHÚNG TÔI
+            </Link>
+          </div>
         </div>
-        ;
       </div>
     );
 }

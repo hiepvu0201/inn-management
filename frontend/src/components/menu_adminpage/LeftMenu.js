@@ -10,6 +10,7 @@ import {
   faBuilding,
   faBell,faBed,faBath,faBullhorn
 } from "@fortawesome/free-solid-svg-icons";
+import "./style.css";
 import Branches from "./../../feature/admin/branches";
 import { faHandshake,faQuestionCircle,faChartBar } from "@fortawesome/free-regular-svg-icons";
 import { faPaypal } from "@fortawesome/free-brands-svg-icons";
@@ -18,41 +19,28 @@ import { Link, Router } from "react-router-dom";
 const { useBreakpoint } = Grid;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
-
-const LeftMenu = () => {
+const LeftMenu_admin = () => {
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
-      <Menu.Item
-        key="home"
-        style={{
-          backgroundColor: "#007c7e",
-          paddingLeft: "10px",
-          color: "white",
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faChartBar}
-          color="#efefef"
-          size="1x"
-          style={{ marginRight: "10px" }}
-        />{" "}
-        <Link to="/home">Trang chủ</Link>
+      <Menu.Item key="home" className="hostmenu" >
+        <div className="menuone" >
+          <FontAwesomeIcon
+            icon={faChartBar}
+            color="#efefef"
+            size="1x"
+            style={{ marginRight: "10px" }}
+          />{" "}
+          <Link to="/" style={{color:"white"}}>Trang chủ</Link>
+        </div>
       </Menu.Item>
       <SubMenu
         key="menu-2"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        className="roomcss"
         title={
-          <div>
+          <div style={{paddingLeft:"10px"}}>
             <FontAwesomeIcon icon={faBuilding} color="white" size="1x" />
-            <a
-              href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
-            >
+            <a href="" className="contentroomcss">
               Nhà trọ
             </a>{" "}
           </div>
@@ -72,7 +60,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          {/* <Router> */} <Link to="/branches">Chi nhánh</Link>
+          {/* <Router> */} <Link to="/branches" style={{paddingLeft:"6px"}}>Chi nhánh</Link>
         </Menu.Item>
         <Menu.Item
           key="room"
@@ -88,7 +76,10 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/rooms"> Phòng</Link>
+          <Link className="roomdetailed" to="/rooms">
+            {" "}
+            Phòng
+          </Link>
         </Menu.Item>
         <Menu.Item
           key="facility"
@@ -104,7 +95,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/facilities">Thiết bị</Link>
+            <Link to="/facilities" style={{paddingLeft:"9px"}}>Thiết bị</Link>
         </Menu.Item>
         <Menu.Item
           key="electricity-water"
@@ -120,24 +111,17 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/electricity-water"> Điện - Nước </Link>
+          <Link to="/electricity-waters" style={{paddingLeft:"10px"}}> Điện - Nước </Link>
         </Menu.Item>
       </SubMenu>
       <SubMenu
-        key="menu-1"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        key="menu-3"
+        className="moneycss"
         title={
-          <div>
+          <div style={{paddingLeft:"10px"}}>
             <FontAwesomeIcon icon={faMoneyBillAlt} color="white" size="1x" />
-            <a
-              href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
-            >
-              Nguồn Thu - Chi
+            <a href="" className="contentroomcss">
+              Thu Chi
             </a>{" "}
           </div>
         }
@@ -156,7 +140,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/monthlyincome"> Nguồn thu</Link>
+          <Link to="/monthlyincomes"> Nguồn thu</Link>
         </Menu.Item>
         <Menu.Item
           key="monthlypayment"
@@ -172,7 +156,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/monthlypayment"> Nguồn chi</Link>
+          <Link to="/monthlypayments"> Nguồn chi</Link>
         </Menu.Item>
         <Menu.Item
           key="monthlypayment"
@@ -188,24 +172,19 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/invoices">Hóa đơn</Link>
+          <Link to="/invoices" className="inv">
+          Hóa đơn
+          </Link>
         </Menu.Item>
       </SubMenu>
       <SubMenu
-        key="menu:3"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        key="menu:4"
+        className="contractcss"
         title={
-          <div>
+          <div style={{paddingLeft:"10px"}}>
             <FontAwesomeIcon icon={faHandshake} color="white" size="1x" />
-            <a
-              href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
-            >
-              Hợp Đồng{" "}
+            <a href="" className="contentroomcss">
+              Hợp Đồng
             </a>{" "}
           </div>
         }
@@ -225,7 +204,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />{" "}
-          <Link to="/contract">Hợp đồng</Link>
+          <Link to="/contracts">Hợp đồng</Link>
         </Menu.Item>
         <Menu.Item
           key="users"
@@ -241,23 +220,16 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />{" "}
-          <Link to="/user"> Khách thuê</Link>
+          <Link to="/users"> Khách thuê</Link>
         </Menu.Item>
       </SubMenu>
       <SubMenu
         key="menu-last"
-        style={{ backgroundColor: "#007C7E", paddingLeft: "5px" }}
+        className="notifi"
         title={
-          <div>
+          <div style={{paddingLeft:"10px"}}>
             <FontAwesomeIcon icon={faBell} color="white" size="1x" />
-            <a
-              href=""
-              style={{
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "PT Sans, sans-serif",
-              }}
-            >
+            <a href="" className="contentnotify">
               Nội Quy - Thông Báo
             </a>{" "}
           </div>
@@ -278,7 +250,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/rule"> Nội Quy</Link>
+          <Link to="/rules" style={{paddingLeft:"5px"}}> Nội Quy</Link>
         </Menu.Item>
         <Menu.Item
           key="notification"
@@ -294,7 +266,7 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/notification"> Thông Báo</Link>
+          <Link to="/notifications"> Thông Báo</Link>
         </Menu.Item>
         <Menu.Item
           key="report"
@@ -303,6 +275,7 @@ const LeftMenu = () => {
             fontSize: "15px",
             fontFamily: "PT Sans, sans-serif",
           }}
+          className="report"
         >
           <FontAwesomeIcon
             icon={faPaypal}
@@ -310,11 +283,11 @@ const LeftMenu = () => {
             size="1x"
             style={{ marginRight: "10px" }}
           />
-          <Link to="/reported-issue">Báo cáo</Link>
+          <Link to="/reported-issues" className="detailed-report">Báo cáo</Link>
         </Menu.Item>
       </SubMenu>
     </Menu>
   );
 };
 
-export default LeftMenu;
+export default LeftMenu_admin;

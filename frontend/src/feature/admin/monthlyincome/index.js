@@ -23,8 +23,8 @@ import {
   DatePicker,
   Spin,
 } from "antd";
+import { Link } from "react-router-dom";
 const { Option } = Select;
-
 function Monthlyincome(props) {
   const [branchList, setBranchList] = useState([]);
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -237,7 +237,51 @@ function Monthlyincome(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tháng" name="month">
+            <Form.Item label="Tháng" name="month" className="form-monthIncome">
+              <div style={{ width: "60%" }}>
+                <Select style={{ width: 120 }} className="input-month" placeholder={rowEdit.month}>
+                  <Option value="1">Tháng 1</Option>
+                  <Option value="2">Tháng 2</Option>
+                  <Option value="3">Tháng 3</Option>
+                  <Option value="4">Tháng 4</Option>
+                  <Option value="5">Tháng 5</Option>
+                  <Option value="6">Tháng 6</Option>
+                  <Option value="7">Tháng 7</Option>
+                  <Option value="8">Tháng 8</Option>
+                  <Option value="9">Tháng 9</Option>
+                  <Option value="10">Tháng 10</Option>
+                  <Option value="11">Tháng 11</Option>
+                  <Option value="12">Tháng 12</Option>
+                </Select>
+              </div>
+            </Form.Item>
+            <Form.Item label="Số tiền thu" name="earn" className="earn-income">
+              <div style={{ width: "90%" }}>
+                <Input className="input-earnIncome" placeholder={rowEdit.earn} />
+              </div>
+            </Form.Item>
+            <Form.Item label="Chi nhánh" name="branchId" className="branchid-2">
+              <div style={{ width: "90%" }}>
+                <Select className="select-branchid" placeholder={rowEdit.branchId}>
+                  {branchList.map((branchid) => (
+                    <Select.Option key={branchid.id} value={branchid.id}>
+                      {branchid.location}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+            </Form.Item>
+            <div style={{ display: "flex" }}>
+              <Button type="primary" htmlType="submit">
+                CHỈNH SỬA
+              </Button>
+              <div style={{ paddingLeft: "10px" }}>
+                <Button type="default" onClick={handleCancel_1}>
+                  HỦY BỎ
+                </Button>
+              </div>
+            </div>
+            {/* <Form.Item label="Tháng" name="month">
               <Select style={{ width: 120 }} placeholder={rowEdit.month}>
                 <Option value="1">Tháng 1</Option>
                 <Option value="2">Tháng 2</Option>
@@ -274,34 +318,22 @@ function Monthlyincome(props) {
                   HỦY BỎ
                 </Button>
               </div>
-            </div>
+            </div> */}
           </Form>
         </Spin>
       </Modal>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#efefef",
-        }}
-      >
+      <div className="containerincome">
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectanglemonthlyincome">
           <div style={{ display: "block", width: "100%" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "auto",
-                paddingTop: "10px",
-              }}
-            >
+            <div className="formincome">
               <div className="topic-left-income">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ NGUỒN THU NHÀ TRỌ</div>
+                <div className="contentmonthlyincome">
+                  QUẢN LÝ NGUỒN THU NHÀ TRỌ
+                </div>
               </div>
               <div className="btn-right-income">
                 <div style={{ paddingRight: "10px", width: "60%" }}>
@@ -347,33 +379,54 @@ function Monthlyincome(props) {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                   >
-                    <Form.Item label="Tháng" name="month">
-                      <Select style={{ width: 120 }}>
-                        <Option value="1">Tháng 1</Option>
-                        <Option value="2">Tháng 2</Option>
-                        <Option value="3">Tháng 3</Option>
-                        <Option value="4">Tháng 4</Option>
-                        <Option value="5">Tháng 5</Option>
-                        <Option value="6">Tháng 6</Option>
-                        <Option value="7">Tháng 7</Option>
-                        <Option value="8">Tháng 8</Option>
-                        <Option value="9">Tháng 9</Option>
-                        <Option value="10">Tháng 10</Option>
-                        <Option value="11">Tháng 11</Option>
-                        <Option value="12">Tháng 12</Option>
-                      </Select>
+                    <Form.Item
+                      label="Tháng"
+                      name="month"
+                      className="form-monthIncome"
+                    >
+                      <div style={{ width: "60%" }}>
+                        <Select style={{ width: 120 }} className="input-month">
+                          <Option value="1">Tháng 1</Option>
+                          <Option value="2">Tháng 2</Option>
+                          <Option value="3">Tháng 3</Option>
+                          <Option value="4">Tháng 4</Option>
+                          <Option value="5">Tháng 5</Option>
+                          <Option value="6">Tháng 6</Option>
+                          <Option value="7">Tháng 7</Option>
+                          <Option value="8">Tháng 8</Option>
+                          <Option value="9">Tháng 9</Option>
+                          <Option value="10">Tháng 10</Option>
+                          <Option value="11">Tháng 11</Option>
+                          <Option value="12">Tháng 12</Option>
+                        </Select>
+                      </div>
                     </Form.Item>
-                    <Form.Item label="Số tiền thu" name="earn">
-                      <Input />
+                    <Form.Item
+                      label="Số tiền thu"
+                      name="earn"
+                      className="earn-income"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Input className="input-earnIncome" />
+                      </div>
                     </Form.Item>
-                    <Form.Item label="Chi nhánh" name="branchId">
-                      <Select>
-                        {branchList.map((branchid) => (
-                          <Select.Option key={branchid.id} value={branchid.id}>
-                            {branchid.location}
-                          </Select.Option>
-                        ))}
-                      </Select>
+                    <Form.Item
+                      label="Chi nhánh"
+                      name="branchId"
+                      className="branchid-2"
+                    >
+                      <div style={{ width: "90%" }}>
+                        <Select className="select-branchid">
+                          {branchList.map((branchid) => (
+                            <Select.Option
+                              key={branchid.id}
+                              value={branchid.id}
+                            >
+                              {branchid.location}
+                            </Select.Option>
+                          ))}
+                        </Select>
+                      </div>
                     </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
@@ -395,6 +448,7 @@ function Monthlyincome(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table
@@ -405,6 +459,35 @@ function Monthlyincome(props) {
               />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

@@ -1,20 +1,23 @@
 @import "~antd/dist/antd.css";
 
-.menuBar {
+.menuBaradmin {
   padding: 0 20px;
   border-bottom: solid 1px #e8e8e8;
   /* overflow: auto; */
   box-shadow: 0 0 30px #f3f1f1;
   display: flex;
   background-color: white;
+  width: 100%;
+}
+.menuone1{
+  background-color: #007c7e;
 }
 
-.logo {
-  width: 170px;
-  float: left;
+.logoadmin {
+  width: 15%;
 }
 
-.logo a {
+.logoadmin a {
   display: inline-block;
   font-size: 20px;
   padding: 19px 20px;
@@ -23,8 +26,8 @@
 
 .menuConAdmin {
   /* width: calc(100% - 150px); */
-  float: left;
-  width: 86%;
+  width: 85%;
+  display: flex;
   margin-top: 10px;
   margin-right: 20px;
 }
@@ -48,16 +51,17 @@
 }
 
 .menuConAdmin .leftMenuad {
-  float: left;
-  padding-left: 60px;
+  width: 90%;
+  height: auto;
 }
 
-.menuConAdmin .rightMenu {
+.menuConAdmin .rightMenuad {
   float: right;
   padding-bottom: 10px;
+  width: 10%;
 }
 
-.barsMenu {
+.barsMenuabc {
   float: right;
   height: 32px;
   padding: 6px;
@@ -66,7 +70,7 @@
   background: none;
 }
 
-.barsBtn {
+.barsBtnabc {
   display: block;
   width: 20px;
   height: 2px;
@@ -74,8 +78,8 @@
   position: relative;
 }
 
-.barsBtn:after,
-.barsBtn:before {
+.barsBtnabc:after,
+.barsBtnablockquote {
   content: attr(x);
   width: 20px;
   position: absolute;
@@ -85,7 +89,7 @@
   background: #1890ff;
 }
 
-.barsBtn:after {
+.barsBtnabc:after {
   top: auto;
   bottom: -6px;
 }
@@ -94,7 +98,7 @@
   padding: 0;
 }
 
-.barsMenu > span {
+.barsMenuabc > span {
   display: block;
 }
 
@@ -111,6 +115,50 @@
 .ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
   border-bottom-color: transparent;
 }
+.homecss {
+  margin-right: 10px;
+  background-color: #007c7e;
+}
+.roomcss {
+  background-color: #007c7e;
+  padding-left: 10px;
+  width: 10%;
+}
+.contractcss {
+  background-color: #007c7e;
+  /* padding-left: 5px; */
+  width: 11%;
+  padding-left: 10px;
+}
+.notifi {
+  background-color: #007c7e;
+  /* padding-left: 5px; */
+  width: 19%;
+  padding-left: 17px;
+}
+.contentroomcss {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 15px;
+}
+.contentnotify {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 15px;
+}
+.moneycss {
+  background-color: #007c7e;
+  padding-left: 5px;
+  width: 11%;
+  padding-left: 10px;
+}
+.contentmoneycss {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+}
 .hovercc {
   width: 100%;
   height: auto;
@@ -120,17 +168,84 @@
 .hovercc:hover {
   color: #337ab7;
 }
-@media (max-width: 767px) {
-  .barsMenu {
+.menuone {
+  background-color: #007c7e;
+  padding-left: 10px;
+  color: white;
+  width: 100%;
+}
+.contentcontract {
+  color: white;
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+}
+.inv {
+  padding-left: 5px;
+}
+.report {
+  color: rgb(0, 124, 126);
+  font-size: 15px;
+  font-family: "PT Sans", sans-serif;
+  padding-left: 48px;
+}
+.detailed-report {
+  padding-left: 12px;
+}
+.middle-img{
+  width: 100%;
+  height: auto;
+}
+.roomdetailed{
+      padding-left: 3px;
+}
+.acvd{
+  width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+}
+@media (max-width: 1210px) {
+  .contentcontract {
+    padding-left: 20px;
+  }
+  .middle-img{
+    padding-left: 220px;
+  }
+  .logoadmin{
+    width:2%;
+  }
+  .report {
+    padding-left: 50px;
+  }
+  .detailed-report {
+    padding-left: 10px;
+  }
+  .inv {
+    padding-left: 5px;
+  }
+  .menuone {
+    color: white;
+    /* padding-left: 27px; */
+  }
+  .barsMenuabc {
     display: inline-block;
   }
-
-  .leftMenu,
-  .rightMenu {
+  .faci {
+    padding-left: 20px;
+    color: black;
+  }
+  .menuConAdmin .leftMenuad {
     display: none;
   }
 
-  .logo a {
+  /* .leftMenu,
+  .rightMenu {
+    display: none;
+  } */
+  
+  .leftMenuad{
+    display: none;
+  }
+  .logoadmin a {
     margin-left: -20px;
   }
 
@@ -139,11 +254,55 @@
     padding: 1px 20px;
   }
 
-  .logo a {
+  .logoadmin a {
     padding: 10px 20px;
   }
-  .rightMenu {
+  .rightMenuad {
+    float: right;
   }
   .padding {
+  }
+  .homecss {
+    padding-left: 30px;
+  }
+  .roomcss {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .barsMenuabc{
+    left:90%
+  }
+  .contractcss {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .notifi {
+    padding-left: 18px;
+    width:100%;
+  }
+  .contentroomcss {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .contentnotify {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .roomdetailed {
+    padding-left: 12px;
+  }
+  .ant-menu-inline .ant-menu-item:not(:last-child) {
+    padding-left: 40px;
+  }
+  .moneycss {
+    padding-left: 19px;
+    width:100%;
+  }
+  .contentmoneycss {
+    padding-left: 19px;
+  }
+  .hostmenu{
+    width:100vw;
+    background-color: #007c7e;
   }
 }

@@ -27,10 +27,9 @@ import {
   Radio,
   notification,
 } from "antd";
+import { Link } from "react-router-dom";
 const { Option } = Select;
-
 function ElectricityWaters(props) {
-  
   const [roomList, setRoomList] = useState([]);
   const [electricitywatersList, setElectricitywaterList] = useState([]);
 
@@ -125,7 +124,7 @@ function ElectricityWaters(props) {
   function handleChange(value) {
     console.log(`selected users ${value}`);
   }
-  
+
   function cancel(e) {
     console.log(e);
     message.error("Không xóa");
@@ -137,31 +136,31 @@ function ElectricityWaters(props) {
       key: "room",
       render: (room) => <div>{room.roomNo}</div>,
     },
-    {
-      title: "Số điện cũ",
-      dataIndex: "numElectricOld",
-      key: "numElectricOld",
-    },
-    {
-      title: "Số điện mới",
-      dataIndex: "numElectricNew",
-      key: "numElectricNew",
-    },
+    // {
+    //   title: "Số điện cũ",
+    //   dataIndex: "numElectricOld",
+    //   key: "numElectricOld",
+    // },
+    // {
+    //   title: "Số điện mới",
+    //   dataIndex: "numElectricNew",
+    //   key: "numElectricNew",
+    // },
     {
       title: "Số điện tiêu thụ",
       dataIndex: "numElectricConsump",
       key: "numElectricConsump",
     },
-    {
-      title: "Số nước cũ",
-      dataIndex: "numWaterOld",
-      key: "numWaterOld",
-    },
-    {
-      title: "Số nước mới",
-      dataIndex: "numWaterNew",
-      key: "numWaterNew",
-    },
+    // {
+    //   title: "Số nước cũ",
+    //   dataIndex: "numWaterOld",
+    //   key: "numWaterOld",
+    // },
+    // {
+    //   title: "Số nước mới",
+    //   dataIndex: "numWaterNew",
+    //   key: "numWaterNew",
+    // },
     {
       title: "Số nước tiêu thụ",
       dataIndex: "numElectricConsump",
@@ -173,16 +172,16 @@ function ElectricityWaters(props) {
       key: "month",
       render: (month) => <Tag color="cyan">{month}</Tag>,
     },
-    {
-      title: "Giá điện",
-      dataIndex: "waterUnitPrice",
-      key: "waterUnitPrice",
-    },
-    {
-      title: "Giá nước",
-      dataIndex: "electricityUnitPrice",
-      key: "electricityUnitPrice",
-    },
+    // {
+    //   title: "Giá điện",
+    //   dataIndex: "waterUnitPrice",
+    //   key: "waterUnitPrice",
+    // },
+    // {
+    //   title: "Giá nước",
+    //   dataIndex: "electricityUnitPrice",
+    //   key: "electricityUnitPrice",
+    // },
     {
       title: "Tổng giá điện",
       dataIndex: "totalElectricity",
@@ -300,60 +299,125 @@ function ElectricityWaters(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Số điện cũ" name="numElectricOld">
-              <Input placeholder={rowEdit.numElectricOld} />
+            <Form.Item
+              label="Số điện cũ"
+              name="numElectricOld"
+              className="form-numElectricOld"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.numElectricOld}
+                  className="input-numElectricOld"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Số điện mới" name="numElectricNew">
-              <Input placeholder={rowEdit.numElectricNew} />
+            <Form.Item
+              label="Số điện mới"
+              name="numElectricNew"
+              className="form-numElectricNew"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.numElectricNew}
+                  className="input-numElectricNew"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Số nước cũ" name="numWaterOld">
-              <Input placeholder={rowEdit.numWaterOld} />
+            <Form.Item
+              label="Số nước cũ"
+              name="numWaterOld"
+              className="form-numWaterOld"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-numWaterOld"
+                  placeholder={rowEdit.numWaterOld}
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Số nước mới" name="numWaterNew">
-              <Input placeholder={rowEdit.numWaterNew} />
+            <Form.Item
+              label="Số nước mới"
+              name="numWaterNew"
+              className="form-numWaterNew"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  placeholder={rowEdit.numWaterNew}
+                  className="input-numWaterNew"
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Giá điện" name="electricityUnitPrice">
-              <Input
-                placeholder={rowEdit.electricityUnitPrice}
-                onChange={(electricityUnitPrice) => check(electricityUnitPrice)}
-              />
+            <Form.Item
+              label="Giá điện"
+              name="electricityUnitPrice"
+              className="form-electricityUnitPrice"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-electricityUnitPrice"
+                  placeholder={rowEdit.electricityUnitPrice}
+                  onChange={(electricityUnitPrice) =>
+                    check(electricityUnitPrice)
+                  }
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Giá nước" name="waterUnitPrice">
-              <Input
-                placeholder={rowEdit.waterUnitPrice}
-                onChange={(waterUnitPrice) => check(waterUnitPrice)}
-              />
+            <Form.Item
+              label="Giá nước"
+              name="waterUnitPrice"
+              className="form-waterUnitPrice"
+            >
+              <div style={{ width: "90%" }}>
+                <Input
+                  className="input-waterUnit-Price"
+                  placeholder={rowEdit.waterUnitPrice}
+                  onChange={(waterUnitPrice) => check(waterUnitPrice)}
+                />
+              </div>
             </Form.Item>
-            <Form.Item label="Tháng" name="month">
-              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
-                <Option value="1">Tháng 1</Option>
-                <Option value="2">Tháng 2</Option>
-                <Option value="3">Tháng 3</Option>
-                <Option value="4">Tháng 4</Option>
-                <Option value="5">Tháng 5</Option>
-                <Option value="6">Tháng 6</Option>
-                <Option value="7">Tháng 7</Option>
-                <Option value="8">Tháng 8</Option>
-                <Option value="9">Tháng 9</Option>
-                <Option value="10">Tháng 10</Option>
-                <Option value="11">Tháng 11</Option>
-                <Option value="12">Tháng 12</Option>
-              </Select>
+            <Form.Item label="Tháng" name="month" className="form-month">
+              <div style={{ width: "90%" }}>
+                <Select
+                  style={{ width: 120 }}
+                  className="select-month"
+                  placeholder={rowEdit.month}
+                >
+                  <Option value="1">Tháng 1</Option>
+                  <Option value="2">Tháng 2</Option>
+                  <Option value="3">Tháng 3</Option>
+                  <Option value="4">Tháng 4</Option>
+                  <Option value="5">Tháng 5</Option>
+                  <Option value="6">Tháng 6</Option>
+                  <Option value="7">Tháng 7</Option>
+                  <Option value="8">Tháng 8</Option>
+                  <Option value="9">Tháng 9</Option>
+                  <Option value="10">Tháng 10</Option>
+                  <Option value="11">Tháng 11</Option>
+                  <Option value="12">Tháng 12</Option>
+                </Select>
+              </div>
             </Form.Item>
-            <Form.Item label="Kiểm tra" name="checked">
-              <Radio.Group placeholder={rowEdit.checked}>
-                <Radio value="true">True</Radio>
-                <Radio value="false">False</Radio>
-              </Radio.Group>
+            <Form.Item label="Kiểm tra" name="checked" className="form-checked">
+              <div style={{ width: "90%" }}>
+                <Radio.Group
+                  placeholder={rowEdit.checked}
+                  className="radio-checked"
+                >
+                  <Radio value="true">True</Radio>
+                  <Radio value="false">False</Radio>
+                </Radio.Group>
+              </div>
             </Form.Item>
-            <Form.Item label="Phòng" name="roomId">
-              <Select onChange={handleChange}>
-                {roomList.map((roomsid) => (
-                  <Select.Option key={roomsid.id} value={roomsid.id}>
-                    {roomsid.roomNo}
-                  </Select.Option>
-                ))}
-              </Select>
+            <Form.Item label="Phòng" name="roomId" className="form-roomid">
+              <div style={{ width: "90%" }}>
+                <Select onChange={handleChange} className="select-roomid">
+                  {roomList.map((roomsid) => (
+                    <Select.Option key={roomsid.id} value={roomsid.id}>
+                      {roomsid.roomNo}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -371,14 +435,14 @@ function ElectricityWaters(props) {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "#efefef",
         }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
         </div>
-        <div className="rectangle">
+        <div className="rectangleelectricwater">
           <div style={{ display: "block", width: "100%" }}>
             <div
               style={{
@@ -389,13 +453,13 @@ function ElectricityWaters(props) {
                 paddingTop: "10px",
               }}
             >
-              <div className="topic-left-elec">
+              <div className="topic-left-electric">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
-                <div className="content">QUẢN LÝ ĐIỆN NƯỚC</div>
+                <div className="contentelectricwater">QUẢN LÝ ĐIỆN NƯỚC</div>
               </div>
-              <div className="topic-right-elec">
-                <div className="btn-right">
-                  <button className="detailed-btn" onClick={showModal}>
+              <div className="topic-right-electric">
+                <div className="btn-right-elec">
+                  <button className="detailed-btn-elec" onClick={showModal}>
                     THÊM MỚI
                   </button>
                   <Modal
@@ -431,7 +495,149 @@ function ElectricityWaters(props) {
                       onFinish={onFinish}
                       onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Số điện cũ" name="numElectricOld">
+                      <Form.Item
+                        label="Số điện cũ"
+                        name="numElectricOld"
+                        className="form-numElectricOld"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-numElectricOld"
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Số điện mới"
+                        name="numElectricNew"
+                        className="form-numElectricNew"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-numElectricNew"
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Số nước cũ"
+                        name="numWaterOld"
+                        className="form-numWaterOld"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-numWaterOld"
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Số nước mới"
+                        name="numWaterNew"
+                        className="form-numWaterNew"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-numWaterNew"
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Giá điện"
+                        name="electricityUnitPrice"
+                        className="form-electricityUnitPrice"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-electricityUnitPrice"
+                            onChange={(electricityUnitPrice) =>
+                              check(electricityUnitPrice)
+                            }
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Giá nước"
+                        name="waterUnitPrice"
+                        className="form-waterUnitPrice"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Input
+                            className="input-waterUnit-Price"
+                            onChange={(waterUnitPrice) => check(waterUnitPrice)}
+                          />
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Tháng"
+                        name="month"
+                        className="form-month"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select
+                            style={{ width: 120 }}
+                            className="select-month"
+                            placeholder={rowEdit.month}
+                          >
+                            <Option value="1">Tháng 1</Option>
+                            <Option value="2">Tháng 2</Option>
+                            <Option value="3">Tháng 3</Option>
+                            <Option value="4">Tháng 4</Option>
+                            <Option value="5">Tháng 5</Option>
+                            <Option value="6">Tháng 6</Option>
+                            <Option value="7">Tháng 7</Option>
+                            <Option value="8">Tháng 8</Option>
+                            <Option value="9">Tháng 9</Option>
+                            <Option value="10">Tháng 10</Option>
+                            <Option value="11">Tháng 11</Option>
+                            <Option value="12">Tháng 12</Option>
+                          </Select>
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Kiểm tra"
+                        name="checked"
+                        className="form-checked"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Radio.Group
+                            placeholder={rowEdit.checked}
+                            className="radio-checked"
+                          >
+                            <Radio value="true">True</Radio>
+                            <Radio value="false">False</Radio>
+                          </Radio.Group>
+                        </div>
+                      </Form.Item>
+                      <Form.Item
+                        label="Phòng"
+                        name="roomId"
+                        className="form-roomid"
+                      >
+                        <div style={{ width: "90%" }}>
+                          <Select
+                            onChange={handleChange}
+                            className="select-roomid"
+                          >
+                            {roomList.map((roomsid) => (
+                              <Select.Option
+                                key={roomsid.id}
+                                value={roomsid.id}
+                              >
+                                {roomsid.roomNo}
+                              </Select.Option>
+                            ))}
+                          </Select>
+                        </div>
+                      </Form.Item>
+                      <div style={{ display: "flex" }}>
+                        <Button type="primary" htmlType="submit">
+                          THÊM MỚI{" "}
+                        </Button>
+                        <div style={{ paddingLeft: "10px" }}>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
+                        </div>
+                      </div>
+                      {/* <Form.Item label="Số điện cũ" name="numElectricOld">
                         <Input />
                       </Form.Item>
                       <Form.Item label="Số điện mới" name="numElectricNew">
@@ -488,7 +694,7 @@ function ElectricityWaters(props) {
                         </Select>
                       </Form.Item>
 
-                      <div style={{ display: "flex" }}>
+                      <div className="btnbtncreateelectricitywater">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
                         </Button>
@@ -497,7 +703,7 @@ function ElectricityWaters(props) {
                             HỦY BỎ
                           </Button>
                         </div>
-                      </div>
+                      </div> */}
                     </Form>
                   </Modal>
                 </div>
@@ -508,6 +714,7 @@ function ElectricityWaters(props) {
                 paddingTop: "30px",
                 paddingLeft: "15px",
                 paddingRight: "15px",
+                paddingBottom: "15px",
               }}
             >
               <Table
@@ -518,6 +725,35 @@ function ElectricityWaters(props) {
               />
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            color: "#33404c",
+            width: "100%",
+            height: "auto",
+            fontFamily: "PT Sans, sans-serif",
+            fontSize: "12px",
+            marginTop: "40px",
+            textAlign: "left",
+            paddingLeft: "50px",
+            paddingBottom: "40px",
+          }}
+        >
+          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
+          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              height: "auto",
+              fontFamily: "PT Sans, sans-serif",
+              fontSize: "12px",
+              color: "#33404c",
+              paddingLeft: "10px",
+            }}
+          >
+            NHÀ TRỌ CỦA CHÚNG TÔI
+          </Link>
         </div>
       </div>
     </div>

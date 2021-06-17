@@ -3,7 +3,8 @@ import Notification_tag from "../../../components/notification_tag";
 import Menu_client from "./../../../components/menu_client";
 import { Row, Col } from "antd";
 import notificationApi from "./../../../api/notifiactionApi";
-import Footer_client from './../../../components/footer_client'
+import Footer from './../../../components/footer'
+import './style.css'
 function Notification_client() {
   const [notificationList, setIsNotificationList] = useState([]);
 
@@ -32,22 +33,12 @@ function Notification_client() {
           <Menu_client />
         </div>
         <div
-          style={{
-            width: "100%",
-            height: "auto",
-            fontFamily: "PT Sans, sans-serif",
-            fontSize: "30px",
-            fontWeight: "bold",
-            paddingBottom:"15px",
-            paddingTop:"15px",
-            textAlign:"left",
-            paddingLeft:"270px"
-          }}
+       className="title-info"
         >
           THÔNG BÁO NHÀ TRỌ
         </div>
         <div>
-          <Row style={{ paddingLeft: "270px" }}>
+          <Row className="row-acv" >
             {notificationList.map((notifi) => (
               <Col lg={23} key={notifi.id}>
                 <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
@@ -62,7 +53,7 @@ function Notification_client() {
           </Row>
         </div>
         <div style={{ paddingTop: "30px" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

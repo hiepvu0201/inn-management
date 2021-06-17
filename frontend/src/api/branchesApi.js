@@ -8,7 +8,10 @@ const branchesApi = {
   },
   createbranch(branch) {
     const url = "/api/v1/branches/";
-    return axiosClient.post(url, branch);
+    return axiosClient.post(url, branch,{
+      headers: {
+        Authorization: `Bearer ${branch.accessToken}`,
+      }});
   },
   deletebranch(branch) {
     const url = `/api/v1/branches/${branch}/delete/`;

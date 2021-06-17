@@ -3,7 +3,7 @@ import "./style.css";
 import { Images } from "../../config/image";
 import { Input, Button, Form } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeaf, faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from "./../../api/authApi";
 import Cookies from "js-cookie";
 import { fakeAuth } from "../../fakeAuth";
@@ -93,6 +93,8 @@ const onFinish = (values) => {
                 style={{
                   width: "100%",
                   height: "auto",
+                  display: "flex",
+                  justifyContent: "center",
                   paddingTop: "10px",
                   paddingRight: "10px",
                   paddingBottom: "20px",
@@ -103,10 +105,10 @@ const onFinish = (values) => {
                     type="primary"
                     htmlType="submit"
                     style={{
-                      width: "90%",
+                      width: "335px",
                       height: "auto",
                       fontSize: "15px",
-                      backgroundColor: "#0c61f2",
+                      backgroundColor: "#4485bc",
                       color: "white",
                       fontFamily: "Noto Sans JP, sans-serif",
                     }}
@@ -129,28 +131,13 @@ const onFinish = (values) => {
             >
               <div
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   color: "white",
-                  fontFamily: "'Open Sans', sans-serif",
-                  display: "flex",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
+                  fontFamily: "'Source Sans Pro', sans-serif",
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,
-                <Link to="/register">
-                  <div
-                    style={{
-                      color: "white",
-                      textDecorationLine: "underline",
-                      textDecorationThickness: "2px",
-                      textDecorationStyle: "solid",
-                    }}
-                  >
-                    ĐĂNG KÝ NGAY
-                  </div>
-                </Link>
+                tài khoản,ĐĂNG KÝ NGAY
               </div>
             </div>
           </div>

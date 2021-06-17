@@ -7,7 +7,7 @@ import { Row, Col } from "antd";
 function Component_Rectangle() {
   return (
     <div>
-      <Row>
+      <Row className="row-rectangle">
         <Col lg={6} md={24} style={{paddingLeft:"70px",paddingTop:"20px"}}>
           <div className="rectangle-box">
             <div className="form-icon">

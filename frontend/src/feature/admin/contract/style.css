@@ -80,12 +80,19 @@
 }
 .input-voucher{
   margin-left:40px;
+  width:20vw;
 }
 .select-owner{
   margin-left:68px;
 }
 .select-tenant{
   margin-left:42px;
+}
+.input-room-contract{
+  width:20vw;
+}
+.input-stage-contract{
+  width:20vw;
 }
 @media only screen and (max-width: 1026px) {
   .form-details{

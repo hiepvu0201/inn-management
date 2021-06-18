@@ -244,7 +244,6 @@ function Monthlypayment(props) {
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
             <Form.Item label="Tháng" name="month" className="form-monthPayment">
-              <div style={{ width: "90%" }}>
                 <Select
                   style={{ width: 120 }}
                   className="select-monthPay"
@@ -263,19 +262,15 @@ function Monthlypayment(props) {
                   <Option value="11">Tháng 11</Option>
                   <Option value="12">Tháng 12</Option>
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item label="Số tiền chi" name="cost" className="form-cost">
-              <div style={{ width: "90%" }}>
                 <Input className="input-cost" placeholder={rowEdit.cost} />
-              </div>
             </Form.Item>
             <Form.Item
               label="Chi nhánh"
               name="branchId"
               className="form-branchId"
             >
-              <div style={{ width: "90%" }}>
                 <Select className="select-branch-id">
                   {branchList.map((branchid) => (
                     <Select.Option key={branchid.id} value={branchid.id}>
@@ -283,7 +278,6 @@ function Monthlypayment(props) {
                     </Select.Option>
                   ))}
                 </Select>
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -295,55 +289,6 @@ function Monthlypayment(props) {
                 </Button>
               </div>
             </div>{" "}
-            
-            {/* <div className="btncreatepayment">
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div> */}
-            {/* <Form.Item label="Tháng" name="month">
-              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
-                <Option value="1">Tháng 1</Option>
-                <Option value="2">Tháng 2</Option>
-                <Option value="3">Tháng 3</Option>
-                <Option value="4">Tháng 4</Option>
-                <Option value="5">Tháng 5</Option>
-                <Option value="6">Tháng 6</Option>
-                <Option value="7">Tháng 7</Option>
-                <Option value="8">Tháng 8</Option>
-                <Option value="9">Tháng 9</Option>
-                <Option value="10">Tháng 10</Option>
-                <Option value="11">Tháng 11</Option>
-                <Option value="12">Tháng 12</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Số tiền chi" name="cost">
-              <Input placeholder={rowEdit.cost} />
-            </Form.Item>
-            <Form.Item label="Chi nhánh" name="branchId">
-              <Select>
-                {branchList.map((branchid) => (
-                  <Select.Option key={branchid.id} value={branchid.id}>
-                    {branchid.location}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <div style={{ display: "flex" }}>
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA{" "}
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel_1}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div> */}
           </Form>
         </Spin>
       </Modal>
@@ -355,13 +300,6 @@ function Monthlypayment(props) {
           <div style={{ display: "block", width: "100%" }}>
             <div
               className="boxpayment"
-              // style={{
-              //   display: "flex",
-              //   justifyContent: "space-between",
-              //   width: "100%",
-              //   height: "auto",
-              //   paddingTop: "10px",
-              // }}
             >
               <div className="topic-left-payment">
                 <FontAwesomeIcon icon={faSitemap} size="2x" color="#007c7e" />
@@ -418,7 +356,6 @@ function Monthlypayment(props) {
                       name="month"
                       className="form-monthPayment"
                     >
-                      <div style={{ width: "90%" }}>
                         <Select
                           style={{ width: 120 }}
                           className="select-monthPay"
@@ -436,23 +373,19 @@ function Monthlypayment(props) {
                           <Option value="11">Tháng 11</Option>
                           <Option value="12">Tháng 12</Option>
                         </Select>
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Số tiền chi"
                       name="cost"
                       className="form-cost"
                     >
-                      <div style={{ width: "90%" }}>
                         <Input className="input-cost" />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Chi nhánh"
                       name="branchId"
                       className="form-branchId"
                     >
-                      <div style={{ width: "90%" }}>
                         <Select className="select-branch-id">
                           {branchList.map((branchid) => (
                             <Select.Option
@@ -463,7 +396,6 @@ function Monthlypayment(props) {
                             </Select.Option>
                           ))}
                         </Select>
-                      </div>
                     </Form.Item>
                     <div className="btncreatepayment">
                       <Button type="primary" htmlType="submit">
@@ -507,7 +439,7 @@ function Monthlypayment(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

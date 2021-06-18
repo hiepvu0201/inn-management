@@ -50,10 +50,12 @@
   display: flex;
 }
 .input-roomNo{
-  margin-left:70px
+  margin-left: 72px;
+  width:20vw;
 }
 .input-position{
-  margin-left:104px
+  margin-left:104px;
+  width:20vw;
 }
 .select-roomType{
   margin-left: 64px;
@@ -84,6 +86,7 @@
   .input-roomNo{
     position: relative;
     left:-70px;
+    width:50vw;
   }
   .form-postion{
     padding-left: 15px;
@@ -91,6 +94,7 @@
   .input-position{
     position: relative;
     left:-100px;
+    width:50vw
   }
   .form-roomType{
     padding-left:15px;

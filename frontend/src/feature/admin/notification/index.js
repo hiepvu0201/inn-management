@@ -210,19 +210,25 @@ function Notification(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            <Form.Item label="Tên" name="name">
-              <Input placeholder={rowEdit.name} />
+            <Form.Item label="Tên" name="name" className="form-name-info">
+              <Input className="input-name-info" placeholder={rowEdit.name} />
             </Form.Item>
-            <Form.Item label="Mô tả" name="description">
-              <Input placeholder={rowEdit.description} />
+            <Form.Item
+              label="Mô tả"
+              name="description"
+              className="form-description-info"
+            >
+              <Input
+                className="input-description-info"
+                placeholder={rowEdit.description}
+              />
             </Form.Item>
-
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
               </Button>
               <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
+                <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
@@ -300,18 +306,14 @@ function Notification(props) {
                         name="name"
                         className="form-name-info"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-name-info" />
-                        </div>
+                        <Input className="input-name-info" />
                       </Form.Item>
                       <Form.Item
                         label="Mô tả"
                         name="description"
                         className="form-description-info"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-description-info" />
-                        </div>
+                        <Input className="input-description-info" />
                       </Form.Item>
 
                       <div className="btnbtnnotifi">
@@ -356,7 +358,7 @@ function Notification(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

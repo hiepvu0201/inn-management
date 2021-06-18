@@ -27,12 +27,12 @@
   text-align: left;
 }
 .element-selectuser {
-  width: 40%;
+  width: 45%;
   text-align: right;
 
 }
 .element2-selectuser {
-  width: 40%;
+  width: 30%;
   text-align: right;
 }
 .btn-right-user {
@@ -82,9 +82,11 @@
 }
 .input-password{
   margin-left:25px;
+  width:20vw;
 }
 .input-email{
   margin-left: 50px;
+  width:20vw;
 }
 .input-fullName{
   margin-left:25px
@@ -97,6 +99,7 @@
 }
 .input-address{
   margin-left:40px;
+  width: 20vw;
 }
 .input-phoneno{
 }
@@ -118,9 +121,14 @@
   }
   .input-username-2{
     margin-left: 43px;
+    width:20vw;
+
   }
   .select-roomNo{
     margin-left:60px;
+    width:20vw;
+  }
+  .form-userName-2{
   }
 @media only screen and (max-width: 1026px) {
   .form-checkindate{
@@ -144,6 +152,7 @@
   .input-username-2{
     position:relative;
     left:-36px;
+    width:50vw;
   }
   .form-userName-2{
     padding-left:20px
@@ -263,5 +272,11 @@
   }
   .ant-form-item-control-input {
     width: 88%;
+  }
+  .element-selectuser{
+    width:30%;
+  }
+  .element2-selectuser{
+    width:70%;
   }
 }

@@ -251,55 +251,46 @@ function Facilities(props) {
               name="name"
               className="form-name-facility"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.name}
                   className="input-name-facility"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Chất lượng"
               name="quality"
               className="form-quality"
             >
-              <div style={{ width: "90%" }}>
-                <Radio.Group
+                <Select
                   style={{ width: 320 }}
                   onChange={handleChange}
                   placeholder={rowEdit.quality}
                   className="select-quality"
                 >
-                  <Radio value={1}>New</Radio>
-                  <Radio value={0}>Available</Radio>
-                </Radio.Group>
-                {/* <Input/> */}
-              </div>
+                  <Option value={1}>New</Option>
+                  <Option value={0}>Available</Option>
+                </Select>
             </Form.Item>
             <Form.Item
               label="Số lượng"
               name="quantity"
               className="form-quantity"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.quantity}
                   className="input-quantity"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Đơn giá"
               name="unitPrice"
               className="form-unitPrice"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-unitPrice"
                   placeholder={rowEdit.unitPrice}
                   onChange={(unitPrice) => check(unitPrice)}
                 />
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -316,11 +307,6 @@ function Facilities(props) {
       </Modal>
       <div
         className="boxfacilities"
-        // style={{
-        //   width: "100%",
-        //   height: "100vh",
-        //   backgroundColor: "#efefef",
-        // }}
       >
         <div style={{ height: "100px" }}>
           <Menu_AdminPage />
@@ -385,16 +371,13 @@ function Facilities(props) {
                         name="name"
                         className="form-name-facility"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-name-facility" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Chất lượng"
                         name="quality"
                         className="form-quality"
                       >
-                        <div style={{ width: "90%" }}>
                           <Select
                             style={{ width: 320 }}
                             onChange={handleChange}
@@ -403,29 +386,23 @@ function Facilities(props) {
                             <Option value={1}>NEW</Option>
                             <Option value={0}>AVAILABLE</Option>
                           </Select>
-                          {/* <Input/> */}
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Số lượng"
                         name="quantity"
                         className="form-quantity"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-quantity" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Đơn giá"
                         name="unitPrice"
                         className="form-unitPrice"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-unitPrice"
                             onChange={(unitPrice) => check(unitPrice)}
-                          />
-                        </div>
+                            />
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
@@ -437,32 +414,6 @@ function Facilities(props) {
                           </Button>
                         </div>
                       </div>
-                      {/* <Form.Item label="Tên vật liệu" name="name">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Chất lượng" name="quality">
-                        <Select style={{ width: 120 }} onChange={handleChange}>
-                          <Option value="1">New</Option>
-                          <Option value="0">Available</Option>
-                        </Select>
-                      </Form.Item>
-                      <Form.Item label="Số lượng" name="quantity">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Đơn giá" name="unitPrice">
-                        <Input onChange={(unitPrice) => check(unitPrice)} />
-                      </Form.Item>
-                      <div style={{ display: "flex" }}>
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div
-                          style={{ paddingLeft: "10px" }}
-                          onClick={handleCancelCreate}
-                        >
-                          <Button type="default">HỦY BỎ</Button>
-                        </div>
-                      </div> */}
                     </Form>
                   </Modal>
                 </div>
@@ -496,7 +447,7 @@ function Facilities(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "30vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

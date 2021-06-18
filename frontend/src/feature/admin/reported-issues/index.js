@@ -247,9 +247,7 @@ function Reportedissues(props) {
               className="form-item-report"
               placeholder={rowEdit.title}
             >
-              <div style={{ width: "90%" }}>
-                <Input className="input-item-report" />
-              </div>
+              <Input className="input-item-report" />
             </Form.Item>
             <Form.Item
               label="Mô tả"
@@ -257,9 +255,7 @@ function Reportedissues(props) {
               className="form-description-report"
               placeholder={rowEdit.description}
             >
-              <div style={{ width: "90%" }}>
-                <Input className="input-description-report" />
-              </div>
+              <Input className="input-description-report" />
             </Form.Item>
             <Form.Item
               label="Tình trạng"
@@ -267,28 +263,23 @@ function Reportedissues(props) {
               className="form-status-report"
               placeholder={rowEdit.status}
             >
-              <div style={{ width: "90%" }}>
-                <Select style={{ width: 295 }} className="select-status-report">
-                  <Option value="Vẫn còn">Vẫn còn</Option>
-                  <Option value="Hoàn thành">Đã hoàn thành</Option>
-                </Select>
-              </div>
+              <Select style={{ width: 295 }} className="select-status-report">
+                <Option value="Chưa hoàn thành">Chưa hoàn thành</Option>
+                <Option value="Đã hoàn thành">Đã hoàn thành</Option>
+              </Select>
             </Form.Item>
-
             <Form.Item
               label="Người báo cáo"
               name="reporterId"
               className="name-report-issue"
             >
-              <div style={{ width: "90%" }}>
-                <Select className="select-report-issue">
-                  {usersList.map((reporterid) => (
-                    <Select.Option key={reporterid.id} value={reporterid.id}>
-                      {reporterid.userName}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </div>
+              <Select className="select-report-issue">
+                {usersList.map((reporterid) => (
+                  <Select.Option key={reporterid.id} value={reporterid.id}>
+                    {reporterid.userName}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -373,33 +364,29 @@ function Reportedissues(props) {
                         name="title"
                         className="form-item-report"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-item-report" />
-                        </div>
+                        <Input className="input-item-report" />
                       </Form.Item>
                       <Form.Item
                         label="Mô tả"
                         name="description"
                         className="form-description-report"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-description-report" />
-                        </div>
+                        <Input className="input-description-report" />
                       </Form.Item>
                       <Form.Item
                         label="Tình trạng"
                         name="status"
                         className="form-status-report"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Select
-                            style={{ width: 295 }}
-                            className="select-status-report"
-                          >
-                            <Option value="Vẫn còn">Vẫn còn</Option>
-                            <Option value="Hoàn thành">Đã hoàn thành</Option>
-                          </Select>
-                        </div>
+                        <Select
+                          style={{ width: 295 }}
+                          className="select-status-report"
+                        >
+                          <Option value="Chưa hoàn thành">
+                            Chưa hoàn thành
+                          </Option>
+                          <Option value="Đã hoàn thành">Đã hoàn thành</Option>
+                        </Select>
                       </Form.Item>
 
                       <Form.Item
@@ -407,18 +394,16 @@ function Reportedissues(props) {
                         name="reporterId"
                         className="name-report-issue"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Select className="select-report-issue">
-                            {usersList.map((reporterid) => (
-                              <Select.Option
-                                key={reporterid.id}
-                                value={reporterid.id}
-                              >
-                                {reporterid.userName}
-                              </Select.Option>
-                            ))}
-                          </Select>
-                        </div>
+                        <Select className="select-report-issue">
+                          {usersList.map((reporterid) => (
+                            <Select.Option
+                              key={reporterid.id}
+                              value={reporterid.id}
+                            >
+                              {reporterid.userName}
+                            </Select.Option>
+                          ))}
+                        </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btnbtncreatereport">
@@ -426,7 +411,9 @@ function Reportedissues(props) {
                           THÊM MỚI
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel}>HỦY BỎ</Button>
+                          <Button type="default" onClick={handleCancel}>
+                            HỦY BỎ
+                          </Button>
                         </div>
                       </div>
                     </Form>
@@ -457,7 +444,7 @@ function Reportedissues(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

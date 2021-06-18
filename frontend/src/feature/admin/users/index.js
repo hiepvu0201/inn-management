@@ -592,13 +592,11 @@ function Users(props) {
               name="checkInDate"
               className="form-checkindate"
             >
-              <div style={{ width: "90%" }}>
                 <DatePicker
                   showTime
                   format="YYYY-MM-DD HH:mm:ss"
                   className="datepicker-checkindate"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Khách trọ"
@@ -606,24 +604,20 @@ function Users(props) {
               value="userName"
               className="form-userName-2"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEditcheck.userName}
                   disabled
                   className="input-username-2"
                 />
-              </div>
             </Form.Item>
             <Form.Item label="Phòng" name="roomNo" className="form-roomnous2">
-              <div style={{ width: "90%" }}>
-                <Select className="select-roomNo">
+                <Select className="select-roomNo" style={{width:350}}>
                   {roomList.map((roomid) => (
                     <Select.Option key={roomid.roomNo} value={roomid.roomNo}>
                       {roomid.roomNo}
                     </Select.Option>
                   ))}
                 </Select>
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -675,26 +669,22 @@ function Users(props) {
               value="userName"
               className="form-userName-2"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-username-2"
                   placeholder={rowEditcheckout.userName}
                   disabled
                 />
-              </div>
             </Form.Item>
             <Form.Item
               className="form-checkoutdate"
               label="Ngày checkout"
               name="checkOutDate"
             >
-              <div style={{ width: "90%" }}>
                 <DatePicker
                   className="datepicker-checkoutdate"
                   showTime
                   format="YYYY-MM-DD HH:mm:ss"
                 />
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -743,13 +733,11 @@ function Users(props) {
                 value="userName"
                 className="form-userName"
               >
-                <div style={{ width: "90%" }}>
                   <Input
                     className="input-userName"
                     placeholder={rowEdit.userName}
                     disabled
                   />
-                </div>
               </Form.Item>
               <div style={{ paddingLeft: "20px", width: "20%" }}>
                 <Button
@@ -765,75 +753,60 @@ function Users(props) {
               name="password"
               className="form-password"
             >
-              <div style={{ width: "90%" }}>
                 <Input.Password
                   placeholder={rowEdit.password}
                   disabled
                   className="input-password"
                 />
-              </div>
             </Form.Item>
             <Form.Item label="Email" name="email" className="form-email">
-              <div style={{ width: "90%" }}>
                 <Input placeholder={rowEdit.email} className="input-email" />
-              </div>
             </Form.Item>
             <Form.Item
               label="Họ và tên"
               name="fullName"
               className="form-fullName"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.fullName}
                   className="input-fullName"
                 />
-              </div>
             </Form.Item>
             <Form.Item label="Giới tính" name="sex" className="form1-sex1">
-              <div style={{ width: "90%" }}>
                 <Radio.Group className="radio-sex">
                   <Radio value="female">Female</Radio>
                   <Radio value="male">Male</Radio>
                 </Radio.Group>
-              </div>
             </Form.Item>
             <Form.Item label="Công việc" name="job" className="form-job">
-              <div style={{ width: "90%" }}>
                 <Input placeholder={rowEdit.job} className="input-job" />
-              </div>
             </Form.Item>
             <Form.Item label="Địa chỉ" name="address" className="form-address">
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.address}
                   className="input-address"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Số điện thoại"
               name="phoneNo"
               className="form-phoneno"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.phoneNo}
                   className="input-phoneno"
                 />
-              </div>
             </Form.Item>
             <Form.Item label="Quyền" name="roleIds" className="form-roleid">
-              <div style={{ width: "90%" }}>
                 <Select
                   onChange={handleChange}
                   allowClear
                   mode="multiple"
                   className="select-roleid"
+                  style={{width:320}}
                 >
                   {propsselect}
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item label="Hình" className="form-img-us">
               <Upload
@@ -949,11 +922,9 @@ function Users(props) {
                           value="userName"
                           className="form-userName"
                         >
-                          <div style={{ width: "90%" }}>
                             <Input className="input-userName" />
-                          </div>
                         </Form.Item>
-                        <div style={{ paddingLeft: "20px", width: "20%" }}>
+                        <div style={{ paddingLeft: "35px", width: "20%" }}>
                           <Button
                             className="btn-existed"
                             onClick={() => fetchcheckusername()}
@@ -967,82 +938,67 @@ function Users(props) {
                         name="password"
                         className="form-password"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input.Password disabled className="input-password" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Email"
                         name="email"
                         className="form-email"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-email" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Họ và tên"
                         name="fullName"
                         className="form-fullName"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-fullName" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Giới tính"
                         name="sex"
                         className="form1-sex1"
                       >
-                        <div style={{ width: "90%" }}>
                           <Radio.Group className="radio-sex">
                             <Radio value="female">Female</Radio>
                             <Radio value="male">Male</Radio>
                           </Radio.Group>
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Công việc"
                         name="job"
                         className="form-job"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-job" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Địa chỉ"
                         name="address"
                         className="form-address"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-address" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Số điện thoại"
                         name="phoneNo"
                         className="form-phoneno"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input className="input-phoneno" />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Quyền"
                         name="roleIds"
                         className="form-roleid"
                       >
-                        <div style={{ width: "90%" }}>
                           <Select
                             onChange={handleChange}
                             allowClear
                             mode="multiple"
                             className="select-roleid"
+                            style={{width:320}}
                           >
                             {propsselect}
                           </Select>
-                        </div>
                       </Form.Item>
                       <Form.Item label="Hình" className="form-img-us">
                         <Upload
@@ -1067,91 +1023,14 @@ function Users(props) {
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
-                          CHỈNH SỬA{" "}
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancel_1}>
-                            HỦY BỎ
-                          </Button>
-                        </div>
-                      </div>
-                      {/* <div style={{ display: "flex", width: "100%" }}>
-                        <Form.Item label="Tài khoản" name="userName">
-                          <Input
-                            style={{ width: "250px" }}
-                            onChange={(userName) => onChangeusername(userName)}
-                          />
-                        </Form.Item>
-                        <div style={{ paddingLeft: "20px", width: "20%" }}>
-                          <Button onClick={() => fetchcheckusername()}>
-                            Kiểm tra trùng
-                          </Button>
-                        </div>
-                      </div>
-
-                      <Form.Item label="Mật khẩu" name="password">
-                        <Input.Password />
-                      </Form.Item>
-                      <Form.Item label="email" name="email">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Họ và tên" name="fullName">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Giới tính" name="sex">
-                        <Radio.Group>
-                          <Radio value="female">Female</Radio>
-                          <Radio value="male">Male</Radio>
-                        </Radio.Group>
-                      </Form.Item>
-                      <Form.Item label="Công việc" name="job">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Địa chỉ" name="address">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số điện thoại" name="phoneNo">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Quyền" name="roleIds">
-                        <Select
-                          onChange={handleChange}
-                          allowClear
-                          mode="multiple"
-                        >
-                          {propsselect}
-                        </Select>
-                      </Form.Item>
-                      <Form.Item>
-                        <Upload
-                          {...propsimg}
-                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                          listType="picture"
-                          defaultFileList={[...fileList]}
-                          onPreview={handlePreview}
-                          onChange={handleChangeimg}
-                          fileList={state.fileList}
-                        >
-                          {state?.fileList.length < 1 && (
-                            <Button
-                              onClick={uploadimg}
-                              icon={<UploadOutlined />}
-                            >
-                              Upload
-                            </Button>
-                          )}
-                        </Upload>
-                      </Form.Item>
-                      <div className="btnbtnussers">
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
+                         THÊM MỚI{" "}
                         </Button>
                         <div style={{ paddingLeft: "10px" }}>
                           <Button type="default" onClick={handleCancel}>
                             HỦY BỎ
                           </Button>
                         </div>
-                      </div> */}
+                      </div>
                     </Form>
                   </Modal>
                 </div>

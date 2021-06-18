@@ -260,7 +260,7 @@ function Rooms(props) {
       key: "roomType",
       render: (roomType) =>
         roomType === null ? (
-          <Tag color="magenta">{roomType}</Tag>
+          <Tag color="magenta" className="tagcolor">{roomType}</Tag>
         ) : (
           <Tag color="geekblue">{roomType}</Tag>
         ),
@@ -454,21 +454,16 @@ function Rooms(props) {
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
             <Form.Item label="Số phòng" name="roomNo" className="form-roomNo">
-              <div style={{ width: "80%" }}>
                 <Input className="input-roomNo" placeholder={rowEdit.roomNo} />
-              </div>
             </Form.Item>
             <Form.Item label="Vị trí" name="position" className="form-postion">
-              <div style={{ width: "80%" }}>
                 <Input className="input-position" placeholder={rowEdit.position} />
-              </div>
             </Form.Item>
             <Form.Item
               label="Loại phòng"
               name="roomType"
               className="form-roomType"
             >
-              <div style={{ width: "50%" }}>
                 <Select
                   style={{ width: 300 }}
                   placeholder={rowEdit.month}
@@ -480,77 +475,66 @@ function Rooms(props) {
                   <Option value="2">Phòng theo tuần</Option>
                   <Option value="3">Phòng theo tháng</Option>
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá phòng theo giờ 1"
               name="priceByFirstHour"
               className="form-pricebyfristhour"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-priceByFirstHour"
                   onChange={(priceByFirstHour) => check_price(priceByFirstHour)}
                   style={{ width: 320 }}
                   disabled={firstroom}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá phòng theo giờ 2"
               name="priceByNextHour"
               className="form-pricebynexthour"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-priceByNextHour"
                   style={{ width: 320 }}
                   disabled={firstroom}
                   onChange={(priceByNextHour) => check_price(priceByNextHour)}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá phòng theo ngày"
               name="priceByDay"
               className="priceByDay"
             >
-              <div style={{ width: "80%" }}>
                 <Input
                   className="input-priceByDay"
                   style={{ width: 290 }}
                   disabled={secondroom}
                   onChange={(priceByDay) => check_price(priceByDay)}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá phòng theo tuần"
               name="priceByWeek"
               className="pricebyweek"
             >
-              <div style={{ width: "80%" }}>
                 <Input
                   className="input-pricebyWeek"
                   style={{ width: 320 }}
                   disabled={thirdroom}
                   onChange={(priceByWeek) => check_price(priceByWeek)}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá phòng theo tháng"
               name="priceByMonth"
               className="pricebymonth"
             >
-              <div style={{ width: "80%" }}>
                 <Input
                   className="input-priceByMonth"
                   style={{ width: 320 }}
                   disabled={fourthroom}
                   onChange={(priceByMonth) => check_price(priceByMonth)}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Chi nhánh"
@@ -572,16 +556,15 @@ function Rooms(props) {
               name="facilityIds"
               className="form-facilityids"
             >
-              <div style={{ width: "80%" }}>
                 <Select
                   onChange={handleChange}
                   allowClear
                   className="select-facility"
                   mode="multiple"
+                  style={{width:320}}
                 >
                   {propsselect}
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item label="Hình" className="form-imageroom">
               <Upload
@@ -614,80 +597,6 @@ function Rooms(props) {
                 </Button>
               </div>
             </div>
-            {/* <Form.Item label="Số phòng" name="roomNo">
-              <Input placeholder={rowEdit.roomNo} />
-            </Form.Item>
-            <Form.Item label="Vị trí" name="position">
-              <Input placeholder={rowEdit.position} />
-            </Form.Item>
-            <Form.Item label="Loại phòng" name="roomType">
-              <Select
-                style={{ width: 385 }}
-                placeholder={rowEdit.month}
-                onSelect={(value) => handleChange_roomType1(value)}
-              >
-                <Option value="0">Phòng theo giờ</Option>
-                <Option value="1">Phòng theo ngày</Option>
-                <Option value="2">Phòng theo tuần</Option>
-                <Option value="3">Phòng theo tháng</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Giá phòng theo giờ 1" name="priceByFirstHour">
-              <InputNumber style={{ width: 320 }} disabled={firstroom} />
-            </Form.Item>
-            <Form.Item label="Giá phòng theo giờ 2" name="priceByNextHour">
-              <InputNumber style={{ width: 320 }} disabled={firstroom} />
-            </Form.Item>
-            <Form.Item label="Giá phòng theo ngày" name="priceByDay">
-              <InputNumber style={{ width: 320 }} disabled={secondroom} />
-            </Form.Item>
-            <Form.Item label="Giá phòng theo tuần" name="priceByWeek">
-              <InputNumber style={{ width: 320 }} disabled={thirdroom} />
-            </Form.Item>
-            <Form.Item label="Giá phòng theo tháng" name="priceByMonth">
-              <InputNumber style={{ width: 320 }} disabled={fourthroom} />
-            </Form.Item>
-            <Form.Item label="Chi nhánh" name="branchId">
-              <Select onChange={handleChange}>
-                {branchesList.map((branchesid) => (
-                  <Select.Option key={branchesid.id} value={branchesid.id}>
-                    {branchesid.location}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Thiết bị" name="facilityIds">
-              <Select onChange={handleChange_1} allowClear mode="multiple">
-                {propsselect}
-              </Select>
-            </Form.Item>
-            <Form.Item>
-              <Upload
-                {...propsimg}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture"
-                defaultFileList={[...fileList]}
-                onPreview={handlePreview}
-                onChange={handleChangeimg}
-                fileList={stateimg.fileList}
-              >
-                {stateimg?.fileList.length < 1 && (
-                  <Button onClick={uploadimg} icon={<UploadOutlined />}>
-                    Upload
-                  </Button>
-                )}
-              </Upload>
-            </Form.Item>
-            <div style={{ display: "flex" }}>
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA{" "}
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel_1}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div> */}
           </Form>
         </Spin>
       </Modal>
@@ -767,25 +676,20 @@ function Rooms(props) {
                       name="roomNo"
                       className="form-roomNo"
                     >
-                      <div style={{ width: "80%" }}>
                         <Input className="input-roomNo" />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Vị trí"
                       name="position"
                       className="form-postion"
                     >
-                      <div style={{ width: "80%" }}>
                         <Input className="input-position" />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Loại phòng"
                       name="roomType"
                       className="form-roomType"
                     >
-                      {/* <div style={{ width: "50%" }}> */}
                         <Select
                           style={{ width: 300 }}
                           placeholder={rowEdit.month}
@@ -797,14 +701,12 @@ function Rooms(props) {
                           <Option value="2">Phòng theo tuần</Option>
                           <Option value="3">Phòng theo tháng</Option>
                         </Select>
-                      {/* </div> */}
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo giờ 1"
                       name="priceByFirstHour"
                       className="form-pricebyfristhour"
                     >
-                      <div style={{ width: "90%" }}>
                         <Input
                           className="input-priceByFirstHour"
                           onChange={(priceByFirstHour) =>
@@ -813,14 +715,12 @@ function Rooms(props) {
                           style={{ width: 320 }}
                           disabled={firstroom}
                         />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo giờ 2"
                       name="priceByNextHour"
                       className="form-pricebynexthour"
                     >
-                      <div style={{ width: "90%" }}>
                         <Input
                           className="input-priceByNextHour"
                           style={{ width: 320 }}
@@ -829,56 +729,49 @@ function Rooms(props) {
                             check_price(priceByNextHour)
                           }
                         />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo ngày"
                       name="priceByDay"
                       className="priceByDay"
                     >
-                      <div style={{ width: "80%" }}>
                         <Input
                           className="input-priceByDay"
                           style={{ width: 290 }}
                           disabled={secondroom}
                           onChange={(priceByDay) => check_price(priceByDay)}
                         />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo tuần"
                       name="priceByWeek"
                       className="pricebyweek"
                     >
-                      <div style={{ width: "80%" }}>
                         <Input
                           className="input-pricebyWeek"
                           style={{ width: 320 }}
                           disabled={thirdroom}
                           onChange={(priceByWeek) => check_price(priceByWeek)}
                         />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Giá phòng theo tháng"
                       name="priceByMonth"
                       className="pricebymonth"
                     >
-                      <div style={{ width: "80%" }}>
                         <Input
                           className="input-priceByMonth"
                           style={{ width: 320 }}
                           disabled={fourthroom}
                           onChange={(priceByMonth) => check_price(priceByMonth)}
                         />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Chi nhánh"
                       name="branchId"
                       className="form-branches"
+                      style={{width:320}}
                     >
-                      {/* <div > */}
                         <Select
                           onChange={handleChange}
                           className="select-branches"
@@ -892,14 +785,12 @@ function Rooms(props) {
                             </Select.Option>
                           ))}
                         </Select>
-                      {/* </div> */}
                     </Form.Item>
                     <Form.Item
                       label="Thiết bị"
                       name="facilityIds"
                       className="form-facilityids"
                     >
-                      {/* <div style={{ width: "80%" }}> */}
                         <Select
                           onChange={handleChange}
                           allowClear
@@ -908,7 +799,6 @@ function Rooms(props) {
                         >
                           {propsselect}
                         </Select>
-                      {/* </div> */}
                     </Form.Item>
                     <Form.Item label="Hình" className="form-imageroom">
                       <Upload
@@ -972,7 +862,7 @@ function Rooms(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "30vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

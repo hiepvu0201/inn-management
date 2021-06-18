@@ -19,7 +19,7 @@ import {
   Input,
   Select,
   Spin,
-  InputNumber
+  InputNumber,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
 import facilitiesApi from "./../../../api/facilitiesApi";
@@ -38,7 +38,7 @@ function Branches(props) {
   const [facilitiesList, setFacilitiesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const propsselect = [];
-  const [idselected,setidSelected]=useState([])
+  const [idselected, setidSelected] = useState([]);
   const fetchUserList = async () => {
     try {
       const response = await usersApi.getAll();
@@ -115,7 +115,7 @@ function Branches(props) {
     }
   };
   const fetchUpdateBranches = async (values) => {
-    setIsloadingUpdate(true);
+    // setIsloadingUpdate(true);
     try {
       const response = await branchesApi.updatebranch(values);
       console.log("Fetch update branches successfully", response);
@@ -123,7 +123,7 @@ function Branches(props) {
       fetchBranchList();
     } catch (error) {
       console.log("Failed to update branches", error);
-      setIsloadingUpdate(false);
+      // setIsloadingUpdate(false);
     }
   };
   const onFinish_edit = (values) => {
@@ -308,27 +308,43 @@ function Branches(props) {
         cancelText="HỦY BỎ"
         footer={null}
       >
-        <Spin spinning={isloadingUpdate} size="large">
+        {/* <Spin spinning={isloadingUpdate} size="large"> */}
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
             <Form.Item label="Vị trí" name="location" className="form-location">
-              <div style={{ width: "90%" }}>
-                <Input
-                  className="input-location-branches"
-                  placeholder={rowEdit.location}
-                />
-              </div>
+              <Select
+                className="input-location-branches"
+                style={{ width: 250 }}
+              >
+                <Option value="Quận 1">Quận 1</Option>
+                <Option value="Quận 2">Quận 2</Option>
+                <Option value="Quận 3">Quận 3</Option>
+                <Option value="Quận 4">Quận 4</Option>
+                <Option value="Quận 5">Quận 5</Option>
+                <Option value="Quận 6">Quận 6</Option>
+                <Option value="Quận 7">Quận 7</Option>
+                <Option value="Quận 8">Quận 8</Option>
+                <Option value="Quận 9">Quận 9</Option>
+                <Option value="Quận 10">Quận 10</Option>
+                <Option value="Quận 11">Quận 11</Option>
+                <Option value="Quận 12">Quận 12</Option>
+                <Option value="Quận Bình Tân">Quận Bình Tân</Option>
+                <Option value="Quận Bình Thạnh">Quận Bình Thạnh</Option>
+                <Option value="Quận Phú Nhuận">Quận Phú Nhuận</Option>
+                <Option value="Quận Tân Bình">Quận Tân Bình</Option>
+                <Option value="Quận Tân Phú">Quận Tân Phú</Option>
+                <Option value="Quận Thủ Đức">Quận Thủ Đức</Option>
+                <Option value="Quận Gò Vấp">Quận Gò Vấp</Option>
+              </Select>
             </Form.Item>
             <Form.Item
               label="Tên chi nhánh"
               name="description"
               className="form-description"
             >
-              <div style={{ width: "90%" }}>
-                <Input
-                  className="input-description"
-                  placeholder={rowEdit.description}
-                />
-              </div>
+              <Input
+                className="input-description"
+                placeholder={rowEdit.description}
+              />
             </Form.Item>
             <Form.Item
               label="Số lầu"
@@ -336,60 +352,49 @@ function Branches(props) {
               className="form-stages"
             >
               {" "}
-              <div style={{ width: "90%" }}>
-                <Input
-                  className="input-floor"
-                  // placeholder={rowEdit.numberOfStages}
-                />
-              </div>
+              <Input className="input-floor" />
             </Form.Item>
             <Form.Item
               label="Số phòng"
               name="numberOfRooms"
               className="form-rooms"
             >
-              <div style={{ width: "90%" }}>
-                <Input
-                  className="input-room"
-                  placeholder={rowEdit.numberOfRooms}
-                />
-              </div>
+              <Input
+                className="input-room"
+                placeholder={rowEdit.numberOfRooms}
+              />
             </Form.Item>
             <Form.Item
               label="Thiết bị"
               name="facilityIds"
               className="form-id-facility"
             >
-              <div style={{ width: "80%" }}>
-                <Select
-                  onChange={handleChange}
-                  allowClear
-                  mode="multiple"
-                  className="input-facility2"
-                >
-                  {propsselect}
-                </Select>
-              </div>
+              <Select
+                onChange={handleChange}
+                allowClear
+                mode="multiple"
+                className="input-facility2"
+                style={{ width: 320 }}
+              >
+                {propsselect}
+              </Select>
             </Form.Item>
             <Form.Item
               label="Người dùng"
               name="userName"
               className="form-user-2"
             >
-              <div style={{ width: "90%" }}>
-                <Select
-                  onChange={handleChange_user}
-                  allowClear
-                  className="input-user"
-                  placeholder={rowEdit.userName}
-                >
-                  <Select.Option value={Cookies.get("userName")}>
-                    {Cookies.get("userName")}
-                  </Select.Option>
-                </Select>
-              </div>
+              <Select
+                onChange={handleChange_user}
+                allowClear
+                className="input-user"
+                placeholder={rowEdit.userName}
+              >
+                <Select.Option value={Cookies.get("userName")}>
+                  {Cookies.get("userName")}
+                </Select.Option>
+              </Select>
             </Form.Item>
-            {/* <Form.Item></Form.Item> */}
             <div className="btncreatebranches">
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA
@@ -400,47 +405,8 @@ function Branches(props) {
                 </Button>
               </div>
             </div>
-            {/* <Form.Item label="Vị trí" name="location">
-              <Input placeholder={rowEdit.location} />
-            </Form.Item>
-            <Form.Item label="Miêu tả" name="description">
-              <Input placeholder={rowEdit.description} />
-            </Form.Item>
-            <Form.Item label="Số lầu" name="numberOfStages">
-              <Input placeholder={rowEdit.numberOfStages} />
-            </Form.Item>
-            <Form.Item label="Số phòng" name="numberOfRooms">
-              <Input placeholder={rowEdit.numberOfRooms} />
-            </Form.Item>
-            <Form.Item label="Thiết bị" name="facilityIds">
-              <Select onChange={handleChange} allowClear mode="multiple">
-                {propsselect}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Người dùng" name="userName">
-              <Select
-                onChange={handleChange_user}
-                allowClear
-                disabled
-                placeholder={rowEdit.userName}
-              >
-                <Select.Option value={Cookies.get("userName")}>
-                  {Cookies.get("userName")}
-                </Select.Option>
-              </Select>
-            </Form.Item>
-            <div style={{ display: "flex" }}>
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA{" "}
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel_1}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div> */}
           </Form>
-        </Spin>
+        {/* </Spin> */}
       </Modal>
       <div
         style={{
@@ -541,78 +507,91 @@ function Branches(props) {
                         name="location"
                         className="form-location"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-location-branches" />
-                        </div>
+                        <Select
+                          className="input-location-branches"
+                          style={{ width: 250 }}
+                        >
+                          <Option value="Quận 1">Quận 1</Option>
+                          <Option value="Quận 2">Quận 2</Option>
+                          <Option value="Quận 3">Quận 3</Option>
+                          <Option value="Quận 4">Quận 4</Option>
+                          <Option value="Quận 5">Quận 5</Option>
+                          <Option value="Quận 6">Quận 6</Option>
+                          <Option value="Quận 7">Quận 7</Option>
+                          <Option value="Quận 8">Quận 8</Option>
+                          <Option value="Quận 9">Quận 9</Option>
+                          <Option value="Quận 10">Quận 10</Option>
+                          <Option value="Quận 11">Quận 11</Option>
+                          <Option value="Quận 12">Quận 12</Option>
+                          <Option value="Quận Bình Tân">Quận Bình Tân</Option>
+                          <Option value="Quận Bình Thạnh">
+                            Quận Bình Thạnh
+                          </Option>
+                          <Option value="Quận Phú Nhuận">Quận Phú Nhuận</Option>
+                          <Option value="Quận Tân Bình">Quận Tân Bình</Option>
+                          <Option value="Quận Tân Phú">Quận Tân Phú</Option>
+                          <Option value="Quận Thủ Đức">Quận Thủ Đức</Option>
+                          <Option value="Quận Gò Vấp">Quận Gò Vấp</Option>
+                        </Select>
                       </Form.Item>
                       <Form.Item
                         label="Tên chi nhánh"
                         name="description"
                         className="form-description"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-description" />
-                        </div>
+                        <Input className="input-description" />
                       </Form.Item>
-                      <Form.Item label="Số lầu" name="numberOfStages" className="form-stages">
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-floor" />
-                        </div>
+                      <Form.Item
+                        label="Số lầu"
+                        name="numberOfStages"
+                        className="form-stages"
+                      >
+                        <Input className="input-floor" />
                       </Form.Item>
                       <Form.Item
                         label="Số phòng"
                         name="numberOfRooms"
                         className="form-rooms"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-room" />
-                        </div>
+                        <Input className="input-room" />
                       </Form.Item>
                       <Form.Item
                         label="Thiết bị"
                         // name="facilityIds"
                         className="form-id-facility"
                       >
-                        <div style={{ width: "80%" }}>
-                          <Select
-                            onChange={handleChange}
-                            allowClear
-                            mode="multiple"
-                              className="input-facility2"
-                          >
-                           
-                            {/* {propsselect} */}
-                            {
-                              facilitiesList.map((br)=>(
-                                
-                                  <Option key={br.id} value={br.id}>
-                                      {br.name}
-                                  </Option>
-                            
-                              ))
-                            }
-                          </Select>
-                        </div>
+                        <Select
+                          onChange={handleChange}
+                          allowClear
+                          mode="multiple"
+                          className="input-facility2"
+                          style={{ width: 320 }}
+                        >
+                          {/* {propsselect} */}
+                          {facilitiesList.map((br) => (
+                            <Option key={br.id} value={br.id}>
+                              {br.name}
+                            </Option>
+                          ))}
+                        </Select>
                       </Form.Item>
                       <Form.Item
                         label="Người dùng"
                         name="userName"
                         className="form-user-2"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Select
-                            onChange={handleChange_user}
-                            allowClear
-                            className="input-user"
+                        <Select
+                          onChange={handleChange_user}
+                          allowClear
+                          className="input-user"
+                        >
+                          <Select.Option
+                            key={Cookies.get("userName")}
+                            value={Cookies.get("userName")}
                           >
-                            <Select.Option
-                              key={Cookies.get("userName")}
-                              value={Cookies.get("userName")}
-                            >
-                              {Cookies.get("userName")}
-                            </Select.Option>
-                          </Select>
-                        </div>
+                            {Cookies.get("userName")}
+                          </Select.Option>
+                        </Select>
                       </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btncreatebranches">

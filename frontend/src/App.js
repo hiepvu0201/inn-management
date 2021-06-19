@@ -151,14 +151,17 @@ function App() {
           name="Login Page"
           render={(props) => <Login {...props} />}
         />
-        {Cookies.get("Bearer") !== undefined ? (
+        {Cookies.get("Bearer") ? (
           <Route
             path="/"
             name="HomeAdmin"
-            render={(props) => <Adminlayout {...props} />}
+            render={(props) =>
+            Cookies.get("roles") === "ROLE_ADMIN" ?
+              <Adminlayout {...props} /> : <Userlayout {...props} /> 
+            }
           />
         ) : (
-          <PrivateRoute path="/" name="HomeAdmin" component={Adminlayout} />
+          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
         )}
       </Switch>
 

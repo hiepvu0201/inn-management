@@ -25,7 +25,7 @@ import {
   Spin,
 } from "antd";
 import rulesApi from "../../../api/rulesApi";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 const { Option } = Select;
 function Rules(props) {
   //loading update
@@ -207,26 +207,22 @@ function Rules(props) {
       >
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
-            {/* <Form.Item label="Tên" name="name">
-              <Input placeholder={rowEdit.name} />
-            </Form.Item>
-            <Form.Item label="Mô tả" name="description">
-              <Input placeholder={rowEdit.description} />
-            </Form.Item> */}
             <Form.Item label="Tên" name="name" className="name-rules">
-                        <div style={{ width: "90%" }}>
-                          <Input placeholder={rowEdit.name} className="rules-input-name" />
-                        </div>
-                      </Form.Item>
-                      <Form.Item
-                        label="Mô tả"
-                        name="description"
-                        className="name-description-rules"
-                      >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-description-rules" placeholder={rowEdit.description} />
-                        </div>
-                      </Form.Item>
+                <Input
+                  placeholder={rowEdit.name}
+                  className="rules-input-name"
+                />
+            </Form.Item>
+            <Form.Item
+              label="Mô tả"
+              name="description"
+              className="name-description-rules"
+            >
+                <Input
+                  className="input-description-rules"
+                  placeholder={rowEdit.description}
+                />
+            </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
                 CHỈNH SỬA{" "}
@@ -298,20 +294,15 @@ function Rules(props) {
                       onFinishFailed={onFinishFailed}
                     >
                       <Form.Item label="Tên" name="name" className="name-rules">
-                        <div style={{ width: "90%" }}>
-                          <Input className="rules-input-name" />
-                        </div>
+                        <Input className="rules-input-name" />
                       </Form.Item>
                       <Form.Item
                         label="Mô tả"
                         name="description"
                         className="name-description-rules"
                       >
-                        <div style={{ width: "90%" }}>
-                          <Input className="input-description-rules" />
-                        </div>
+                        <Input className="input-description-rules" />
                       </Form.Item>
-
                       <div className="btncreaterules">
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI
@@ -355,7 +346,7 @@ function Rules(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

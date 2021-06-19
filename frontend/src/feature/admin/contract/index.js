@@ -350,123 +350,60 @@ function Contract(props) {
               name="details"
               className="form-details"
             >
-              <div style={{ width: "90%" }}>
-                <Input className="input-details" placeholder={rowEdit.details} />
-              </div>
+              <Input className="input-details" placeholder={rowEdit.details} />
             </Form.Item>
             <Form.Item
               label="Ngày ký"
               name="signDate"
               className="form-signDate"
             >
-              <div style={{ width: "90%" }}>
-                <DatePicker
-                  showTime
-                  format="YYYY-MM-DD HH:mm:ss"
-                  className="input-signDate"
-                  placeholder={rowEdit.signDate}
-                />
-              </div>
+              <DatePicker
+                showTime
+                format="YYYY-MM-DD HH:mm:ss"
+                className="input-signDate"
+                placeholder={rowEdit.signDate}
+              />
             </Form.Item>
             <Form.Item
               label="Số phòng"
               name="numberOfRooms"
               className="form-num-room"
             >
-              <div style={{ width: "90%" }}>
-                <Input className="input-room-contract" placeholder={rowEdit.numberOfRooms} />
-              </div>
+              <Input
+                className="input-room-contract"
+                placeholder={rowEdit.numberOfRooms}
+              />
             </Form.Item>
             <Form.Item
               label="Số lầu"
               name="numberOfStage"
               className="form-num-stages"
             >
-              <div style={{ width: "80%" }}>
-                <Input className="input-stage-contract" 
-                  placeholder={rowEdit.numberOfStage}
-                />
-              </div>
+              <Input
+                className="input-stage-contract"
+                placeholder={rowEdit.numberOfStage}
+              />
             </Form.Item>
             <Form.Item label="Số năm" name="year" className="form-year">
-              <div style={{ width: "90%" }}>
-                <DatePicker picker="year" 
+              <DatePicker
+                picker="year"
                 placeholder={rowEdit.year}
-                className="input-yearpicker" />
-              </div>
+                className="input-yearpicker"
+              />
             </Form.Item>
             <Form.Item
               label="Khuyến mãi"
               name="voucher"
               className="form-voucher"
             >
-              <div style={{ width: "90%" }}>
-                <Input className="input-voucher"
-                placeholder={rowEdit.voucher}
-                 />
-              </div>
+              <Input className="input-voucher" placeholder={rowEdit.voucher} />
             </Form.Item>
             <Form.Item label="Chủ trọ" name="ownerId" className="form-owner">
-              <div style={{ width: "80%" }}>
-                <Select onChange={handleChange} className="select-owner">
-                  {usersList.map((ownerid) =>
-                    ownerid.roles[0].name === "ROLE_ADMIN" ? (
-                      <Select.Option key={ownerid.id} value={ownerid.id}>
-                        {ownerid.userName}
-                      </Select.Option>
-                    ) : (
-                      <>Null</>
-                    )
-                  )}
-                </Select>
-              </div>
-            </Form.Item>
-            <Form.Item
-              label="Người thuê"
-              name="tenantId"
-              className="form-tenant"
-            >
-              <div style={{ width: "80%" }}>
-                <Select onChange={handleChange_1} className="select-tenant">
-                  {usersList.map((ownerid) =>
-                    ownerid.roles[0].name === "ROLE_USER" ? (
-                      <Select.Option key={ownerid.id} value={ownerid.id}>
-                        {ownerid.userName}
-                      </Select.Option>
-                    ) : (
-                      <>Null</>
-                    )
-                  )}
-                </Select>
-              </div>
-            </Form.Item>
-            <div className="btbtncreate">
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div>
-            {/* <Form.Item label="Chi tiết hợp đồng" name="details">
-              <Input placeholder={rowEdit.details} />
-            </Form.Item>
-            <Form.Item label="Ngày ký">
-              <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-            </Form.Item>
-            <Form.Item label="Số phòng" name="numberOfRooms">
-              <Input placeholder={rowEdit.numberOfRooms} />
-            </Form.Item>
-            <Form.Item label="Số lầu" name="numberOfStage">
-              <Input placeholder={rowEdit.numberOfStage} />
-            </Form.Item>
-            <Form.Item label="Khuyến mãi" name="voucher">
-              <Input placeholder={rowEdit.voucher} />
-            </Form.Item>
-            <Form.Item label="Chủ trọ" name="ownerId">
-              <Select onChange={handleChange} disabled>
+              <Select
+                onChange={handleChange}
+                className="select-owner"
+                style={{ width: 300 }}
+              >
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_ADMIN" ? (
                     <Select.Option key={ownerid.id} value={ownerid.id}>
@@ -478,8 +415,16 @@ function Contract(props) {
                 )}
               </Select>
             </Form.Item>
-            <Form.Item label="Người thuê" name="tenantId">
-              <Select onChange={handleChange_1} disabled>
+            <Form.Item
+              label="Người thuê"
+              name="tenantId"
+              className="form-tenant"
+            >
+              <Select
+                onChange={handleChange_1}
+                className="select-tenant"
+                style={{ width: 300 }}
+              >
                 {usersList.map((ownerid) =>
                   ownerid.roles[0].name === "ROLE_USER" ? (
                     <Select.Option key={ownerid.id} value={ownerid.id}>
@@ -491,16 +436,16 @@ function Contract(props) {
                 )}
               </Select>
             </Form.Item>
-            <div style={{ display: "flex" }}>
+            <div className="btbtncreate">
               <Button type="primary" htmlType="submit">
-                CHỈNH SỬA{" "}
+                CHỈNH SỬA
               </Button>
               <div style={{ paddingLeft: "10px" }}>
                 <Button type="default" onClick={handleCancel_1}>
                   HỦY BỎ
                 </Button>
               </div>
-            </div> */}
+            </div>
           </Form>
         </Spin>
       </Modal>
@@ -566,107 +511,84 @@ function Contract(props) {
                       name="details"
                       className="form-details"
                     >
-                      <div style={{ width: "90%" }}>
-                        <Input className="input-details" />
-                      </div>
+                      <Input className="input-details" />
                     </Form.Item>
                     <Form.Item
                       label="Ngày ký"
                       name="signDate"
                       className="form-signDate"
                     >
-                      <div style={{ width: "90%" }}>
-                        <DatePicker
-                          showTime
-                          format="YYYY-MM-DD HH:mm:ss"
-                          className="input-signDate"
-                        />
-                      </div>
+                      <DatePicker
+                        showTime
+                        format="YYYY-MM-DD HH:mm:ss"
+                        className="input-signDate"
+                      />
                     </Form.Item>
                     <Form.Item
                       label="Số phòng"
                       name="numberOfRooms"
                       className="form-num-room"
                     >
-                      <div style={{ width: "90%" }}>
-                        <Input className="input-room-contract" />
-                      </div>
+                      <Input className="input-room-contract" />
                     </Form.Item>
                     <Form.Item
                       label="Số lầu"
                       name="numberOfStage"
                       className="form-num-stages"
                     >
-                      <div style={{ width: "80%" }}>
-                        <Input className="input-stage-contract" />
-                      </div>
+                      <Input className="input-stage-contract" />
                     </Form.Item>
                     <Form.Item label="Số năm" name="year" className="form-year">
-                      <div style={{ width: "90%" }}>
-                        <DatePicker
-                          picker="year"
-                          className="input-yearpicker"
-                        />
-                      </div>
+                      <DatePicker picker="year" className="input-yearpicker" />
                     </Form.Item>
                     <Form.Item
                       label="Khuyến mãi"
                       name="voucher"
                       className="form-voucher"
                     >
-                      <div style={{ width: "90%" }}>
-                        <Input className="input-voucher" />
-                      </div>
+                      <Input className="input-voucher" />
                     </Form.Item>
                     <Form.Item
                       label="Chủ trọ"
                       name="ownerId"
                       className="form-owner"
                     >
-                      <div style={{ width: "80%" }}>
-                        <Select
-                          onChange={handleChange}
-                          className="select-owner"
-                        >
-                          {usersList.map((ownerid) =>
-                            ownerid.roles[0].name === "ROLE_ADMIN" ? (
-                              <Select.Option
-                                key={ownerid.id}
-                                value={ownerid.id}
-                              >
-                                {ownerid.userName}
-                              </Select.Option>
-                            ) : (
-                              <>Null</>
-                            )
-                          )}
-                        </Select>
-                      </div>
+                      <Select
+                        onChange={handleChange}
+                        className="select-owner"
+                        style={{ width: 300 }}
+                      >
+                        {usersList.map((ownerid) =>
+                          ownerid.roles[0].name === "ROLE_ADMIN" ? (
+                            <Select.Option key={ownerid.id} value={ownerid.id}>
+                              {ownerid.userName}
+                            </Select.Option>
+                          ) : (
+                            <>Null</>
+                          )
+                        )}
+                      </Select>
                     </Form.Item>
                     <Form.Item
                       label="Người thuê"
                       name="tenantId"
                       className="form-tenant"
                     >
-                      <div style={{ width: "80%" }}>
-                        <Select
-                          onChange={handleChange_1}
-                          className="select-tenant"
-                        >
-                          {usersList.map((ownerid) =>
-                            ownerid.roles[0].name === "ROLE_USER" ? (
-                              <Select.Option
-                                key={ownerid.id}
-                                value={ownerid.id}
-                              >
-                                {ownerid.userName}
-                              </Select.Option>
-                            ) : (
-                              <>Null</>
-                            )
-                          )}
-                        </Select>
-                      </div>
+                      <Select
+                        onChange={handleChange_1}
+                        className="select-tenant"
+                        style={{ width: 300 }}
+                      >
+                        {usersList.map((ownerid) =>
+                          ownerid.roles[0].name === "ROLE_USER" ? (
+                            <Select.Option key={ownerid.id} value={ownerid.id}>
+                              {ownerid.userName}
+                            </Select.Option>
+                          ) : (
+                            <>Null</>
+                          )
+                        )}
+                      </Select>
                     </Form.Item>
                     <div className="btbtncreate">
                       <Button type="primary" htmlType="submit">
@@ -710,7 +632,7 @@ function Contract(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

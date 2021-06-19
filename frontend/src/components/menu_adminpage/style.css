@@ -208,7 +208,10 @@
     padding-left: 20px;
   }
   .middle-img{
-    padding-left: 220px;
+    width:20vw;
+    height:auto;
+    position:relative;
+    left:30vw;
   }
   .logoadmin{
     width:2%;
@@ -224,7 +227,7 @@
   }
   .menuone {
     color: white;
-    /* padding-left: 27px; */
+    padding-left: 27px;
   }
   .barsMenuabc {
     display: inline-block;

@@ -196,12 +196,13 @@ function ElectricityWaters(props) {
       title: "Kiểm tra",
       dataIndex: "checked",
       key: "checked",
-      render: (text) => (
+     
+      render: (checked) => (
         <>
-          {text === false ? (
-            <Tag color="#87d068">CHƯA THANH TOÁN</Tag>
+          {checked === false ? (
+            <div>CHƯA THANH TOÁN</div>
           ) : (
-            <Tag color="#f50">ĐÃ THANH TOÁN</Tag>
+            <div>ĐÃ THANH TOÁN</div>
           )}
         </>
       ),
@@ -304,55 +305,46 @@ function ElectricityWaters(props) {
               name="numElectricOld"
               className="form-numElectricOld"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.numElectricOld}
                   className="input-numElectricOld"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Số điện mới"
               name="numElectricNew"
               className="form-numElectricNew"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.numElectricNew}
                   className="input-numElectricNew"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Số nước cũ"
               name="numWaterOld"
               className="form-numWaterOld"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-numWaterOld"
                   placeholder={rowEdit.numWaterOld}
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Số nước mới"
               name="numWaterNew"
               className="form-numWaterNew"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   placeholder={rowEdit.numWaterNew}
                   className="input-numWaterNew"
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá điện"
               name="electricityUnitPrice"
               className="form-electricityUnitPrice"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-electricityUnitPrice"
                   placeholder={rowEdit.electricityUnitPrice}
@@ -360,23 +352,19 @@ function ElectricityWaters(props) {
                     check(electricityUnitPrice)
                   }
                 />
-              </div>
             </Form.Item>
             <Form.Item
               label="Giá nước"
               name="waterUnitPrice"
               className="form-waterUnitPrice"
             >
-              <div style={{ width: "90%" }}>
                 <Input
                   className="input-waterUnit-Price"
                   placeholder={rowEdit.waterUnitPrice}
                   onChange={(waterUnitPrice) => check(waterUnitPrice)}
                 />
-              </div>
             </Form.Item>
             <Form.Item label="Tháng" name="month" className="form-month">
-              <div style={{ width: "90%" }}>
                 <Select
                   style={{ width: 120 }}
                   className="select-month"
@@ -395,10 +383,8 @@ function ElectricityWaters(props) {
                   <Option value="11">Tháng 11</Option>
                   <Option value="12">Tháng 12</Option>
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item label="Kiểm tra" name="checked" className="form-checked">
-              <div style={{ width: "90%" }}>
                 <Radio.Group
                   placeholder={rowEdit.checked}
                   className="radio-checked"
@@ -406,18 +392,15 @@ function ElectricityWaters(props) {
                   <Radio value="true">True</Radio>
                   <Radio value="false">False</Radio>
                 </Radio.Group>
-              </div>
             </Form.Item>
             <Form.Item label="Phòng" name="roomId" className="form-roomid">
-              <div style={{ width: "90%" }}>
-                <Select onChange={handleChange} className="select-roomid">
+                <Select onChange={handleChange} className="select-roomid" style={{width:320}}>
                   {roomList.map((roomsid) => (
                     <Select.Option key={roomsid.id} value={roomsid.id}>
                       {roomsid.roomNo}
                     </Select.Option>
                   ))}
                 </Select>
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -500,77 +483,64 @@ function ElectricityWaters(props) {
                         name="numElectricOld"
                         className="form-numElectricOld"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-numElectricOld"
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Số điện mới"
                         name="numElectricNew"
                         className="form-numElectricNew"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-numElectricNew"
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Số nước cũ"
                         name="numWaterOld"
                         className="form-numWaterOld"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-numWaterOld"
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Số nước mới"
                         name="numWaterNew"
                         className="form-numWaterNew"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-numWaterNew"
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Giá điện"
                         name="electricityUnitPrice"
                         className="form-electricityUnitPrice"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-electricityUnitPrice"
                             onChange={(electricityUnitPrice) =>
                               check(electricityUnitPrice)
                             }
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Giá nước"
                         name="waterUnitPrice"
                         className="form-waterUnitPrice"
                       >
-                        <div style={{ width: "90%" }}>
                           <Input
                             className="input-waterUnit-Price"
                             onChange={(waterUnitPrice) => check(waterUnitPrice)}
                           />
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Tháng"
                         name="month"
                         className="form-month"
                       >
-                        <div style={{ width: "90%" }}>
                           <Select
                             style={{ width: 120 }}
                             className="select-month"
@@ -589,14 +559,12 @@ function ElectricityWaters(props) {
                             <Option value="11">Tháng 11</Option>
                             <Option value="12">Tháng 12</Option>
                           </Select>
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Kiểm tra"
                         name="checked"
                         className="form-checked"
                       >
-                        <div style={{ width: "90%" }}>
                           <Radio.Group
                             placeholder={rowEdit.checked}
                             className="radio-checked"
@@ -604,17 +572,16 @@ function ElectricityWaters(props) {
                             <Radio value="true">True</Radio>
                             <Radio value="false">False</Radio>
                           </Radio.Group>
-                        </div>
                       </Form.Item>
                       <Form.Item
                         label="Phòng"
                         name="roomId"
                         className="form-roomid"
                       >
-                        <div style={{ width: "90%" }}>
                           <Select
                             onChange={handleChange}
                             className="select-roomid"
+                            style={{width:320}}
                           >
                             {roomList.map((roomsid) => (
                               <Select.Option
@@ -625,7 +592,6 @@ function ElectricityWaters(props) {
                               </Select.Option>
                             ))}
                           </Select>
-                        </div>
                       </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
@@ -637,73 +603,6 @@ function ElectricityWaters(props) {
                           </Button>
                         </div>
                       </div>
-                      {/* <Form.Item label="Số điện cũ" name="numElectricOld">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số điện mới" name="numElectricNew">
-                        <Input />
-                      </Form.Item>
-
-                      <Form.Item label="Số nước cũ" name="numWaterOld">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Số nước mới" name="numWaterNew">
-                        <Input />
-                      </Form.Item>
-                      <Form.Item label="Giá điện" name="electricityUnitPrice">
-                        <Input
-                          onChange={(electricityUnitPrice) =>
-                            check(electricityUnitPrice)
-                          }
-                        />
-                      </Form.Item>
-                      <Form.Item label="Giá nước" name="waterUnitPrice">
-                        <Input
-                          onChange={(waterUnitPrice) => check(waterUnitPrice)}
-                        />
-                      </Form.Item>
-                      <Form.Item label="Tháng" name="month">
-                        <Select style={{ width: 120 }}>
-                          <Option value="1">Tháng 1</Option>
-                          <Option value="2">Tháng 2</Option>
-                          <Option value="3">Tháng 3</Option>
-                          <Option value="4">Tháng 4</Option>
-                          <Option value="5">Tháng 5</Option>
-                          <Option value="6">Tháng 6</Option>
-                          <Option value="7">Tháng 7</Option>
-                          <Option value="8">Tháng 8</Option>
-                          <Option value="9">Tháng 9</Option>
-                          <Option value="10">Tháng 10</Option>
-                          <Option value="11">Tháng 11</Option>
-                          <Option value="12">Tháng 12</Option>
-                        </Select>
-                      </Form.Item>
-                      <Form.Item label="Kiểm tra" name="checked">
-                        <Radio.Group>
-                          <Radio value="true">True</Radio>
-                          <Radio value="false">False</Radio>
-                        </Radio.Group>
-                      </Form.Item>
-                      <Form.Item label="Phòng" name="roomId">
-                        <Select onChange={handleChange}>
-                          {roomList.map((roomsid) => (
-                            <Select.Option key={roomsid.id} value={roomsid.id}>
-                              {roomsid.roomNo}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-
-                      <div className="btnbtncreateelectricitywater">
-                        <Button type="primary" htmlType="submit">
-                          THÊM MỚI
-                        </Button>
-                        <div style={{ paddingLeft: "10px" }}>
-                          <Button type="default" onClick={handleCancelCreate}>
-                            HỦY BỎ
-                          </Button>
-                        </div>
-                      </div> */}
                     </Form>
                   </Modal>
                 </div>
@@ -736,7 +635,7 @@ function ElectricityWaters(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

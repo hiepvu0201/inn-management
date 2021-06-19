@@ -84,10 +84,10 @@ function Invoices() {
     fetchCreateInvoices();
   };
   // 
-  const downloadSingleFiles = async (value) => {
+  const downloadSingleFiles = async (record) => {
     try {
       const data = {
-        id: rowEdit.id,
+        id:record.id,
       };
       console.log("<<<id", data);
       const urldown = `http://localhost:8080/api/v1/invoices/${data.id}/download/`;
@@ -325,7 +325,6 @@ function Invoices() {
                       // onFinishFailed={onFinishFailed}
                     >
                       <Form.Item label="Khách trọ" name="userName" className="item-us-invoices">
-                        <div style={{ width: "90%" }}>
                           <Select onChange={handleChange} className="select-us-invoices">
                             {usersList.map((ownerid) =>
                               ownerid.roles[0].name === "ROLE_USER" ? (
@@ -340,7 +339,6 @@ function Invoices() {
                               )
                             )}
                           </Select>
-                        </div>
                       </Form.Item>
                       <Form.Item label="Khách trọ" name="paymentDate" className="item-paymentDate">
                         <DatePicker
@@ -391,7 +389,7 @@ function Invoices() {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

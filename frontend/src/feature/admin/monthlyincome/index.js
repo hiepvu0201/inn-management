@@ -238,7 +238,6 @@ function Monthlyincome(props) {
         <Spin spinning={isloadingUpdate} size="large">
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
             <Form.Item label="Tháng" name="month" className="form-monthIncome">
-              <div style={{ width: "60%" }}>
                 <Select style={{ width: 120 }} className="input-month" placeholder={rowEdit.month}>
                   <Option value="1">Tháng 1</Option>
                   <Option value="2">Tháng 2</Option>
@@ -253,15 +252,11 @@ function Monthlyincome(props) {
                   <Option value="11">Tháng 11</Option>
                   <Option value="12">Tháng 12</Option>
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item label="Số tiền thu" name="earn" className="earn-income">
-              <div style={{ width: "90%" }}>
                 <Input className="input-earnIncome" placeholder={rowEdit.earn} />
-              </div>
             </Form.Item>
             <Form.Item label="Chi nhánh" name="branchId" className="branchid-2">
-              <div style={{ width: "90%" }}>
                 <Select className="select-branchid" placeholder={rowEdit.branchId}>
                   {branchList.map((branchid) => (
                     <Select.Option key={branchid.id} value={branchid.id}>
@@ -269,7 +264,6 @@ function Monthlyincome(props) {
                     </Select.Option>
                   ))}
                 </Select>
-              </div>
             </Form.Item>
             <div style={{ display: "flex" }}>
               <Button type="primary" htmlType="submit">
@@ -281,44 +275,6 @@ function Monthlyincome(props) {
                 </Button>
               </div>
             </div>
-            {/* <Form.Item label="Tháng" name="month">
-              <Select style={{ width: 120 }} placeholder={rowEdit.month}>
-                <Option value="1">Tháng 1</Option>
-                <Option value="2">Tháng 2</Option>
-                <Option value="3">Tháng 3</Option>
-                <Option value="4">Tháng 4</Option>
-                <Option value="5">Tháng 5</Option>
-                <Option value="6">Tháng 6</Option>
-                <Option value="7">Tháng 7</Option>
-                <Option value="8">Tháng 8</Option>
-                <Option value="9">Tháng 9</Option>
-                <Option value="10">Tháng 10</Option>
-                <Option value="11">Tháng 11</Option>
-                <Option value="12">Tháng 12</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Số tiền thu" name="earn">
-              <Input placeholder={rowEdit.earn} />
-            </Form.Item>
-            <Form.Item label="Chi nhánh" name="branchId">
-              <Select>
-                {branchList.map((branchid) => (
-                  <Select.Option key={branchid.id} value={branchid.id}>
-                    {branchid.location}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <div style={{ display: "flex" }}>
-              <Button type="primary" htmlType="submit">
-                CHỈNH SỬA{" "}
-              </Button>
-              <div style={{ paddingLeft: "10px" }}>
-                <Button type="default" onClick={handleCancel_1}>
-                  HỦY BỎ
-                </Button>
-              </div>
-            </div> */}
           </Form>
         </Spin>
       </Modal>
@@ -384,7 +340,6 @@ function Monthlyincome(props) {
                       name="month"
                       className="form-monthIncome"
                     >
-                      <div style={{ width: "60%" }}>
                         <Select style={{ width: 120 }} className="input-month">
                           <Option value="1">Tháng 1</Option>
                           <Option value="2">Tháng 2</Option>
@@ -399,23 +354,19 @@ function Monthlyincome(props) {
                           <Option value="11">Tháng 11</Option>
                           <Option value="12">Tháng 12</Option>
                         </Select>
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Số tiền thu"
                       name="earn"
                       className="earn-income"
                     >
-                      <div style={{ width: "90%" }}>
                         <Input className="input-earnIncome" />
-                      </div>
                     </Form.Item>
                     <Form.Item
                       label="Chi nhánh"
                       name="branchId"
                       className="branchid-2"
                     >
-                      <div style={{ width: "90%" }}>
                         <Select className="select-branchid">
                           {branchList.map((branchid) => (
                             <Select.Option
@@ -426,7 +377,6 @@ function Monthlyincome(props) {
                             </Select.Option>
                           ))}
                         </Select>
-                      </div>
                     </Form.Item>
                     <div style={{ display: "flex" }}>
                       <Button type="primary" htmlType="submit">
@@ -470,7 +420,7 @@ function Monthlyincome(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -

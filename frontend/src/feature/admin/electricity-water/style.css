@@ -60,9 +60,11 @@
 }
 .input-electricityUnitPrice{
   margin-left: 33px;
+  width:20vw;
 }
 .input-waterUnit-Price{
   margin-left: 27px;
+  width:20vw
 }
 .select-month{
   margin-left: 45px;
@@ -75,6 +77,9 @@
   margin-left: 43px;
 }
 @media only screen and (max-width: 1026px) {
+  .tagcolor{
+    width:150px;
+  }
   .form-numElectricNew{
     padding-left: 15px;
   }

@@ -60,10 +60,12 @@
   margin-left: 20px;
 }
 .input-quantity{
-  margin-left:40px
+  margin-left:40px;
+  width:22vw;
 }
 .input-unitPrice{
-  margin-left:48px
+  margin-left:48px;
+   width:22vw;
 }
 @media only screen and (max-width: 1026px) {
   .boxfacilities {
@@ -75,10 +77,12 @@
   .input-unitPrice{
     position:relative;
     left:-45px;
+    width:50vw;
   }
   .input-quantity{
     position:relative;
     left:-40px;
+    width:50vw;
   }
   .form-quantity{
     padding-left:20px;

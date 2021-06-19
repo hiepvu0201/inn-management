@@ -49,9 +49,11 @@
 }
 .input-item-report{
   margin-left:44px;
+  width:20vw;
 }
 .input-description-report{
   margin-left:55px;
+  width:20vw;
 }
 .select-status-report{
   margin-left:25px

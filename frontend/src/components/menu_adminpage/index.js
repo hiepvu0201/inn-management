@@ -92,11 +92,10 @@ class Navbar_admin extends Component {
     return (
       <nav className="menuBaradmin">
         <div className="logoadmin">
-          <Link to="/" className="acvd">
+          <Link to="/" >
             <img
               className="middle-img"
               src={Images.LOGIN}
-              // style={{ width: "auto", height: "70px", paddingTop: "10px" }}
             />
           </Link>
         </div>

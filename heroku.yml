@@ -1,7 +1,7 @@
 setup:
     addons:
-        plan: heroku-postgresql
-        as: DATABASE
+        - plan: heroku-postgresql
+          as: DATABASE
     config:
         POSTGRES_USER: zlumnebimqfmck
         POSTGRES_PASSWORD: a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3

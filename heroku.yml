@@ -2,15 +2,15 @@ setup:
     addons:
         - plan: heroku-postgresql
           as: DATABASE
-    configs:
+    config:
         POSTGRES_USER: zlumnebimqfmck
         POSTGRES_PASSWORD: a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3
 
 build:
     docker:
-        inn-management-server: /Dockerfile
-        inn-management-client: /frontend/Dockerfile
-    configs:
+        - inn-management-server: /Dockerfile
+        - inn-management-client: /frontend/Dockerfile
+    config:
         SPRING_DATASOURCE_URL: postgres://zlumnebimqfmck:a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3@ec2-3-234-22-132.compute-1.amazonaws.com:5432/d68h2c37nv6vq4
         POSTGRES_USER: zlumnebimqfmck
         POSTGRES_PASSWORD: a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3

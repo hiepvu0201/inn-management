@@ -13,4 +13,7 @@ import java.util.stream.Stream;
 public interface MonthlyIncomeRepository extends JpaRepository<MonthlyIncomes, Long> {
     @Query("select distinct mi from MonthlyIncomes mi inner join mi.branch b on b.location = :branchLocation order by mi.month ASC")
     Stream<MonthlyIncomes> findAllByBranchLocation(String branchLocation);
+
+    @Query("select distinct mi from MonthlyIncomes mi inner join mi.branch b on b.location = :branchLocation and mi.month = :month")
+    MonthlyIncomes findAllByBranchLocationAndMonth(String branchLocation, int month);
 }

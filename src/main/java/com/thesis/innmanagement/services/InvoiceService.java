@@ -55,9 +55,6 @@ public class InvoiceService {
     public Invoices findById(Long id) throws ResourceNotFoundException {
         return invoiceRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invoice not found on id: " + id));
     }
-//    public Invoices findByUserName(String userName) {
-//        return invoiceRepository.findbyUsername(userName);
-//    }
 
     private Invoices update(Invoices invoiceInfo, Long id) throws ResourceNotFoundException {
         Invoices invoice = new Invoices();
@@ -89,30 +86,45 @@ public class InvoiceService {
         String jsonRoom = ow.writeValueAsString(updateInfoRoom);
         roomService.createOrUpdate(user.getRoom().getId(), jsonRoom, null);
 
-        List<BigDecimal> listTotal = Arrays.asList(facilityTotal, electricityTotal, waterTotal, roomTotal);
-
-        BigDecimal total = calculateHelper.sumList(listTotal);
+        List<BigDecimal> listTotalUserFee = Arrays.asList(electricityTotal, waterTotal, roomTotal);
+        BigDecimal totalEarn = calculateHelper.sumList(listTotalUserFee);
+        BigDecimal totalSpend = facilityTotal;
 
         // Monthly incomes
-        MonthlyIncomes incomes = new MonthlyIncomes();
-        incomes.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
-        incomes.setBranchId(user.getRoom().getBranchId());
-        incomes.setEarn(total);
-        monthlyIncomeService.createOrUpdate(null, incomes);
+        MonthlyIncomes monthlyIncomes = monthlyIncomeService
+                .findAllByBranchLocationAndMonth(user.getRoom().getBranch().getLocation(), invoiceRequest.getPaymentDate().getMonthValue());
+        if (monthlyIncomes != null) {
+            monthlyIncomes.setEarn(monthlyIncomes.getEarn().add(totalEarn));
+            monthlyIncomeService.createOrUpdate(monthlyIncomes.getId(), monthlyIncomes);
+        }
+        else if (monthlyIncomes == null) {
+            MonthlyIncomes newMonthlyIncomes = new MonthlyIncomes();
+            newMonthlyIncomes.setBranchId(user.getRoom().getBranchId());
+            newMonthlyIncomes.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
+            newMonthlyIncomes.setEarn(totalEarn);
+        }
 
         // Monthly payments
-        MonthlyPayments payments = new MonthlyPayments();
-        payments.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
-        payments.setBranch(user.getRoom().getBranch());
-        payments.setCost(facilityTotal.add(electricityTotal).add(waterTotal));
-        monthlyPaymentService.createOrUpdate(null, payments);
+        MonthlyPayments monthlyPayments = monthlyPaymentService
+                .findAllByBranchLocationAndMonth(user.getRoom().getBranch().getLocation(), invoiceRequest.getPaymentDate().getMonthValue());
+        if (monthlyPayments != null) {
+            monthlyPayments.setCost(monthlyPayments.getCost().add(totalSpend));
+            monthlyPaymentService.createOrUpdate(monthlyPayments.getId(), monthlyPayments);
+        }
+        else if (monthlyPayments == null) {
+            MonthlyPayments payments = new MonthlyPayments();
+            payments.setMonth(invoiceRequest.getPaymentDate().getMonthValue());
+            payments.setBranchId(user.getRoom().getBranchId());
+            payments.setCost(totalSpend);
+            monthlyPaymentService.createOrUpdate(null, payments);
+        }
 
         // Invoices
         Invoices invoice = new Invoices();
         invoice.setUser(user);
         invoice.setContract(contract);
         invoice.setElectricityWater(electricityWater);
-        invoice.setTotal(total);
+        invoice.setTotal(totalEarn);
         invoice.setPaymentDate(invoiceRequest.getPaymentDate());
 
         if (id == null) {

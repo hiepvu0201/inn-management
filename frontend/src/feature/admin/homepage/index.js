@@ -46,18 +46,32 @@ import {
 import branchesApi from "./../../../api/branchesApi";
 import monthlypaymentsApi from "./../../../api/monthlypaymentApi";
 import { Link } from "react-router-dom";
-import CanvasJSReact from "../../../assets/canvasjs.react";
-
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-const { Option } = Select;
+import { Line } from "react-chartjs-2";
 
 function Homepage_admin(props) {
   const [branchesList, setIsBranchesList] = useState([]);
   const [incomeChart, setIncomeChart] = useState([]);
-  const [paymentChart, setpaymentChart] = useState([]);
+  const [paymentChart, setPaymentChart] = useState([]);
   const [totalIncome, setTotalIncome] = useState([]);
   const [totalPayment, setTotalPayment] = useState([]);
   const [totalRoom, setTotalRoom] = useState([]);
+  const backgroundColor = [
+    "rgba(255, 99, 132, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(255, 206, 86, 0.2)",
+    "rgba(75, 192, 192, 0.2)",
+    "rgba(153, 102, 255, 0.2)",
+    "rgba(255, 159, 64, 0.2)",
+  ];
+  const borderColor = [
+    "rgba(255, 99, 132, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(255, 206, 86, 1)",
+    "rgba(75, 192, 192, 1)",
+    "rgba(153, 102, 255, 1)",
+    "rgba(255, 159, 64, 1)",
+  ];
+
   const fetchBranchList = async () => {
     try {
       const response = await branchesApi.getAll();
@@ -75,12 +89,13 @@ function Homepage_admin(props) {
       const response  = await monthlyincomesApi.searchincomebybranch(ic);
       console.log("Fetch income by branch name successfully: ", response.data);
       let totalIncome = 0;
+      const incomeArr = [];
       response.data.map((each) => {
         totalIncome += each.earn;
+        incomeArr.push(each.earn);
       });
-      console.log("<<Tổng tiền nhập", totalIncome);
       setTotalIncome(totalIncome);
-      setIncomeChart(response.data);
+      setIncomeChart(incomeArr);
     } catch (error) {
       console.log("Failed to fetch list: ", error);
     }
@@ -89,7 +104,6 @@ function Homepage_admin(props) {
     try {
       const { data } = await roomsApi.searchRoombyBranch(ic);
       console.log("Fetch room by branch name successfully: ", data);
-      console.log("<<<<Abcd", data.length);
       setTotalRoom(data.length);
     } catch (error) {
       console.log("Failed to fetch list: ", error);
@@ -100,64 +114,28 @@ function Homepage_admin(props) {
       const { data } = await monthlypaymentsApi.searchpaymentsbybranch(ic);
       console.log("Fetch payments by branch name successfully: ", data);
       let totalPayment = 0;
+      const paymentArr = [];
       data.map((each) => {
         totalPayment += each.cost;
+        paymentArr.push(each.cost)
       });
-      console.log("<<Tổng tiền chi", totalPayment);
       setTotalPayment(totalPayment);
-      setpaymentChart(data);
+      setPaymentChart(paymentArr)
     } catch (error) {
       console.log("Failed to fetch list: ", error);
     }
   };
+  
   const handleChange = (value) => {
     console.log(`selected ${value}`);
     fetchSearchIncomebyBranch(value);
     fetchSearchPaymentsbyBranch(value);
     fetchSearchRoombyBranch(value);
-  };
-  const incomeArr = [];
-  const incomeChartAnalysis = incomeChart.map(i => {
-    incomeArr.push({ y: i.earn, label: i.month.toString()})
-  })
-  const paymentArr = [];
-  const paymentChartAnalysis= paymentChart.map(i=>{
-    paymentArr.push({y:i.cost,label:i.month.toString()})
-  })
-  const options_canvas = {
-    title: {
-      text: "Thống kê nguồn thu - nguồn chi",
-    },
-    axistY: {
-      title: "VNĐ",
-    },
-    animationEnabled: true,
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "spline",
-        name: "income",
-        showInLegend: true,
-        dataPoints: [
-          incomeChart.map((ic)=>(
-              {y:ic.earn,label:ic.month}
-          ))
-        ],
-      },
-      {
-        type: "spline",
-        name: "payments",
-        showInLegend: true,
-        dataPoints: [
-         paymentChart.map((ic)=>(
-              {y:ic.cost,label:ic.month}
-          ))
-        ],
-      },
-    ],
-  };
+  }
+
+  console.log("income", incomeChart);
+  console.log("payment", paymentChart);
+
   return (
     <div>
       <div
@@ -495,7 +473,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        {totalPayment - totalIncome}
+                        {totalIncome - totalPayment}
                       </div>
                     </div>
                   </div>
@@ -549,9 +527,39 @@ function Homepage_admin(props) {
                       TRẠNG THÁI PHÒNG
                     </div>
                   </div>
-                  <div>
-                    {/* <Table columns={columns} bordered className="tableac" /> */}
-                    <CanvasJSChart options={options_canvas} />
+                  <div className="chart-container">
+                    <h1>INCOME AND PAYMENT OF CURRENT BRANCH</h1>
+                    <Line
+                      data={{
+                        labels: ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+                        datasets: [
+                          {
+                            label: "Income",
+                            data: incomeChart,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                          },{
+                            label: "Payment",
+                            data: paymentChart,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                          }
+                        ]}
+                      }
+                      options={{
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true,
+                              },
+                            },
+                          ],
+                        },
+                      }}
+                    />{" "}
                   </div>
                 </div>
               </div>
@@ -1104,8 +1112,7 @@ function Homepage_admin(props) {
             paddingBottom: "40px",
           }}
         >
-          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
-          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          Thesis - Inn Management
           <Link
             to="/"
             style={{
@@ -1116,9 +1123,7 @@ function Homepage_admin(props) {
               color: "#33404c",
               paddingLeft: "10px",
             }}
-          >
-            NHÀ TRỌ CỦA CHÚNG TÔI
-          </Link>
+          ></Link>
         </div>
       </div>
     </div>

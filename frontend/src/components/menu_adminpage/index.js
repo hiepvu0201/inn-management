@@ -5,7 +5,9 @@ import { Images } from "../../config/image";
 import { Link, Router } from "react-router-dom";
 import { Drawer, Button, Menu, Dropdown } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserShield, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUserShield, faUnlockAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
+
 class Navbar_admin extends Component {
   state = {
     current: "mail",
@@ -21,6 +23,13 @@ class Navbar_admin extends Component {
       visible: false,
     });
   };
+
+  handleLogOut = () => {
+    Cookies.remove('Bearer');
+    Cookies.remove('roles');
+    Cookies.remove('userName');
+    Cookies.remove('id');
+  }
 
   render() {
     const menu = (
@@ -83,6 +92,38 @@ class Navbar_admin extends Component {
                 }}
               >
                 Đổi mật khẩu
+              </Link>
+            </div>
+          </div>
+        </Menu.Item>
+        <Menu.Item>
+          <div style={{ width: "100%", height: "auto", display: "flex" }}>
+            <div style={{ paddingTop: "7px" }}>
+              <FontAwesomeIcon size="1x" color="grey" icon={faSignOutAlt} />
+            </div>
+            <div
+              //   target="_blank"
+              //   rel="noopener noreferrer"
+              //   href="https://www.antgroup.com"
+              style={{
+                fontSize: "15px",
+                paddingLeft: "12px",
+                paddingTop: "5px",
+                fontFamily: "Open Sans,sans-serif",
+              }}
+            >
+              <Link
+                to="/login"
+                style={{
+                  fontSize: "15px",
+                  paddingLeft: "12px",
+                  paddingTop: "5px",
+                  fontFamily: "Open Sans,sans-serif",
+                  color:"black"
+                }}
+                onClick={this.handleLogOut}
+              >
+              Đăng xuất
               </Link>
             </div>
           </div>

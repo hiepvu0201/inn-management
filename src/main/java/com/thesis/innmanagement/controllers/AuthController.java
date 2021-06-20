@@ -76,7 +76,9 @@ public class AuthController {
         user.setUserName(signUpRequest.getUserName());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
-        Roles roles = roleRepository.findByName(ERole.ROLE_USER);
+        Roles role = new Roles();
+        role.setName(ERole.ROLE_USER);
+        Roles roles = roleRepository.save(role);
         user.setRoles(Arrays.asList(roles));
         userRepository.save(user);
         return ResponseEntity.ok("Đăng ký thành công!");

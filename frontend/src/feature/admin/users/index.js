@@ -1060,8 +1060,7 @@ function Users(props) {
             paddingBottom: "40px",
           }}
         >
-          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
-          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          Thesis - Inn Management
           <Link
             to="/"
             style={{
@@ -1073,7 +1072,6 @@ function Users(props) {
               paddingLeft: "10px",
             }}
           >
-            NHÀ TRỌ CỦA CHÚNG TÔI
           </Link>
         </div>
       </div>

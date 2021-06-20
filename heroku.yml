@@ -1,34 +1,19 @@
-    postgres:
-        image: 'postgres:13.3-alpine'
-        container_name: postgres
-        environment:
-            - POSTGRES_USER=compose-postgres
-            - POSTGRES_PASSWORD=compose-postgres
+setup:
+    addons:
+        - plan: heroku-postgresql
+          as: DATABASE
+    configs:
+        POSTGRES_USER: zlumnebimqfmck
+        POSTGRES_PASSWORD: a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3
 
-    app-server:
-        image: 'inn-management-server:latest'
-        build:
-            context: .
-        container_name: app-server
-        ports:
-            - "8443:8080"
-        depends_on:
-            - postgres
-        environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/d68h2c37nv6vq4
-            - SPRING_DATASOURCE_USERNAME=zlumnebimqfmck
-            - SPRING_DATASOURCE_PASSWORD=a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3
-            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+build:
+    docker:
+        inn-management-server: /Dockerfile
+        inn-management-client: /frontend/Dockerfile
+    configs:
+        SPRING_DATASOURCE_URL: postgres://zlumnebimqfmck:a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3@ec2-3-234-22-132.compute-1.amazonaws.com:5432/d68h2c37nv6vq4
+        POSTGRES_USER: zlumnebimqfmck
+        POSTGRES_PASSWORD: a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3
+        SPRING_JPA_HIBERNATE_DDL_AUTO: update
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8443
 
-    app-client:
-        image: 'inn-management-client:latest'
-        stdin_open: true
-        build:
-            context: .
-            dockerfile: Dockerfile
-            args:
-                REACT_APP_API_BASE_URL: http://127.0.0.1:8443
-        ports:
-            - "8444:3000"
-        depends_on:
-            - app-server

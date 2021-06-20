@@ -1,6 +1,3 @@
-version: '3.8'
-
-services:
     postgres:
         image: 'postgres:13.3-alpine'
         container_name: postgres
@@ -35,5 +32,3 @@ services:
             - "8444:3000"
         depends_on:
             - app-server
-volumes:
-    inn-management:

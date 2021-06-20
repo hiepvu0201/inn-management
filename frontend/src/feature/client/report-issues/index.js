@@ -167,7 +167,7 @@ function Reportissues_client() {
             </Modal>
           </div>
         </div>
-        <Row>
+        <Row style={{paddingRight:"10vw"}}>
           {reportIssuesList.map((reportissuesid) => (
             <Col lg={22} md={24} className="recad" key={reportissuesid.id}>
               <div style={{ width: "90%", height: "auto" }}>
@@ -183,7 +183,7 @@ function Reportissues_client() {
             </Col>
           ))}
         </Row>
-        <div style={{ paddingTop: "40px" }}>
+        <div style={{ paddingTop: "40vh" }}>
           <Footer />
         </div>
       </div>

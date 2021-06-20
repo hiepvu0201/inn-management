@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Input, Form,Carousel } from "antd";
+import { Row, Col, Input, Form, Carousel } from "antd";
 import Menu_client from "./../../../components/menu_client";
 import Footer_client from "./../../../components/footer_client";
 import { useLocation, useParams } from "react-router-dom";
@@ -10,41 +10,70 @@ import Room_tag from "./../../../components/room_tag";
 import roomApi from "./../../../api/roomApi";
 import branchesApi from "./../../../api/branchesApi";
 import Rest from "./../../../components/restproductbybranch";
+import usersApi from "../../../api/usersApi";
 function Detail_room() {
   //   let location = useLocation();
   let location = useLocation();
   const [roomList, setIsRoomList] = useState([]);
   const [branchesList, setIsBranchesList] = useState([]);
-  let arrpush={}
+  let arrpush = {};
+
   const fetchRoomList = async () => {
     try {
       const response = await roomApi.getAll();
       console.log("Fetch room successfully: ", response.data);
       setIsRoomList(response.data);
-      getAllRoomsByBranches(response.data)
+      getAllRoomsByBranches(response.data);
     } catch (error) {
       console.log("Failed to fetch ROOM list: ", error);
     }
   };
+
   const [statedetailed, setstatedetailed] = useState([]);
-   const getAllRoomsByBranches = (room) => {
-     console.log("branchid",location.state.branchId)
-     
+  const getAllRoomsByBranches = (room) => {
+    console.log("branchid", location.state.branchId);
+
     const newarr = room.filter(
       (rs) =>
         rs.branchId === location.state.branchId &&
         rs.roomNo !== location.state.roomNo
     );
-    let arr=[];
-   
-     setstatedetailed(newarr);
-     console.log("abcd", newarr);
-    ;
-   };
+    let arr = [];
+
+    setstatedetailed(newarr);
+    console.log("abcd", newarr);
+  };
 
   useEffect(() => {
     fetchRoomList();
+    fetchBranchById();
   }, []);
+  const [state, setstate] = useState([]);
+  const [state_us,setstate_us]=useState([])
+  const fetchBranchById = async () => {
+    try {
+      console.log("abcdd", location.state.branchId);
+      const response = await branchesApi.getbyid(location.state.branchId);
+      console.log("Fetch branch by id successfully: ", response.data);
+      setstate(response.data);
+      setstate_us(response.data)
+      getalluserbyusername(response.data.userName)
+      // setstate(response.data.userName)
+      // setstate(response.data)
+    } catch (error) {
+      console.log("Failed to fetch branch id list: ", error);
+    }
+  };
+  const getalluserbyusername = async (us) => {
+    try {
+       console.log("abcddD", state_us.userName);
+      const response = await usersApi.getalluserbyusername(us);
+      console.log("Fetch user by username successfully: ", response.data);
+      setstate_us(response.data);
+    } catch (error) {
+      console.log("Failed to fetch user by username list: ", error);
+    }
+  };
   return (
     <div style={{ width: "100%", height: "auto", backgroundColor: "#f2f6fa" }}>
       <div style={{ height: "100px" }}>
@@ -67,7 +96,7 @@ function Detail_room() {
           <Col
             lg={18}
             md={24}
-            style={{ marginLeft: "220px", paddingTop: "20px" }}
+            style={{ marginLeft: "5vw", paddingTop: "20px" }}
           >
             <div
               style={{
@@ -75,8 +104,8 @@ function Detail_room() {
                 height: "auto",
                 backgroundColor: "white",
                 borderRadius: "8px",
-                paddingBottom:"15px",
-                paddingTop:"15px"
+                paddingBottom: "15px",
+                paddingTop: "15px",
               }}
             >
               <Row>
@@ -478,7 +507,7 @@ function Detail_room() {
           <Col
             lg={18}
             md={24}
-            style={{ marginLeft: "220px", paddingTop: "20px" }}
+            style={{ marginLeft: "5vw", paddingTop: "20px" }}
           >
             <div
               style={{
@@ -486,6 +515,7 @@ function Detail_room() {
                 height: "auto",
                 backgroundColor: "white",
                 borderRadius: "8px",
+                paddingBottom:"10px"
               }}
             >
               <div
@@ -503,38 +533,88 @@ function Detail_room() {
                 LIÊN LẠC VỚI CHỦ TRỌ
               </div>
               <div>
-                <Form>
-                  <div style={{ paddingBottom: "10px" }}>
-                    <Form.Item
-                      label="Họ và tên"
-                      name="name"
-                      style={{ paddingLeft: "10px" }}
+                <div
+                  style={{ width: "100%", display: "block", height: "auto" }}
+                >
+                  <div
+                    style={{ width: "100%", height: "auto", display: "flex" }}
+                  >
+                    <div
+                      style={{
+                        width: "20%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                        paddingLeft: "15px",
+                      }}
                     >
-                      <Input style={{ width: "95%", paddingRight: "10px" }} />
-                    </Form.Item>
-                    <Form.Item
-                      label="Di động"
-                      name="phoneNo"
-                      style={{ paddingLeft: "10px" }}
+                      Họ và tên:
+                    </div>
+                    <div
+                      style={{
+                        width: "80%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                      }}
                     >
-                      <Input style={{ width: "94%", paddingRight: "10px" }} />
-                    </Form.Item>
-                    <Form.Item
-                      label="Email"
-                      name="email"
-                      style={{ paddingLeft: "10px" }}
-                    >
-                      <Input style={{ width: "92%", paddingRight: "10px" }} />
-                    </Form.Item>
-                    <Form.Item
-                      label="Ghi chú"
-                      name="note"
-                      style={{ paddingLeft: "10px" }}
-                    >
-                      <Input style={{ width: "94%", paddingRight: "10px" }} />
-                    </Form.Item>
+                      {state_us.fullName}
+                    </div>
                   </div>
-                </Form>
+
+                  <div
+                    style={{ width: "100%", height: "auto", display: "flex",paddingTop:"15px" }}
+                  >
+                    <div
+                      style={{
+                        width: "20%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                        paddingLeft: "15px",
+                      }}
+                    >
+                      Email:
+                    </div>
+                    <div
+                      style={{
+                        width: "80%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                      }}
+                    >
+                      {state_us.email}
+                    </div>
+                  </div>
+
+                   <div
+                    style={{ width: "100%", height: "auto", display: "flex",paddingTop:"15px" }}
+                  >
+                    <div
+                      style={{
+                        width: "20%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                        paddingLeft: "15px",
+                      }}
+                    >
+                      Số điện thoại:
+                    </div>
+                    <div
+                      style={{
+                        width: "80%",
+                        fontFamily: "PT Sans, sans-serif",
+                        fontSize: "20px",
+                        textAlign: "left",
+                      }}
+                    >
+                      {state_us.phoneNo}
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </Col>
@@ -546,7 +626,7 @@ function Detail_room() {
             height: "auto",
             fontSize: "30px",
             textAlign: "left",
-            paddingLeft: "220px",
+            paddingLeft: "5vw",
             paddingTop: "20px",
           }}
         >

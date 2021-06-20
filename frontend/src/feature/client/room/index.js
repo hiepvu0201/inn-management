@@ -16,7 +16,7 @@ import Room_tag from "./../../../components/room_tag";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import roomApi from "./../../../api/roomApi";
-import Footer_client from "./../../../components/footer_client";
+import Footer from "./../../../components/footer";
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -260,7 +260,7 @@ function Room_client() {
                     >
                       <Space direction="vertical">
                         <Radio value={"Quận 1"}>Quận 1</Radio>
-                        <Radio value={"Quận 3"}>Quận 3</Radio>
+                        <Radio value={"Quận 2"}>Quận 2</Radio>
                         <Radio value={"Tất cả"}>Tất cả</Radio>
                       </Space>
                     </Radio.Group>
@@ -319,7 +319,7 @@ function Room_client() {
           </Row>
         </div>
         <div style={{ paddingTop: "20px" }}>
-          <Footer_client />
+          <Footer />
         </div>
       </div>
     </div>

@@ -28,6 +28,8 @@ import {
   faFlag,
 } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
+import monthlyincomesApi from "../../../api/monthlyincomeApi";
+import roomsApi from "../../../api/roomApi";
 import {
   Table,
   Popconfirm,
@@ -42,49 +44,120 @@ import {
   Col,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
+import monthlypaymentsApi from "./../../../api/monthlypaymentApi";
 import { Link } from "react-router-dom";
+import CanvasJSReact from "../../../assets/canvasjs.react";
+
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const { Option } = Select;
 
 function Homepage_admin(props) {
-  const columns = [
-    {
-      title: "Tầng",
-      dataIndex: "numberOfStages",
-      key: "numberOfStages",
+  const [branchesList, setIsBranchesList] = useState([]);
+  const [incomeChart, setIncomeChart] = useState([]);
+  const [paymentChart, setpaymentChart] = useState([]);
+  const [totalIncome, setTotalIncome] = useState([]);
+  const [totalPayment, setTotalPayment] = useState([]);
+  const [totalRoom, setTotalRoom] = useState([]);
+  const fetchBranchList = async () => {
+    try {
+      const response = await branchesApi.getAll();
+      console.log("Fetch branches successfully: ", response.data);
+      setIsBranchesList(response.data);
+    } catch (error) {
+      console.log("Failed to fetch branches list: ", error);
+    }
+  };
+  useEffect(() => {
+    fetchBranchList();
+  }, []);
+  const fetchSearchIncomebyBranch = async (ic) => {
+    try {
+      const response  = await monthlyincomesApi.searchincomebybranch(ic);
+      console.log("Fetch income by branch name successfully: ", response.data);
+      let totalIncome = 0;
+      response.data.map((each) => {
+        totalIncome += each.earn;
+      });
+      console.log("<<Tổng tiền nhập", totalIncome);
+      setTotalIncome(totalIncome);
+      setIncomeChart(response.data);
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  const fetchSearchRoombyBranch = async (ic) => {
+    try {
+      const { data } = await roomsApi.searchRoombyBranch(ic);
+      console.log("Fetch room by branch name successfully: ", data);
+      console.log("<<<<Abcd", data.length);
+      setTotalRoom(data.length);
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  const fetchSearchPaymentsbyBranch = async (ic) => {
+    try {
+      const { data } = await monthlypaymentsApi.searchpaymentsbybranch(ic);
+      console.log("Fetch payments by branch name successfully: ", data);
+      let totalPayment = 0;
+      data.map((each) => {
+        totalPayment += each.cost;
+      });
+      console.log("<<Tổng tiền chi", totalPayment);
+      setTotalPayment(totalPayment);
+      setpaymentChart(data);
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+    fetchSearchIncomebyBranch(value);
+    fetchSearchPaymentsbyBranch(value);
+    fetchSearchRoombyBranch(value);
+  };
+  const incomeArr = [];
+  const incomeChartAnalysis = incomeChart.map(i => {
+    incomeArr.push({ y: i.earn, label: i.month.toString()})
+  })
+  const paymentArr = [];
+  const paymentChartAnalysis= paymentChart.map(i=>{
+    paymentArr.push({y:i.cost,label:i.month.toString()})
+  })
+  const options_canvas = {
+    title: {
+      text: "Thống kê nguồn thu - nguồn chi",
     },
-    {
-      title: "Phòng",
-      dataIndex: "room",
-      key: "room",
+    axistY: {
+      title: "VNĐ",
     },
-    {
-      title: "Số người",
-      dataIndex: "numberOfPeople",
-      key: "address",
+    animationEnabled: true,
+    toolTip: {
+      shared: true,
     },
-    {
-      title: "Đơn giá",
-      key: "money",
-      dataIndex: "money",
-    },
-    {
-      title: "Số ĐT",
-      key: "phoneNo",
-      dataIndex: "phoneNo",
-    },
-    {
-      title: "Điện-Nước",
-      key: "electricwater",
-      dataIndex: "electricwater",
-    },
-    {
-      title: "Thiết bị",
-      key: "facility",
-      dataIndex: "facility",
-    },
-  ];
-
-  const data = [];
+    data: [
+      {
+        type: "spline",
+        name: "income",
+        showInLegend: true,
+        dataPoints: [
+          incomeChart.map((ic)=>(
+              {y:ic.earn,label:ic.month}
+          ))
+        ],
+      },
+      {
+        type: "spline",
+        name: "payments",
+        showInLegend: true,
+        dataPoints: [
+         paymentChart.map((ic)=>(
+              {y:ic.cost,label:ic.month}
+          ))
+        ],
+      },
+    ],
+  };
   return (
     <div>
       <div
@@ -113,77 +186,7 @@ function Homepage_admin(props) {
             <div
               className="box-lower2"
               //  style={{ width: "67%", float: "right",display:"flex",paddingLeft:"20px" }}
-            >
-              <div
-                className="detailed-box-lower2"
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   justifyContent: "center",
-                //   backgroundColor: "red",
-                // }}
-              >
-                <div className="title-1">Phòng đang trống</div>
-                <div className="title-1" style={{ paddingRight: "10px" }}>
-                  (0)
-                </div>
-              </div>
-              <div
-                className="detailed2-box-lower2"
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#007c7e",
-                //   justifyContent: "center",
-                // }}
-              >
-                <div className="title-2" style={{ paddingLeft: "10px" }}>
-                  Phòng đã thuê
-                </div>
-                <div className="title-2" style={{ paddingRight: "10px" }}>
-                  (0)
-                </div>
-              </div>
-              <div
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#cccccc",
-                //   justifyContent: "center",
-                // }}
-                className="detailed3-box-lower2"
-              >
-                <div className="title-3" style={{ paddingLeft: "10px" }}>
-                  Phòng đặt cọc
-                </div>
-                <div
-                  className="title-3"
-                  style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                >
-                  (0)
-                </div>
-              </div>
-              <div
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#f4d03f",
-                //   justifyContent: "center",
-                // }}
-                className="detailed4-box-lower2"
-              >
-                <div className="title-4" style={{ paddingLeft: "10px" }}>
-                  Phòng đặt cọc
-                </div>
-                <div className="title-4" style={{ paddingLeft: "10px" }}>
-                  (0)
-                </div>
-              </div>
-            </div>
+            ></div>
             <div
               className="box-select"
               //  style={{ float: "left", width: "30%" }}
@@ -191,7 +194,15 @@ function Homepage_admin(props) {
               <Select
                 placeholder="Chọn chi nhánh"
                 className="detailed-select"
-              />
+                onChange={handleChange}
+                allowClear
+              >
+                {branchesList.map((br) => (
+                  <Select.Option key={br.location} value={br.location}>
+                    {br.location}
+                  </Select.Option>
+                ))}
+              </Select>
             </div>
           </div>
           {/* <div style={{ paddingRight:"0px", width: "20%", float: "right" }}>
@@ -269,7 +280,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalIncome}
                       </div>
                     </div>
                   </div>
@@ -342,7 +353,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalPayment}
                       </div>
                     </div>
                   </div>
@@ -377,7 +388,7 @@ function Homepage_admin(props) {
                       fontSize: "20px",
                     }}
                   >
-                    PHÒNG TRỐNG
+                    TỔNG PHÒNG
                   </div>
                   <div style={{ display: "flex" }}>
                     <div
@@ -411,7 +422,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalRoom}
                       </div>
                     </div>
                   </div>
@@ -446,7 +457,7 @@ function Homepage_admin(props) {
                       fontSize: "20px",
                     }}
                   >
-                    NỢ/PHẢI TRẢ{" "}
+                    LỢI NHUẬN
                   </div>
                   <div style={{ display: "flex" }}>
                     <div
@@ -484,7 +495,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalPayment - totalIncome}
                       </div>
                     </div>
                   </div>
@@ -539,7 +550,8 @@ function Homepage_admin(props) {
                     </div>
                   </div>
                   <div>
-                    <Table columns={columns} bordered className="tableac" />
+                    {/* <Table columns={columns} bordered className="tableac" /> */}
+                    <CanvasJSChart options={options_canvas} />
                   </div>
                 </div>
               </div>

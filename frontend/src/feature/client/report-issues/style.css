@@ -1,7 +1,7 @@
 .num-1 {
-  text-align: right;
-  width: 30%;
-  padding-right: 35px;
+  /* text-align: right; */
+ width: 30%;
+    padding-right: 55px;
 }
 .primary-btn {
   width: 40%;

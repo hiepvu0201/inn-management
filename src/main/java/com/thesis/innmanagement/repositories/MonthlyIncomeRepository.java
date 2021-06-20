@@ -11,6 +11,6 @@ import java.util.stream.Stream;
 @Repository
 @CrossOrigin(origins = "*")
 public interface MonthlyIncomeRepository extends JpaRepository<MonthlyIncomes, Long> {
-    @Query("select distinct mi from MonthlyIncomes mi inner join mi.branch b on b.location = :branchLocation")
+    @Query("select distinct mi from MonthlyIncomes mi inner join mi.branch b on b.location = :branchLocation order by mi.month ASC")
     Stream<MonthlyIncomes> findAllByBranchLocation(String branchLocation);
 }

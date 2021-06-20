@@ -181,7 +181,7 @@ function Invoiceone() {
             height: "auto",
             textAlign: "center",
             fontFamily: "PT Sans, sans-serif",
-            fontSize: "50px",
+            fontSize: "30px",
             fontWeight: "bold",
           }}
         >
@@ -197,7 +197,7 @@ function Invoiceone() {
                   style={{
                     width: "100%",
                     fontFamily: "PT Sans, sans-serif",
-                    fontSize: "30px",
+                    fontSize: "15px",
                     fontWeight: "bold",
                     paddingTop: "30px",
                   }}
@@ -205,17 +205,20 @@ function Invoiceone() {
                   Vui lòng nhấn vào nút Thêm mới hóa đơn
                 </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  paddingLeft: "640px",
-                  display: "flex",
-                  paddingTop: "25px",
-                }}
-              >
-                <Button type="primary" className="btnbtn" onClick={showModal}>
-                  Thêm mới hóa đơn
-                </Button>
+              <div style={{ width: "100%",display:"flex",justifyContent:"center" }}>
+                <div
+                  style={{
+                    width: "30%",
+                    // paddingLeft: "20vw",
+                    display: "flex",
+                    paddingTop: "25px",
+                    justifyContent:"center"
+                  }}
+                >
+                  <Button type="primary" className="btnbtn" onClick={showModal}>
+                    Thêm mới hóa đơn
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -1262,7 +1265,7 @@ function Invoiceone() {
           </>
         )}
       </div>
-      <div >
+      <div>
         <Footer />
       </div>
     </div>

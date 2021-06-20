@@ -50,7 +50,7 @@ function Rules_client() {
             ))}
           </Row>
         </div>
-        <div style={{ paddingTop: "70px" }}>
+        <div style={{ paddingTop: "25vw" }}>
           <Footer />
         </div>
       </div>

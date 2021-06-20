@@ -252,7 +252,141 @@ function Info() {
                                 onFinish={onFinish_edit}
                                 onFinishFailed={handleCancel}
                               >
+                                <div style={{ display: "flex", width: "100%" }}>
+                                  <Form.Item
+                                    label="Tài khoản"
+                                    name="userName"
+                                    value="userName"
+                                    className="form-userName"
+                                  >
+                                    <Input
+                                      className="input-userName"
+                                      placeholder={userList.userName}
+                                      disabled
+                                    />
+                                  </Form.Item>
+                                </div>
                                 <Form.Item
+                                  label="Mật khẩu"
+                                  name="password"
+                                  className="form-password"
+                                >
+                                  <Input.Password
+                                    placeholder={userList.password}
+                                    disabled
+                                    className="input-password"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Email"
+                                  name="email"
+                                  className="form-email"
+                                >
+                                  <Input
+                                    placeholder={userList.email}
+                                    className="input-email"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Họ và tên"
+                                  name="fullName"
+                                  className="form-fullName"
+                                >
+                                  <Input
+                                    placeholder={userList.fullName}
+                                    className="input-fullName"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Giới tính"
+                                  name="sex"
+                                  className="form1-sex1"
+                                >
+                                  <Radio.Group className="radio-sex">
+                                    <Radio value="female">Female</Radio>
+                                    <Radio value="male">Male</Radio>
+                                  </Radio.Group>
+                                </Form.Item>
+                                <Form.Item
+                                  label="Công việc"
+                                  name="job"
+                                  className="form-job"
+                                >
+                                  <Input
+                                    placeholder={userList.job}
+                                    className="input-job"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Địa chỉ"
+                                  name="address"
+                                  className="form-address"
+                                >
+                                  <Input
+                                    placeholder={userList.address}
+                                    className="input-address"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Số điện thoại"
+                                  name="phoneNo"
+                                  className="form-phoneno"
+                                >
+                                  <Input
+                                    placeholder={userList.phoneNo}
+                                    className="input-phoneno"
+                                  />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Quyền"
+                                  name="roleIds"
+                                  className="form-roleid"
+                                >
+                                  <Select
+                                    onChange={handleChange}
+                                    allowClear
+                                    mode="multiple"
+                                    className="select-roleid"
+                                    style={{ width: 320 }}
+                                  >
+                                    {propsselect}
+                                  </Select>
+                                </Form.Item>
+                                <Form.Item label="Hình" className="form-img-us">
+                                  <Upload
+                                    {...propsimg}
+                                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                    listType="picture"
+                                    defaultFileList={[...fileList]}
+                                    onPreview={handlePreview}
+                                    onChange={handleChangeimg}
+                                    fileList={state.fileList}
+                                  >
+                                    {state?.fileList.length < 1 && (
+                                      <Button
+                                        className="btn-updae-us"
+                                        onClick={uploadimg}
+                                        icon={<UploadOutlined />}
+                                      >
+                                        Upload
+                                      </Button>
+                                    )}
+                                  </Upload>
+                                </Form.Item>
+                                <div style={{ display: "flex" }}>
+                                  <Button type="primary" htmlType="submit">
+                                    CHỈNH SỬA{" "}
+                                  </Button>
+                                  <div style={{ paddingLeft: "10px" }}>
+                                    <Button
+                                      type="default"
+                                      onClick={handleCancel}
+                                    >
+                                      HỦY BỎ
+                                    </Button>
+                                  </div>
+                                </div>
+                                {/* <Form.Item
                                   label="Tài khoản"
                                   name="userName"
                                   value="userName"
@@ -337,7 +471,7 @@ function Info() {
                                       HỦY BỎ
                                     </Button>
                                   </div>
-                                </div>
+                                </div> */}
                               </Form>
                             </Spin>
                           </Modal>

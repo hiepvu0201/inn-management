@@ -18,9 +18,9 @@ services:
         depends_on:
             - postgres
         environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/compose-postgres
-            - SPRING_DATASOURCE_USERNAME=compose-postgres
-            - SPRING_DATASOURCE_PASSWORD=compose-postgres
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/d68h2c37nv6vq4
+            - SPRING_DATASOURCE_USERNAME=zlumnebimqfmck
+            - SPRING_DATASOURCE_PASSWORD=a8ef86884f93d03c4ab50077c702475d9cc74c66031940e4f3b3f02f2e3fc1f3
             - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
     app-client:

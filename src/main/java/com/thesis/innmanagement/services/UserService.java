@@ -30,8 +30,11 @@ public class UserService {
     @Autowired
     private RoomRepository roomRepository;
 
+//    @Autowired
+//    private FileStorageService fileStorageService;
+
     @Autowired
-    private FileStorageService fileStorageService;
+    private StorageService storageService;
 
     @Autowired
     PasswordEncoder encoder;
@@ -101,7 +104,7 @@ public class UserService {
         ObjectMapper objectMapper = new ObjectMapper();
         user = objectMapper.readValue(userReq, Users.class);
 
-        String fileName = fileStorageService.storeFile(image);
+        String fileName = storageService.uploadFile(image);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/v1/downloadFile/")
                 .path(fileName)

@@ -1,0 +1,21 @@
+cloud:
+    aws:
+        credentials:
+            access-key: AKIAVLYMSQQUGCRRGYIR
+            secret-key: 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
+        region:
+            static: us-east-1
+        stack:
+            auto: false
+
+application:
+    bucket:
+        name: inn-storage
+
+spring:
+    servlet:
+        multipart:
+            enabled: true
+            file-size-threshold: 2MB
+            max-file-size: 5MB
+            max-request-size: 10MB

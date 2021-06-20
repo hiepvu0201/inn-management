@@ -30,8 +30,11 @@ public class RoomService {
     @Autowired
     private BranchRepository branchRepository;
 
+//    @Autowired
+//    private FileStorageService fileStorageService;
+
     @Autowired
-    private FileStorageService fileStorageService;
+    private StorageService storageService;
 
     public List<Rooms> findAll() {
         return roomRepository.findAll();
@@ -48,7 +51,7 @@ public class RoomService {
         room = objectMapper.readValue(roomReq, Rooms.class);
 
         if (images != null) {
-            String fileName = fileStorageService.storeFile(images);
+            String fileName = storageService.uploadFile(images);
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/api/v1/downloadFile/")
                     .path(fileName)

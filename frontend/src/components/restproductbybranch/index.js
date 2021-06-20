@@ -42,6 +42,7 @@ function Rest(props) {
                       height: "auto",
                       width: "100%",
                       borderRadius: "8px",
+                     display: "inline-block", overflow: "hidden"
                     }}
                   />
                 </div>
@@ -57,7 +58,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -67,7 +68,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -88,7 +89,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -98,7 +99,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -119,7 +120,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -129,7 +130,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -150,7 +151,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -161,7 +162,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -182,7 +183,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -192,7 +193,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -214,7 +215,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -224,7 +225,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -244,7 +245,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -254,7 +255,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       fontFamily: "PT Sans, sans-serif",
                       textAlign: "left",
                     }}
@@ -274,7 +275,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -284,7 +285,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -304,7 +305,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -314,7 +315,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -334,7 +335,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "45%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}
@@ -344,7 +345,7 @@ function Rest(props) {
                   <div
                     style={{
                       width: "55%",
-                      fontSize: "20px",
+                      fontSize: "14px",
                       textAlign: "left",
                       fontFamily: "PT Sans, sans-serif",
                     }}

@@ -137,6 +137,13 @@
   width: 100vw;
   height: auto;
 }
+.chart-container {
+  width: 90%;
+  padding-left: 10%;
+}
+h1 {
+  text-align: center;
+}
 @media only screen and (max-width: 1026px) {
   .field-1{
     width: 80vw;

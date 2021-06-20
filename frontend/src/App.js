@@ -51,6 +51,8 @@ function App() {
   const Userlayout =()=>{
      return (
        <Switch>
+        {Cookies.get("Bearer") ? (
+          <>
          <Route path="/detailroom">
            <Detail_room />
          </Route>
@@ -78,12 +80,18 @@ function App() {
          <Route exact path="/">
            <Home />
          </Route>
+         </>
+         ) : (
+          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
+        )}
        </Switch>
      );
   }
   const Adminlayout = () => {
      return (
        <Switch>
+          {Cookies.get("Bearer") ? (
+            <>
          <Route path="/branches">
            <Branches />
          </Route>
@@ -132,6 +140,10 @@ function App() {
          <Route exact path="/">
            <Homepage_admin />
          </Route>
+         </>
+         ) : (
+          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
+        )}
        </Switch>
      );
        

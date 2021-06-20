@@ -541,15 +541,15 @@ function Rooms(props) {
               name="branchId"
               className="form-branches"
             >
-              <div style={{ width: "70%" }}>
-                <Select onChange={handleChange} className="select-branches">
+                <Select onChange={handleChange} className="select-branches"
+                style={{width:320}}
+                >
                   {branchesList.map((branchesid) => (
                     <Select.Option key={branchesid.id} value={branchesid.id}>
                       {branchesid.location}
                     </Select.Option>
                   ))}
                 </Select>
-              </div>
             </Form.Item>
             <Form.Item
               label="Thiết bị"
@@ -561,7 +561,7 @@ function Rooms(props) {
                   allowClear
                   className="select-facility"
                   mode="multiple"
-                  style={{width:320}}
+                  style={{width:220}}
                 >
                   {propsselect}
                 </Select>
@@ -865,8 +865,7 @@ function Rooms(props) {
             paddingBottom: "30vh",
           }}
         >
-          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
-          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          Thesis - Inn Management
           <Link
             to="/"
             style={{
@@ -878,7 +877,6 @@ function Rooms(props) {
               paddingLeft: "10px",
             }}
           >
-            NHÀ TRỌ CỦA CHÚNG TÔI
           </Link>
         </div>
       </div>

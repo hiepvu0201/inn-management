@@ -6,6 +6,10 @@ const branchesApi = {
     const url = "/api/v1/branches/";
     return axiosClient.get(url);
   },
+  getbyid(params){
+    const url=`/api/v1/branches/${params}`;
+    return axiosClient.get(url);
+  },
   createbranch(branch) {
     const url = "/api/v1/branches/";
     return axiosClient.post(url, branch,{

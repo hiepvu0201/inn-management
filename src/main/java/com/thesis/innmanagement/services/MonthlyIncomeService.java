@@ -57,6 +57,10 @@ public class MonthlyIncomeService {
         }
     }
 
+    public MonthlyIncomes findAllByBranchLocationAndMonth(String branchLocation, int month) {
+        return monthlyIncomeRepository.findAllByBranchLocationAndMonth(branchLocation, month);
+    }
+
     public Map<String, Boolean> delete(Long id) throws ResourceNotFoundException {
         MonthlyIncomes monthlyIncomes = monthlyIncomeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Monthly income not found on: " + id));

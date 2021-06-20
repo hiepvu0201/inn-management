@@ -52,27 +52,27 @@
 }
 @media only screen and (max-width: 1026px) {
     .admin{
-        width:35%;
+        width:40%;
     }
     .prop-admin{
-        width: 65%;
+        width: 60%;
     }
     .status{
-        width:35%;
+        width:40%;
     }
     .prop-status{
-        width:65%;
+        width:60%;
     }
     .title2{
-        width:35%;
+        width:40%;
     }
     .prop-title{
-        width: 65%;
+        width: 60%;
     }
     .description{
-        width: 35%;
+        width: 40%;
     }
     .prop-description{
-        width:  65%;
+        width:  60%;
     }
 }

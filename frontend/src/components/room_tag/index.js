@@ -27,7 +27,7 @@ function Room_tag(props) {
             <div>
               <img
                 src={`${props.images}`}
-                style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+                style={{ width: "100%", height: "140px", borderRadius: "8px", display: "inline-block", overflow: "hidden" }}
               />
             </div>
             <div
@@ -42,7 +42,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -54,7 +54,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
@@ -72,7 +72,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -84,7 +84,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
@@ -102,7 +102,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -114,7 +114,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                 }}
               >
@@ -132,7 +132,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -144,7 +144,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -163,7 +163,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -175,7 +175,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -194,7 +194,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -206,7 +206,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -225,7 +225,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -237,7 +237,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -256,7 +256,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -268,7 +268,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -287,7 +287,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -299,7 +299,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}
@@ -318,7 +318,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   fontWeight: "bold",
                   color: "#3fcc68",
@@ -330,7 +330,7 @@ function Room_tag(props) {
               <div
                 style={{
                   width: "50%",
-                  fontSize: "17px",
+                  fontSize: "13px",
                   fontFamily: "PT Sans, sans-serif",
                   paddingRight: "10px",
                 }}

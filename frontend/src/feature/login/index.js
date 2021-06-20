@@ -88,7 +88,7 @@ const onFinish = (values) => {
                 </div>
               </Form.Item>
 
-              <div className="forgetPW">Quên mật khẩu</div>
+              {/* <div className="forgetPW">Quên mật khẩu</div> */}
               <div
                 style={{
                   width: "100%",
@@ -137,8 +137,8 @@ const onFinish = (values) => {
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản,
-                <Link  to="/register">ĐĂNG KÝ NGAY</Link>
+                tài khoản? 
+                <Link to="/register">ĐĂNG KÝ NGAY</Link>
               </div>
             </div>
           </div>

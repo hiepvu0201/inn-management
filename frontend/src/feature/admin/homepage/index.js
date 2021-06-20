@@ -28,6 +28,8 @@ import {
   faFlag,
 } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "./../../../components/menu_adminpage";
+import monthlyincomesApi from "../../../api/monthlyincomeApi";
+import roomsApi from "../../../api/roomApi";
 import {
   Table,
   Popconfirm,
@@ -42,49 +44,98 @@ import {
   Col,
 } from "antd";
 import branchesApi from "./../../../api/branchesApi";
+import monthlypaymentsApi from "./../../../api/monthlypaymentApi";
 import { Link } from "react-router-dom";
-const { Option } = Select;
+import { Line } from "react-chartjs-2";
 
 function Homepage_admin(props) {
-  const columns = [
-    {
-      title: "Tầng",
-      dataIndex: "numberOfStages",
-      key: "numberOfStages",
-    },
-    {
-      title: "Phòng",
-      dataIndex: "room",
-      key: "room",
-    },
-    {
-      title: "Số người",
-      dataIndex: "numberOfPeople",
-      key: "address",
-    },
-    {
-      title: "Đơn giá",
-      key: "money",
-      dataIndex: "money",
-    },
-    {
-      title: "Số ĐT",
-      key: "phoneNo",
-      dataIndex: "phoneNo",
-    },
-    {
-      title: "Điện-Nước",
-      key: "electricwater",
-      dataIndex: "electricwater",
-    },
-    {
-      title: "Thiết bị",
-      key: "facility",
-      dataIndex: "facility",
-    },
+  const [branchesList, setIsBranchesList] = useState([]);
+  const [incomeChart, setIncomeChart] = useState([]);
+  const [paymentChart, setPaymentChart] = useState([]);
+  const [totalIncome, setTotalIncome] = useState([]);
+  const [totalPayment, setTotalPayment] = useState([]);
+  const [totalRoom, setTotalRoom] = useState([]);
+  const backgroundColor = [
+    "rgba(255, 99, 132, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(255, 206, 86, 0.2)",
+    "rgba(75, 192, 192, 0.2)",
+    "rgba(153, 102, 255, 0.2)",
+    "rgba(255, 159, 64, 0.2)",
+  ];
+  const borderColor = [
+    "rgba(255, 99, 132, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(255, 206, 86, 1)",
+    "rgba(75, 192, 192, 1)",
+    "rgba(153, 102, 255, 1)",
+    "rgba(255, 159, 64, 1)",
   ];
 
-  const data = [];
+  const fetchBranchList = async () => {
+    try {
+      const response = await branchesApi.getAll();
+      console.log("Fetch branches successfully: ", response.data);
+      setIsBranchesList(response.data);
+    } catch (error) {
+      console.log("Failed to fetch branches list: ", error);
+    }
+  };
+  useEffect(() => {
+    fetchBranchList();
+  }, []);
+  const fetchSearchIncomebyBranch = async (ic) => {
+    try {
+      const response  = await monthlyincomesApi.searchincomebybranch(ic);
+      console.log("Fetch income by branch name successfully: ", response.data);
+      let totalIncome = 0;
+      const incomeArr = [];
+      response.data.map((each) => {
+        totalIncome += each.earn;
+        incomeArr.push(each.earn);
+      });
+      setTotalIncome(totalIncome);
+      setIncomeChart(incomeArr);
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  const fetchSearchRoombyBranch = async (ic) => {
+    try {
+      const { data } = await roomsApi.searchRoombyBranch(ic);
+      console.log("Fetch room by branch name successfully: ", data);
+      setTotalRoom(data.length);
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  const fetchSearchPaymentsbyBranch = async (ic) => {
+    try {
+      const { data } = await monthlypaymentsApi.searchpaymentsbybranch(ic);
+      console.log("Fetch payments by branch name successfully: ", data);
+      let totalPayment = 0;
+      const paymentArr = [];
+      data.map((each) => {
+        totalPayment += each.cost;
+        paymentArr.push(each.cost)
+      });
+      setTotalPayment(totalPayment);
+      setPaymentChart(paymentArr)
+    } catch (error) {
+      console.log("Failed to fetch list: ", error);
+    }
+  };
+  
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+    fetchSearchIncomebyBranch(value);
+    fetchSearchPaymentsbyBranch(value);
+    fetchSearchRoombyBranch(value);
+  }
+
+  console.log("income", incomeChart);
+  console.log("payment", paymentChart);
+
   return (
     <div>
       <div
@@ -113,77 +164,7 @@ function Homepage_admin(props) {
             <div
               className="box-lower2"
               //  style={{ width: "67%", float: "right",display:"flex",paddingLeft:"20px" }}
-            >
-              <div
-                className="detailed-box-lower2"
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   justifyContent: "center",
-                //   backgroundColor: "red",
-                // }}
-              >
-                <div className="title-1">Phòng đang trống</div>
-                <div className="title-1" style={{ paddingRight: "10px" }}>
-                  (0)
-                </div>
-              </div>
-              <div
-                className="detailed2-box-lower2"
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#007c7e",
-                //   justifyContent: "center",
-                // }}
-              >
-                <div className="title-2" style={{ paddingLeft: "10px" }}>
-                  Phòng đã thuê
-                </div>
-                <div className="title-2" style={{ paddingRight: "10px" }}>
-                  (0)
-                </div>
-              </div>
-              <div
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#cccccc",
-                //   justifyContent: "center",
-                // }}
-                className="detailed3-box-lower2"
-              >
-                <div className="title-3" style={{ paddingLeft: "10px" }}>
-                  Phòng đặt cọc
-                </div>
-                <div
-                  className="title-3"
-                  style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                >
-                  (0)
-                </div>
-              </div>
-              <div
-                // style={{
-                //   Width: "80%",
-                //   height: "auto",
-                //   display: "flex",
-                //   backgroundColor: "#f4d03f",
-                //   justifyContent: "center",
-                // }}
-                className="detailed4-box-lower2"
-              >
-                <div className="title-4" style={{ paddingLeft: "10px" }}>
-                  Phòng đặt cọc
-                </div>
-                <div className="title-4" style={{ paddingLeft: "10px" }}>
-                  (0)
-                </div>
-              </div>
-            </div>
+            ></div>
             <div
               className="box-select"
               //  style={{ float: "left", width: "30%" }}
@@ -191,7 +172,15 @@ function Homepage_admin(props) {
               <Select
                 placeholder="Chọn chi nhánh"
                 className="detailed-select"
-              />
+                onChange={handleChange}
+                allowClear
+              >
+                {branchesList.map((br) => (
+                  <Select.Option key={br.location} value={br.location}>
+                    {br.location}
+                  </Select.Option>
+                ))}
+              </Select>
             </div>
           </div>
           {/* <div style={{ paddingRight:"0px", width: "20%", float: "right" }}>
@@ -269,7 +258,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalIncome}
                       </div>
                     </div>
                   </div>
@@ -342,7 +331,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalPayment}
                       </div>
                     </div>
                   </div>
@@ -377,7 +366,7 @@ function Homepage_admin(props) {
                       fontSize: "20px",
                     }}
                   >
-                    PHÒNG TRỐNG
+                    TỔNG PHÒNG
                   </div>
                   <div style={{ display: "flex" }}>
                     <div
@@ -411,7 +400,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalRoom}
                       </div>
                     </div>
                   </div>
@@ -446,7 +435,7 @@ function Homepage_admin(props) {
                       fontSize: "20px",
                     }}
                   >
-                    NỢ/PHẢI TRẢ{" "}
+                    LỢI NHUẬN
                   </div>
                   <div style={{ display: "flex" }}>
                     <div
@@ -484,7 +473,7 @@ function Homepage_admin(props) {
                           fontSize: "15px",
                         }}
                       >
-                        0
+                        {totalIncome - totalPayment}
                       </div>
                     </div>
                   </div>
@@ -538,8 +527,39 @@ function Homepage_admin(props) {
                       TRẠNG THÁI PHÒNG
                     </div>
                   </div>
-                  <div>
-                    <Table columns={columns} bordered className="tableac" />
+                  <div className="chart-container">
+                    <h1>INCOME AND PAYMENT OF CURRENT BRANCH</h1>
+                    <Line
+                      data={{
+                        labels: ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+                        datasets: [
+                          {
+                            label: "Income",
+                            data: incomeChart,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                          },{
+                            label: "Payment",
+                            data: paymentChart,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                          }
+                        ]}
+                      }
+                      options={{
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true,
+                              },
+                            },
+                          ],
+                        },
+                      }}
+                    />{" "}
                   </div>
                 </div>
               </div>
@@ -1092,8 +1112,7 @@ function Homepage_admin(props) {
             paddingBottom: "40px",
           }}
         >
-          © Copyright 2016 CHUOICANHO - GIẢI PHÁP QUẢN LÝ NHÀ TRỌ&CĂN HỘ 4.0 -
-          SỐ 1 THỊ TRƯỜNG. All rights reserved. Thiết kế bởi
+          Thesis - Inn Management
           <Link
             to="/"
             style={{
@@ -1104,9 +1123,7 @@ function Homepage_admin(props) {
               color: "#33404c",
               paddingLeft: "10px",
             }}
-          >
-            NHÀ TRỌ CỦA CHÚNG TÔI
-          </Link>
+          ></Link>
         </div>
       </div>
     </div>

@@ -35,6 +35,10 @@ public class MonthlyPaymentService {
         return monthlyPaymentRepository.findAllByBranchLocation(branchLocation).collect(Collectors.toList());
     }
 
+    public MonthlyPayments findAllByBranchLocationAndMonth(String branchLocation, int month) {
+        return monthlyPaymentRepository.findAllByBranchLocationAndMonth(branchLocation, month);
+    }
+
     public MonthlyPayments createOrUpdate(Long id, MonthlyPayments monthlyPayment) throws ResourceNotFoundException {
         if (monthlyPayment.getBranchId() != null) {
             monthlyPayment.setBranch(branchRepository.findById(monthlyPayment.getBranchId())

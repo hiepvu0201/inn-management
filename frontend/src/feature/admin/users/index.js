@@ -1057,7 +1057,7 @@ function Users(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "40px",
+            paddingBottom: "40vh",
           }}
         >
           Thesis - Inn Management

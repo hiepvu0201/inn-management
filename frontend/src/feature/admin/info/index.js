@@ -164,7 +164,7 @@ function Info() {
                   <Row className="row-all">
                     <Col lg={8} md={24} className="colLeft">
                       <div className="innercolLeft">
-                        <div className="imgAva">
+                        <div className="imgAva2">
                           <img src={userList.images} className="detailedimg" />
                         </div>
                         <div className="fullName">{userList.fullName}</div>

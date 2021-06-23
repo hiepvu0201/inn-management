@@ -637,7 +637,7 @@ function Branches(props) {
             marginTop: "60px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "180px",
+            paddingBottom: "40vh",
           }}
         >
           Thesis - Inn Management

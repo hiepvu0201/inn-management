@@ -240,12 +240,12 @@ function Rooms(props) {
       dataIndex: "position",
       key: "position",
     },
-    // {
-    //   title: "Chi nhánh",
-    //   dataIndex: "branch",
-    //   key: "branch",
-    //   render: (branch) => <div>{branch.location}</div>,
-    // },
+    {
+      title: "Chi nhánh",
+      dataIndex: "branch",
+      key: "branch",
+      render: (branch) => <div>{branch.location}</div>,
+    },
     {
       title: "Thiết bị",
       dataIndex: "facilities",
@@ -862,7 +862,7 @@ function Rooms(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "30vh",
+            paddingBottom: "40vh",
           }}
         >
           Thesis - Inn Management

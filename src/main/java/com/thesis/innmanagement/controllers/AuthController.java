@@ -76,10 +76,14 @@ public class AuthController {
         user.setUserName(signUpRequest.getUserName());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
-        Roles role = new Roles();
-        role.setName(ERole.ROLE_USER);
-        Roles roles = roleRepository.save(role);
-        user.setRoles(Arrays.asList(roles));
+        Roles role = roleRepository.findByName(ERole.ROLE_USER);
+        if (role == null) {
+            Roles roles = new Roles();
+            role.setName(ERole.ROLE_USER);
+            roleRepository.save(roles);
+            user.setRoles(Arrays.asList(roles));
+        }
+        else user.setRoles(Arrays.asList(role));
         userRepository.save(user);
         return ResponseEntity.ok("Đăng ký thành công!");
     }

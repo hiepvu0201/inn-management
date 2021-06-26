@@ -173,40 +173,40 @@ function Contract(props) {
       key: "signDate",
       render: (signDate) => <Tag color="cyan">{signDate}</Tag>,
     },
-    // {
-    //   title: "Ngày kết thúc hợp đồng",
-    //   dataIndex: "tenant",
-    //   key: "tenant",
-    //    render: (tenant) => (
-    //     <>
-    //       {tenant.checkoutDate === null ? (
-    //         <Tag color="#f07728">VẪN CÒN THỜI HẠN HỢP ĐỒNG</Tag>
-    //       ) : (
-    //         <Tag color="#26326c">{tenant.checkoutDate}</Tag>
-    //       )}
-    //     </>
-    //   ),
-    // },
+    {
+      title: "Ngày kết thúc hợp đồng",
+      dataIndex: "tenant",
+      key: "tenant",
+       render: (tenant) => (
+        <>
+          {tenant.checkoutDate === null ? (
+            <Tag color="#f07728">NULL</Tag>
+          ) : (
+            <Tag color="#26326c">{tenant.checkoutDate}</Tag>
+          )}
+        </>
+      ),
+    },
     {
       title: "Số năm",
       dataIndex: "year",
       key: "year",
     },
-    // {
-    //   title: "Số phòng",
-    //   dataIndex: "numberOfRooms",
-    //   key: "numberOfRooms",
-    // },
-    // {
-    //   title: "Số lầu",
-    //   dataIndex: "numberOfStage",
-    //   key: "numberOfStage",
-    // },
-    // {
-    //   title: "Khuyến mãi",
-    //   dataIndex: "voucher",
-    //   key: "voucher",
-    // },
+    {
+      title: "Số phòng",
+      dataIndex: "numberOfRooms",
+      key: "numberOfRooms",
+    },
+    {
+      title: "Số lầu",
+      dataIndex: "numberOfStage",
+      key: "numberOfStage",
+    },
+    {
+      title: "Khuyến mãi",
+      dataIndex: "voucher",
+      key: "voucher",
+    },
     {
       title: "Chủ trọ",
       dataIndex: "owner",

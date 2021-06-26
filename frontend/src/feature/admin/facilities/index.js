@@ -447,7 +447,7 @@ function Facilities(props) {
             marginTop: "40px",
             textAlign: "left",
             paddingLeft: "50px",
-            paddingBottom: "30vh",
+            paddingBottom: "40vh",
           }}
         >
           Thesis - Inn Management

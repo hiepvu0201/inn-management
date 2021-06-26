@@ -40,7 +40,7 @@ function Notification_client() {
         <div>
           <Row className="row-acv" >
             {notificationList.map((notifi) => (
-              <Col lg={23} key={notifi.id}>
+              <Col lg={20} md={24} key={notifi.id}>
                 <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
                   <Notification_tag
                     id={notifi.id}

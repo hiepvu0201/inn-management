@@ -23,8 +23,9 @@ import {
   Form,
   Select,
   DatePicker,
+  Tag,
 } from "antd";
-import {  LocalDateTime } from "@js-joda/core";
+import { LocalDateTime } from "@js-joda/core";
 import { Link } from "react-router-dom";
 const { Option } = Select;
 function Invoices() {
@@ -83,11 +84,11 @@ function Invoices() {
     };
     fetchCreateInvoices();
   };
-  // 
+  //
   const downloadSingleFiles = async (record) => {
     try {
       const data = {
-        id:record.id,
+        id: record.id,
       };
       console.log("<<<id", data);
       const urldown = `http://localhost:8080/api/v1/invoices/${data.id}/download/`;
@@ -110,13 +111,9 @@ function Invoices() {
   };
   const fetchDeleteElectricityWater = async (record) => {
     try {
-      const response = await invoicesApi.delete(
-        record.id
-      );
+      const response = await invoicesApi.delete(record.id);
       console.log("Delete invoices successfully", response);
-      setInvoicesList(
-        invoicesList.filter((item) => item.id !== record.id)
-      );
+      setInvoicesList(invoicesList.filter((item) => item.id !== record.id));
     } catch (error) {
       console.log("Failed to delete invoices list", error);
     }
@@ -162,27 +159,49 @@ function Invoices() {
       key: "total",
     },
     {
-      title: "Ngày tạo",
+      title: "Ngày tạo hợp đồng",
       dataIndex: "contract",
       key: "contract",
-      render: (contract) => <div>{contract.signDate}</div>,
+      // render: (contract) => <div>{contract.signDate}</div>,
+      render: (contract) =>
+        contract.signDate === null ? (
+          <Tag color="#668595">NULL</Tag>
+        ) : (
+          <Tag color="#21363c">{contract.signDate}</Tag>
+        ),
     },
     {
       title: "Ngày thanh toán",
       dataIndex: "paymentDate",
       key: "paymentDate",
+      render: (paymentDate) =>
+        paymentDate === null ? (
+          <Tag color="#99cfaf">NULL</Tag>
+        ) : (
+          <Tag color="#91ac57">{paymentDate}</Tag>
+        ),
     },
     {
       title: "Ngày nhận phòng",
       dataIndex: "user",
       key: "user",
-      render: (user) => <div>{user.checkinDate}</div>,
+      render: (user) =>
+        user.checkinDate === null ? (
+          <Tag color="#7b3136">NULL</Tag>
+        ) : (
+          <Tag color="#9580be">{user.checkinDate}</Tag>
+        ),
     },
     {
       title: "Ngày trả phòng",
       dataIndex: "user",
       key: "user",
-      render: (user) => <div>{user.checkoutDate}</div>,
+      render: (user) =>
+        user.checkoutDate === null ? (
+          <Tag color="#e56a27">NULL</Tag>
+        ) : (
+          <Tag color="#cb7582">{user.checkoutDate}</Tag>
+        ),
     },
     {
       title: "",
@@ -324,23 +343,34 @@ function Invoices() {
                       onFinish={onFinish}
                       // onFinishFailed={onFinishFailed}
                     >
-                      <Form.Item label="Khách trọ" name="userName" className="item-us-invoices">
-                          <Select onChange={handleChange} className="select-us-invoices">
-                            {usersList.map((ownerid) =>
-                              ownerid.roles[0].name === "ROLE_USER" ? (
-                                <Select.Option
-                                  key={ownerid.userName}
-                                  value={ownerid.userName}
-                                >
-                                  {ownerid.userName}
-                                </Select.Option>
-                              ) : (
-                                <>Null</>
-                              )
-                            )}
-                          </Select>
+                      <Form.Item
+                        label="Khách trọ"
+                        name="userName"
+                        className="item-us-invoices"
+                      >
+                        <Select
+                          onChange={handleChange}
+                          className="select-us-invoices"
+                        >
+                          {usersList.map((ownerid) =>
+                            ownerid.roles[0].name === "ROLE_USER" ? (
+                              <Select.Option
+                                key={ownerid.userName}
+                                value={ownerid.userName}
+                              >
+                                {ownerid.userName}
+                              </Select.Option>
+                            ) : (
+                              <>Null</>
+                            )
+                          )}
+                        </Select>
                       </Form.Item>
-                      <Form.Item label="Khách trọ" name="paymentDate" className="item-paymentDate">
+                      <Form.Item
+                        label="Khách trọ"
+                        name="paymentDate"
+                        className="item-paymentDate"
+                      >
                         <DatePicker
                           showTime
                           format="YYYY-MM-DD HH:mm:ss"
@@ -403,8 +433,7 @@ function Invoices() {
               color: "#33404c",
               paddingLeft: "10px",
             }}
-          >
-          </Link>
+          ></Link>
         </div>
       </div>
     </div>

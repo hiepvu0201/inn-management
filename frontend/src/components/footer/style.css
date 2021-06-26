@@ -52,21 +52,22 @@
     right:-5px;
 }
 .content-title {
-  width: 60%;
+  width: 65%;
   height: auto;
   font-size: 20px;
   font-weight: bold;
   position: absolute;
   padding-right: 120px;
   font-family: "PT Sans", sans-serif;
-  
+  padding-left:15px;
 }
 .content-title2 {
-  width: 60%;
+  width: 65%;
   height: auto;
   font-size: 20px;
   font-weight: bold;
   position: absolute;
+  padding-left: 15px;
   padding-right: 120px;
   font-family: "PT Sans", sans-serif;
   
@@ -96,10 +97,12 @@
   /* style={{ color: "#007c7e", paddingRight: "20px" }} */
   color:#007c7e;
   padding-right: 20px;
+  padding-left: 10px;
 }
 .email{
    color:#007c7e;
   padding-right: 20px;
+  padding-left: 10px;
 }
 .display-col-2{
   display: block;

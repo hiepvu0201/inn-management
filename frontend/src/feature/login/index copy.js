@@ -60,8 +60,15 @@ const onFinish = (values) => {
                   { required: true, message: "Xin vui lòng nhập userName!" },
                 ]}
               >
-                
-                  <Input placeholder="Nhập username" className="input-username-login" />
+                <div
+                  style={{
+                    width: "90%",
+                    paddingLeft: "20px",
+                    paddingTop: "10px",
+                  }}
+                >
+                  <Input placeholder="Nhập username" />
+                </div>
               </Form.Item>
               <div className="username">Mật khẩu</div>
               <Form.Item
@@ -70,8 +77,15 @@ const onFinish = (values) => {
                   { required: true, message: "Xin vui lòng nhập mật khẩu!" },
                 ]}
               >
-               
-                  <Input.Password className="input-password-login" placeholder="Nhập mật khẩu" />
+                <div
+                  style={{
+                    width: "90%",
+                    paddingLeft: "20px",
+                    paddingTop: "10px",
+                  }}
+                >
+                  <Input.Password placeholder="Nhập mật khẩu" />
+                </div>
               </Form.Item>
 
               {/* <div className="forgetPW">Quên mật khẩu</div> */}

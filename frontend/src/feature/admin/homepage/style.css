@@ -145,6 +145,9 @@ h1 {
   text-align: center;
 }
 @media only screen and (max-width: 1026px) {
+  .box-1{
+    padding-left: 10vw;
+  }
   .field-1{
     width: 80vw;
   }
@@ -160,10 +163,10 @@ h1 {
     height:100px;
   }
   .box-lower {
-    display: block;
+    display: flex;
   }
   .title {
-   width: 40%;
+   width: 60%;
     padding-left: 45px;
   }
   .box-lower2 {

@@ -136,31 +136,31 @@ function ElectricityWaters(props) {
       key: "room",
       render: (room) => <div>{room.roomNo}</div>,
     },
-    // {
-    //   title: "Số điện cũ",
-    //   dataIndex: "numElectricOld",
-    //   key: "numElectricOld",
-    // },
-    // {
-    //   title: "Số điện mới",
-    //   dataIndex: "numElectricNew",
-    //   key: "numElectricNew",
-    // },
+    {
+      title: "Số điện cũ",
+      dataIndex: "numElectricOld",
+      key: "numElectricOld",
+    },
+    {
+      title: "Số điện mới",
+      dataIndex: "numElectricNew",
+      key: "numElectricNew",
+    },
     {
       title: "Số điện tiêu thụ",
       dataIndex: "numElectricConsump",
       key: "numElectricConsump",
     },
-    // {
-    //   title: "Số nước cũ",
-    //   dataIndex: "numWaterOld",
-    //   key: "numWaterOld",
-    // },
-    // {
-    //   title: "Số nước mới",
-    //   dataIndex: "numWaterNew",
-    //   key: "numWaterNew",
-    // },
+    {
+      title: "Số nước cũ",
+      dataIndex: "numWaterOld",
+      key: "numWaterOld",
+    },
+    {
+      title: "Số nước mới",
+      dataIndex: "numWaterNew",
+      key: "numWaterNew",
+    },
     {
       title: "Số nước tiêu thụ",
       dataIndex: "numElectricConsump",
@@ -172,16 +172,16 @@ function ElectricityWaters(props) {
       key: "month",
       render: (month) => <Tag color="cyan">{month}</Tag>,
     },
-    // {
-    //   title: "Giá điện",
-    //   dataIndex: "waterUnitPrice",
-    //   key: "waterUnitPrice",
-    // },
-    // {
-    //   title: "Giá nước",
-    //   dataIndex: "electricityUnitPrice",
-    //   key: "electricityUnitPrice",
-    // },
+    {
+      title: "Giá điện",
+      dataIndex: "waterUnitPrice",
+      key: "waterUnitPrice",
+    },
+    {
+      title: "Giá nước",
+      dataIndex: "electricityUnitPrice",
+      key: "electricityUnitPrice",
+    },
     {
       title: "Tổng giá điện",
       dataIndex: "totalElectricity",
@@ -200,9 +200,9 @@ function ElectricityWaters(props) {
       render: (checked) => (
         <>
           {checked === false ? (
-            <div>CHƯA THANH TOÁN</div>
+            <Tag color="#31a273">CHƯA THANH TOÁN</Tag>
           ) : (
-            <div>ĐÃ THANH TOÁN</div>
+            <Tag color="#ce560a">ĐÃ THANH TOÁN</Tag>
           )}
         </>
       ),

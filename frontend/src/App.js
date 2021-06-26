@@ -42,6 +42,7 @@ import Invoiceone from './feature/client/invoiceone'
 import Info from './feature/admin/info'
 import Password from './feature/admin/password'
 import PasswordUs from './feature/client/passworduser'
+import Map from './feature/map'
 function App() {
   const loading = (
     <div className="pt-3 text-center">
@@ -76,6 +77,9 @@ function App() {
          </Route>
          <Route path="/changepassUs">
            <PasswordUs/>
+         </Route>
+         <Route path="/map">
+           <Map/>
          </Route>
          <Route exact path="/">
            <Home />

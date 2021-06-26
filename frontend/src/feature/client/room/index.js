@@ -22,6 +22,8 @@ import {
   faTwitterSquare,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import {Link} from "react-router-dom"
+import {faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons"
 import './style.css'
 const { Search } = Input;
 function Room_client() {
@@ -161,7 +163,7 @@ function Room_client() {
                       <div className="title-room-user">
                         <div
                           style={{
-                            width: "80%",
+                            width: "50%",
                             height: "auto",
                             color: "#59d49a",
                             fontFamily: "PT Sans, sans-serif",
@@ -171,6 +173,37 @@ function Room_client() {
                           }}
                         >
                           NHÀ TRỌ
+                        </div>
+                        <div
+                          style={{
+                            width: "50%",
+                            height: "auto",
+                            textAlign: "right",
+                            display: "flex",
+                            fontFamily: "PT Sans, sans-serif",
+                            fontSize: "20px",
+                            paddingLeft: "80px",
+                            color: "#59d49a",
+                          }}
+                        >
+                          <Link
+                            to="/map"
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              textAlign: "right",
+                              display: "flex",
+                              fontFamily: "PT Sans, sans-serif",
+                              fontSize: "20px",
+                              paddingLeft: "60px",
+                              color: "#59d49a",
+                            }}
+                          >
+                            <div style={{ paddingRight: "5px" }}>
+                              <FontAwesomeIcon icon={faMapMarkerAlt} />
+                            </div>
+                            Tìm theo bản đồ
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -256,10 +289,7 @@ function Room_client() {
                       </Space>
                     </Radio.Group>
                     <div>
-                      <img
-                        src={Images.IMG_ROOM_1}
-                      className="img-right"
-                      />
+                      <img src={Images.IMG_ROOM_1} className="img-right" />
                     </div>
                   </div>
                 </Col>

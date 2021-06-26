@@ -387,45 +387,57 @@ function Users(props) {
       dataIndex: "userName",
       key: "userName",
     },
-    // {
-    //   title: "Email",
-    //   dataIndex: "email",
-    //   key: "email",
-    // },
-    // {
-    //   title: "Họ và tên",
-    //   dataIndex: "fullName",
-    //   key: "fullName",
-    // },
-    // {
-    //   title: "Số điện thoại",
-    //   dataIndex: "phoneNo",
-    //   key: "phoneNo",
-    // },
-    // {
-    //   title: "Giới tính",
-    //   dataIndex: "sex",
-    //   key: "sex",
-    // },
-    // {
-    //   title: "Địa chỉ",
-    //   dataIndex: "address",
-    //   key: "address",
-    // },
-    // {
-    //   title: "Công việc",
-    //   dataIndex: "job",
-    //   key: "job",
-    // },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Họ và tên",
+      dataIndex: "fullName",
+      key: "fullName",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "phoneNo",
+      key: "phoneNo",
+    },
+    {
+      title: "Giới tính",
+      dataIndex: "sex",
+      key: "sex",
+    },
+    {
+      title: "Địa chỉ",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Công việc",
+      dataIndex: "job",
+      key: "job",
+    },
     {
       title: "Ngày checkin",
       dataIndex: "checkinDate",
       key: "checkinDate",
+      render: (checkinDate) =>
+        checkinDate === null ? (
+          <Tag color="#80efb2">NULL</Tag>
+        ) : (
+          <Tag color="#52b4f4">{checkinDate}</Tag>
+        ),
     },
     {
       title: "Ngày checkout",
       dataIndex: "checkoutDate",
       key: "checkoutDate",
+      render: (checkoutDate) =>
+        checkoutDate === null ? (
+          <Tag color="#e28f20">NULL</Tag>
+        ) : (
+          <Tag color="#fca304">{checkoutDate}</Tag>
+        ),
     },
     {
       title: "Hình ảnh",
@@ -439,7 +451,6 @@ function Users(props) {
       dataIndex: "roles",
       key: "roles",
       render: (roles) => <div>{roles[0].name}</div>,
-      // render: (facilities) => <div>{facilities.map((us) => us.name)+ " "}</div>,
     },
     {
       title: "Phòng",
@@ -448,9 +459,9 @@ function Users(props) {
       render: (room) => (
         <>
           {room === null ? (
-            <div>NULL</div>
+            <Tag color="#5e4f3e">NULL</Tag>
           ) : (
-            <div>{room.roomNo}</div>
+            <Tag color="#e1df07">{room.roomNo}</Tag>
           )}
         </>
       ),
@@ -801,7 +812,6 @@ function Users(props) {
                 <Select
                   onChange={handleChange}
                   allowClear
-                  mode="multiple"
                   className="select-roleid"
                   style={{width:320}}
                 >
@@ -993,7 +1003,6 @@ function Users(props) {
                           <Select
                             onChange={handleChange}
                             allowClear
-                            mode="multiple"
                             className="select-roleid"
                             style={{width:320}}
                           >

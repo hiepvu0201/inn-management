@@ -195,7 +195,7 @@ function Room_client() {
                               display: "flex",
                               fontFamily: "PT Sans, sans-serif",
                               fontSize: "20px",
-                              paddingLeft: "60px",
+                              paddingLeft: "120px",
                               color: "#59d49a",
                             }}
                           >

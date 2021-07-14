@@ -102,7 +102,7 @@ function Invoiceone() {
         id: fakestate.id,
       };
       console.log("<<<id", data);
-      const urldown = `http://localhost:8080/api/v1/invoices/${data.id}/download/`;
+      const urldown = `https://inn-server.herokuapp.com/api/v1/invoices/${data.id}/download/`;
       window.open(urldown, "_blank");
       // setdownsingle(response.data);
     } catch (error) {
@@ -142,14 +142,14 @@ function Invoiceone() {
           // onFinishFailed={onFinishFailed}
         >
           <Form.Item label="Khách trọ" name="userName" className="form-create">
-            <Select placeholder={userList.userName} disabled>
+            <Select placeholder={userList.userName} disabled className="select-invoice">
               <Select.Option key={userList.userName} value={userList.userName}>
                 {userList.userName}
               </Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
-            label="Khách trọ"
+            label="Ngày tạo hóa đơn"
             name="paymentDate"
             className="form-create"
           >
@@ -1026,6 +1026,7 @@ function Invoiceone() {
                             paddingTop: "10px",
                             float: "right",
                             color: "white",
+                            paddingBottom:"5%"
                           }}
                         >
                           {fakestate.total}đ
@@ -1039,7 +1040,7 @@ function Invoiceone() {
           </>
         )}
       </div>
-      <div>
+      <div style={{ paddingTop: "15vh", backgroundColor: "#f2f6fa" }}>
         <Footer />
       </div>
     </div>

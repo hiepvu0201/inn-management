@@ -138,6 +138,8 @@ public class UserService {
         user.setRoom(room);
         user.setRoomId(room.getId());
         user.setCheckinDate(checkInDate);
+        room.setCheckedIn(true);
+        roomRepository.save(room);
         userRepository.save(user);
         return "Check in success! Have a good day!";
     }
@@ -145,11 +147,13 @@ public class UserService {
     public String checkOut(String userName, LocalDateTime checkOutDate) {
         try {
             Users user = userRepository.findByUserName(userName);
+            Rooms room = user.getRoom();
+            room.setCheckedIn(false);
+            roomRepository.save(room);
             user.setRoom(null);
             user.setRoomId(null);
             user.setCheckoutDate(checkOutDate);
             userRepository.save(user);
-
             Contracts contract = contractRepository.findByTenantUserName(userName, checkOutDate.getYear());
             if (contract != null) {
                 contract.setEndDate(checkOutDate);

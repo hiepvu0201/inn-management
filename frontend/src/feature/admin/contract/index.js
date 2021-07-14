@@ -28,6 +28,7 @@ import {
   Radio,
 } from "antd";
 import usersApi from "../../../api/usersApi";
+import Footer from "./../../../components/footer";
 import contractsApi from "../../../api/contractApi";
 import { LocalDateTime } from "@js-joda/core";
 import {Link} from 'react-router-dom';
@@ -631,23 +632,10 @@ function Contract(props) {
             fontSize: "12px",
             marginTop: "40px",
             textAlign: "left",
-            paddingLeft: "50px",
-            paddingBottom: "40vh",
+            paddingTop:"15vh"
           }}
         >
-          Thesis - Inn Management
-          <Link
-            to="/"
-            style={{
-              width: "100%",
-              height: "auto",
-              fontFamily: "PT Sans, sans-serif",
-              fontSize: "12px",
-              color: "#33404c",
-              paddingLeft: "10px",
-            }}
-          >
-          </Link>
+          <Footer/>
         </div>
       </div>
     </div>

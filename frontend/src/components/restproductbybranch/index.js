@@ -147,7 +147,7 @@ function Rest(props) {
                       fontFamily: "PT Sans, sans-serif",
                     }}
                   >
-                    Vị trí:
+                   Số l:
                     {/* {props.position} */}
                   </div>
                   <div
@@ -159,7 +159,7 @@ function Rest(props) {
                     }}
                   >
                     {/* 001 */}
-                    {props.position}
+                    {props.floors}
                   </div>
                 </div>
                 {/* Loại phòng */}
@@ -358,7 +358,7 @@ function Rest(props) {
                       state: {
                         id: props.id,
                         roomNo: props.roomNo,
-                        position: props.position,
+                        floors: props.floors,
                         facilities: props.facilities,
                         branches: props.branches,
                         images: props.images,

@@ -162,6 +162,9 @@
     padding-top: 25px;
     justify-content: center;
 }
+.select-invoice{
+  padding-left:52px
+}
 @media only screen and (max-width: 1026px) {
   .detailed-invoice {
     text-align: left;
@@ -242,5 +245,8 @@
   }
   .form-create{
     margin-left: 5vw;
+  }
+  .select-invoice{
+    padding-left:50px
   }
 }

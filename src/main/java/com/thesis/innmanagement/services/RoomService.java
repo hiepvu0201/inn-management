@@ -6,6 +6,7 @@ import com.thesis.innmanagement.exceptions.ResourceNotFoundException;
 import com.thesis.innmanagement.entities.Rooms;
 import com.thesis.innmanagement.repositories.BranchRepository;
 import com.thesis.innmanagement.repositories.FacilityRepository;
+import com.thesis.innmanagement.repositories.FloorRepository;
 import com.thesis.innmanagement.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class RoomService {
 
     @Autowired
     private BranchRepository branchRepository;
+
+
+    @Autowired
+    private FloorRepository floorRepository;
 
 //    @Autowired
 //    private FileStorageService fileStorageService;
@@ -67,6 +72,11 @@ public class RoomService {
             room.setBranch(branchRepository.findById(room.getBranchId())
                     .orElseThrow(() -> new ResourceNotFoundException("Branch not found on id: " + branchId)));
         }
+        if(room.getFloorId() !=null){
+            long floorId=room.getFloorId();
+            room.setFloor(floorRepository.findById(room.getFloorId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Floor not found on id: " + floorId)));
+        }
         room.setPriceByFirstHour(room.getPriceByFirstHour());
         room.setPriceByNextHour(room.getPriceByNextHour());
         room.setPriceByDay(room.getPriceByDay());
@@ -80,11 +90,13 @@ public class RoomService {
             Rooms roomUpdate = roomRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("This room not found on:" + id));
             roomUpdate.setRoomNo(room.getRoomNo());
-            roomUpdate.setPosition(room.getPosition());
+//            roomUpdate.setPosition(room.getPosition());
             roomUpdate.setFacilities(room.getFacilities());
             roomUpdate.setFacilityIds(room.getFacilityIds());
             roomUpdate.setBranch(room.getBranch());
             roomUpdate.setBranchId(room.getBranchId());
+            roomUpdate.setFloor(room.getFloor());
+            roomUpdate.setFloorId(room.getFloorId());
             roomUpdate.setImages(room.getImages());
             roomUpdate.setPriceByFirstHour(room.getPriceByFirstHour());
             roomUpdate.setPriceByNextHour(room.getPriceByNextHour());
@@ -92,6 +104,7 @@ public class RoomService {
             roomUpdate.setPriceByWeek(room.getPriceByWeek());
             roomUpdate.setPriceByMonth(room.getPriceByMonth());
             roomUpdate.setTotal(room.getTotal());
+            roomUpdate.setCheckedIn(room.getCheckedIn());
             roomRepository.save(roomUpdate);
             return roomUpdate;
         }

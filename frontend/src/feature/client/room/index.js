@@ -16,6 +16,7 @@ import Room_tag from "./../../../components/room_tag";
 import { Images } from "./../../../config/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import roomApi from "./../../../api/roomApi";
+import branchesApi from "./../../../api/branchesApi"
 import Footer from "./../../../components/footer";
 import {
   faFacebookSquare,
@@ -30,18 +31,29 @@ function Room_client() {
   const [value, setValue] = React.useState(1);
   const [fakedataa, setfakedata] = useState([])
   const [roomList, setIsRoomList] = useState([]);
-  useEffect(() => {
-    const fetchRoomList = async () => {
+  const [branchesList, setbranchesList] = useState([]);
+   const fetchRoomList = async () => {
+     try {
+       const response = await roomApi.getAll();
+       console.log("Fetch room successfully: ", response.data);
+       setIsRoomList(response.data);
+       setstate(response.data);
+       setfakedata(response.data);
+     } catch (error) {
+       console.log("Failed to fetch ROOM list: ", error);
+     }
+   };
+    const fetchBranchesList = async () => {
       try {
-        const response = await roomApi.getAll();
-        console.log("Fetch room successfully: ", response.data);
-        setIsRoomList(response.data);
-        setstate(response.data);
-        setfakedata(response.data);
+        const response = await branchesApi.getAll();
+        console.log("Fetch branches successfully: ", response.data);
+        setbranchesList(response.data)
       } catch (error) {
         console.log("Failed to fetch ROOM list: ", error);
       }
     };
+  useEffect(() => {
+    fetchBranchesList();
     fetchRoomList();
   }, []);
   const [state, setstate] = useState([]);
@@ -223,7 +235,7 @@ function Room_client() {
                             <Room_tag
                               id={roomId.id}
                               roomNo={roomId.roomNo}
-                              position={roomId.position}
+                              floors={roomId.floor.numberOfFloors}
                               facilities={
                                 roomId.facilities.map((us) => us.name) + " "
                               }
@@ -264,11 +276,12 @@ function Room_client() {
                       className="css-radio"
                       size="medium"
                     >
-                      <Space direction="vertical">
-                        <Radio value={"Quận 1"}>Quận 1</Radio>
-                        <Radio value={"Quận 2"}>Quận 2</Radio>
-                        <Radio value={"Tất cả"}>Tất cả</Radio>
-                      </Space>
+                      {branchesList.map((us) => (
+                        <Radio key={us.location} value={us.location}>
+                          {us.description}
+                        </Radio>
+                      ))}
+                      <Radio value={"Tất cả"}>Tất cả</Radio>
                     </Radio.Group>
                     <div className="content-search-roomtype">
                       Tìm kiếm theo loại phòng
@@ -280,13 +293,13 @@ function Room_client() {
                       size="medium"
                       onChange={onChange_1}
                     >
-                      <Space direction="vertical">
-                        <Radio value={"ROOM_BY_WEEK"}>ROOM_BY_WEEK</Radio>
-                        <Radio value={"ROOM_BY_HOUR"}>ROOM_BY_HOUR</Radio>
-                        <Radio value={"ROOM_BY_DAY"}>ROOM_BY_DAY</Radio>
-                        <Radio value={"ROOM_BY_MONTH"}>ROOM_BY_MONTH</Radio>
-                        <Radio value={"Tất cả 2"}>Tất cả</Radio>
-                      </Space>
+                      {/* <Space direction="vertical"> */}
+                      <Radio value={"ROOM_BY_WEEK"}>ROOM_BY_WEEK</Radio>
+                      <Radio value={"ROOM_BY_HOUR"}>ROOM_BY_HOUR</Radio>
+                      <Radio value={"ROOM_BY_DAY"}>ROOM_BY_DAY</Radio>
+                      <Radio value={"ROOM_BY_MONTH"}>ROOM_BY_MONTH</Radio>
+                      <Radio value={"Tất cả 2"}>Tất cả</Radio>
+                      {/* </Space> */}
                     </Radio.Group>
                     <div>
                       <img src={Images.IMG_ROOM_1} className="img-right" />

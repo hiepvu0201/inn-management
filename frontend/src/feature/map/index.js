@@ -19,54 +19,50 @@ function Map() {
   const [state, setstate] = useState([]);
   const [branchesList, setbranchesList] = useState([]);
   const [state1, setstate1] = useState([]);
+  const [showPopup, togglePopup] = React.useState(false);
   const [viewport, setViewport] = useState({
     width: 870,
     height: 500,
     longitude: 106.68044,
     latitude: 10.76743,
-    zoom: 13,
+    zoom: 8,
   });
   const [arr_maker, setarr_maker] = useState([]);
   const [roomList, setIsRoomList] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [propRoom, setpropRoom] = useState([]);
+  const [click, setClick] = useState([])
   // };
   const [arrloca, setarrloca] = useState([{ latitude: 0, longitude: 0 }]);
   const [newState, setnewState] = useState([{ latitude: 0, longitude: 0 }]);
-  const fetchRoomList = async () => {
+  const fetchBranchesList = async () => {
     try {
       var arr = [];
       var arr_new_location = [];
-      const response = await roomApi.getAll();
-      console.log("Fetch room successfully: ", response.data);
+      const response = await branchesApi.getAll();
+      console.log("Fetch  branches successfully: ", response.data);
+      setbranchesList(response.data);
       setIsRoomList(response.data);
-      console.log("<<<", response.data.position);
-      response.data.map((ro) => arr.push(ro.position.replace(/\s/g, "%20")));
-      // arr = roomList.map((us) => us.position.replace(/\s/g, "%20"));
-
-      // console.log("<<<mangdiachi",arr);
+      console.log("<<<", response.data.location);
+      response.data.map((ro) => arr.push(ro.location.replace(/\s/g, "%20")));
       console.log("<<<<arr replace", arr);
-      fetchGetMap(arr);
+      fetchGetMap(arr, response.data);
       setnewState(arr);
       setstate1(response.data);
     } catch (error) {
       console.log("Failed to fetch ROOM list: ", error);
     }
   };
-  const fetchBranchesList = async () => {
-    try {
-      const response = await branchesApi.getAll();
-      console.log("Fetch branches successfully: ", response.data);
-      setbranchesList(response.data);
-    } catch (error) {
-      console.log("Failed to fetch branches list: ", error);
-    }
-  };
+  
   useEffect(() => {
-    fetchRoomList();
     fetchBranchesList();
   }, []);
-  const fetchGetMap = async (arr) => {
+  const [popuploca, setpopuploca] = useState({
+    latitude: 10.86195853994233,
+    longitude: 106.74362380706191,
+    
+  });
+  const fetchGetMap = async (arr,brList) => {
     try {
       var arr_new = [];
       var object = {};
@@ -89,7 +85,26 @@ function Map() {
         arr_compar.push(object);
         console.log("arr after convert", arr_compar);
         setarr_maker([...arr_compar]);
-        setarrloca([...arr_new]);
+        setarrloca([...arr_compar]);
+        var arrlats = [];
+        console.log("dnf", brList);
+        brList.map((ust) => {
+          {
+            const result = arr_compar.filter(
+              (nc) => nc.position === ust.location
+            );
+            arrlats.push({ branchesList: ust, location: result });
+          }
+        });
+        console.log("branchesList", arrlats);
+        setClick(arrlats);
+        // console.log("aaaa",branchesList)
+        // var arr=[];
+        // arr = arr_maker.filter((us) => us.longitude === popuploca.longitude);
+        // console.log("<<<1234",arr)
+        // var arr1=[]
+        //  arr1 = roomList.filter((us1) => us1.position === arr[0].position);
+        //  console.log("<<arr position related", arr1);
       });
     } catch (error) {
       console.log("Failed to map list: ", error);
@@ -97,119 +112,28 @@ function Map() {
   };
 
   const showModal = (values) => {
-    setIsModalVisible(true);
     console.log("<<value click", values);
+    var arr_point=[]
+    
     // console.log("<<<",newState)
     var arr = [];
     var arr1 = [];
     arr = arr_maker.filter((us) => us.longitude === values.longitude);
-    console.log("<<arr_modal", arr[0].position);
-    arr1 = roomList.filter((us1) => us1.position === arr[0].position);
+    console.log("<<arr_modal", arr);
+    arr1 = roomList.filter((us1) => us1.location === arr[0].position);
     console.log("<<arr position related", arr1);
     setpropRoom(arr1);
-    console.log("<<<state_proprooom", propRoom);
-    // setnewState([...arrloca]);
-    // console.log("<<<",newState)
   };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-  const onSelect = (value) => {
-    console.log(`selected ${value}`);
-    const arr_quan = [
-      {
-        address: "Quận 1",
-        latitude: 10.762823813610641,
-        longitude: 106.68514444282711,
-      },
-      {
-        address: "Quận 2",
-        latitude: 10.768717798652936,
-        longitude: 106.80020290640755,
-      },
-      {
-        address: "Quận 3",
-        latitude: 10.781439722451006,
-        longitude: 106.67717565519177,
-      },
-      {
-        address: "Quận 4",
-        latitude: 10.760548085818716,
-        longitude: 106.7123582088122,
-      },
-      {
-        address: "Quận 5",
-        latitude: 10.755923832764305,
-        longitude: 106.6554026802511,
-      },
-    ];
-
-    console.log("<<<Searchquan", arr_quan);
-    //  setValue(e.target.value);
-    if (value === "Tất cả") {
-      setIsRoomList(state1);
-    } else {
-      const arrfilter = arr_quan.filter((aq) => aq.address === value);
-      console.log(">>Duy Mbapbe", arrfilter);
-      if (arrfilter.length > 0) {
-        setViewport({
-          width: 870,
-          height: 500,
-          longitude: arrfilter[0].longitude,
-          latitude: arrfilter[0].latitude,
-          zoom: 12,
-        });
-      }
-      const SearchRoombyBranch_ = async () => {
-        try {
-          const response = await roomApi.searchRoombyBranch(value);
-          console.log("Fetch room by branch successfully: ", response.data);
-          setIsRoomList(response.data);
-        } catch (error) {
-          console.log("Failed to fetch room by ranch: ", error);
-        }
-      };
-      SearchRoombyBranch_();
-    }
-  };
+  const show =(values)=>{
+    console.log("value click",values)
+    // console.log("value lat lng compared",arr_compar)
+    var arr_last=[]
+    arr_last=arr_maker.filter((us)=>us.position===values)
+    console.log("<<<Arrr_last",arr_last)
+    
+  }
   return (
     <div>
-      <Modal
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null}
-      >
-        {propRoom.map((us) => (
-          <div
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-            }}
-          >
-            <div className="title-modal1">Hình ảnh:</div>
-            <div className="title-modal">
-              <img className="image-ro2" src={`${us.images}`} />
-            </div>
-            <div className="title-modal1">Số phòng:</div>
-            <div className="title-modal">{us.roomNo}</div>
-            <div className="title-modal1">Chi nhánh:</div>
-            <div className="title-modal">{us.branch.location}</div>
-            <div className="title-modal1">Thiết bị:</div>
-            <div className="title-modal">{us.facilities[0].name}</div>
-            <div className="title-modal1">Vị trí:</div>
-            <div className="title-modal">{us.position}</div>
-            <div className="title-modal1">Loại phòng:</div>
-            <div className="title-modal">{us.roomType}</div>
-          </div>
-        ))}
-      </Modal>
       {/* <div>{arrloca[0].latitude}</div> */}
       <div>
         <Menu_client />
@@ -225,28 +149,12 @@ function Map() {
         }}
       >
         <div className="sum-inner">
-          <div className="title-map">HỆ THỐNG CÁC PHÒNG TRỌ CHÍNH THỨC</div>
+          <div className="title-map">
+            HỆ THỐNG CÁC CHI NHÁNH CHÍNH THỨC CỦA KHU TRỌ
+          </div>
           <div className="inner-black-box">
             <div className="first-black-box">
-              <div className="content-col-black">
-                TÌM KIẾM PHÒNG THEO CHI NHÁNH
-              </div>
-              <div
-                style={{
-                  width: "50%",
-                  height: "auto",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Select allowClear onSelect={onSelect} className="select-only">
-                  {branchesList.map((us) => (
-                    <Option key={us.location} value={us.location}>
-                      {us.location}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
+              TÌM KIẾM CHI NHÁNH CỦA PHÒNG TRỌ
             </div>
             <div className="second-block-black">KHU PHÒNG TRỌ</div>
           </div>
@@ -258,26 +166,47 @@ function Map() {
                   <FontAwesomeIcon icon={faChevronLeft} />
                 </div>
               </div>
-              <Row className="row-room">
-                {roomList.map((room) => (
-                  <Col lg={24} className="col-product">
-                    <div style={{ width: "50%", height: "auto" }}>
-                      <div>
-                        <img className="image-ro" src={`${room.images}`} />
-                      </div>
+              <Row className="row-room12">
+                {click.map((room) => (
+                  <Col
+                    lg={24}
+                    className="col-product"
+                    onClick={() => {
+                      setViewport({
+                        width: 870,
+                        height: 500,
+                        longitude: room.location[0].longitude,
+                        latitude: room.location[0].latitude,
+                        zoom: 16,
+                      });
+                      show(room.location);
+                    }}
+                    style={{cursor:"pointer"}}
+                  >
+                    <div style={{ fontWeight: "bold", fontSize: "15px" }}>
+                      Tên chi nhánh:
                     </div>
-                    <div className="col-right-content">
-                      <div className="content-detailed-room">{room.roomNo}</div>
-                      <div className="content-detailed-room">
-                        {room.position}
-                      </div>
-                      <div className="content-detailed-room">
+                    <div className="content-detailed-room">
+                      {room.branchesList.description}
+                    </div>
+                    <div style={{ fontWeight: "bold", fontSize: "15px" }}>
+                      Vị trí chi nhánh:
+                    </div>
+                    <div className="content-detailed-room">
+                      {room.branchesList.location}
+                    </div>
+                    <div style={{ fontWeight: "bold", fontSize: "15px" }}>
+                      Chủ trọ:
+                    </div>
+                    <div className="content-detailed-room">
+                      {room.branchesList.userName}
+                    </div>
+                    {/* <div className="content-detailed-room">
                         {room.facilities.map}
                       </div>
                       <div className="content-detailed-room">
                         {room.roomType}
-                      </div>
-                    </div>
+                      </div> */}
                   </Col>
                 ))}
               </Row>
@@ -300,10 +229,198 @@ function Map() {
                       icon={faMapMarkerAlt}
                       color="#ff9326"
                       size="3x"
-                      onClick={() => showModal(arl)}
+                      onClick={() => {
+                        setpopuploca({
+                          latitude: arl.latitude,
+                          longitude: arl.longitude,
+                        });
+                        togglePopup(true);
+                        showModal(arl);
+                      }}
                     />
                   </Marker>
                 ))}
+                {showPopup && (
+                  <Popup
+                    latitude={popuploca.latitude}
+                    longitude={popuploca.longitude}
+                    closeButton={true}
+                    closeOnClick={true}
+                    onClose={() => togglePopup(false)}
+                    anchor="top-right"
+                  >
+                    <div>
+                      {propRoom.map((us) => (
+                        <div
+                          style={{
+                            paddingTop: "10px",
+                            // paddingRight: "40px",
+                            display: "block",
+                            fontSize: "15px",
+                            fontFamily: "NunitoSanRegular",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Tên chi nhánh:
+                            </div>
+                            <div
+                              style={{
+                                width: "100%",
+                                textAlign: "left",
+                                height: "auto",
+                              }}
+                            >
+                              {us.description}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              width: "100",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Vị trí:
+                            </div>
+                            <div style={{ width: "100%", height: "auto" }}>
+                              {us.location}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              width: "100",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Số lầu:
+                            </div>
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                              }}
+                            >
+                              {us.numberOfStages}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              width: "100",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Số phòng:
+                            </div>
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                              }}
+                            >
+                              {us.numberOfRooms}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              width: "100",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Thiết bị:
+                            </div>
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                              }}
+                            >
+                              {us.facilities[0].name}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              width: "100",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Chủ trọ:
+                            </div>
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                textAlign: "left",
+                              }}
+                            >
+                              {us.userName}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Popup>
+                )}
               </ReactMapGL>
             </div>
           </div>

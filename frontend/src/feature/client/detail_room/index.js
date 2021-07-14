@@ -82,7 +82,7 @@ function Detail_room() {
       </div>
       <div>
         <div className="detailed-title">
-          Chi tiết phòng {location.state.branches}
+          Chi tiết phòng {location.state.roomNo}
         </div>
         <Row style={{ height: "auto" }}>
           <Col lg={18} md={24} className="col-detailed-title">
@@ -147,9 +147,9 @@ function Detail_room() {
                           size="1x"
                         />
                       </div>
-                      <div className="title-detailed-room">Vị trí:</div>
+                      <div className="title-detailed-room">Số lầu:</div>
                       <div className="input-detailed-room">
-                        {location.state.position}
+                        {location.state.floors}
                       </div>
                     </div>
                     <div className="padding-rol">
@@ -360,7 +360,7 @@ function Detail_room() {
                     branches={detailid.branch.location}
                     facilities={detailid.facilities.map((us) => us.name) + " "}
                     roomNo={detailid.roomNo}
-                    position={detailid.position}
+                    floors={detailid.floor.numberOfFloors}
                     roomType={detailid.roomType}
                     images={detailid.images}
                     price1={detailid.priceByFirstHour}

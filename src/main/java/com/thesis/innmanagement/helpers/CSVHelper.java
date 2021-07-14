@@ -1,6 +1,9 @@
 package com.thesis.innmanagement.helpers;
 
 import com.thesis.innmanagement.entities.Invoices;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.QuoteMode;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -9,10 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.csv.QuoteMode;
 
 @Service
 public class CSVHelper {
@@ -36,7 +35,7 @@ public class CSVHelper {
                         String.valueOf(invoice.getUser().getDownPayment()),
                         invoice.getUser().getRoom().getRoomNo(),
                         invoice.getUser().getRoom().getImages(),
-                        invoice.getUser().getRoom().getPosition(),
+//                        invoice.getUser().getRoom().getPosition(),
                         String.valueOf(invoice.getUser().getRoom().getLastPaymentDate()),
                         String.valueOf(invoice.getUser().getRoom().getRoomType()),
                         String.valueOf(invoice.getUser().getRoom().getPriceByFirstHour()),

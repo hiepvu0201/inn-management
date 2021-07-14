@@ -61,8 +61,8 @@ function Room_tag(props) {
                 textAlign: "left",
               }}
             >
-              <div className="title-room-tag">Vị trí:</div>
-              <div className="content-room-tag">{props.position}</div>
+              <div className="title-room-tag">Số lầu:</div>
+              <div className="content-room-tag">{props.floors}</div>
             </div>
             <div
               style={{
@@ -154,7 +154,7 @@ function Room_tag(props) {
                   state: {
                     id: props.id,
                     roomNo: props.roomNo,
-                    position: props.position,
+                    floors: props.floors,
                     facilities: props.facilities,
                     branches: props.branches,
                     images: props.images,

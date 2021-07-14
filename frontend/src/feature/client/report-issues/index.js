@@ -189,7 +189,7 @@ function Reportissues_client() {
             </Col>
           ))}
         </Row>
-        <div style={{ paddingTop: "40vh" }}>
+        <div style={{ paddingTop: "45vh" }}>
           <Footer />
         </div>
       </div>

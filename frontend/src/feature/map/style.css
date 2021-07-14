@@ -19,12 +19,14 @@
   width: 70%;
   height: auto;
   background-color: rgb(60, 60, 60);
-  font-family: NunitoSanRegular;
-  font-size: 14px;
+  font-family: "NunitoSanRegular";
+  font-size: 25px;
   color: white;
   display: flex;
   padding-top: 20px;
   padding-bottom: 20px;
+  text-align: center;
+  padding-left:15vw
 }
 .select-only {
   width: 320px;
@@ -33,12 +35,12 @@
   width: 30%;
   height: auto;
   background-color: rgb(60, 60, 60);
-  font-family: NunitoSanRegular;
-  font-size: 18px;
+  font-family: "NunitoSanRegular";
+  font-size: 25px;
   color: white;
   display: flex;
-  padding-top: 30px;
   padding-left: 7vw;
+  padding-top:16px;
   margin-left: 10px;
 }
 .overflow-product {
@@ -51,7 +53,7 @@
 .title-room {
   width: 90%;
   height: auto;
-  font-family: NunitoSanExtraBold;
+  font-family: "NunitoSanExtraBold";
   font-size: 16px;
   font-weight: bold;
   padding-top: 10px;
@@ -64,9 +66,9 @@
 .col-product {
   width: 100%;
   height: auto;
-  display: flex;
+  display: block;
   text-align: left;
-  font-size: 11px;
+  font-size: 15px;
   font-family: "NunitoSanExtraBold";
   border-bottom: 1px dotted;
   padding-bottom: 25px;
@@ -94,7 +96,7 @@
   padding-left: 10px;
   padding-top: 10px;
 }
-.row-room {
+.row-room12 {
   padding-top: 20px;
   width: 94%;
   height: auto;
@@ -155,7 +157,7 @@
   }
   .second-block-black {
     width: 100%;
-    padding-left: 20px;
+    padding-left: 45vw;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-left: initial;
@@ -186,7 +188,7 @@
     font-family: "NunitoSanExtraBold";
     padding-left:20px;
   }
-  .row-room {
+  .row-room12 {
     width: 100%;
   }
   .content-detailed-room {

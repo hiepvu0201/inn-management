@@ -29,6 +29,7 @@
   height: auto;
   font-size: 25px;
   font-weight: bold;
+  padding-top: 10px;
 }
 .css-radio {
   display: block;
@@ -51,7 +52,7 @@
   }
   .antd-row-room {
     width: 100vw;
-    margin-left: 9vw;
+    margin-left: 5vw;
     padding-top: 20px;
   }
   .search-by-branch {

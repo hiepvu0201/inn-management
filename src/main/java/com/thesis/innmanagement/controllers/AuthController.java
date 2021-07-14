@@ -79,7 +79,7 @@ public class AuthController {
         Roles role = roleRepository.findByName(ERole.ROLE_USER);
         if (role == null) {
             Roles roles = new Roles();
-            role.setName(ERole.ROLE_USER);
+            roles.setName(ERole.ROLE_USER);
             roleRepository.save(roles);
             user.setRoles(Arrays.asList(roles));
         }

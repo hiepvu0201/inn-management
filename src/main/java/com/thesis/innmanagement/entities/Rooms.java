@@ -21,7 +21,14 @@ public class Rooms extends BasicEntity {
 
     private String roomNo;
 
-    private String position;
+//    private String position;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "floor")
+    private Floors floor;
+
+    private Long floorId;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
@@ -67,6 +74,8 @@ public class Rooms extends BasicEntity {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime lastPaymentDate;
+
+    private Boolean checkedIn;
 
     public ERoom getRoomType() {
         return roomType;
@@ -188,13 +197,13 @@ public class Rooms extends BasicEntity {
         this.roomNo = roomNo;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
+//    public String getPosition() {
+////        return position;
+////    }
+////
+////    public void setPosition(String position) {
+////        this.position = position;
+////    }
 
     public List<Facilities> getFacilities() {
         return facilities;
@@ -202,5 +211,29 @@ public class Rooms extends BasicEntity {
 
     public void setFacilities(List<Facilities> facilities) {
         this.facilities = facilities;
+    }
+
+    public Floors getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floors floor) {
+        this.floor = floor;
+    }
+
+    public Long getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Long floorIdId) {
+        this.floorId = floorIdId;
+    }
+
+    public Boolean getCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(Boolean checkedIn) {
+        this.checkedIn = checkedIn;
     }
 }

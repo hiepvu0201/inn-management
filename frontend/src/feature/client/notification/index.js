@@ -52,7 +52,7 @@ function Notification_client() {
             ))}
           </Row>
         </div>
-        <div style={{ paddingTop: "40vh" }}>
+        <div style={{ paddingTop: "45vh" }}>
           <Footer />
         </div>
       </div>

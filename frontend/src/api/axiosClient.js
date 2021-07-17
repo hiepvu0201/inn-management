@@ -2,13 +2,13 @@ import axios from 'axios';
 const axiosClient = axios.create({
   // baseURL: process.env.REACT_APP_API_BASE_URL,
   // baseURL: "http://localhost:8080",
-  baseURL: "https://inn-server.herokuapp.com",
+  baseURL: "https://inn-server.herokuapp.com/",
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
   },
 });
 //Interceptors

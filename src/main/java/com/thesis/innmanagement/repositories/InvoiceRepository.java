@@ -8,7 +8,4 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(value = "*")
 @Repository
 public interface InvoiceRepository extends JpaRepository<Invoices, Long> {
-//
-//   @Query(value = "select i from Invoice i inner join Users iu where iu.userName = :userName")
-//   Invoices findbyUsername (String userName);
 }

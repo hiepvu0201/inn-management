@@ -5,6 +5,7 @@ import com.thesis.innmanagement.entities.enums.ERole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     @Query("select distinct u from Users u inner join Roles i on i.name = :roleName")
-    List<Users> findAllByRoleName(ERole roleName);
+    List<Users> findAllByRoleName(@Param("roleName") ERole roleName);
 
     Users findByUserName(String userName);
 
@@ -24,10 +25,10 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     Boolean existsByEmail(String email);
 
     @Query("select u.password from Users u where u.userName = :userName")
-    String findPasswordByUserName(String userName);
+    String findPasswordByUserName(@Param("userName") String userName);
 
     @Modifying
     @Transactional
     @Query("update Users u set u.password = :password where u.userName = :userName")
-    void updatePassword(String userName, String password);
+    void updatePassword(@Param("userName") String userName,@Param("password") String password);
 }

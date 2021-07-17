@@ -8,6 +8,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "*")
 @Repository
 public interface ElectricityWaterRepository extends JpaRepository<ElectricityWater, Long> {
-
     ElectricityWater findByRoomId(Long roomId);
 }

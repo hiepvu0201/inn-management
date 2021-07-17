@@ -3,6 +3,7 @@ package com.thesis.innmanagement.repositories;
 import com.thesis.innmanagement.entities.MonthlyPayments;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -12,8 +13,8 @@ import java.util.stream.Stream;
 @CrossOrigin(origins = "*")
 public interface MonthlyPaymentRepository extends JpaRepository<MonthlyPayments, Long> {
     @Query("select distinct mp from MonthlyPayments mp inner join mp.branch b on b.location = :branchLocation order by mp.month ASC")
-    Stream<MonthlyPayments> findAllByBranchLocation(String branchLocation);
+    Stream<MonthlyPayments> findAllByBranchLocation(@Param("branchLocation") String branchLocation);
 
     @Query("select distinct mp from MonthlyPayments mp inner join mp.branch b on b.location = :branchLocation and mp.month = :month")
-    MonthlyPayments findAllByBranchLocationAndMonth(String branchLocation, int month);
+    MonthlyPayments findAllByBranchLocationAndMonth(@Param("branchLocation") String branchLocation,@Param("month") int month);
 }

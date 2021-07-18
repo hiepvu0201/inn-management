@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
-    @Query("select distinct u from Users u inner join Roles i on i.name = :roleName")
+    @Query("select distinct u from Users u inner join u.roles i on i.name = :roleName")
     List<Users> findAllByRoleName(@Param("roleName") ERole roleName);
 
     Users findByUserName(String userName);

@@ -11,12 +11,13 @@
   display: flex;
   /* width: 40%; */
   padding-left: 15px;
-  width: 60%;
+  width: 77%;
 }
 .topic-right-user {
-  width: 40%;
+  width: 23%;
   display: flex;
 }
+
 .contentusers {
   font-size: 20px;
   font-family: "PT Sans, sans-serif";
@@ -39,7 +40,7 @@ width: 40%;
 .btn-right-user {
  width: 20%;
     height: auto;
-    padding-left: 10px;
+    padding-left: 80px;
 }
 .detailed-btn-user {
   font-size: 15px;

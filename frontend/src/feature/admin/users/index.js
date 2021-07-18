@@ -46,6 +46,7 @@ import { LocalDateTime } from "@js-joda/core";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 const { Option } = Select;
+const { Search } = Input;
 function Users(props) {
   //spin
   const [isloadingUpdate, setIsloadingUpdate] = useState(false);
@@ -70,7 +71,7 @@ function Users(props) {
   const [isModalCheckout, setIsModalCheckout] = useState(false);
   const [fileList, setfileList] = useState([]);
   const [checkaddimg, setcheck] = useState(false);
-
+  const [selectus, setselectus] = useState([]);
   const [imgfile, setimgfile] = useState(null);
   const [nullstate, setNullstate] = useState([]);
 
@@ -128,7 +129,9 @@ function Users(props) {
       const response = await usersApi.getAll();
       console.log("Fetch getAll users successfully: ", response.data);
       setIsusersList(response.data);
+      setselectus(response.data)
       setstatesea(response.data);
+      setstatesea12(response.data)
       // dataTable([...userList, response.data]);
       // console.log("response.data.roleIds[0] >>", response.data[0].roleIds);
       setIsloadingUpdate(false);
@@ -545,10 +548,12 @@ function Users(props) {
     setIsModalVisible_1(false);
   };
   const [statesea, setstatesea] = useState([]);
-  const [check12, setcheck12] = useState([]);
+    const [statesea12, setstatesea12] = useState([]);
+
+  const [check12, setcheck12] = useState({});
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
-    if (value === "") {
+    if (value === undefined) {
       setIsusersList(statesea);
     } else {
       const fetchGetalluserbyUsername = async () => {
@@ -556,7 +561,7 @@ function Users(props) {
           const response = await usersApi.getalluserbyusername(value);
           console.log("Fetch user roles successfully: ", response.data);
           setcheck12(response.data);
-          setIsusersList(check12)
+          setIsusersList(check12);
         } catch (error) {
           console.log("Failed to fetch list: ", error);
         }
@@ -565,16 +570,21 @@ function Users(props) {
     }
   };
   const onSelect123 = (values) => {
-    const findRoleByUser = async () => {
-      try {
-        const response = await usersApi.checkrole(values);
-        console.log("Fetch user roles successfully: ", response.data);
-        setIsusersList(response.data);
-      } catch (error) {
-        console.log("Failed to fetch list: ", error);
-      }
-    };
-    findRoleByUser();
+    console.log("value",values)
+    if (values === undefined) {
+      setIsusersList(statesea12);
+    } else {
+      const findRoleByUser = async () => {
+        try {
+          const response = await usersApi.checkrole(values);
+          console.log("Fetch user roles successfully: ", response.data);
+          setIsusersList(response.data);
+        } catch (error) {
+          console.log("Failed to fetch list: ", error);
+        }
+      };
+      findRoleByUser();
+    }
   };
   return (
     <div>
@@ -870,21 +880,21 @@ function Users(props) {
                 <div className="contentusers">QUẢN LÝ KHÁCH TRỌ</div>
               </div>
               <div className="topic-right-user">
-                <div className="element-selectuser">
-                  <Input.Search
+                {/* <div className="element-selectuser">
+                  <Search
                     allowClear
-                    size="middle"
                     style={{ width: "200px" }}
                     // mode="multiple"
                     onSearch={(value) => onSearch_1(value)}
-                  ></Input.Search>
-                </div>
+                  />
+                </div> */}
                 <div className="element2-selectuser">
                   <Select
                     allowClear
-                    style={{ width: "80%" }}
+                    style={{ width: "180px" }}
                     // mode="multiple"
                     onChange={onSelect123}
+                    className="selectsss"
                   >
                     {roleList.map((branchid) => (
                       <Select.Option key={branchid.name} value={branchid.name}>

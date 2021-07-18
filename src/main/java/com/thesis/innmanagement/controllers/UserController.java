@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/search-by-rolename")
-    public ResponseEntity<List<Users>> findByRoleId(@Param("rolename") ERole roleName) {
+    public ResponseEntity<List<Users>> findByRoleId(@Param("roleName") ERole roleName) {
         return ResponseEntity.ok().body(userService.findAllByRoleName(roleName));
     }
 

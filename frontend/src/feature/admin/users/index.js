@@ -12,7 +12,7 @@ import {
   faMapMarkerAlt,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Footer from "./../../../components/footer"
+import Footer from "./../../../components/footer";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 import Menu_AdminPage from "../../../components/menu_adminpage";
 import {
@@ -545,7 +545,7 @@ function Users(props) {
     setIsModalVisible_1(false);
   };
   const [statesea, setstatesea] = useState([]);
-
+  const [check12, setcheck12] = useState([]);
   const onSearch_1 = (value) => {
     console.log("<<VALUE", value);
     if (value === "") {
@@ -554,17 +554,27 @@ function Users(props) {
       const fetchGetalluserbyUsername = async () => {
         try {
           const response = await usersApi.getalluserbyusername(value);
-          console.log(
-            "Fetch userall by username successfully: ",
-            response.data
-          );
-          setIsusersList(response.data);
+          console.log("Fetch user roles successfully: ", response.data);
+          setcheck12(response.data);
+          setIsusersList(check12)
         } catch (error) {
           console.log("Failed to fetch list: ", error);
         }
       };
       fetchGetalluserbyUsername();
     }
+  };
+  const onSelect123 = (values) => {
+    const findRoleByUser = async () => {
+      try {
+        const response = await usersApi.checkrole(values);
+        console.log("Fetch user roles successfully: ", response.data);
+        setIsusersList(response.data);
+      } catch (error) {
+        console.log("Failed to fetch list: ", error);
+      }
+    };
+    findRoleByUser();
   };
   return (
     <div>
@@ -860,7 +870,7 @@ function Users(props) {
                 <div className="contentusers">QUẢN LÝ KHÁCH TRỌ</div>
               </div>
               <div className="topic-right-user">
-                {/* <div className="element-selectuser">
+                <div className="element-selectuser">
                   <Input.Search
                     allowClear
                     size="middle"
@@ -868,13 +878,13 @@ function Users(props) {
                     // mode="multiple"
                     onSearch={(value) => onSearch_1(value)}
                   ></Input.Search>
-                </div> */}
-                {/* <div className="element2-selectuser">
+                </div>
+                <div className="element2-selectuser">
                   <Select
                     allowClear
                     style={{ width: "80%" }}
                     // mode="multiple"
-                    onChange={onSearch_1}
+                    onChange={onSelect123}
                   >
                     {roleList.map((branchid) => (
                       <Select.Option key={branchid.name} value={branchid.name}>
@@ -882,7 +892,7 @@ function Users(props) {
                       </Select.Option>
                     ))}
                   </Select>
-                </div> */}
+                </div>
                 <div className="btn-right-user">
                   <button className="detailed-btn-user" onClick={showModal}>
                     THÊM MỚI
@@ -1060,10 +1070,10 @@ function Users(props) {
             fontSize: "12px",
             marginTop: "40px",
             textAlign: "left",
-            paddingTop:"15vh"
+            paddingTop: "15vh",
           }}
         >
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </div>

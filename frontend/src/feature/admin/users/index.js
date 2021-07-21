@@ -387,7 +387,7 @@ function Users(props) {
   }
   const columns = [
     {
-      title: "Tài khoản",
+      title: "Tên tài khoản",
       dataIndex: "userName",
       key: "userName",
     },
@@ -759,7 +759,7 @@ function Users(props) {
           <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
             <div style={{ display: "flex", width: "100%" }}>
               <Form.Item
-                label="Tài khoản"
+                label="Tên tài khoản"
                 name="userName"
                 value="userName"
                 className="form-userName"
@@ -775,21 +775,10 @@ function Users(props) {
                   className="btn-existed"
                   onClick={() => fetchcheckusername()}
                 >
-                  Kiểm tra trùng
+                  Kiểm tra
                 </Button>
               </div>
             </div>
-            <Form.Item
-              label="Mật khẩu"
-              name="password"
-              className="form-password"
-            >
-              <Input.Password
-                placeholder={rowEdit.password}
-                disabled
-                className="input-password12"
-              />
-            </Form.Item>
             <Form.Item label="Email" name="email" className="form-email">
               <Input placeholder={rowEdit.email} className="input-email12" />
             </Form.Item>
@@ -942,7 +931,7 @@ function Users(props) {
                     >
                       <div style={{ display: "flex", width: "100%" }}>
                         <Form.Item
-                          label="Tài khoản"
+                          label="Tên tài khoản"
                           name="userName"
                           value="userName"
                           className="form-userName"
@@ -954,17 +943,10 @@ function Users(props) {
                             className="btn-existed"
                             onClick={() => fetchcheckusername()}
                           >
-                            Kiểm tra trùng
+                            Kiểm tra
                           </Button>
                         </div>
                       </div>
-                      <Form.Item
-                        label="Mật khẩu"
-                        name="password"
-                        className="form-password"
-                      >
-                        <Input.Password disabled className="input-password12" />
-                      </Form.Item>
                       <Form.Item
                         label="Email"
                         name="email"
@@ -1009,20 +991,6 @@ function Users(props) {
                         className="form-phoneno"
                       >
                         <Input className="input-phoneno12" />
-                      </Form.Item>
-                      <Form.Item
-                        label="Quyền"
-                        name="roleIds"
-                        className="form-roleid"
-                      >
-                        <Select
-                          onChange={handleChange}
-                          allowClear
-                          className="select-roleid12"
-                          style={{ width: 320 }}
-                        >
-                          {propsselect}
-                        </Select>
                       </Form.Item>
                       <Form.Item label="Hình" className="form-img-us">
                         <Upload

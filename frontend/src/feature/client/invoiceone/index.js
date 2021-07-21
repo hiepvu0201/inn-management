@@ -141,20 +141,6 @@ function Invoiceone() {
           onFinish={onFinish}
           // onFinishFailed={onFinishFailed}
         >
-          <Form.Item label="Khách trọ" name="userName" className="form-create">
-            <Select placeholder={userList.userName} disabled className="select-invoice">
-              <Select.Option key={userList.userName} value={userList.userName}>
-                {userList.userName}
-              </Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item
-            label="Ngày tạo hóa đơn"
-            name="paymentDate"
-            className="form-create"
-          >
-            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" disabled />
-          </Form.Item>
           <div style={{ display: "flex" }}>
             <Button type="primary" htmlType="submit">
               THÊM MỚI

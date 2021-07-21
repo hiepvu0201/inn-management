@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { Row, Col, Button } from "antd";
 import { Images } from "./../../config/image";
-import Menu_client from "../../components/menu_client";
+import MenuFirst from "./../../components/menuFirst";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./demo-files/demo.css";
 import "./ie7/ie7.css";
@@ -45,7 +45,7 @@ function Home() {
   return (
     <div>
       <div className="height-open">
-        <Menu_client />
+        <MenuFirst />
       </div>
       <div className="partII">
         <Row>

@@ -385,7 +385,7 @@ function Contract(props) {
                 placeholder={rowEdit.numberOfStage}
               />
             </Form.Item>
-            <Form.Item label="Số năm" name="year" className="form-year">
+            <Form.Item label="Năm" name="year" className="form-year">
               <DatePicker
                 picker="year"
                 placeholder={rowEdit.year}
@@ -539,7 +539,7 @@ function Contract(props) {
                     >
                       <Input className="input-stage-contract" />
                     </Form.Item>
-                    <Form.Item label="Số năm" name="year" className="form-year">
+                    <Form.Item label="Năm" name="year" className="form-year">
                       <DatePicker picker="year" className="input-yearpicker" />
                     </Form.Item>
                     <Form.Item

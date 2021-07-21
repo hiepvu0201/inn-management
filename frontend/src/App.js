@@ -159,7 +159,13 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route
+        <Route
+          exact
+          path="/"
+          name="First Page"
+          render={(props) => <Home {...props} />}
+        />
+        <Route
           exact
           path="/register"
           name="Register Page"
@@ -176,8 +182,11 @@ function App() {
             path="/"
             name="HomeAdmin"
             render={(props) =>
-            Cookies.get("roles") === "ROLE_ADMIN" ?
-              <Adminlayout {...props} /> : <Userlayout {...props} /> 
+              Cookies.get("roles") === "ROLE_ADMIN" ? (
+                <Adminlayout {...props} />
+              ) : (
+                <Userlayout {...props} />
+              )
             }
           />
         ) : (

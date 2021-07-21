@@ -354,18 +354,6 @@ function Contract(props) {
               <Input className="input-details" placeholder={rowEdit.details} />
             </Form.Item>
             <Form.Item
-              label="Ngày ký"
-              name="signDate"
-              className="form-signDate"
-            >
-              <DatePicker
-                showTime
-                format="YYYY-MM-DD HH:mm:ss"
-                className="input-signDate"
-                placeholder={rowEdit.signDate}
-              />
-            </Form.Item>
-            <Form.Item
               label="Số phòng"
               name="numberOfRooms"
               className="form-num-room"
@@ -383,13 +371,6 @@ function Contract(props) {
               <Input
                 className="input-stage-contract"
                 placeholder={rowEdit.numberOfStage}
-              />
-            </Form.Item>
-            <Form.Item label="Số năm" name="year" className="form-year">
-              <DatePicker
-                picker="year"
-                placeholder={rowEdit.year}
-                className="input-yearpicker"
               />
             </Form.Item>
             <Form.Item
@@ -515,17 +496,6 @@ function Contract(props) {
                       <Input className="input-details" />
                     </Form.Item>
                     <Form.Item
-                      label="Ngày ký"
-                      name="signDate"
-                      className="form-signDate"
-                    >
-                      <DatePicker
-                        showTime
-                        format="YYYY-MM-DD HH:mm:ss"
-                        className="input-signDate"
-                      />
-                    </Form.Item>
-                    <Form.Item
                       label="Số phòng"
                       name="numberOfRooms"
                       className="form-num-room"
@@ -538,9 +508,6 @@ function Contract(props) {
                       className="form-num-stages"
                     >
                       <Input className="input-stage-contract" />
-                    </Form.Item>
-                    <Form.Item label="Số năm" name="year" className="form-year">
-                      <DatePicker picker="year" className="input-yearpicker" />
                     </Form.Item>
                     <Form.Item
                       label="Khuyến mãi"

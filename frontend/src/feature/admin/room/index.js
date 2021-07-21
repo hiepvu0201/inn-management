@@ -746,70 +746,82 @@ function Rooms(props) {
                         <Option value="3">Phòng theo tháng</Option>
                       </Select>
                     </Form.Item>
-                    <Form.Item
-                      label="Giá phòng theo giờ 1"
-                      name="priceByFirstHour"
-                      className="form-pricebyfristhour"
-                    >
-                      <Input
-                        className="input-priceByFirstHour"
-                        // onChange={(priceByFirstHour) =>
-                        //   check_price(priceByFirstHour)
-                        // }
-                        style={{ width: 320 }}
-                        disabled={firstroom}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      label="Giá phòng theo giờ 2"
-                      name="priceByNextHour"
-                      className="form-pricebynexthour"
-                    >
-                      <Input
-                        className="input-priceByNextHour"
-                        style={{ width: 320 }}
-                        disabled={firstroom}
-                        // onChange={(priceByNextHour) =>
-                        //   check_price(priceByNextHour)
-                        // }
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      label="Giá phòng theo ngày"
-                      name="priceByDay"
-                      className="priceByDay"
-                    >
-                      <Input
-                        className="input-priceByDay"
-                        style={{ width: 290 }}
-                        disabled={secondroom}
-                        // onChange={(priceByDay) => check_price(priceByDay)}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      label="Giá phòng theo tuần"
-                      name="priceByWeek"
-                      className="pricebyweek"
-                    >
-                      <Input
-                        className="input-pricebyWeek"
-                        style={{ width: 320 }}
-                        disabled={thirdroom}
-                        // onChange={(priceByWeek) => check_price(priceByWeek)}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      label="Giá phòng theo tháng"
-                      name="priceByMonth"
-                      className="pricebymonth"
-                    >
-                      <Input
-                        className="input-priceByMonth"
-                        style={{ width: 320 }}
-                        disabled={fourthroom}
-                        // onChange={(priceByMonth) => check_price(priceByMonth)}
-                      />
-                    </Form.Item>
+                    {
+                      firstroom ||
+                      <>
+                        <Form.Item
+                            label="Giá phòng theo giờ 1"
+                            name="priceByFirstHour"
+                            className="form-pricebyfristhour"
+                        >
+                          <Input
+                              className="input-priceByFirstHour"
+                              // onChange={(priceByFirstHour) =>
+                              //   check_price(priceByFirstHour)
+                              // }
+                              style={{width: 320}}
+                          />
+                        </Form.Item>
+                        <Form.Item
+                            label="Giá phòng theo giờ 2"
+                            name="priceByNextHour"
+                            className="form-pricebynexthour"
+                        >
+                          <Input
+                              className="input-priceByNextHour"
+                              style={{width: 320}}
+                              // onChange={(priceByNextHour) =>
+                              //   check_price(priceByNextHour)
+                              // }
+                          />
+                        </Form.Item>
+                      </>
+                    }
+                    {
+                      secondroom ||
+                      <Form.Item
+                          label="Giá phòng theo ngày"
+                          name="priceByDay"
+                          className="priceByDay"
+                      >
+                        <Input
+                            className="input-priceByDay"
+                            style={{ width: 290 }}
+                            disabled={secondroom}
+                            // onChange={(priceByDay) => check_price(priceByDay)}
+                        />
+                      </Form.Item>
+                    }
+                    {
+                      thirdroom ||
+                      <Form.Item
+                          label="Giá phòng theo tuần"
+                          name="priceByWeek"
+                          className="pricebyweek"
+                      >
+                        <Input
+                            className="input-pricebyWeek"
+                            style={{ width: 320 }}
+                            disabled={thirdroom}
+                            // onChange={(priceByWeek) => check_price(priceByWeek)}
+                        />
+                      </Form.Item>
+                    }
+                    {
+                      fourthroom ||
+                      <Form.Item
+                          label="Giá phòng theo tháng"
+                          name="priceByMonth"
+                          className="pricebymonth"
+                      >
+                        <Input
+                            className="input-priceByMonth"
+                            style={{ width: 320 }}
+                            disabled={fourthroom}
+                            // onChange={(priceByMonth) => check_price(priceByMonth)}
+                        />
+                      </Form.Item>
+                    }
                     <Form.Item
                       label="Chi nhánh"
                       name="branchId"

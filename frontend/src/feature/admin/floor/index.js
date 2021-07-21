@@ -152,7 +152,7 @@ function Floor(props) {
   }
   const columns = [
     {
-      title: "Số Lầu",
+      title: "Lầu",
       dataIndex: "numberOfFloors",
       key: "numberOfFloors",
     },
@@ -358,7 +358,7 @@ function Floor(props) {
                     onFinishFailed={onFinishFailed}
                   >
                     <Form.Item
-                      label="Số lầu"
+                      label="Lầu"
                       name="numberOfFloors"
                       className="roles-us2"
                     >

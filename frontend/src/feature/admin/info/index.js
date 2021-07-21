@@ -257,31 +257,6 @@ function Info() {
                                 onFinish={onFinish_edit}
                                 onFinishFailed={handleCancel}
                               >
-                                <div style={{ display: "flex", width: "100%" }}>
-                                  <Form.Item
-                                    label="Tài khoản"
-                                    name="userName"
-                                    value="userName"
-                                    className="form-userName"
-                                  >
-                                    <Input
-                                      className="input-userName"
-                                      placeholder={userList.userName}
-                                      disabled
-                                    />
-                                  </Form.Item>
-                                </div>
-                                {/* <Form.Item
-                                  label="Mật khẩu"
-                                  name="password"
-                                  className="form-password"
-                                >
-                                  <Input.Password
-                                    placeholder={userList.password}
-                                    disabled
-                                    className="input-password"
-                                  />
-                                </Form.Item> */}
                                 <Form.Item
                                   label="Email"
                                   name="email"

@@ -260,20 +260,6 @@ function Profile() {
                               onFinishFailed={handleCancel}
                             >
                               <Form.Item
-                                label="Tài khoản"
-                                name="userName"
-                                value="userName"
-                                className="form-user"
-                              >
-                                <div style={{ width: "90%" }}>
-                                  <Input
-                                    placeholder={userList.userName}
-                                    disabled
-                                    className="row-user"
-                                  />
-                                </div>
-                              </Form.Item>
-                              <Form.Item
                                 label="email"
                                 name="email"
                                 className="form-email"
@@ -353,20 +339,6 @@ function Profile() {
                                     placeholder={userList.phoneNo}
                                     className="row-phone"
                                   />
-                                </div>
-                              </Form.Item>
-                              <Form.Item label="Quyền" name="roleIds" className="form-select">
-                                <div style={{ width: "90%" }}>
-                                  <Select
-                                    onChange={handleChange}
-                                    allowClear
-                                    mode="multiple"
-                                    disabled
-                                    placeholder={userList.roles[0].name}
-                                    className="row-select"
-                                  >
-                                    {propsselect}
-                                  </Select>
                                 </div>
                               </Form.Item>
                               <Form.Item label="Hình" className="form-img">

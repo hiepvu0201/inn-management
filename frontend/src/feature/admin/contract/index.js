@@ -354,18 +354,6 @@ function Contract(props) {
               <Input className="input-details" placeholder={rowEdit.details} />
             </Form.Item>
             <Form.Item
-              label="Ngày ký"
-              name="signDate"
-              className="form-signDate"
-            >
-              <DatePicker
-                showTime
-                format="YYYY-MM-DD HH:mm:ss"
-                className="input-signDate"
-                placeholder={rowEdit.signDate}
-              />
-            </Form.Item>
-            <Form.Item
               label="Số phòng"
               name="numberOfRooms"
               className="form-num-room"
@@ -385,6 +373,7 @@ function Contract(props) {
                 placeholder={rowEdit.numberOfStage}
               />
             </Form.Item>
+<<<<<<< HEAD
             <Form.Item label="Năm" name="year" className="form-year">
               <DatePicker
                 picker="year"
@@ -392,6 +381,8 @@ function Contract(props) {
                 className="input-yearpicker"
               />
             </Form.Item>
+=======
+>>>>>>> master
             <Form.Item
               label="Khuyến mãi"
               name="voucher"
@@ -515,17 +506,6 @@ function Contract(props) {
                       <Input className="input-details" />
                     </Form.Item>
                     <Form.Item
-                      label="Ngày ký"
-                      name="signDate"
-                      className="form-signDate"
-                    >
-                      <DatePicker
-                        showTime
-                        format="YYYY-MM-DD HH:mm:ss"
-                        className="input-signDate"
-                      />
-                    </Form.Item>
-                    <Form.Item
                       label="Số phòng"
                       name="numberOfRooms"
                       className="form-num-room"
@@ -539,9 +519,12 @@ function Contract(props) {
                     >
                       <Input className="input-stage-contract" />
                     </Form.Item>
+<<<<<<< HEAD
                     <Form.Item label="Năm" name="year" className="form-year">
                       <DatePicker picker="year" className="input-yearpicker" />
                     </Form.Item>
+=======
+>>>>>>> master
                     <Form.Item
                       label="Khuyến mãi"
                       name="voucher"

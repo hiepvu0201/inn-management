@@ -245,20 +245,20 @@ function Password() {
                           onFinish={onFinish}
                         >
                           <div className="topi2c">THAY ĐỔI MẬT KHẨU</div>
-                          <div className="rowfirst-rightPW">
-                            <div className="labelPW">Username:</div>
-                            <div className="contentnamePW">
-                              <Form.Item>
-                                <Input
-                                  bordered={false}
-                                  value={statepww.userName}
-                                  disabled
-                                >
-                                  {/* {userList.fullName} */}
-                                </Input>
-                              </Form.Item>
-                            </div>
-                          </div>
+                          {/*<div className="rowfirst-rightPW">*/}
+                          {/*  <div className="labelPW">Tên tài khoản:</div>*/}
+                          {/*  <div className="contentnamePW">*/}
+                          {/*    <Form.Item>*/}
+                          {/*      <Input*/}
+                          {/*        bordered={false}*/}
+                          {/*        value={statepww.userName}*/}
+                          {/*        disabled*/}
+                          {/*      >*/}
+                          {/*        /!* {userList.fullName} *!/*/}
+                          {/*      </Input>*/}
+                          {/*    </Form.Item>*/}
+                          {/*  </div>*/}
+                          {/*</div>*/}
                           <div className="rowfirst-rightPW-2">
                             <div className="labelPW">Mật khẩu cũ:</div>
                             <div className="contentnamePW">

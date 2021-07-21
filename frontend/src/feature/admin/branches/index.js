@@ -524,25 +524,6 @@ function Branches(props) {
                           ))}
                         </Select>
                       </Form.Item>
-                      <Form.Item
-                        label="Chủ trọ"
-                        name="userName"
-                        className="form-user-2"
-                      >
-                        <Select
-                          onChange={handleChange_user}
-                          allowClear
-                          className="input-user"
-                          style={{width:"80%"}}
-                        >
-                          <Select.Option
-                            key={Cookies.get("userName")}
-                            value={Cookies.get("userName")}
-                          >
-                            {Cookies.get("userName")}
-                          </Select.Option>
-                        </Select>
-                      </Form.Item>
                       {/* <Form.Item></Form.Item> */}
                       <div className="btncreatebranches">
                         <Button type="primary" htmlType="submit">

@@ -368,17 +368,6 @@ function Invoices() {
                           )}
                         </Select>
                       </Form.Item>
-                      <Form.Item
-                        label="Khách trọ"
-                        name="paymentDate"
-                        className="item-paymentDate"
-                      >
-                        <DatePicker
-                          showTime
-                          format="YYYY-MM-DD HH:mm:ss"
-                          disabled
-                        />
-                      </Form.Item>
                       <div style={{ display: "flex" }}>
                         <Button type="primary" htmlType="submit">
                           THÊM MỚI

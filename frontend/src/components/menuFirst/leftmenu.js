@@ -69,7 +69,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/report-issueUsers">Liên hệ</Link>
+          <Link to="/contact">Liên hệ</Link>
         </a>
       </Menu.Item>
     </Menu>

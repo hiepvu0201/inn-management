@@ -39,7 +39,33 @@
 }
 .detailed-btnroom:hover {
   background-color: #007c7e;
-  color: white;
+  color: #ffffff;
+}
+.input-priceByFirstHour{
+  width: 93%;
+  border-radius: 8px;
+}
+.input-priceByNextHour{
+  margin-right:8px;
+  width: 93%;
+    border-radius: 8px;
+
+}
+.input-priceByMonth{
+  width:93%;
+    border-radius: 8px;
+
+}
+.input-pricebyWeek{
+  width:92%;
+    border-radius: 8px;
+    margin-left: 10px;
+
+}
+.input-priceByDay{
+  width:93%;
+  border-radius: 8px;
+  margin-left:5px
 }
 .boxroom {
   width: 100%;
@@ -52,20 +78,18 @@
 .input-roomNo{
   margin-left: 72px;
   width:20vw;
+  border-radius: 8px;
 }
 .input-position{
   margin-left:104px;
   width:20vw;
+    border-radius: 8px;
+
 }
 .select-roomType{
   margin-left: 64px;
 }
-.input-priceByDay{
-  margin-left:2px;
-}
-.input-pricebyWeek{
-  margin-left:5px;
-}
+
 .select-branches{
   /* margin-left:10vw;
   width: 100%;
@@ -76,12 +100,14 @@
 .select-floor{
   margin-left:93px;
   width: 50px;
+  border-radius: 8px;
 }
 .select-facility{
   margin-left:90px
 }
 .btn-upload{
   margin-left: 110px;
+  border-radius:8px
 }
 .form-facilityids{
   
@@ -91,11 +117,16 @@
 }
 .select-branches-edit{
     position:relative;
-    left:70px
+    left:70px;
   }
   .select-facility-edit{
     position:relative;
-    left:90px
+    left:90px;
+    border-radius:8px;
+  }
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector
+  {
+    border-radius: 8px;
   }
 @media only screen and (max-width: 1026px) {
   .form-roomNo{

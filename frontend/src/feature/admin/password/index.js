@@ -199,7 +199,26 @@ function Password() {
           }
         setIsloadingUpdate_1(false);
       } catch (error) {
-        console.log("Failed to change password: ", error);
+        console.log("Failed to change password: ", error.response);
+        if (error.response.data === "Sai mật khẩu!") {
+          notification.error({
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Thay đổi mật khẩu thất bại`,
+            message: `Mật khẩu cũ của tài khoản ${
+              JSON.parse(error.response.config.data).userName
+            } chưa chính xác`,
+            placement: "bottomRight",
+          });
+        } else if (error.response.data=== "Mật khẩu mới không khớp!") {
+          notification.error({
+            icon: <WarningOutlined style={{ color: "#f26051" }} />,
+            description: `Thay đổi mật khẩu thất bại`,
+            message: `Việc nhập lại mật khẩu mới của tài khoản ${
+              JSON.parse(error.response.config.data).userName
+            } chưa khớp`,
+            placement: "bottomRight",
+          });
+        }
       }
     };
     fetchChangePW();

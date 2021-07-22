@@ -27,43 +27,17 @@ const RightMenu = () => {
   };
   const menu = (
     <Menu>
-      <Menu.Item key="infouss">
-        <div style={{ width: "100%", height: "auto", display: "flex" }}>
-          <div
-            style={{
-              width: "20%",
-              height: "auto",
-              paddingLeft: "10px",
-              paddingTop: "5px",
-            }}
-          >
-            <FontAwesomeIcon icon={faUserEdit} color="black" size="1x" />
-          </div>
-          <div
-            style={{
-              width: "80%",
-              height: "auto",
-              fontFamily: "Open Sans,sans-serif",
-              fontSize: "15px",
-              color: "black",
-              paddingTop: "5px",
-            }}
-          >
-            <Link
-              style={{
-                width: "80%",
-                height: "auto",
-                fontFamily: "Open Sans,sans-serif",
-                fontSize: "15px",
-                color: "black",
-                paddingTop: "5px",
-              }}
-              to="/profileUs"
-            >
-              Thông tin cá nhân
-            </Link>
-          </div>
-        </div>
+      <Menu.Item key="register">
+        <a
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
+          href=""
+        >
+          <Link to="/register">Đăng ký</Link>
+        </a>
       </Menu.Item>
       <Menu.Item key="pwuss">
         <div style={{ width: "100%", height: "auto", display: "flex" }}>
@@ -146,32 +120,30 @@ const RightMenu = () => {
   );
   return (
     <Menu mode={md ? "horizontal" : "inline"} style={{ paddingTop: "10px" }}>
-      <Menu.Item key="invoice">
+      <Menu.Item key="register">
         <a
-          style={{ color: "Black", fontFamily: "Kaushan Script, cursive" }}
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
           href=""
         >
-          <Link to="/invoieUsers">
-            <FontAwesomeIcon icon={faFileInvoiceDollar} size="2x" />
-          </Link>
+          <Link to="/register">Đăng ký</Link>
         </a>
       </Menu.Item>
-      <Menu.Item key="mail">
-        <Dropdown overlay={menu} placement="bottomLeft">
-          <FontAwesomeIcon icon={faUserTag} size="2x" />
-        </Dropdown>
-      </Menu.Item>
-      <Menu.Item key="app">
+       <Menu.Item key="/login">
         <a
-          style={{ color: "Black", fontFamily: "Kaushan Script, cursive" }}
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
           href=""
         >
-          <Link to="/notificationUsers">
-            <FontAwesomeIcon icon={faBell} size="2x" />
-          </Link>
+          <Link to="/login">Đăng nhập</Link>
         </a>
       </Menu.Item>
-      
     </Menu>
   );
 };

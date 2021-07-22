@@ -44,6 +44,8 @@ import Password from './feature/admin/password'
 import PasswordUs from './feature/client/passworduser'
 import Map from './feature/map'
 import Floor from './feature/admin/floor'
+import Error from './feature/admin/404'
+import Contact from './feature/contact'
 function App() {
   const loading = (
     <div className="pt-3 text-center">
@@ -53,105 +55,105 @@ function App() {
   const Userlayout =()=>{
      return (
        <Switch>
-        {Cookies.get("Bearer") ? (
-          <>
-         <Route path="/detailroom">
-           <Detail_room />
-         </Route>
-         <Route path="/roomUsers">
-           <Room_client />
-         </Route>
-         <Route path="/profileUs">
-           <Profile />
-         </Route>
-         <Route path="/ruleUsers">
-           <Rules_client />
-         </Route>
-         <Route path="/report-issueUsers">
-           <Reportissues_client />
-         </Route>
-         <Route path="/invoieUsers">
-           <Invoiceone />
-         </Route>
-         <Route path="/notificationUsers">
-           <Notification_client />
-         </Route>
-         <Route path="/changepassUs">
-           <PasswordUs/>
-         </Route>
-         <Route path="/map">
-           <Map/>
-         </Route>
-         <Route exact path="/">
-           <Home />
-         </Route>
-         </>
+         {Cookies.get("Bearer") ? (
+           <>
+             <Route path="/detailroom">
+               <Detail_room />
+             </Route>
+             <Route path="/profileUs">
+               <Profile />
+             </Route>
+             <Route path="/ruleUsers">
+               <Rules_client />
+             </Route>
+             <Route path="/report-issueUsers">
+               <Reportissues_client />
+             </Route>
+             <Route path="/invoieUsers">
+               <Invoiceone />
+             </Route>
+             <Route path="/notificationUsers">
+               <Notification_client />
+             </Route>
+             <Route path="/changepassUs">
+               <PasswordUs />
+             </Route>
+             <Route path="/map">
+               <Map />
+             </Route>
+             <Route exact path="/">
+               <Room_client />
+             </Route>
+           </>
          ) : (
-          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
-        )}
+           <PrivateRoute path="/" name="HomeUser" component={Userlayout} />
+         )}
        </Switch>
      );
   }
   const Adminlayout = () => {
      return (
        <Switch>
-          {Cookies.get("Bearer") ? (
-            <>
-         <Route path="/branches">
-           <Branches />
-         </Route>
-         <Route path="/info">
-           <Info />
-         </Route>
-         <Route path="/password">
-           <Password />
-         </Route>
-         <Route path="/rooms">
-           <Room />
-         </Route>
-         <Route path="/floors">
-           <Floor/>
-         </Route>
-         <Route path="/facilities">
-           <Facilities />
-         </Route>
-         <Route path="/electricity-waters">
-           <ElectricityWaters />
-         </Route>
-         <Route path="/monthlyincomes">
-           <Monthlyincome />
-         </Route>
-         <Route path="/monthlypayments">
-           <Monthlypayment />
-         </Route>
-         <Route path="/contracts">
-           <Contract />
-         </Route>
-         <Route path="/users">
-           <Users />
-         </Route>
-         <Route path="/roles">
-           <Role />
-         </Route>
-         <Route path="/rules">
-           <Rules />
-         </Route>
-         <Route path="/notifications">
-           <Notification />
-         </Route>
-         <Route path="/reported-issues">
-           <Reportedissues />
-         </Route>
-         <Route path="/invoices">
-           <Invoices />
-         </Route>
-         <Route exact path="/">
-           <Homepage_admin />
-         </Route>
-         </>
+         {Cookies.get("Bearer") ? (
+           <>
+             <Route path="/branches">
+               <Branches />
+             </Route>
+             <Route  path="/info">
+               <Info />
+             </Route>
+             <Route  path="/password">
+               <Password />
+             </Route>
+             <Route  path="/rooms">
+               <Room />
+             </Route>
+             <Route  path="/floors">
+               <Floor />
+             </Route>
+             <Route path="/facilities">
+               <Facilities />
+             </Route>
+             <Route path="/electricity-waters">
+               <ElectricityWaters />
+             </Route>
+             <Route  path="/monthlyincomes">
+               <Monthlyincome />
+             </Route>
+             <Route  path="/monthlypayments">
+               <Monthlypayment />
+             </Route>
+             <Route  path="/contracts">
+               <Contract />
+             </Route>
+             <Route  path="/users">
+               <Users />
+             </Route>
+             <Route  path="/roles">
+               <Role />
+             </Route>
+             <Route  path="/rules">
+               <Rules />
+             </Route>
+             <Route  path="/notifications">
+               <Notification />
+             </Route>
+             <Route  path="/reported-issues">
+               <Reportedissues />
+             </Route>
+             <Route e path="/invoices">
+               <Invoices />
+             </Route>
+             <Route exact={true} path="/">
+               <Homepage_admin />
+             </Route>
+             <Route  path="*">
+               <Error />
+             </Route>
+           </>
          ) : (
-          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
-        )}
+           <PrivateRoute path="/" name="HomeAdmin" component={Adminlayout} />
+         )}
        </Switch>
      );
        
@@ -159,7 +161,24 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route
+        {/* <Route
+          exact={false}
+          path="*"
+          component={Error}
+        /> */}
+        <Route
+          exact
+          path="/client"
+          name="HomeMain Page"
+          render={(props) => <Home {...props} />}
+        />
+         <Route
+          exact
+          path="/contact"
+          name="Contact Page"
+          render={(props) => <Contact {...props} />}
+        />
+        <Route
           exact
           path="/register"
           name="Register Page"
@@ -176,24 +195,17 @@ function App() {
             path="/"
             name="HomeAdmin"
             render={(props) =>
-            Cookies.get("roles") === "ROLE_ADMIN" ?
-              <Adminlayout {...props} /> : <Userlayout {...props} /> 
+              Cookies.get("roles") === "ROLE_ADMIN" ? (
+                <Adminlayout {...props} />
+              ) : (
+                <Userlayout {...props} />
+              )
             }
           />
         ) : (
-          <PrivateRoute path="/" name="HomeAdmin" component={Userlayout} />
+          <PrivateRoute path="/" name="HomeUser" component={Userlayout} />
         )}
       </Switch>
-
-      {/* </Switch>   */}
-      {/* <Room_client/> */}
-
-      {/* <Detail_room/> */}
-      {/* <Detailroom_tag/> */}
-      {/* <Rules_client/> */}
-      {/* <Reportissues_client/> */}
-      {/* <Profile/> */}
-      {/* <Login /> */}
     </div>
   );
 }

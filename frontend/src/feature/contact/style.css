@@ -1,0 +1,82 @@
+.height-contract{
+    height:100px;
+}
+.partXIII {
+  width: 100%;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+.topicxx {
+  font-size: 30px;
+  padding-top: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.content-circle-XIII {
+  position: relative;
+  bottom: 10px;
+}
+.content2-circle-XIII {
+  font-size: 15px;
+  width: 80%;
+  height: auto;
+  font-family: "PT Sans, sans-serif";
+  padding-top: 5px;
+}
+.box-last23 {
+  width: 80%;
+  height: 230px;
+  background-color: #007c7e;
+  display: "flex";
+  justify-content: center;
+}
+.icon-hover-2 {
+  border-radius: 50%;
+  background-color: white;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-hover-3 {
+  border-radius: 50%;
+  background-color: #007c7e;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topic-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-family: "PT Sans", sans-serif;
+}
+.content-com-4 {
+  width: 80%;
+  height: auto;
+  font-size: 15px;
+  color: white;
+  font-family: "PT Sans", sans-serif;
+}
+.container-two{
+    width:100%;
+    height:auto;
+    display:flex;
+    justify-content:center;
+}
+.incontainer{
+    width:80%;
+    height:auto;
+}

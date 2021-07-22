@@ -50,6 +50,14 @@
 .input-name-info{
     margin-left: 10px;
 }
+.input-description-info{
+    width:60%;
+    border-radius: 8px;
+}
+.input-name-info{
+    width:59%;
+    border-radius: 8px;
+}
 @media only screen and (max-width: 1026px) {
   .topic-left-noti{
       width:70%;

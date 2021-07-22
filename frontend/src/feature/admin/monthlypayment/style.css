@@ -72,6 +72,8 @@
 .form-cost {
 }
 .input-cost {
+  width:76%;
+  border-radius: 8px;
 }
 @media only screen and (max-width: 1026px) {
   .form-monthPayment {

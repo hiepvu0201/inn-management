@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import {
   Input,
   Form,
@@ -12,8 +12,8 @@ import {
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import authApi from './../../api/authApi'
-import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
+import authApi from "./../../api/authApi";
+import { WarningOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { fakeAuth } from "../../fakeAuth";
 
@@ -103,7 +103,10 @@ function Register(props) {
                 }}
               >
                 <Form.Item name="email">
-                  <Input placeholder="Nhập email" />
+                  <Input
+                    placeholder="Nhập email"
+                    style={{ borderRadius: "́8px" }}
+                  />
                 </Form.Item>
               </div>
               <div className="username">Mật khẩu</div>
@@ -119,6 +122,7 @@ function Register(props) {
                   <Input.Password
                     placeholder="Nhập password"
                     className="password-register"
+                    style={{ borderRadius: "́8px" }}
                   />
                 </Form.Item>
               </div>
@@ -143,6 +147,7 @@ function Register(props) {
                     backgroundColor: "#0c61f2",
                     color: "white",
                     fontFamily: "'Open Sans', sans-serif",
+                    borderRadius: "8px",
                   }}
                 >
                   ĐĂNG KÝ

@@ -1348,7 +1348,7 @@ function Home() {
                       }}
                     >
                       <div className="topic-com-4">
-                        Email: nduy9744@gmail.com
+                         nduy9744@gmail.com
                       </div>
                     </div>
                     <div

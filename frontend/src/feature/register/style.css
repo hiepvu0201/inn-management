@@ -88,7 +88,16 @@
   color: white;
   font-family: "Source Sans Pro", sans-serif;
 }
+.ant-input-affix-wrapper {
+    border-radius: 8px;
+}
+.ant-input{
 
+    border-radius: 8px;
+}
+.ant-notification-notice {
+    border-radius: 8px;
+}
 @media only screen and (  max-width: 1026px) {
 .abc{
     padding-left: 18px;

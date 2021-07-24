@@ -20,45 +20,11 @@ function Error_client() {
         </div>
         <div style={{ width: "100%", height: "auto" }}>
           <img src={Images.COTON} style={{ width: "100%", height: "auto" }} />
-          <div
-            style={{
-              fontFamily: "'Roboto Mono', monospace",
-              fontSize: "45px",
-              position: "relative",
-              backgroundColor: "white",
-                top: "-150vh",
-            }}
-          >
-            Xin vui lòng lấy làm tiếc
-          </div>
-          <div
-            style={{
-              fontFamily: "'Dancing Script', cursive",
-              fontSize: "40px",
-              position: "relative",
-              backgroundColor: "white",
-                top: "-145vh",
-            }}
-          >
-            Trang bạn tìm kiếm không có
-          </div>
+          <div className="please">Xin vui lòng lấy làm tiếc</div>
+          <div className="notfound">Trang bạn tìm kiếm không có</div>
           <Link to="/" style={{ color: "white" }}>
-            <div style={{backgroundColor:"white"}}>
-              <button
-                style={{
-                  position: "relative",
-                  top: "-140vh",
-                  backgroundColor: "#39ac30",
-                  borderRadius: "8px",
-                  fontFamily: "'Yomogi', cursive",
-                  fontSize: "20px",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
-                  cursor: "pointer"
-                }}
-              >
-                Trở về Trang Chủ
-              </button>
+            <div style={{ backgroundColor: "white" }}>
+              <button className="btn-notfound">Trở về Trang Chủ</button>
             </div>
           </Link>
         </div>

@@ -283,7 +283,7 @@ function Contact() {
                             </div>
                             <div className="content-first-XIII">Địa chỉ</div>
                             <div className="detailed-content-first-XIIII">
-                              1 Võ Văn Ngân Phường Linh Chiểu Thành phố Thủ Đức
+                              1 Võ Văn Ngân  Thành phố Thủ Đức
                             </div>
                           </div>
                         </div>

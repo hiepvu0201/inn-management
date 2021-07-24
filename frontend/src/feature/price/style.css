@@ -127,6 +127,7 @@
   background-color: #007c7e;
   display: "flex";
   justify-content: center;
+  border-radius: 8px;
 }
 .icon-hover-2-price2 {
   border-radius: 50%;

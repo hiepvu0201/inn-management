@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Images } from "../../config/image";
-import { Input, Button, Form } from "antd";
+import { Input, Button, Form,notification } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from "./../../api/authApi";
 import Cookies from "js-cookie";
 import { fakeAuth } from "../../fakeAuth";
 import { Link, Redirect, useHistory } from "react-router-dom";
-
+import { WarningOutlined, CheckCircleFilled } from "@ant-design/icons";
 function Login(props) {
   const [loginstate, setloginstate] = useState([]);
     const [Directstate, setDirectstate] = useState({
@@ -25,6 +25,12 @@ const onFinish = (values) => {
           redirectToReferrer: true,
         }));
       });
+       notification.success({
+         message: "Đăng nhập thành công",
+         icon: <CheckCircleFilled style={{ color: "#20da9b" }} />,
+         description: `Tài khoản ${response.data.username} đăng nhập thành công`,
+         placement: "topRight",
+       });
       console.log("<<", response.data.accessToken);
       Cookies.set("Bearer", response.data.accessToken);
       Cookies.set("id",response.data.id)
@@ -32,6 +38,14 @@ const onFinish = (values) => {
       Cookies.set("roles",response.data.roles[0])
     } catch (error) {
       console.log("failed to login ưser: ", error.response);
+      if(error.response.status=401)
+      {
+         notification.error({
+           message: `Đăng nhập thất bại`,
+           icon: <WarningOutlined style={{ color: "#f26051" }} />,
+           placement: "topRight",
+         });
+      }
     }
   };
 
@@ -98,6 +112,7 @@ const onFinish = (values) => {
                     backgroundColor: "#0c61f2",
                     color: "white",
                     fontFamily: "'Open Sans', sans-serif",
+                    borderRadius: "8px",
                   }}
                 >
                   ĐĂNG NHẬP
@@ -143,7 +158,7 @@ const onFinish = (values) => {
                   display: "flex",
                 }}
               >
-                <div style={{paddingTop:"0px"}}>
+                <div style={{ paddingTop: "0px" }}>
                   <FontAwesomeIcon icon={faUserPlus} color="white" />
                 </div>
                 Bạn chưa có tài khoản?

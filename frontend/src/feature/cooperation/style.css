@@ -185,6 +185,7 @@
   background-color: #007c7e;
   display: "flex";
   justify-content: center;
+  border-radius: 8px;
 }
 .icon-hover-coop-last {
   border-radius: 50%;

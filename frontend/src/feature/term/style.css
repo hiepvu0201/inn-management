@@ -148,6 +148,7 @@
   background-color: #007c7e;
   display: "flex";
   justify-content: center;
+  border-radius: 8px;
 }
 .icon-hover-term {
   border-radius: 50%;

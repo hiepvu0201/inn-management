@@ -430,11 +430,6 @@ function Users(props) {
       key: "address",
     },
     {
-      title: "Công việc",
-      dataIndex: "job",
-      key: "job",
-    },
-    {
       title: "Ngày checkin",
       dataIndex: "checkinDate",
       key: "checkinDate",

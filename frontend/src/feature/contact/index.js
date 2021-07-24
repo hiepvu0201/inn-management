@@ -52,10 +52,8 @@ function Contact() {
                 }}
               >
                 <div className="topicxx">
-                  <div
-                    className="content-circle-XIII"
-                    // style={{ position: "relative", bottom: "10px" }}
-                  >
+                  <div className="circle-coop-3"></div>
+                  <div style={{ position: "relative",fontSize:"21px" }}>
                     Đồng hành 24/7 cùng công việc quản lý nhà trọ, căn hộ của
                     bạn
                   </div>
@@ -70,7 +68,7 @@ function Contact() {
                   hàng ngày.
                 </div>
               </div>
-              <Row style={{ paddingTop: "20px" }}>
+              <Row className="row-contact" style={{ paddingTop: "20px" }}>
                 <Col lg={8} md={24}>
                   <div className="box-last23">
                     <div
@@ -208,10 +206,8 @@ function Contact() {
                   }}
                 >
                   <div className="topicxx">
-                    <div
-                      className="content-circle-XIII"
-                      // style={{ position: "relative", bottom: "10px" }}
-                    >
+                    <div className="circle-coop-3"></div>
+                    <div style={{ position: "relative" }}>
                       Phần mềm quản lý nhà trọ - căn hộ
                     </div>
                   </div>
@@ -223,7 +219,7 @@ function Contact() {
                     cho khách hàng
                   </div>
                 </div>
-                <Row>
+                <Row style={{ paddingTop: "15px", paddingBottom: "15px" }}>
                   <Col lg={8} md={24}>
                     <div style={{ display: "block" }}>
                       <div
@@ -234,13 +230,96 @@ function Contact() {
                           justifyContent: "center",
                         }}
                       >
-                        <div style={{ width: "80%", height: "auto" }}>
-                          <div style={{ display: "block" }}>
-                            <div className="icon-hover-3">
+                        <div
+                          style={{
+                            width: "80%",
+                            height: "auto",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div style={{ display: "block", width: "60%" }}>
+                            <div className="icon-hover-333">
+                              <FontAwesomeIcon
+                                icon={faPhoneAlt}
+                                size="2x"
+                                color="white"
+                              />
+                            </div>
+                            <div className="content-first-XIII">Điện thoại</div>
+                            <div className="detailed-content-first-XIII">
+                              0901.632.176
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div></div>
+                    </div>
+                  </Col>
+                  <Col lg={8} md={24}>
+                    <div style={{ display: "block" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "80%",
+                            height: "auto",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div style={{ display: "block", width: "100%" }}>
+                            <div className="icon-hover-4">
                               <div
                                 className="ti-comments"
-                                style={{ Color: "#009c7e" }}
+                                style={{ color: "white" }}
                               ></div>
+                            </div>
+                            <div className="content-first-XIII">Địa chỉ</div>
+                            <div className="detailed-content-first-XIIII">
+                              1 Võ Văn Ngân Phường Linh Chiểu Thành phố Thủ Đức
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div></div>
+                    </div>
+                  </Col>
+                  <Col lg={8} md={24}>
+                    <div style={{ display: "block" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "80%",
+                            height: "auto",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div style={{ display: "block", width: "100%" }}>
+                            <div className="icon-hover-4">
+                              <FontAwesomeIcon
+                                icon={faEnvelopeOpen}
+                                size="2x"
+                                color="white"
+                              />
+                            </div>
+                            <div className="content-first-XIII">Email</div>
+                            <div className="detailed-content-first-XIII">
+                              nduy9744@gmail.com
                             </div>
                           </div>
                         </div>

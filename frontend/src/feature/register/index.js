@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState} from "react";
 import {
   Input,
   Form,
@@ -15,15 +15,23 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import authApi from './../../api/authApi'
 import {WarningOutlined,CheckCircleFilled} from "@ant-design/icons";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import { fakeAuth } from "../../fakeAuth";
 
-function Register() {
-   const onFinish = (values) => {
+function Register(props) {
+  const [Directstate, setDirectstate] = useState({
+    redirectToReferrer: false,
+  });
+  const onFinish = (values) => {
     const register = async () => {
       try {
         console.log("value", values);
         const response = await authApi.signup(values);
         console.log("Fetch register user successfully: ", response);
-
+        fakeAuth.authenticate(() => {
+          setDirectstate(() => ({
+            redirectToReferrer: true,
+          }));
+        });
         notification.success({
           message: "Đăng ký thành công",
           icon: <CheckCircleFilled style={{ color: "#20da9b" }} />,
@@ -56,6 +64,11 @@ function Register() {
     };
     register();
   };
+  const { from } = props.location.state || { from: { pathname: "/login" } };
+  const { redirectToReferrer } = Directstate;
+  if (redirectToReferrer === true) {
+    return <Redirect to={from} />;
+  }
   return (
     <div>
       <div className="form-register">
@@ -103,7 +116,10 @@ function Register() {
                 }}
               >
                 <Form.Item name="password">
-                  <Input.Password placeholder="Nhập password" className="password-register" />
+                  <Input.Password
+                    placeholder="Nhập password"
+                    className="password-register"
+                  />
                 </Form.Item>
               </div>
               <div
@@ -171,9 +187,9 @@ function Register() {
                       textDecorationLine: "underline",
                       textDecorationThickness: "2px",
                       textDecorationStyle: "solid",
-                      fontSize:"14px",
-                      fontFamily:"Open Sans,sans-serif",
-                      paddingLeft:"8px"
+                      fontSize: "14px",
+                      fontFamily: "Open Sans,sans-serif",
+                      paddingLeft: "8px",
                     }}
                   >
                     {" "}

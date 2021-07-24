@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
-import Menu_AdminPage from "./../../../components/menu_adminpage";
+import Menu_client from "./../../../components/menu_client";
 import Footer from "./../../../components/footer";
 import { Images } from "./../../../config/image";
 import {Link} from "react-router-dom"
-function Error() {
+function Error_client() {
   return (
     <div>
       <div
@@ -16,7 +16,7 @@ function Error() {
         }}
       >
         <div style={{ height: "100px" }}>
-          <Menu_AdminPage />
+          <Menu_client />
         </div>
         <div style={{ width: "100%", height: "auto" }}>
           <img src={Images.COTON} style={{ width: "100%", height: "auto" }} />
@@ -81,4 +81,4 @@ function Error() {
   );
 }
 
-export default Error;
+export default Error_client;

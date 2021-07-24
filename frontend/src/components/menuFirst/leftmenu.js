@@ -45,7 +45,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/roomUsers">Bảng giá</Link>
+          <Link to="/price">Bảng giá</Link>
         </a>
       </Menu.Item>
       <Menu.Item key="rules">
@@ -57,7 +57,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/ruleUsers">Hợp tác</Link>
+          <Link to="/cooperation">Hợp tác</Link>
         </a>
       </Menu.Item>
       <Menu.Item key="report">

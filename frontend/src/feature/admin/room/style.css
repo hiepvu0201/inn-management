@@ -95,7 +95,7 @@
   width: 100%;
   position: relative;
   top:-30px; */
-  margin-left:5vw;
+  margin-left:70px;
 }
 .select-floor{
   margin-left:93px;
@@ -118,6 +118,8 @@
 .select-branches-edit{
     position:relative;
     left:70px;
+      margin-left:70px;
+
   }
   .select-facility-edit{
     position:relative;
@@ -128,6 +130,13 @@
   {
     border-radius: 8px;
   }
+  .ant-upload-list-picture .ant-upload-list-item, .ant-upload-list-picture-card .ant-upload-list-item {
+    position: relative;
+    height: 66px;
+    padding: 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+}
 @media only screen and (max-width: 1026px) {
   .form-roomNo{
     padding-left: 15px;

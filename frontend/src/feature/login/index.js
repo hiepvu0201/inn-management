@@ -143,8 +143,10 @@ const onFinish = (values) => {
                   display: "flex",
                 }}
               >
-                <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn chưa có
-                tài khoản?
+                <div style={{paddingTop:"0px"}}>
+                  <FontAwesomeIcon icon={faUserPlus} color="white" />
+                </div>
+                Bạn chưa có tài khoản?
                 <Link to="/register">
                   <div className="register">ĐĂNG KÝ NGAY</div>
                 </Link>

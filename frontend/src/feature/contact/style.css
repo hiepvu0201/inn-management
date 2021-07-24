@@ -1,5 +1,5 @@
-.height-contract{
-    height:100px;
+.height-contract {
+  height: 100px;
 }
 .partXIII {
   width: 100%;
@@ -22,6 +22,25 @@
 .content-circle-XIII {
   position: relative;
   bottom: 10px;
+}
+.content-first-XIII {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "PT Sans, sans-serif";
+  padding-top: 15px;
+}
+.detailed-content-first-XIII {
+  font-size: 15px;
+  font-family: "PT Sans, sans-serif";
+  padding-top: 15px;
+  color: #007c7e;
+}
+.detailed-content-first-XIIII {
+  font-size: 15px;
+  font-family: "PT Sans, sans-serif";
+  padding-top: 15px;
+  color: #007c7e;
+  width: 90%;
 }
 .content2-circle-XIII {
   font-size: 15px;
@@ -46,7 +65,7 @@
   justify-content: center;
   align-items: center;
 }
-.icon-hover-3 {
+.icon-hover-333 {
   border-radius: 50%;
   background-color: #007c7e;
   width: 4rem;
@@ -54,6 +73,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  left: 60px;
+}
+.icon-hover-4 {
+  border-radius: 50%;
+  background-color: #007c7e;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 120px;
 }
 .topic-com-4 {
   width: 80%;
@@ -70,13 +102,25 @@
   color: white;
   font-family: "PT Sans", sans-serif;
 }
-.container-two{
-    width:100%;
-    height:auto;
-    display:flex;
-    justify-content:center;
+.container-two {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
-.incontainer{
-    width:80%;
-    height:auto;
+.incontainer {
+  width: 80%;
+  height: auto;
+}
+@media only screen and (max-width: 1026px) {
+  .row-contact{
+    width: 100vw;
+    padding-left: 5vw;
+  }
+  .icon-hover-333{
+    left:120px
+  }
+  .icon-hover-4{
+        left: 240px;
+  }
 }

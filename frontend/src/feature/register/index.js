@@ -71,140 +71,145 @@ function Register(props) {
   }
   return (
     <div>
-      <div className="form-register">
-        <div className="form-boxres">
-          <div style={{ width: "100%", height: "auto", display: "block" }}>
-            <div className="sign-up">ĐĂNG KÝ</div>
-            <Form
-              name="basic"
-              initialValues={{ remember: true }}
-              onFinish={onFinish}
-            >
-              <div className="username">Username</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
+      <div style={{ display: "block", backgroundColor: "#fafafa" }}>
+        <div className="form-register">
+          <div className="form-boxres">
+            <div style={{ width: "100%", height: "auto", display: "block" }}>
+              <div className="sign-up">ĐĂNG KÝ</div>
+              <Form
+                name="basic"
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
               >
-                <Form.Item name="userName">
-                  <Input placeholder="Nhập họ và tên" />
-                </Form.Item>
-              </div>
-              <div className="username">Email</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Form.Item name="email">
-                  <Input
-                    placeholder="Nhập email"
-                    style={{ borderRadius: "́8px" }}
-                  />
-                </Form.Item>
-              </div>
-              <div className="username">Mật khẩu</div>
-              <div
-                style={{
-                  width: "90%",
-                  paddingLeft: "20px",
-                  paddingTop: "5px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Form.Item name="password">
-                  <Input.Password
-                    placeholder="Nhập password"
-                    className="password-register"
-                    style={{ borderRadius: "́8px" }}
-                  />
-                </Form.Item>
-              </div>
+                <div className="username">Username</div>
+                <div
+                  style={{
+                    width: "90%",
+                    paddingLeft: "20px",
+                    paddingTop: "5px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <Form.Item name="userName">
+                    <Input placeholder="Nhập họ và tên" />
+                  </Form.Item>
+                </div>
+                <div className="username">Email</div>
+                <div
+                  style={{
+                    width: "90%",
+                    paddingLeft: "20px",
+                    paddingTop: "5px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <Form.Item name="email">
+                    <Input
+                      placeholder="Nhập email"
+                      style={{ borderRadius: "́8px" }}
+                    />
+                  </Form.Item>
+                </div>
+                <div className="username">Mật khẩu</div>
+                <div
+                  style={{
+                    width: "90%",
+                    paddingLeft: "20px",
+                    paddingTop: "5px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <Form.Item name="password">
+                    <Input.Password
+                      placeholder="Nhập password"
+                      className="password-register"
+                      style={{ borderRadius: "́8px" }}
+                    />
+                  </Form.Item>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: "10px",
+                    paddingRight: "15px",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    style={{
+                      width: "90%",
+                      height: "auto",
+                      fontSize: "15px",
+                      backgroundColor: "#0c61f2",
+                      color: "white",
+                      fontFamily: "'Open Sans', sans-serif",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    ĐĂNG KÝ
+                  </Button>
+                </div>
+              </Form>
               <div
                 style={{
                   width: "100%",
                   height: "auto",
                   display: "flex",
                   justifyContent: "center",
-                  paddingTop: "10px",
-                  paddingRight: "15px",
-                  paddingBottom: "20px",
-                }}
-              >
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{
-                    width: "90%",
-                    height: "auto",
-                    fontSize: "15px",
-                    backgroundColor: "#0c61f2",
-                    color: "white",
-                    fontFamily: "'Open Sans', sans-serif",
-                    borderRadius: "8px",
-                  }}
-                >
-                  ĐĂNG KÝ
-                </Button>
-              </div>
-            </Form>
-            <div
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "flex",
-                justifyContent: "center",
-                backgroundColor: "#007c7e",
-                borderRadius: "5px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "white",
-                  fontFamily: "Open Sans', sans-serif",
-                  display: "flex",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
+                  backgroundColor: "#007c7e",
+                  borderRadius: "5px",
                 }}
               >
                 <div
                   style={{
-                    fontSize: "15px",
+                    fontSize: "14px",
                     color: "white",
-                    fontFamily: "'Source Sans Pro', sans-serif",
+                    fontFamily: "Open Sans', sans-serif",
+                    display: "flex",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
                   }}
                 >
-                  <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn đã có
-                  tài khoản rồi hãy,
-                </div>
-
-                <Link to="/login">
                   <div
                     style={{
+                      fontSize: "15px",
                       color: "white",
-                      textDecorationLine: "underline",
-                      textDecorationThickness: "2px",
-                      textDecorationStyle: "solid",
-                      fontSize: "14px",
-                      fontFamily: "Open Sans,sans-serif",
-                      paddingLeft: "8px",
+                      fontFamily: "'Source Sans Pro', sans-serif",
                     }}
                   >
-                    {" "}
-                    ĐĂNG NHẬP NGAY
+                    <FontAwesomeIcon icon={faUserPlus} color="white" /> Bạn đã
+                    có tài khoản rồi hãy,
                   </div>
-                </Link>
+
+                  <Link to="/login">
+                    <div
+                      style={{
+                        color: "white",
+                        textDecorationLine: "underline",
+                        textDecorationThickness: "2px",
+                        textDecorationStyle: "solid",
+                        fontSize: "14px",
+                        fontFamily: "Open Sans,sans-serif",
+                        paddingLeft: "8px",
+                      }}
+                    >
+                      {" "}
+                      ĐĂNG NHẬP NGAY
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Link to="/">
+          <div className="btn-move1" >Trở về trang tìm kiếm</div>
+        </Link>
       </div>
     </div>
   );

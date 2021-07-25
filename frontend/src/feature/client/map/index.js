@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Menu_first from "./../../components/menuFirst";
+import Menu_client from "./../../../components/menu_client";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import mapApi from "./../../api/mapApi";
+import mapApi from "./../../../api/mapApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -9,13 +9,13 @@ import {
   faLandmark,
   faMapPin,
 } from "@fortawesome/free-solid-svg-icons";
-import Footer from "./../../components/footer";
+import Footer from "./../../../components/footer";
 import { Select, Row, Col, Modal } from "antd";
-import roomApi from "./../../api/roomApi";
-import branchesApi from "./../../api/branchesApi";
+import roomApi from "./../../../api/roomApi";
+import branchesApi from "./../../../api/branchesApi";
 import "./style.css";
 const { Option } = Select;
-function Map_client() {
+function Map() {
   const [state, setstate] = useState([]);
   const [branchesList, setbranchesList] = useState([]);
   const [state1, setstate1] = useState([]);
@@ -136,7 +136,7 @@ function Map_client() {
     <div>
       {/* <div>{arrloca[0].latitude}</div> */}
       <div>
-        <Menu_first />
+        <Menu_client />
       </div>
       <div
         style={{
@@ -432,4 +432,4 @@ function Map_client() {
     </div>
   );
 }
-export default Map_client;
+export default Map;

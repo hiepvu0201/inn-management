@@ -45,7 +45,7 @@ const LeftMenu = () => {
           }}
           href=""
         >
-          <Link to="/">Phòng trọ</Link>
+          <Link to="/home">Phòng trọ</Link>
         </a>
       </Menu.Item>
       <Menu.Item key="rules">

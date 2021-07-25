@@ -3,7 +3,7 @@ import LeftMenu from "./leftmenu"
 import RightMenu from "./rightmenu"
 import { Drawer, Button } from 'antd';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
+import { faHouseUser, faStreetView } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import './style.css'
@@ -34,8 +34,8 @@ class Navbar extends Component {
           >
             Clothes Shop
           </a> */}
-          <Link to="/">
-            <FontAwesomeIcon icon={faHouseUser} size="2x" color="#007c7e" />
+          <Link to="/mapclient">
+            <FontAwesomeIcon icon={faStreetView} size="2x" color="#007c7e" />
           </Link>
         </div>
         <div className="menuConUser">

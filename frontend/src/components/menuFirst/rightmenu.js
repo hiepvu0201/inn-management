@@ -27,6 +27,18 @@ const RightMenu = () => {
   };
   const menu = (
     <Menu>
+      <Menu.Item key="map">
+        <a
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
+          href=""
+        >
+          <Link to="/map">Bản đồ</Link>
+        </a>
+      </Menu.Item>
       <Menu.Item key="register">
         <a
           style={{
@@ -132,7 +144,7 @@ const RightMenu = () => {
           <Link to="/register">Đăng ký</Link>
         </a>
       </Menu.Item>
-       <Menu.Item key="/login">
+      <Menu.Item key="/login">
         <a
           style={{
             color: "Black",

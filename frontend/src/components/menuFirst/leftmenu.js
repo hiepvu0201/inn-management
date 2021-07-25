@@ -36,6 +36,18 @@ const LeftMenu = () => {
           <Link to="/">Trang chủ</Link>
         </a>
       </Menu.Item>
+      <Menu.Item key="roomclient">
+        <a
+          style={{
+            color: "Black",
+            fontFamily: "Kaushan Script, cursive",
+            fontSize: "20px",
+          }}
+          href=""
+        >
+          <Link to="/roomclient">Phòng Trọ</Link>
+        </a>
+      </Menu.Item>
       <Menu.Item key="room">
         <a
           style={{

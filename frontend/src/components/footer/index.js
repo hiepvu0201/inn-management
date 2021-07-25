@@ -189,6 +189,12 @@ function Footer() {
                 <Link to="/client">
                   <div className="href-page">Trang Chủ</div>
                 </Link>
+                <Link to="/roomclient">
+                  <div className="href-page">Phòng trọ</div>
+                </Link>
+                <Link to="/mapclient">
+                  <div className="href-page">Vị trí chi nhánh trọ</div>
+                </Link>
                 <Link to="/price">
                   <div className="href-page">Bảng giá</div>
                 </Link>

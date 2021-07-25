@@ -43,6 +43,8 @@ import Privacy from "./feature/privacy"
 import Term from "./feature/term"
 import Error_client from "./feature/client/404"
 import Error_admin from "./feature/admin/404"
+import Room_first from "./feature/room_client"
+import Map_login from "./feature/client/map"
 function App() {
   const Userlayout =()=>{
      return (
@@ -54,8 +56,8 @@ function App() {
            <Route path="/invoieUsers" component={Invoiceone} />
            <Route path="/notificationUsers" component={Notification_client} />
            <Route path="/changepassUs" component={PasswordUs} />
-           <Route path="/map" component={Map} />
-           <Route exact path="/" component={Room_client} />
+           <Route path="/map" component={Map_login} />
+           <Route exact path="/home" component={Room_client} />
            <Route path="*" component={Error_client} exact={false} />
          </Switch>
      );
@@ -79,7 +81,7 @@ function App() {
              <Route path="/notifications" component={Notification}/>
              <Route path="/reported-issues" component={Reportedissues}/>
              <Route path="/invoices" component={Invoices}/>
-             <Route exact  path="/" component={Homepage_admin}/>
+             <Route exact  path="/home" component={Homepage_admin}/>
               <Route exact={false} path="*" component={Error_admin} />
        </Switch>
      );
@@ -92,6 +94,19 @@ function App() {
           path="*"
           component={Error}
         /> */}
+        {/* <Route exact path="/home" component={Room_client} /> */}
+        <Route
+          exact
+          path="/roomclient"
+          name="Room Page"
+          render={(props) => <Room_first {...props} />}
+        />
+        <Route
+          exact
+          path="/mapclient"
+          name="Map Page"
+          render={(props) => <Map {...props} />}
+        />
         <Route
           exact
           path="/term"
@@ -118,7 +133,7 @@ function App() {
         />
         <Route
           exact
-          path="/client"
+          path="/"
           name="HomeMain Page"
           render={(props) => <Home {...props} />}
         />

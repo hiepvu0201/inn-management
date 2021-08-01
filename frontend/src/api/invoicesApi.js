@@ -34,6 +34,10 @@ const invoicesApi = {
   getid(params){
     const url = `/api/v1/invoices/${params}/`;
     return axiosClient.get(url);
+  },
+  update(params){
+    const url = `/api/v1/invoices/${params.id}`;
+    return axiosClient.put(url, params.data);
   }
 };
 export default invoicesApi;

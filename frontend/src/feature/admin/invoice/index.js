@@ -61,7 +61,27 @@ function Invoices() {
     fetchInvoicesList();
     fetchUsersList();
   }, []);
-
+  const onFinish_edit = (values) => {
+    const dataCreate12 = {
+      ...values,
+      paymentDate: LocalDateTime.now(),
+      userName:rowEdit.user.userName
+    };
+    console.log("dataCreate", dataCreate12);
+    const data_update = { id: rowEdit.id, data: dataCreate12 };
+    fetchUpdateInvoices(data_update);
+  };
+   const fetchUpdateInvoices = async (values) => {
+     try {
+       const response = await invoicesApi.update(values);
+       console.log("Fetch update invoices successfully: ", response);
+      //  setInvoicesList(response.data);
+       fetchInvoicesList();
+       setIsModalVisible(false);
+     } catch (error) {
+       console.log("failed to create invoice list: ", error);
+     }
+   };
   //form
   const onFinish = (values) => {
     const dt =new Date();
@@ -77,6 +97,7 @@ function Invoices() {
       try {
         const response = await invoicesApi.create(dataCreate);
         console.log("Fetch create invoices successfully: ", response.data);
+        console.log("ffdfđf", response.data.electricityWater.room.total);
         // setInvoicesList(response.data);
         fetchInvoicesList();
         setIsModalVisible(false);
@@ -140,7 +161,7 @@ function Invoices() {
       title: "Chi nhánh",
       dataIndex: "user",
       key: "user",
-      render: (user) => <div>{user.room.branch.location}</div>,
+      render: (user) => <div>{user.room.branch.description}</div>,
     },
     {
       title: "Phòng",
@@ -159,18 +180,38 @@ function Invoices() {
       dataIndex: "total",
       key: "total",
     },
-    {
-      title: "Ngày tạo hợp đồng",
-      dataIndex: "contract",
-      key: "contract",
-      // render: (contract) => <div>{contract.signDate}</div>,
-      render: (contract) =>
-        contract.signDate === null ? (
-          <Tag color="#668595">NULL</Tag>
-        ) : (
-          <Tag color="#21363c">{contract.signDate}</Tag>
-        ),
-    },
+    // {
+    //   title: "Tổng tiền phòng",
+    //   dataIndex: "user",
+    //   key: "user",
+    //   render: (user) => <div>{user.room.total}</div>,
+    // },
+    // {
+    //   title: "Tổng tiền điện",
+    //   dataIndex: "electricityWater",
+    //   key: "electricityWater",
+    //   render: (electricityWater) => (
+    //     <div>{electricityWater.totalElectricity}</div>
+    //   ),
+    // },
+    // {
+    //   title: "Tổng tiền nước",
+    //   dataIndex: "electricityWater",
+    //   key: "electricityWater",
+    //   render: (electricityWater) => <div>{electricityWater.totalWater}</div>,
+    // },
+    // {
+    //   title: "Ngày tạo hợp đồng",
+    //   dataIndex: "contract",
+    //   key: "contract",
+    //   // render: (contract) => <div>{contract.signDate}</div>,
+    //   render: (contract) =>
+    //     contract.signDate === null ? (
+    //       <Tag color="#668595">NULL</Tag>
+    //     ) : (
+    //       <Tag color="#21363c">{contract.signDate}</Tag>
+    //     ),
+    // },
     {
       title: "Ngày thanh toán",
       dataIndex: "paymentDate",
@@ -236,6 +277,14 @@ function Invoices() {
               <FontAwesomeIcon icon={faDownload} color="#ffa500" />
             </Popconfirm>
           </div>
+          <div
+            style={{ paddingLeft: "10px", lineHeight: "1px" }}
+            onClick={() => {
+              showModal_1(record);
+            }}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </div>
         </div>
       ),
     },
@@ -272,6 +321,75 @@ function Invoices() {
   };
   return (
     <div>
+      <Modal
+        title={
+          <div style={{ display: "flex" }}>
+            <FontAwesomeIcon icon={faEdit} size="1x" color="#007c7e" />{" "}
+            <div
+              style={{
+                fontFamily: "PT Sans, sans-serif",
+                fontSize: "20px",
+                color: "#007c7e",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              CHỈNH SỬA HÓA ĐƠN
+            </div>
+          </div>
+        }
+        onOk={handleOk_1}
+        onCancel={handleCancel_1}
+        visible={isModalVisible_1}
+        okText="CHỈNH SỬA"
+        cancelText="HỦY BỎ"
+        footer={null}
+      >
+        <Form initialValues={{ remember: true }} onFinish={onFinish_edit}>
+          {/* <Form.Item
+            label="Khách trọ"
+            name="userName"
+            className="item-us-invoices"
+          >
+            <Select
+              onChange={handleChange}
+              style={{ width: 300 }}
+              className="select-us-invoices"
+            >
+              {usersList.map((ownerid) =>
+                ownerid.roles[0].name === "ROLE_USER" ? (
+                  <Select.Option
+                    key={ownerid.userName}
+                    value={ownerid.userName}
+                  >
+                    {ownerid.userName}
+                  </Select.Option>
+                ) : (
+                  <>Null</>
+                )
+              )}
+            </Select>
+          </Form.Item> */}
+          <div style={{ display: "flex" }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ borderRadius: "8px" }}
+            >
+              CẬP NHẬT
+            </Button>
+            <div style={{ paddingLeft: "10px" }}>
+              <Button
+                type="default"
+                onClick={handleCancel_1}
+                style={{ borderRadius: "8px" }}
+              >
+                HỦY BỎ
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </Modal>
       <div
         style={{
           width: "100%",

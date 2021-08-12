@@ -1,4 +1,4 @@
-<span style="color: green"> Some green text </span>
+#Inn_management
 
 Nguyễn Hùng Duy (Front-end) - Vũ Hoàng Hiệp(Back-end)
 

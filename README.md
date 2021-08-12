@@ -1,4 +1,4 @@
-Inn_Management
+<span style="color: green"> Some green text </span>
 
 Nguyễn Hùng Duy (Front-end) - Vũ Hoàng Hiệp(Back-end)
 
